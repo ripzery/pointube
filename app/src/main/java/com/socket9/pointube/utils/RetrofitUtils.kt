@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.screens.register.RegisterModel
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -40,6 +41,21 @@ interface PointubeAPI {
     fun getAllProvider(): Observable<HomeModel.AllBrands>
 
     @FormUrlEncoded
-    @POST("/Account/Login")
+    @POST("Account/Login")
     fun login(@Field("Email") email: String, @Field("Password") password: String): Observable<LoginModel.Login>
+
+    @FormUrlEncoded
+    @POST("api/Member/Create")
+    fun register(@Field("FirstName") firstName: String,
+                 @Field("LastName") lastName: String,
+                 @Field("CitizenID") citizenID: String,
+                 @Field("Passport") passport: String,
+                 @Field("Mobile") mobile: String,
+                 @Field("Email") email: String,
+                 @Field("Password") password: String,
+                 @Field("Gender") gender: String,
+                 @Field("Address") address: String,
+                 @Field("Birthday") birthday: String,
+                 @Field("FirstNameEN") firstNameEN: String,
+                 @Field("LastNameEN") lastNameEN: String) : Observable<RegisterModel.Register>
 }

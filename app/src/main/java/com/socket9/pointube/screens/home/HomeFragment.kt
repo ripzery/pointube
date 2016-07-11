@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.manager.HttpManager
+import com.socket9.pointube.test.ApiTest
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -57,9 +58,6 @@ class HomeFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-        info { "Hello" }
-        HttpManager.login("mon01@mon.com", "1234").subscribe {
-            info{ it }
-        }
+        ApiTest.register()
     }
 }
