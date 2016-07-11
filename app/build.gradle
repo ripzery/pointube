@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion 24
@@ -33,7 +34,6 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.1.0'
     classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     // NOTE: Do not place your application dependencies here; they belong
@@ -61,6 +61,7 @@ dependencies {
   compile 'com.android.support:recyclerview-v7:24.0.0'
   compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
   testCompile 'junit:junit:4.12'
+  testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
   androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
   androidTestCompile 'com.android.support.test:runner:0.5'
   androidTestCompile 'com.android.support:support-annotations:24.0.0'

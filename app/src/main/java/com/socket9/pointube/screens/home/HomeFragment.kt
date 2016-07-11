@@ -57,6 +57,7 @@ class HomeFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
+        info { "Hello" }
         HttpManager.login("mon01@mon.com", "1234").subscribe {
             info{ it }
         }
