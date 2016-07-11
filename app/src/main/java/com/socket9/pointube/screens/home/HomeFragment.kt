@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.manager.HttpManager
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AnkoLogger {
 
     /** Variable zone **/
     lateinit var param1: String
@@ -54,6 +57,8 @@ class HomeFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
-
+        HttpManager.login("mon01@mon.com", "1234").subscribe {
+            info{ it }
+        }
     }
 }
