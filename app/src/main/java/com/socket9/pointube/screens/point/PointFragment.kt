@@ -1,4 +1,4 @@
-package com.socket9.pointube.screens.home
+package com.socket9.pointube.screens.point
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,15 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
-import com.socket9.pointube.manager.HttpManager
-import com.socket9.pointube.test.ApiTest
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class HomeFragment : Fragment(), AnkoLogger {
+class PointFragment : Fragment() {
 
     /** Variable zone **/
     lateinit var param1: String
@@ -24,12 +20,12 @@ class HomeFragment : Fragment(), AnkoLogger {
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): HomeFragment {
+        fun newInstance(param1: String): PointFragment {
             var bundle: Bundle = Bundle()
             bundle.putString(ARG_1, param1)
-            val homeFragment: HomeFragment = HomeFragment()
-            homeFragment.arguments = bundle
-            return homeFragment
+            val templateFragment: PointFragment = PointFragment()
+            templateFragment.arguments = bundle
+            return templateFragment
         }
 
     }
@@ -45,7 +41,7 @@ class HomeFragment : Fragment(), AnkoLogger {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView: View = inflater!!.inflate(R.layout.fragment_home, container, false)
+        val rootView: View = inflater!!.inflate(R.layout.fragment_point, container, false)
 
         return rootView
     }
@@ -58,6 +54,6 @@ class HomeFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-//        ApiTest.register()
+
     }
 }
