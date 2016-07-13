@@ -41,7 +41,7 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 
         if (isInEditMode) {
-            super.onMeasure(MeasureSpec.makeMeasureSpec(300, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(300, MeasureSpec.EXACTLY))
+            super.onMeasure(MeasureSpec.makeMeasureSpec(210, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(210, MeasureSpec.EXACTLY))
 //            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
             return
         }
@@ -99,5 +99,12 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
 
     fun isGrey(): Boolean {
         return isGrey
+    }
+
+    fun setIsGrey(isGrey: Boolean){
+        this.isGrey = isGrey
+        setBackgroundResource(if (isGrey) R.drawable.shape_circle_grey else R.drawable.shape_circle_red)
+        invalidate()
+        requestLayout()
     }
 }

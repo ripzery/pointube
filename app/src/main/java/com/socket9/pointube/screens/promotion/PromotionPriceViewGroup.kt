@@ -8,17 +8,21 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.socket9.pointube.R
+import com.socket9.pointube.screens.home.CircleFrameLayout
 import org.jetbrains.anko.find
 
 class PromotionPriceViewGroup : FrameLayout {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
+    lateinit private var circleLayout: CircleFrameLayout
     lateinit private var tvPrice: TextView
     lateinit private var tvUnit: TextView
+    lateinit private var crossLineView: View
     private var showCurrency: Boolean = true
     private var currency: String = ""
     private var price: String = ""
+    private var isGrey: Boolean = false
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -54,6 +58,8 @@ class PromotionPriceViewGroup : FrameLayout {
         // findViewById here
         tvPrice = find(R.id.tvPrice)
         tvUnit = find(R.id.tvUnit)
+        circleLayout = find(R.id.circleLayout)
+        crossLineView = find(R.id.crossLineView)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -63,22 +69,30 @@ class PromotionPriceViewGroup : FrameLayout {
                 R.styleable.PromotionPriceViewGroup,
                 defStyleAttr, defStyleRes)
 
-        showCurrency = a.getBoolean(R.styleable.PromotionPriceViewGroup_showCurrency, true)
-        price = a.getString(R.styleable.PromotionPriceViewGroup_price)
-        currency = a.getString(R.styleable.PromotionPriceViewGroup_currency)
-
         try {
+
+            showCurrency = a.getBoolean(R.styleable.PromotionPriceViewGroup_showCurrency, true)
+            isGrey = a.getBoolean(R.styleable.PromotionPriceViewGroup_isCircleGrey, false)
+            price = a.getString(R.styleable.PromotionPriceViewGroup_price) ?: ""
+            currency = a.getString(R.styleable.PromotionPriceViewGroup_currency) ?: ""
 
             tvUnit.text = currency
             tvPrice.text = price
+            circleLayout.setIsGrey(isGrey)
+            crossLineView.visibility = if (isGrey) View.VISIBLE else View.GONE
 
             if (!showCurrency) tvUnit.visibility = View.GONE
 
             invalidate()
             requestLayout()
 
+        } catch(e: IllegalStateException) {
+
+            e.printStackTrace()
+
         } finally {
             a.recycle()
+
         }
 
     }
@@ -89,4 +103,5 @@ class PromotionPriceViewGroup : FrameLayout {
         tvUnit.text = currency
         tvPrice.text = price
     }
+
 }

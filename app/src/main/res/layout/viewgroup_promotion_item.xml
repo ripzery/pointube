@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content">
 
     <com.socket9.pointube.customviews.OneOneImageView
         android:id="@+id/ivCover"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:src="@drawable/world_ball"
+        android:src="@drawable/world_ball"
         />
 
     <LinearLayout
@@ -21,8 +22,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civLogo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:src="@drawable/world_ball"/>
 
         <LinearLayout
@@ -36,20 +37,52 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Content title"
                 tools:text="Content title"/>
 
             <TextView
-                android:id="@+id/tvDetail"
+                android:id="@+id/tvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Content title"/>
+                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="8dp"
+                android:text="Content description"
+                tools:text="Content description"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:price="1,000"
+                    app:currency="baht"
+                    app:isCircleGrey="true"
+                    app:showCurrency="true"/>
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="16dp"
+                    android:text=" + 1000 baht"
+                    android:layout_gravity="center_vertical"
+                    tools:text=" + 1000 Baht"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDayLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
-                tools:text="Content title"/>
+                android:layout_marginTop="8dp"
+                android:text="3 days left"
+                android:textSize="18sp"
+                tools:text="5 days left"/>
 
         </LinearLayout>
 

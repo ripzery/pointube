@@ -8,5 +8,6 @@
         <attr name="showCurrency" format="boolean">true</attr>
         <attr name="currency" format="string">baht</attr>
         <attr name="price" format="string">1,000</attr>
+        <attr name="isCircleGrey" format="boolean">false</attr>
     </declare-styleable>
 </resources>
