@@ -3,11 +3,13 @@ package com.socket9.pointube.screens.home
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.TypedArray
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import com.socket9.pointube.R
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 class CircleFrameLayout : FrameLayout, AnkoLogger {
 
@@ -49,14 +51,16 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
         val child: View? = getChildAt(0)
 
         /* For debugging */
-//        loggingOnMeasured(child, heightMeasureSpec, widthMeasureSpec)
+        loggingOnMeasured(child!!, heightMeasureSpec, widthMeasureSpec)
 
         if (child != null) {
             /* set radius by greater value */
             val radius = if (child.width > child.height) child.width else child.height
 
+            info { radius }
+
             /* build measure spec class */
-            val radiusSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.EXACTLY, radius)
+            val radiusSpec = MeasureSpec.makeMeasureSpec(radius, MeasureSpec.UNSPECIFIED)
 
             super.onMeasure(radiusSpec, radiusSpec)
 
@@ -66,12 +70,13 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
         }
     }
 
-//    private fun loggingOnMeasured(child: View, heightMeasureSpec: Int, widthMeasureSpec: Int) {
-//        info { "child_height : ${child.height}" }
-//        info { "child_width : ${child.width}" }
-//        info { "parent_width : ${MeasureSpec.getSize(widthMeasureSpec)}" }
-//        info { "parent_height : ${MeasureSpec.getSize(heightMeasureSpec)}" }
-//    }
+    private fun loggingOnMeasured(child: View, heightMeasureSpec: Int, widthMeasureSpec: Int) {
+        info { "child_count : ${childCount}" }
+        info { "child_height : ${child.height}" }
+        info { "child_width : ${child.width}" }
+        info { "parent_width : ${MeasureSpec.getSize(widthMeasureSpec)}" }
+        info { "parent_height : ${MeasureSpec.getSize(heightMeasureSpec)}" }
+    }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
@@ -87,6 +92,7 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
         try {
 
             isGrey = typedArray.getBoolean(R.styleable.CircleFrameLayout_isGrey, false)
+            setIsGrey(isGrey)
 
         } finally {
             typedArray.recycle()
@@ -94,17 +100,19 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
     }
 
     private fun initInstance() {
-        setBackgroundResource(if (isGrey) R.drawable.shape_circle_grey else R.drawable.shape_circle_red)
+
     }
 
     fun isGrey(): Boolean {
         return isGrey
     }
 
-    fun setIsGrey(isGrey: Boolean){
+    fun setIsGrey(isGrey: Boolean) {
         this.isGrey = isGrey
         setBackgroundResource(if (isGrey) R.drawable.shape_circle_grey else R.drawable.shape_circle_red)
-        invalidate()
-        requestLayout()
+        foreground = if (isGrey) ContextCompat.getDrawable(context, R.drawable.shape_line_45) else ContextCompat.getDrawable(context, android.R
+                .color.transparent)
+//        invalidate()
+//        requestLayout()
     }
 }

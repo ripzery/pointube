@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.socket9.pointube.screens.promotion.PromotionItemViewGroup
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"/>
+    <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:price="1,000"
+        app:currency="Baht"
+        app:maxLines="1"
+        app:titleTextSize="24sp"
+        app:descTextSize="20sp"
+        app:isCircleGrey="true"
+        android:layout_gravity="center"
+        app:showCurrency="true"/>
+
 
 </LinearLayout>

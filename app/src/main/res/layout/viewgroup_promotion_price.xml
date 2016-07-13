@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.socket9.pointube.screens.home.CircleFrameLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/circleLayout"
+    android:foreground="@android:color/transparent"
     android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:isGrey="false">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="8dp"
+        android:padding="12dp"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="12sp"
             android:textColor="@android:color/white"
             tools:text="1"/>
 
@@ -30,15 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@android:color/white"
             tools:text="Trinidad and Tobago Dollar"/>
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/crossLineView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_line_45" />
 
 </com.socket9.pointube.screens.home.CircleFrameLayout>
