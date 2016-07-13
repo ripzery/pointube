@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleFrameLayout">
+        <attr name="isGrey" format="boolean">false</attr>
+    </declare-styleable>
+
+    <declare-styleable name="PromotionPriceViewGroup">
+        <attr name="showCurrency" format="boolean">true</attr>
+        <attr name="currency" format="string">baht</attr>
+        <attr name="price" format="string">1,000</attr>
+    </declare-styleable>
+</resources>

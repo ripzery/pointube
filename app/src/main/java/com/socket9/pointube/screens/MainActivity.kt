@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.screens.home.HomeFragment
+import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import org.jetbrains.anko.AnkoLogger
 
 class MainActivity : AppCompatActivity(), AnkoLogger {
@@ -16,6 +17,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
     }
 
     private fun initInstance() {
-        replaceFragment(fragment = HomeFragment.newInstance("HomeFragment"))
+        replaceFragment(fragment = PromotionFragment.newInstance("HomeFragment"))
     }
 }

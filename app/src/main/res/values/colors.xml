@@ -6,4 +6,5 @@
 
     <!-- Optional color -->
     <color name="colorRed">#F44336</color>
+    <color name="colorGrey">#bdbdbd</color>
 </resources>

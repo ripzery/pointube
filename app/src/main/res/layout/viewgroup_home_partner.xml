@@ -18,7 +18,7 @@
         android:layout_height="24dp"
         android:layout_gravity="end"
         android:layout_margin="2dp"
-        android:background="@drawable/shape_circle_image">
+        android:background="@drawable/shape_circle_red">
 
         <TextView
             android:id="@+id/tvBadgeCount"
