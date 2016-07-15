@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.manager.HttpManager
-import com.socket9.pointube.test.ApiTest
+import com.socket9.pointube.repository.brands.BrandRepo
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -61,16 +63,16 @@ class HomeFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-//        HttpManager.getAllBrands().subscribe({
-//            val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//            val adapter: BrandUnitAdapter = BrandUnitAdapter(it)
-//            recyclerView.adapter = adapter
-//            recyclerView.layoutManager = linearLayoutManager
-//        }, { error ->
-//            info { error }
-//        })
-
-        ApiTest.register()
+//        ApiTest.getAllBrands()
+        HttpManager.getAllBrands()
+                .subscribe({
+                    val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    val adapter: BrandUnitAdapter = BrandUnitAdapter(it)
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = linearLayoutManager
+                }, {
+                    info { it }
+                })
 //        ApiTest.login()
     }
 
@@ -98,7 +100,7 @@ class HomeFragment : Fragment(), AnkoLogger {
                 homeBrandViewGroup = itemView?.findViewById(R.id.homePartnerViewGroup) as HomePartnerViewGroup
             }
 
-            fun setModel(brand: HomeModel.Brand) {
+            fun setModel(brand: BrandRepo) {
                 homeBrandViewGroup.setModel(brand)
             }
 

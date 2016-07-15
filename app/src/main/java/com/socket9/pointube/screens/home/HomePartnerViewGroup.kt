@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.repository.brands.BrandRepo
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
 
@@ -72,7 +73,7 @@ class HomePartnerViewGroup : FrameLayout {
 
     /** Method zone **/
 
-    fun setModel(brand: HomeModel.Brand) {
+    fun setModel(brand: BrandRepo) {
         setBrandLogo(brand.LogoPath)
     }
 

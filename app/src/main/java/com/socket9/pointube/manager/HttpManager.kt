@@ -1,9 +1,13 @@
 package com.socket9.pointube.manager
 
+import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
 import com.socket9.pointube.utils.RetrofitUtils
+import io.realm.Realm
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -11,10 +15,24 @@ import rx.schedulers.Schedulers
 /**
  * Created by Euro (ripzery@gmail.com) on 7/11/2016 AD.
  */
-object HttpManager {
+object HttpManager : AnkoLogger {
     /* For get all brands */
     fun getAllBrands(): Observable<HomeModel.AllBrands> {
-        return RetrofitUtils.getInstance().getAllProvider()
+        val realm = Realm.getDefaultInstance()
+        val allBrands = realm.where(BrandRepo::class.java).findAll()
+
+        return Observable.concat(Observable.just(HomeModel.AllBrands(true, allBrands.toMutableList(), true)), RetrofitUtils.getInstance()
+                .getAllProvider())
+                .take(2)
+                .doOnNext {
+                    if ( it.Results != null && it.Results.size > 0 && !it.IsDisk) {
+                        val realm = Realm.getDefaultInstance()
+                        realm.beginTransaction()
+                        realm.copyToRealmOrUpdate(it.Results)
+                        realm.commitTransaction()
+                        info { Realm.getDefaultInstance().path }
+                    }
+                }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,8 +58,8 @@ object HttpManager {
                  address: String,
                  birthday: String,
                  firstNameEn: String,
-                 lastNameEN: String): Observable<RegisterModel.Register> {
-        return RetrofitUtils.getInstance().register(RegisterModel.RequestRegister(firstName, lastName,
+                 lastNameEN: String): Observable<RegisterModel.Response.Register> {
+        return RetrofitUtils.getInstance().register(RegisterModel.Request.Register(firstName, lastName,
                 firstNameEn,
                 lastNameEN,
                 citizenId,
