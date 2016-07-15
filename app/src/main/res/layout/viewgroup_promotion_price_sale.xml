@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+        <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionPriceOriginal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             app:price="200"
             app:currency="baht"/>
 
-        <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+        <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionPriceSale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
