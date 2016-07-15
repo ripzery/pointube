@@ -98,6 +98,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
     }
 
     private fun initInstance() {
-
+        replaceFragment(fragment = HomeFragment.newInstance("Home"))
     }
 }

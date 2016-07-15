@@ -11,24 +11,30 @@ object ApiTest: AnkoLogger {
 
     /* Doesn't work */
     fun register() {
-        HttpManager.register("ภูชิต", "สิริมงคลเสถียร", "1419900326966", "TH12345678", "0875567582", "ripzery@gmail.com", "12345", "1",
+        HttpManager.register("Phuchut", "Sirimong", "1419900326966", "TH12345678", "0875567582", "ripzery222@gmail.com", "12345", "1",
                 "Socket9", "1992-06-27T19:30:22", "Phuchit", "Sirimongkolsathien")
-                .subscribe {
+                .subscribe ({
                     info { it }
-                }
+                },{
+                    info {it}
+                })
     }
 
     fun login(){
         HttpManager.login("mon01@mon.com", "1234")
-            .subscribe {
+            .subscribe ({
                 info { it }
-            }
+            },{
+                info {it}
+            })
     }
 
     fun getAllBrands(){
         HttpManager.getAllBrands()
-            .subscribe {
+            .subscribe ({
                 info { it }
-            }
+            },{
+                info {it}
+            })
     }
 }

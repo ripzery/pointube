@@ -2,12 +2,15 @@ package com.socket9.pointube.screens.home
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.manager.HttpManager
 import com.socket9.pointube.test.ApiTest
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -58,6 +61,48 @@ class HomeFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-//        ApiTest.register()
+//        HttpManager.getAllBrands().subscribe({
+//            val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//            val adapter: BrandUnitAdapter = BrandUnitAdapter(it)
+//            recyclerView.adapter = adapter
+//            recyclerView.layoutManager = linearLayoutManager
+//        }, { error ->
+//            info { error }
+//        })
+
+        ApiTest.register()
+//        ApiTest.login()
     }
+
+    /** Inner class zone **/
+
+    inner class BrandUnitAdapter(var list: HomeModel.AllBrands) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
+        override fun onBindViewHolder(holder: BrandUnitViewHolder?, position: Int) {
+            holder!!.setModel(list.Results[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.Results.size
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BrandUnitViewHolder {
+            val v: View = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_home_brand, parent, false)
+            return BrandUnitViewHolder(v)
+        }
+
+        inner class BrandUnitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            lateinit private var homeBrandViewGroup: HomePartnerViewGroup
+
+            init {
+                homeBrandViewGroup = itemView?.findViewById(R.id.homePartnerViewGroup) as HomePartnerViewGroup
+            }
+
+            fun setModel(brand: HomeModel.Brand) {
+                homeBrandViewGroup.setModel(brand)
+            }
+
+        }
+    }
+
 }

@@ -72,8 +72,8 @@ class HomePartnerViewGroup : FrameLayout {
 
     /** Method zone **/
 
-    fun setModel() {
-
+    fun setModel(brand: HomeModel.Brand) {
+        setBrandLogo(brand.LogoPath)
     }
 
     fun setBadgeCount(count: Int){

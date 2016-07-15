@@ -33,7 +33,7 @@ object HttpManager {
                  lastName: String,
                  citizenId: String,
                  passport: String,
-                 mobile: String,
+                 mobile: String?,
                  email: String,
                  password: String,
                  gender: String,
@@ -41,8 +41,9 @@ object HttpManager {
                  birthday: String,
                  firstNameEn: String,
                  lastNameEN: String): Observable<RegisterModel.Register> {
-        return RetrofitUtils.getInstance().register(firstName,
-                lastName,
+        return RetrofitUtils.getInstance().register(RegisterModel.RequestRegister(firstName, lastName,
+                firstNameEn,
+                lastNameEN,
                 citizenId,
                 passport,
                 mobile,
@@ -50,13 +51,10 @@ object HttpManager {
                 password,
                 gender,
                 address,
-                birthday,
-                firstNameEn,
-                lastNameEN)
+                birthday))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
-
 
 }
