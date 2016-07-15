@@ -112,7 +112,5 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
         setBackgroundResource(if (isGrey) R.drawable.shape_circle_grey else R.drawable.shape_circle_red)
         foreground = if (isGrey) ContextCompat.getDrawable(context, R.drawable.shape_line_45) else ContextCompat.getDrawable(context, android.R
                 .color.transparent)
-//        invalidate()
-//        requestLayout()
     }
 }

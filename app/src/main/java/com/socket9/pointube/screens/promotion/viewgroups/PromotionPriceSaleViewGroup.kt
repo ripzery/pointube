@@ -1,4 +1,4 @@
-package com.socket9.pointube.screens.promotion
+package com.socket9.pointube.screens.promotion.viewgroups
 
 import android.annotation.TargetApi
 import android.content.Context
@@ -88,7 +88,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
     /** Method zone **/
 
     private fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
-        val layoutParams: FrameLayout.LayoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        val layoutParams: LayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         layoutParams.setMargins(left.toPx().toInt(), top.toPx().toInt(), right.toPx().toInt(), bottom.toPx().toInt())
         view.layoutParams = layoutParams
     }
