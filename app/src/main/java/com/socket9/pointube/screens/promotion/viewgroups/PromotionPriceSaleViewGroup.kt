@@ -72,7 +72,6 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
             setIsSale(isSale)
             showExtraPrice(isShowExtraPrice)
-            if (isInEditMode) setTitleTextSize(60.0f)
 
         } catch(e: IllegalStateException) {
 
@@ -100,7 +99,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
     fun setIsSale(isSale: Boolean) {
         this.isSale = isSale
         promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
-        setMargins(promotionSale, if (isSale) 32 else 0, 0, 0, 0)
+        setMargins(promotionSale, if (isSale) 40 else 0, 0, 0, 0)
     }
 
     fun setOriginalPrice(price: String) {
@@ -109,16 +108,6 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     fun setSalePrice(price: String) {
         promotionSale.setPrice(price)
-    }
-
-    fun setTitleTextSize(size: Float) {
-        promotionOriginal.setPriceTextSize(size)
-        promotionSale.setPriceTextSize(size)
-    }
-
-    fun setDescTextSize(size: Float) {
-        promotionOriginal.setCurrencyTextSize(size)
-        promotionSale.setCurrencyTextSize(size)
     }
 
     fun setCurrency(currency: String) {

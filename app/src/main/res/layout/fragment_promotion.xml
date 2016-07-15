@@ -10,9 +10,8 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         app:currencyPromotion="baht"
-        app:titleTextSizePromotion="12sp"
-        app:descTextSizePromotion="12sp"
         app:salePricePromotion="100"
+        app:isShowExtraPriceSale="true"
         app:originalPricePromotion="200"
         app:isShowDayLeft="true"/>
 
@@ -20,8 +19,6 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        app:titleTextSizePromotion="12sp"
-        app:descTextSizePromotion="12sp"
         app:currencyPromotion="baht"
         app:salePricePromotion="100"
         app:originalPricePromotion="200"

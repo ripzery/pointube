@@ -26,8 +26,6 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
     private var price: String = ""
     private var isGrey: Boolean = false
     private var maxLines: Int = 1
-    private var titleTextSize: Float = 12.0f
-    private var descTextSize: Float = 12.0f
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -79,8 +77,6 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
             isGrey = a.getBoolean(R.styleable.PromotionPriceViewGroup_isCircleGrey, false)
             price = a.getString(R.styleable.PromotionPriceViewGroup_price) ?: ""
             maxLines = a.getInt(R.styleable.PromotionPriceViewGroup_maxLines, 1)
-            titleTextSize = a.getDimension(R.styleable.PromotionPriceViewGroup_titleTextSize, 14.0f)
-            descTextSize = a.getDimension(R.styleable.PromotionPriceViewGroup_descTextSize, 14.0f)
             currency = a.getString(R.styleable.PromotionPriceViewGroup_currency) ?: ""
 
             setCurrency(currency)
@@ -88,8 +84,6 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
             setIsGrey(isGrey)
             tvPrice.maxLines = maxLines
             tvUnit.maxLines = maxLines
-            setPriceTextSize(titleTextSize)
-            setCurrencyTextSize(descTextSize)
             setShowCurrency(showCurrency)
 
         } catch(e: IllegalStateException) {
@@ -116,14 +110,6 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
 
     fun setCurrency(unit: String) {
         tvUnit.text = unit
-    }
-
-    fun setPriceTextSize(size: Float) {
-        tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_PX, size)
-    }
-
-    fun setCurrencyTextSize(size: Float) {
-        tvUnit.setTextSize(TypedValue.COMPLEX_UNIT_PX, size)
     }
 
     fun setShowCurrency(isShow: Boolean) {

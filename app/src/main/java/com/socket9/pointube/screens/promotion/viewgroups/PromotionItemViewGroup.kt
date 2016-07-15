@@ -21,9 +21,8 @@ class PromotionItemViewGroup : FrameLayout {
     private var originalPrice: String = ""
     private var isGrey: Boolean = false
     private var isShowDayLeft: Boolean = false
+    private var isExtraPriceSale: Boolean = false
     private var maxLines: Int = 1
-    private var titleTextSize: Float = 14.0f
-    private var descTextSize: Float = 14.0f
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -73,16 +72,14 @@ class PromotionItemViewGroup : FrameLayout {
             currency = a.getString(R.styleable.PromotionItemViewGroup_currencyPromotion)
             salePrice = a.getString(R.styleable.PromotionItemViewGroup_salePricePromotion)
             originalPrice = a.getString(R.styleable.PromotionItemViewGroup_originalPricePromotion)
-            titleTextSize = a.getDimension(R.styleable.PromotionItemViewGroup_titleTextSizePromotion, 14.0f)
-            descTextSize = a.getDimension(R.styleable.PromotionItemViewGroup_descTextSizePromotion, 14.0f)
             isShowDayLeft = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowDayLeft, false)
+            isExtraPriceSale = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowExtraPriceSale, false)
 
             setOriginalPrice(originalPrice)
             setSalePrice(salePrice)
-            setTitleTextSize(titleTextSize)
-            setDescTextSize(descTextSize)
             setCurrency(currency)
             isShowDayLeft(isShowDayLeft)
+            isShowExtraPrice(isExtraPriceSale)
 
         } finally {
             a.recycle()
@@ -106,14 +103,6 @@ class PromotionItemViewGroup : FrameLayout {
 
     fun setCurrency(currency: String) {
         mPriceSaleViewGroup.setCurrency(currency)
-    }
-
-    fun setTitleTextSize(size: Float) {
-        mPriceSaleViewGroup.setTitleTextSize(size)
-    }
-
-    fun setDescTextSize(size: Float) {
-        mPriceSaleViewGroup.setDescTextSize(size)
     }
 
     fun isShowDayLeft(isShowDayLeft: Boolean) {
