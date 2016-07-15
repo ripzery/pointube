@@ -67,14 +67,11 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                 defStyleAttr, defStyleRes)
 
         try {
-
             isSale = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isSale, false)
             isShowExtraPrice = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isShowExtraPrice, false)
 
-            promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
-            tvPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
-
-            setMargins(promotionSale, if (isSale) 48 else 0, 0, 0, 0)
+            setIsSale(isSale)
+            showExtraPrice(isShowExtraPrice)
 
         } catch(e: IllegalStateException) {
 
@@ -98,10 +95,13 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     fun showExtraPrice(isShowExtraPrice: Boolean){
         this.isShowExtraPrice = isShowExtraPrice
+        tvPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
     }
 
     fun setIsSale(isSale: Boolean){
         this.isSale = isSale
+        promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
+        setMargins(promotionSale, if (isSale) 48 else 0, 0, 0, 0)
     }
 
     fun setOriginalPrice(price: String){
