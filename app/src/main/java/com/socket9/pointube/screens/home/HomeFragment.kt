@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.manager.HttpManager
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.screens.login.LoginActivity
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -19,11 +21,12 @@ import org.jetbrains.anko.info
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class HomeFragment : Fragment(), AnkoLogger {
+class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     /** Variable zone **/
     lateinit var param1: String
-
+    lateinit private var mProviderListAdapter: BrandUnitAdapter
+    lateinit private var mHomePresenter: HomeContract.Presenter
 
     /** Static method zone **/
     companion object {
@@ -60,20 +63,38 @@ class HomeFragment : Fragment(), AnkoLogger {
         initInstance()
     }
 
+    /** Override View Interface zone **/
+
+    override fun showProviderList(allBrands: HomeModel.AllBrands) {
+        mProviderListAdapter.updateProviderList(allBrands)
+    }
+
+    override fun showProgressBar() {
+
+    }
+
+    override fun showEmptyProviderList() {
+
+    }
+
+    override fun showLogin() {
+        startActivity(Intent(context, LoginActivity::class.java))
+    }
+
     /** Method zone **/
 
     private fun initInstance() {
-//        ApiTest.getAllBrands()
-        HttpManager.getAllBrands()
-                .subscribe({
-                    val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                    val adapter: BrandUnitAdapter = BrandUnitAdapter(it)
-                    recyclerView.adapter = adapter
-                    recyclerView.layoutManager = linearLayoutManager
-                }, {
-                    info { it }
-                })
-//        ApiTest.login()
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        mProviderListAdapter = BrandUnitAdapter(HomeModel.AllBrands(false, mutableListOf()))
+        recyclerView.adapter = mProviderListAdapter
+        recyclerView.layoutManager = linearLayoutManager
+
+        mHomePresenter = HomePresenter(this)
+        mHomePresenter.loadProviderList()
+
+        btnLogin.setOnClickListener {
+            mHomePresenter.doLogin()
+        }
     }
 
     /** Inner class zone **/
@@ -90,6 +111,11 @@ class HomeFragment : Fragment(), AnkoLogger {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BrandUnitViewHolder {
             val v: View = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_home_brand, parent, false)
             return BrandUnitViewHolder(v)
+        }
+
+        fun updateProviderList(providerList: HomeModel.AllBrands){
+            list = providerList
+            notifyDataSetChanged()
         }
 
         inner class BrandUnitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
