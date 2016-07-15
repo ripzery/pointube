@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
@@ -73,5 +74,13 @@ class HomePartnerViewGroup : FrameLayout {
 
     fun setModel() {
 
+    }
+
+    fun setBadgeCount(count: Int){
+        tvBadgeCount.text = "$count"
+    }
+
+    fun setBrandLogo(logo: String){
+        Glide.with(context).load(logo).into(civLogo)
     }
 }

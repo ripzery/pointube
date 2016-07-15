@@ -5,24 +5,6 @@
     android:gravity="center"
     android:layout_height="match_parent">
 
-    <com.socket9.pointube.screens.home.HomePartnerViewGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp">
 
-    </com.socket9.pointube.screens.home.HomePartnerViewGroup>
-
-    <com.socket9.pointube.screens.home.HomePartnerViewGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp">
-
-    </com.socket9.pointube.screens.home.HomePartnerViewGroup>
-
-    <com.socket9.pointube.screens.home.HomePartnerViewGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </com.socket9.pointube.screens.home.HomePartnerViewGroup>
 
 </LinearLayout>
