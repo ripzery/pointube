@@ -2,11 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <com.socket9.pointube.screens.promotion.viewgroups.PromotionItemViewGroup
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
+        app:currencyPromotion="baht"
+        app:titleTextSizePromotion="12sp"
+        app:descTextSizePromotion="12sp"
+        app:salePricePromotion="100"
+        app:originalPricePromotion="200"
+        app:isShowDayLeft="true"/>
+
+    <com.socket9.pointube.screens.promotion.viewgroups.PromotionItemViewGroup
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        app:titleTextSizePromotion="12sp"
+        app:descTextSizePromotion="12sp"
+        app:currencyPromotion="baht"
+        app:salePricePromotion="100"
+        app:originalPricePromotion="200"
         app:isShowDayLeft="true"/>
 
 </LinearLayout>

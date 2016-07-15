@@ -16,18 +16,14 @@
             android:id="@+id/promotionPriceOriginal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:titleTextSize="14sp"
-            app:descTextSize="14sp"
             app:isCircleGrey="true"
-            app:price="200"
+            app:price="100"
             app:currency="baht"/>
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionPriceSale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:titleTextSize="14sp"
-            app:descTextSize="14sp"
             android:layout_marginLeft="48dp"
             app:isCircleGrey="false"
             app:price="200"
@@ -36,7 +32,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tvPrice"
+        android:id="@+id/tvExtraPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"

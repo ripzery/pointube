@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -25,8 +26,8 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
     private var price: String = ""
     private var isGrey: Boolean = false
     private var maxLines: Int = 1
-    private var titleTextSize: Float = 14.0f
-    private var descTextSize: Float = 14.0f
+    private var titleTextSize: Float = 12.0f
+    private var descTextSize: Float = 12.0f
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -118,11 +119,11 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
     }
 
     fun setPriceTextSize(size: Float) {
-        tvPrice.textSize = size.toInt().toDp().toFloat()
+        tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_PX, size)
     }
 
     fun setCurrencyTextSize(size: Float) {
-        tvUnit.textSize = size.toInt().toDp().toFloat()
+        tvUnit.setTextSize(TypedValue.COMPLEX_UNIT_PX, size)
     }
 
     fun setShowCurrency(isShow: Boolean) {

@@ -16,6 +16,49 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="4dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Content title"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="Content title"/>
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Content description"
+            tools:text="Content description"/>
+
+        <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceSaleViewGroup
+            android:id="@+id/promotionPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:isShowExtraPrice="false"
+            app:isSale="true"/>
+
+        <TextView
+            android:id="@+id/tvDayLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorRed"
+            android:layout_marginTop="8dp"
+            android:text="3 days left"
+            tools:text="5 days left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_margin="4dp"
         android:layout_height="wrap_content">
@@ -25,49 +68,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/world_ball"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="4dp"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Content title"
-                android:maxLines="1"
-                android:ellipsize="end"
-                tools:text="Content title"/>
-
-            <TextView
-                android:id="@+id/tvContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Content description"
-                tools:text="Content description"/>
-
-            <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceSaleViewGroup
-                android:id="@+id/promotionPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:isShowExtraPrice="false"
-                app:isSale="true"/>
-
-            <TextView
-                android:id="@+id/tvDayLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorRed"
-                android:layout_marginTop="8dp"
-                android:text="3 days left"
-                tools:text="5 days left"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

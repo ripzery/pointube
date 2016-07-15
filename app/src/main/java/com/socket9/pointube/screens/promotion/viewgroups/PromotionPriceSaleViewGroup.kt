@@ -17,7 +17,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
     /** Variable zone **/
     lateinit private var viewContainer: View
     lateinit private var promotionOriginal: PromotionPriceViewGroup
-    lateinit private var tvPrice: TextView
+    lateinit private var tvExtraPrice: TextView
     lateinit private var promotionSale: PromotionPriceViewGroup
     private var isSale: Boolean = false
     private var isShowExtraPrice: Boolean = false
@@ -54,9 +54,9 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     private fun initInstances() {
         // findViewById here
-        promotionOriginal = find(R.id.promotionPriceOriginal)
-        promotionSale = find(R.id.promotionPriceSale)
-        tvPrice = find(R.id.tvPrice)
+        promotionOriginal = viewContainer.findViewById(R.id.promotionPriceOriginal) as PromotionPriceViewGroup
+        promotionSale = viewContainer.findViewById(R.id.promotionPriceSale) as PromotionPriceViewGroup
+        tvExtraPrice = viewContainer.findViewById(R.id.tvExtraPrice) as TextView
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -72,14 +72,13 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
             setIsSale(isSale)
             showExtraPrice(isShowExtraPrice)
+            if (isInEditMode) setTitleTextSize(60.0f)
 
         } catch(e: IllegalStateException) {
 
             e.printStackTrace()
 
         } finally {
-            invalidate()
-            requestLayout()
             a.recycle()
         }
 
@@ -93,36 +92,36 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
         view.layoutParams = layoutParams
     }
 
-    fun showExtraPrice(isShowExtraPrice: Boolean){
+    fun showExtraPrice(isShowExtraPrice: Boolean) {
         this.isShowExtraPrice = isShowExtraPrice
-        tvPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
+        tvExtraPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
     }
 
-    fun setIsSale(isSale: Boolean){
+    fun setIsSale(isSale: Boolean) {
         this.isSale = isSale
         promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
-        setMargins(promotionSale, if (isSale) 48 else 0, 0, 0, 0)
+        setMargins(promotionSale, if (isSale) 32 else 0, 0, 0, 0)
     }
 
-    fun setOriginalPrice(price: String){
+    fun setOriginalPrice(price: String) {
         promotionOriginal.setPrice(price)
     }
 
-    fun setSalePrice(price: String){
+    fun setSalePrice(price: String) {
         promotionSale.setPrice(price)
     }
 
-    fun setTitleTextSize(size: Float){
+    fun setTitleTextSize(size: Float) {
         promotionOriginal.setPriceTextSize(size)
         promotionSale.setPriceTextSize(size)
     }
 
-    fun setDescTextSize(size: Float){
+    fun setDescTextSize(size: Float) {
         promotionOriginal.setCurrencyTextSize(size)
         promotionSale.setCurrencyTextSize(size)
     }
 
-    fun setCurrency(currency: String){
+    fun setCurrency(currency: String) {
         promotionOriginal.setCurrency(currency)
         promotionSale.setCurrency(currency)
     }

@@ -16,6 +16,7 @@ fun AppCompatActivity.replaceFragment(container: Int = R.id.contentContainer, fr
 fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: Boolean = false) {
     setSupportActionBar(toolbar)
     tvToolbarTitle.text = title
+    supportActionBar?.title = ""
     if (showHamburger) {
 
     } else {
