@@ -119,7 +119,7 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
         tvPrice.text = price
     }
 
-    fun setUnit(unit: String){
+    fun setCurrency(unit: String){
         tvUnit.text = unit
     }
 
@@ -127,7 +127,7 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
         tvPrice.textSize = size.toInt().toDp().toFloat()
     }
 
-    fun setUnitTextSize(size: Float){
+    fun setCurrencyTextSize(size: Float){
         tvUnit.textSize = size.toInt().toDp().toFloat()
     }
 

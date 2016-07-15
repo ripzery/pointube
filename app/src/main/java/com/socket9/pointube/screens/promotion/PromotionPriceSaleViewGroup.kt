@@ -6,6 +6,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.toPx
 import org.jetbrains.anko.AnkoLogger
@@ -16,8 +17,10 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
     /** Variable zone **/
     lateinit private var viewContainer: View
     lateinit private var promotionOriginal: PromotionPriceViewGroup
+    lateinit private var tvPrice: TextView
     lateinit private var promotionSale: PromotionPriceViewGroup
     private var isSale: Boolean = false
+    private var isShowExtraPrice: Boolean = false
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -53,6 +56,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
         // findViewById here
         promotionOriginal = find(R.id.promotionPriceOriginal)
         promotionSale = find(R.id.promotionPriceSale)
+        tvPrice = find(R.id.tvPrice)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -65,10 +69,12 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
         try {
 
             isSale = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isSale, false)
+            isShowExtraPrice = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isShowExtraPrice, false)
 
             promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
+            tvPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
 
-            setMargins(promotionSale, if (isSale) 28 else 0, 0, 0, 0)
+            setMargins(promotionSale, if (isSale) 48 else 0, 0, 0, 0)
 
         } catch(e: IllegalStateException) {
 
@@ -88,6 +94,37 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
         val layoutParams: FrameLayout.LayoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         layoutParams.setMargins(left.toPx().toInt(), top.toPx().toInt(), right.toPx().toInt(), bottom.toPx().toInt())
         view.layoutParams = layoutParams
+    }
+
+    fun showExtraPrice(isShowExtraPrice: Boolean){
+        this.isShowExtraPrice = isShowExtraPrice
+    }
+
+    fun setIsSale(isSale: Boolean){
+        this.isSale = isSale
+    }
+
+    fun setOriginalPrice(price: String){
+        promotionOriginal.setPrice(price)
+    }
+
+    fun setSalePrice(price: String){
+        promotionSale.setPrice(price)
+    }
+
+    fun setTitleTextSize(size: Float){
+        promotionOriginal.setPriceTextSize(size)
+        promotionSale.setPriceTextSize(size)
+    }
+
+    fun setDescTextSize(size: Float){
+        promotionOriginal.setCurrencyTextSize(size)
+        promotionSale.setCurrencyTextSize(size)
+    }
+
+    fun setCurrency(currency: String){
+        promotionOriginal.setCurrency(currency)
+        promotionSale.setCurrency(currency)
     }
 
 }

@@ -6,6 +6,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import com.socket9.pointube.R
 import org.jetbrains.anko.find
 
@@ -13,10 +14,13 @@ class PromotionItemViewGroup : FrameLayout {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
-    lateinit private var mPriceViewGroup: PromotionPriceViewGroup
+    lateinit private var mPriceSaleViewGroup: PromotionPriceSaleViewGroup
+    lateinit private var tvDayLeft: TextView
     private var currency: String = ""
-    private var price: String = ""
+    private var salePrice: String = ""
+    private var originalPrice: String = ""
     private var isGrey: Boolean = false
+    private var isShowDayLeft: Boolean = false
     private var maxLines: Int = 1
     private var titleTextSize: Float = 14.0f
     private var descTextSize: Float = 14.0f
@@ -53,7 +57,8 @@ class PromotionItemViewGroup : FrameLayout {
 
     private fun initInstances() {
         // findViewById here
-        mPriceViewGroup = viewContainer.find(R.id.promotionPrice)
+        mPriceSaleViewGroup = viewContainer.find(R.id.promotionPrice)
+        tvDayLeft = viewContainer.find(R.id.tvDayLeft)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -61,32 +66,61 @@ class PromotionItemViewGroup : FrameLayout {
         val a: TypedArray = context.theme.obtainStyledAttributes(
                 attrs,
                 R.styleable.PromotionItemViewGroup,
-                defStyleAttr, defStyleRes);
+                defStyleAttr, defStyleRes)
 
         try {
 
             currency = a.getString(R.styleable.PromotionItemViewGroup_currencyPromotion)
-            price = a.getString(R.styleable.PromotionItemViewGroup_pricePromotion)
+            salePrice = a.getString(R.styleable.PromotionItemViewGroup_salePricePromotion)
+            originalPrice = a.getString(R.styleable.PromotionItemViewGroup_originalPricePromotion)
             titleTextSize = a.getDimension(R.styleable.PromotionItemViewGroup_titleTextSizePromotion, 14.0f)
             descTextSize = a.getDimension(R.styleable.PromotionItemViewGroup_descTextSizePromotion, 14.0f)
+            isShowDayLeft = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowDayLeft, false)
 
-            mPriceViewGroup.setPrice(price)
-            mPriceViewGroup.setUnit(currency)
-            mPriceViewGroup.setPriceTextSize(titleTextSize)
-            mPriceViewGroup.setUnitTextSize(descTextSize)
+            setOriginalPrice(originalPrice)
+            setSalePrice(salePrice)
+            setTitleTextSize(titleTextSize)
+            setDescTextSize(descTextSize)
+            setCurrency(currency)
+            isShowDayLeft(isShowDayLeft)
 
         } finally {
-            a.recycle();
+            a.recycle()
         }
 
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
     /** Method zone **/
 
     fun setModel() {
 
+    }
+
+    fun setOriginalPrice(price: String) {
+        mPriceSaleViewGroup.setOriginalPrice(price)
+    }
+
+    fun setSalePrice(price: String) {
+        mPriceSaleViewGroup.setSalePrice(price)
+    }
+
+    fun setCurrency(currency: String) {
+        mPriceSaleViewGroup.setCurrency(currency)
+    }
+
+    fun setTitleTextSize(size: Float) {
+        mPriceSaleViewGroup.setTitleTextSize(size)
+    }
+
+    fun setDescTextSize(size: Float) {
+        mPriceSaleViewGroup.setDescTextSize(size)
+    }
+
+    fun isShowDayLeft(isShowDayLeft: Boolean) {
+        tvDayLeft.visibility = if (isShowDayLeft) View.VISIBLE else View.GONE
+    }
+
+    fun isShowExtraPrice(isShowExtraPrice: Boolean){
+        mPriceSaleViewGroup.showExtraPrice(isShowExtraPrice)
     }
 }

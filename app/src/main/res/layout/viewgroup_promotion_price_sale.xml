@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal">
 
-    <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
-        android:id="@+id/promotionPriceOriginal"
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+            android:id="@+id/promotionPriceOriginal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:titleTextSize="14sp"
+            app:descTextSize="14sp"
+            app:isCircleGrey="true"
+            app:salePrice="200"
+            app:currency="baht"/>
+
+        <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+            android:id="@+id/promotionPriceSale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:titleTextSize="14sp"
+            app:descTextSize="14sp"
+            android:layout_marginLeft="48dp"
+            app:isCircleGrey="false"
+            app:salePrice="200"
+            app:currency="baht"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:titleTextSize="14sp"
-        app:descTextSize="14sp"
-        app:isCircleGrey="true"
-        app:price="200"
-        app:currency="baht" />
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="4dp"
+        android:text=" + 1000 baht"
+        tools:text=" + 1000 Baht"/>
 
-    <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
-        android:id="@+id/promotionPriceSale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:titleTextSize="14sp"
-        app:descTextSize="14sp"
-        android:layout_marginLeft="28dp"
-        app:isCircleGrey="false"
-        app:price="200"
-        app:currency="baht" />
-
-</FrameLayout>
+</LinearLayout>

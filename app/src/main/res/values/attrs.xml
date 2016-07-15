@@ -7,7 +7,7 @@
     <declare-styleable name="PromotionPriceViewGroup">
         <attr name="showCurrency" format="boolean">true</attr>
         <attr name="currency" format="string">baht</attr>
-        <attr name="price" format="string">1,000</attr>
+        <attr name="salePrice" format="string">1,000</attr>
         <attr name="isCircleGrey" format="boolean">false</attr>
         <attr name="maxLines" format="integer">1</attr>
         <attr name="titleTextSize" format="dimension">14sp</attr>
@@ -16,12 +16,15 @@
 
     <declare-styleable name="PromotionItemViewGroup">
         <attr name="currencyPromotion" format="string">baht</attr>
-        <attr name="pricePromotion" format="string">1,000</attr>
+        <attr name="salePricePromotion" format="string">1,000</attr>
+        <attr name="originalPricePromotion" format="string">1,000</attr>
         <attr name="titleTextSizePromotion" format="dimension">14sp</attr>
         <attr name="descTextSizePromotion" format="dimension">14sp</attr>
+        <attr name="isShowDayLeft" format="boolean">false</attr>
     </declare-styleable>
 
     <declare-styleable name="PromotionPriceSaleViewGroup">
         <attr name="isSale" format="boolean">false</attr>
+        <attr name="isShowExtraPrice" format="boolean">false</attr>
     </declare-styleable>
 </resources>
