@@ -9,11 +9,9 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.toDp
-import com.socket9.pointube.extensions.toPx
 import com.socket9.pointube.screens.home.CircleFrameLayout
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
-import org.jetbrains.anko.info
 
 class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
 
@@ -84,18 +82,14 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
             descTextSize = a.getDimension(R.styleable.PromotionPriceViewGroup_descTextSize, 14.0f)
             currency = a.getString(R.styleable.PromotionPriceViewGroup_currency) ?: ""
 
-            tvUnit.text = currency
-            tvPrice.text = price
-            circleLayout.setIsGrey(isGrey)
+            setCurrency(currency)
+            setPrice(price)
+            setIsGrey(isGrey)
             tvPrice.maxLines = maxLines
             tvUnit.maxLines = maxLines
-            tvPrice.textSize = titleTextSize.toInt().toDp().toFloat()
-            tvUnit.textSize = descTextSize.toInt().toDp().toFloat()
-
-            if (!showCurrency) tvUnit.visibility = View.GONE
-
-            invalidate()
-            requestLayout()
+            setPriceTextSize(titleTextSize)
+            setCurrencyTextSize(descTextSize)
+            setShowCurrency(showCurrency)
 
         } catch(e: IllegalStateException) {
 
@@ -115,20 +109,27 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
         tvPrice.text = price
     }
 
-    fun setPrice(price: String){
+    fun setPrice(price: String) {
         tvPrice.text = price
     }
 
-    fun setCurrency(unit: String){
+    fun setCurrency(unit: String) {
         tvUnit.text = unit
     }
 
-    fun setPriceTextSize(size: Float){
+    fun setPriceTextSize(size: Float) {
         tvPrice.textSize = size.toInt().toDp().toFloat()
     }
 
-    fun setCurrencyTextSize(size: Float){
+    fun setCurrencyTextSize(size: Float) {
         tvUnit.textSize = size.toInt().toDp().toFloat()
     }
 
+    fun setShowCurrency(isShow: Boolean) {
+        if (!showCurrency) tvUnit.visibility = View.GONE
+    }
+
+    fun setIsGrey(isGrey: Boolean) {
+        circleLayout.setIsGrey(isGrey)
+    }
 }
