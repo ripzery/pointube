@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+        android:id="@+id/promotionPriceOriginal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:titleTextSize="14sp"
+        app:descTextSize="14sp"
+        app:isCircleGrey="true"
+        app:price="200"
+        app:currency="baht" />
+
+    <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+        android:id="@+id/promotionPriceSale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:titleTextSize="14sp"
+        app:descTextSize="14sp"
+        android:layout_marginLeft="28dp"
+        app:isCircleGrey="false"
+        app:price="200"
+        app:currency="baht" />
+
+</FrameLayout>

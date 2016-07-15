@@ -53,13 +53,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="4dp">
 
                 <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
+                    android:id="@+id/promotionPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:price="1,000"
                     app:currency="baht"
+                    app:titleTextSize="14sp"
+                    app:descTextSize="14sp"
                     app:isCircleGrey="true"
                     app:showCurrency="true"/>
 

@@ -13,4 +13,15 @@
         <attr name="titleTextSize" format="dimension">14sp</attr>
         <attr name="descTextSize" format="dimension">14sp</attr>
     </declare-styleable>
+
+    <declare-styleable name="PromotionItemViewGroup">
+        <attr name="currencyPromotion" format="string">baht</attr>
+        <attr name="pricePromotion" format="string">1,000</attr>
+        <attr name="titleTextSizePromotion" format="dimension">14sp</attr>
+        <attr name="descTextSizePromotion" format="dimension">14sp</attr>
+    </declare-styleable>
+
+    <declare-styleable name="PromotionPriceSaleViewGroup">
+        <attr name="isSale" format="boolean">false</attr>
+    </declare-styleable>
 </resources>

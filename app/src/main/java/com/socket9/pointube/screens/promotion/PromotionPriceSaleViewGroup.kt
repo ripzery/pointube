@@ -7,19 +7,17 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.toPx
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 
-class PromotionItemViewGroup : FrameLayout {
+class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
-    lateinit private var mPriceViewGroup: PromotionPriceViewGroup
-    private var currency: String = ""
-    private var price: String = ""
-    private var isGrey: Boolean = false
-    private var maxLines: Int = 1
-    private var titleTextSize: Float = 14.0f
-    private var descTextSize: Float = 14.0f
+    lateinit private var promotionOriginal: PromotionPriceViewGroup
+    lateinit private var promotionSale: PromotionPriceViewGroup
+    private var isSale: Boolean = false
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -48,45 +46,48 @@ class PromotionItemViewGroup : FrameLayout {
 
 
     private fun initInflate() {
-        viewContainer = inflate(context, R.layout.viewgroup_promotion_item, this)
+        viewContainer = inflate(context, R.layout.viewgroup_promotion_price_sale, this)
     }
 
     private fun initInstances() {
         // findViewById here
-        mPriceViewGroup = viewContainer.find(R.id.promotionPrice)
+        promotionOriginal = find(R.id.promotionPriceOriginal)
+        promotionSale = find(R.id.promotionPriceSale)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
 
         val a: TypedArray = context.theme.obtainStyledAttributes(
                 attrs,
-                R.styleable.PromotionItemViewGroup,
-                defStyleAttr, defStyleRes);
+                R.styleable.PromotionPriceSaleViewGroup,
+                defStyleAttr, defStyleRes)
 
         try {
 
-            currency = a.getString(R.styleable.PromotionItemViewGroup_currencyPromotion)
-            price = a.getString(R.styleable.PromotionItemViewGroup_pricePromotion)
-            titleTextSize = a.getDimension(R.styleable.PromotionItemViewGroup_titleTextSizePromotion, 14.0f)
-            descTextSize = a.getDimension(R.styleable.PromotionItemViewGroup_descTextSizePromotion, 14.0f)
+            isSale = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isSale, false)
 
-            mPriceViewGroup.setPrice(price)
-            mPriceViewGroup.setUnit(currency)
-            mPriceViewGroup.setPriceTextSize(titleTextSize)
-            mPriceViewGroup.setUnitTextSize(descTextSize)
+            promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
+
+            setMargins(promotionSale, if (isSale) 28 else 0, 0, 0, 0)
+
+        } catch(e: IllegalStateException) {
+
+            e.printStackTrace()
 
         } finally {
-            a.recycle();
+            invalidate()
+            requestLayout()
+            a.recycle()
         }
 
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
     /** Method zone **/
 
-    fun setModel() {
-
+    private fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
+        val layoutParams: FrameLayout.LayoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        layoutParams.setMargins(left.toPx().toInt(), top.toPx().toInt(), right.toPx().toInt(), bottom.toPx().toInt())
+        view.layoutParams = layoutParams
     }
+
 }

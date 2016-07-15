@@ -115,4 +115,20 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
         tvPrice.text = price
     }
 
+    fun setPrice(price: String){
+        tvPrice.text = price
+    }
+
+    fun setUnit(unit: String){
+        tvUnit.text = unit
+    }
+
+    fun setPriceTextSize(size: Float){
+        tvPrice.textSize = size.toInt().toDp().toFloat()
+    }
+
+    fun setUnitTextSize(size: Float){
+        tvUnit.textSize = size.toInt().toDp().toFloat()
+    }
+
 }
