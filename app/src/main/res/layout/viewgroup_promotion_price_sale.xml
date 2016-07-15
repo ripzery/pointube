@@ -19,7 +19,7 @@
             app:titleTextSize="14sp"
             app:descTextSize="14sp"
             app:isCircleGrey="true"
-            app:salePrice="200"
+            app:price="200"
             app:currency="baht"/>
 
         <com.socket9.pointube.screens.promotion.PromotionPriceViewGroup
@@ -30,7 +30,7 @@
             app:descTextSize="14sp"
             android:layout_marginLeft="48dp"
             app:isCircleGrey="false"
-            app:salePrice="200"
+            app:price="200"
             app:currency="baht"/>
 
     </FrameLayout>
