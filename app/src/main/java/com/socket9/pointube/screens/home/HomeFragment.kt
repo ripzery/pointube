@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
-import com.socket9.pointube.manager.HttpManager
+import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.login.LoginActivity
 import io.realm.Realm
@@ -61,6 +61,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initInstance()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Realm.getDefaultInstance().close()
     }
 
     /** Override View Interface zone **/

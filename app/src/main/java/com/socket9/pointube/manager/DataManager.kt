@@ -1,11 +1,9 @@
 package com.socket9.pointube.manager
 
-import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
 import com.socket9.pointube.utils.RetrofitUtils
-import io.realm.Realm
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import rx.Observable
@@ -15,24 +13,12 @@ import rx.schedulers.Schedulers
 /**
  * Created by Euro (ripzery@gmail.com) on 7/11/2016 AD.
  */
-object HttpManager : AnkoLogger {
+object DataManager : AnkoLogger {
     /* For get all brands */
-    fun getAllBrands(): Observable<HomeModel.AllBrands> {
-        val realm = Realm.getDefaultInstance()
-        val allBrands = realm.where(BrandRepo::class.java).findAll()
-
-        return Observable.concat(Observable.just(HomeModel.AllBrands(true, allBrands.toMutableList(), true)), RetrofitUtils.getInstance()
-                .getAllProvider())
-                .take(2)
-                .doOnNext {
-                    if ( it.Results != null && it.Results.size > 0 && !it.IsDisk) {
-                        val realm = Realm.getDefaultInstance()
-                        realm.beginTransaction()
-                        realm.copyToRealmOrUpdate(it.Results)
-                        realm.commitTransaction()
-                        info { Realm.getDefaultInstance().path }
-                    }
-                }
+    fun getAllProvider(): Observable<HomeModel.AllBrands> {
+        return Observable.concat(DiskProviderManager.getAllProvider(), NetworkProviderManager.getAllProvider())
+                .first { it.Results != null && it.Results.size > 0 }
+                .doOnNext { info { it.IsDisk } }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

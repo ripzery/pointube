@@ -1,6 +1,6 @@
 package com.socket9.pointube.screens.login
 
-import com.socket9.pointube.manager.HttpManager
+import com.socket9.pointube.manager.DataManager
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.warn
@@ -11,7 +11,7 @@ import org.jetbrains.anko.warn
 class LoginPresenter(var view: LoginContract.View) : AnkoLogger, LoginContract.Presenter {
     override fun doLogin(email: String, password: String) {
         view.showProgressDialog()
-        HttpManager.login(email, password)
+        DataManager.login(email, password)
                 .subscribe({
                     info { it }
                     view.showProgressDialog()

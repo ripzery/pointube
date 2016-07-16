@@ -1,6 +1,6 @@
 package com.socket9.pointube.test
 
-import com.socket9.pointube.manager.HttpManager
+import com.socket9.pointube.manager.DataManager
 import io.realm.Realm
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -12,7 +12,7 @@ object ApiTest : AnkoLogger {
 
     /* Doesn't work */
     fun register() {
-        HttpManager.register("Phuchut", "Sirimong", "1419900326966", "TH12345678", "0875567582", "ripzery222@gmail.com", "12345", "1",
+        DataManager.register("Phuchut", "Sirimong", "1419900326966", "TH12345678", "0875567582", "ripzery222@gmail.com", "12345", "1",
                 "Socket9", "1992-06-27T19:30:22", "Phuchit", "Sirimongkolsathien")
                 .subscribe({
                     info { it }
@@ -22,7 +22,7 @@ object ApiTest : AnkoLogger {
     }
 
     fun login() {
-        HttpManager.login("mon01@mon.com", "1234")
+        DataManager.login("mon01@mon.com", "1234")
                 .subscribe({
                     info { it }
                 }, {
@@ -31,7 +31,7 @@ object ApiTest : AnkoLogger {
     }
 
     fun getAllBrands() {
-        HttpManager.getAllBrands()
+        DataManager.getAllProvider()
                 .subscribe({
                     info { it }
                 }, {
