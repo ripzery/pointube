@@ -17,14 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:isCircleGrey="true"
-            app:price="100"
+            app:price="900"
             app:currency="baht"/>
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionPriceSale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
             app:isCircleGrey="false"
             app:price="200"
             app:currency="baht"/>
@@ -38,8 +38,8 @@
         android:fontFamily="sans-serif"
         android:textStyle="bold"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="4dp"
-        android:text=" + 1000 baht"
+        android:layout_marginStart="4dp"
+        android:text=" + 1111 baht"
         tools:text=" + 1000 Baht"/>
 
 </LinearLayout>

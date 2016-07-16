@@ -17,5 +17,4 @@ object DiskProviderManager: AnkoLogger {
         val allBrands = realm.where(BrandRepo::class.java).findAll()
         return Observable.just(HomeModel.AllBrands(true, allBrands.toMutableList(), true))
     }
-
 }

@@ -10,7 +10,7 @@ import io.realm.RealmConfiguration
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        val realmConfig = RealmConfiguration.Builder(applicationContext.externalCacheDir).build()
+        val realmConfig = RealmConfiguration.Builder(applicationContext).build()
         Realm.setDefaultConfiguration(realmConfig)
     }
 }

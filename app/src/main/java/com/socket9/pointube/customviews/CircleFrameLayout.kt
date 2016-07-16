@@ -41,37 +41,38 @@ class CircleFrameLayout : FrameLayout, AnkoLogger {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        if (isInEditMode) {
-            super.onMeasure(MeasureSpec.makeMeasureSpec(210, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(210, MeasureSpec.EXACTLY))
+//        if (isInEditMode) {
+//            super.onMeasure(MeasureSpec.makeMeasureSpec(128, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(128, MeasureSpec.EXACTLY))
+////            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+//            return
+//        }
+//
+//        val child: View? = getChildAt(0)
+//
+//        /* For debugging */
+//        loggingOnMeasured(child!!, heightMeasureSpec, widthMeasureSpec)
+//
+//        if (child != null) {
+////            /* set radius by greater value */
+////            val radius = if (child.width > child.height) child.width else child.height
+////
+////            info { radius }
+////
+////            /* build measure spec class */
+////            val radiusSpec = MeasureSpec.makeMeasureSpec(radius, MeasureSpec.EXACTLY)
+////
+////            super.onMeasure(radiusSpec, radiusSpec)
+////
+////            setMeasuredDimension(radius, radius)
+//        } else {
 //            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-            return
-        }
-
-        val child: View? = getChildAt(0)
-
-        /* For debugging */
-        loggingOnMeasured(child!!, heightMeasureSpec, widthMeasureSpec)
-
-        if (child != null) {
-            /* set radius by greater value */
-            val radius = if (child.width > child.height) child.width else child.height
-
-            info { radius }
-
-            /* build measure spec class */
-            val radiusSpec = MeasureSpec.makeMeasureSpec(radius, MeasureSpec.UNSPECIFIED)
-
-            super.onMeasure(radiusSpec, radiusSpec)
-
-            setMeasuredDimension(radius, radius)
-        } else {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        }
+//        }
     }
 
     private fun loggingOnMeasured(child: View, heightMeasureSpec: Int, widthMeasureSpec: Int) {
-        info { "child_count : ${childCount}" }
+        info { "child_count : $childCount" }
         info { "child_height : ${child.height}" }
         info { "child_width : ${child.width}" }
         info { "parent_width : ${MeasureSpec.getSize(widthMeasureSpec)}" }

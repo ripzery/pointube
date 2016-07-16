@@ -17,7 +17,7 @@ object DataManager : AnkoLogger {
     /* For get all brands */
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
         return Observable.concat(DiskProviderManager.getAllProvider(), NetworkProviderManager.getAllProvider())
-                .first { it.Results != null && it.Results.size > 0 }
+                .first { it.Results.size > 0 }
                 .doOnNext { info { it.IsDisk } }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
