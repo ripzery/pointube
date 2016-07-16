@@ -5,15 +5,23 @@ package com.socket9.pointube.screens.login
  */
 interface LoginContract {
     interface View {
+        fun showProgressDialog()
 
+        fun showLoginSuccess(msg: String)
+
+        fun showLoginError(msg: String)
+
+        fun showSignUp()
+
+        fun showForgetPasswordDialog()
     }
 
     interface Presenter {
-        fun doLogin()
+        fun doLogin(email:String, password: String)
 
         fun doSignUp()
 
-        fun doForgetPassword()
+        fun doForgetPassword(email: String)
 
     }
 }

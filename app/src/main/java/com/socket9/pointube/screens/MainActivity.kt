@@ -21,6 +21,14 @@ import org.jetbrains.anko.AnkoLogger
 
 class MainActivity : AppCompatActivity(), AnkoLogger {
 
+    companion object {
+        val FRAGMENT_HOME = 0
+        val FRAGMENT_POINT = 1
+        val FRAGMENT_PROMOTION = 2
+        val FRAGMENT_SETTING = 3
+        val FRAGMENT_ABOUT = 4
+    }
+
     lateinit private var drawerToggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +106,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
     }
 
     private fun initInstance() {
-        replaceFragment(fragment = HomeFragment.newInstance("Home"))
+        val fragment = intent.getIntExtra("fragment", 0)
+        val item = nvView.menu.getItem(fragment)
+        item.isChecked = true
+        selectDrawerItem(item)
     }
 }

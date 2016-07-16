@@ -1,20 +1,26 @@
 package com.socket9.pointube.screens.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.screens.MainActivity
+import kotlinx.android.synthetic.main.fragment_login.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
+
 
     /** Variable zone **/
     lateinit var param1: String
-
+    lateinit var mLoginPresenter: LoginContract.Presenter
 
     /** Static method zone **/
     companion object {
@@ -27,6 +33,29 @@ class LoginFragment : Fragment() {
             loginFragment.arguments = bundle
             return loginFragment
         }
+
+    }
+
+    /** Override View Interface zone **/
+    override fun showLoginSuccess(msg: String) {
+        toast(msg)
+        startActivity(Intent(context, MainActivity::class.java).putExtra("fragment", MainActivity.FRAGMENT_POINT))
+        activity.finish()
+    }
+
+    override fun showLoginError(msg: String) {
+        toast(msg)
+    }
+
+    override fun showSignUp() {
+        toast("SignUp")
+    }
+
+    override fun showForgetPasswordDialog() {
+        toast("ShowForgetDialog")
+    }
+
+    override fun showProgressDialog() {
 
     }
 
@@ -54,6 +83,18 @@ class LoginFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
+        mLoginPresenter = LoginPresenter(this)
 
+        btnLogin.setOnClickListener {
+            mLoginPresenter.doLogin(metUsername.text.toString(), metPassword.text.toString())
+        }
+
+        tvForgetPassword.setOnClickListener {
+            mLoginPresenter.doForgetPassword("something")
+        }
+
+        tvSignUp.setOnClickListener {
+            mLoginPresenter.doSignUp()
+        }
     }
 }

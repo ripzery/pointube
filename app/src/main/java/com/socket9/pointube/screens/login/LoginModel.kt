@@ -9,19 +9,19 @@ import java.util.*
 object LoginModel {
     data class Login(val success: Boolean, val result: LoginResult)
 
-    data class LoginResult(val isSuccess: Boolean,
-                           val message: String?,
-                           val id: Int?,
-                           val firstName: String?,
-                           val lastName: String?,
-                           val firstNameEN: String?,
-                           val lastNameEN: String?,
-                           val citizenID: String?,
-                           val passport: String?,
-                           val mobile: String?,
-                           val email: String?,
-                           val gender: String?,
-                           val address: String?,
-                           val birthday: Date?,
-                           val token: String?)
+    data class LoginResult(
+            val message: String?,
+            val id: Int = 0,
+            val firstName: String?,
+            val lastName: String?,
+            val firstNameEN: String?,
+            val lastNameEN: String?,
+            val citizenID: String?,
+            val passport: String?,
+            val mobile: String?,
+            val email: String?,
+            val gender: String?,
+            val address: String?,
+            val birthday: Date?,
+            val token: String?)
 }
