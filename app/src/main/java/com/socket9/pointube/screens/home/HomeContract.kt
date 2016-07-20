@@ -22,6 +22,8 @@ interface HomeContract {
         fun showUnLoggedInState()
 
         fun showLoggedInState()
+
+        fun updatePromotionCount(newList : HomeModel.AllBrands)
     }
 
     interface Presenter : BasePresenter {
@@ -30,5 +32,7 @@ interface HomeContract {
         fun loadPublishedProgramList()
 
         fun doLogin()
+
+        fun countProviderProgram()
     }
 }

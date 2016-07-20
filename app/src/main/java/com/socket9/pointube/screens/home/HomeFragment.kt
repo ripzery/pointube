@@ -22,7 +22,6 @@ import org.jetbrains.anko.support.v4.toast
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
 class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
-
     /** Variable zone **/
     lateinit var param1: String
     private val mLinearLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) }
@@ -111,6 +110,10 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         layoutNewUser.visibility = View.VISIBLE
     }
 
+    override fun updatePromotionCount(newList : HomeModel.AllBrands) {
+        mProviderListAdapter.updateProviderList(newList)
+    }
+
     /** Method zone **/
 
     private fun initInstance() {
@@ -132,6 +135,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     inner class BrandUnitAdapter(var list: HomeModel.AllBrands) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
         override fun onBindViewHolder(holder: BrandUnitViewHolder?, position: Int) {
             holder!!.setModel(list.Results[position])
+            holder.setBadgeCount(list.Results[position].TotalPrograms)
         }
 
         override fun getItemCount(): Int {
@@ -156,6 +160,10 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
             fun setModel(brand: BrandRepo) {
                 homeBrandViewGroup.setModel(brand)
+            }
+
+            fun setBadgeCount(count: Int){
+                homeBrandViewGroup.setBadgeCount(count)
             }
         }
     }
