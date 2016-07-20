@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger
@@ -26,6 +27,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     lateinit var param1: String
     private val mLinearLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) }
     private val mProviderListAdapter: BrandUnitAdapter by lazy { BrandUnitAdapter(HomeModel.AllBrands(false, mutableListOf())) }
+    private val mImageVideoPagerAdapter : ImageVideoPagerAdapter by lazy { ImageVideoPagerAdapter(childFragmentManager, mutableListOf()) }
     private val mHomePresenter: HomeContract.Presenter by lazy { HomePresenter(this) }
     private val mMainActivity: OnLoginListener by lazy { activity as OnLoginListener }
 
@@ -84,6 +86,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     override fun showPublishedProgramList(allPublishedProgram: HomeModel.PublishedProgramListRepo) {
         info { allPublishedProgram }
+        mImageVideoPagerAdapter.updateList(allPublishedProgram.Results)
     }
 
     override fun showEmptyPublishedProgramList() {
@@ -113,6 +116,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     private fun initInstance() {
         recyclerView.adapter = mProviderListAdapter
         recyclerView.layoutManager = mLinearLayoutManager
+
+        viewpager.adapter = mImageVideoPagerAdapter
+        indicator.setViewPager(viewpager)
+        mImageVideoPagerAdapter.registerDataSetObserver(indicator.dataSetObserver)
+
         btnLogin.setOnClickListener {
             mHomePresenter.doLogin()
         }
@@ -149,21 +157,24 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             fun setModel(brand: BrandRepo) {
                 homeBrandViewGroup.setModel(brand)
             }
-
         }
     }
 
-    inner class ImageVideoPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+    inner class ImageVideoPagerAdapter(fm: FragmentManager,var list: MutableList<PublishedProgramItemRepo>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             /* TODO: Return correctly fragment */
-            return Fragment()
+            return HomeImageVideoFragment.newInstance(list[position].MasterPath, false)
         }
 
         override fun getCount(): Int {
             /* TODO: Return correctly count */
-            return 0
+            return list.size
         }
 
+        fun updateList(list: MutableList<PublishedProgramItemRepo>){
+            this.list = list
+            notifyDataSetChanged()
+        }
     }
 
     /* Interface zone */

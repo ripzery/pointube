@@ -4,9 +4,7 @@ import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.utils.LoginState
 import com.socket9.pointube.utils.SharedPref
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.info
-import org.jetbrains.anko.uiThread
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
@@ -28,12 +26,13 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
 
     override fun loadPublishedProgramList() {
         DataManager.getAllPublishedProgramList()
-            .subscribe({
-                view?.showPublishedProgramList(it)
-            },{
-                info { it }
-                view?.showEmptyPublishedProgramList()
-            })
+                .map { it.copy(true, null, it.Results.filter { it.IsHot }.toMutableList(), true) }
+                .subscribe({
+                    view?.showPublishedProgramList(it)
+                }, {
+                    info { it }
+                    view?.showEmptyPublishedProgramList()
+                })
     }
 
     override fun doLogin() {
@@ -44,10 +43,10 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
         info { "Home : OnCreate" }
         loadProviderList()
         loadPublishedProgramList()
-        if(LoginState.isLogin()){
+        if (LoginState.isLogin()) {
             view?.showLoggedInState()
             info { SharedPref.loadLoginResult().toString() }
-        }else{
+        } else {
             view?.showUnLoggedInState()
         }
     }
