@@ -29,9 +29,10 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     /** Variable zone **/
     lateinit var param1: String
-    lateinit private var mProviderListAdapter: BrandUnitAdapter
+    private val mLinearLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) }
+    private val mProviderListAdapter: BrandUnitAdapter by lazy { BrandUnitAdapter(HomeModel.AllBrands(false, mutableListOf())) }
     private val mHomePresenter: HomeContract.Presenter by lazy { HomePresenter(this) }
-    private val mMainActivity:OnLoginListener by lazy { activity as OnLoginListener }
+    private val mMainActivity: OnLoginListener by lazy { activity as OnLoginListener }
 
     /** Static method zone **/
     companion object {
@@ -107,10 +108,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        mProviderListAdapter = BrandUnitAdapter(HomeModel.AllBrands(false, mutableListOf()))
         recyclerView.adapter = mProviderListAdapter
-        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.layoutManager = mLinearLayoutManager
         btnLogin.setOnClickListener {
             mHomePresenter.doLogin()
         }
@@ -154,7 +153,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     }
 
     /* Interface zone */
-    interface OnLoginListener{
+    interface OnLoginListener {
         fun onLogin()
     }
 
