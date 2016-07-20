@@ -1,26 +1,21 @@
 package com.socket9.pointube.screens.home
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
-import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.repository.brands.BrandRepo
-import com.socket9.pointube.screens.login.LoginActivity
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import rx_activity_result.RxActivityResult
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -83,11 +78,19 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         mProviderListAdapter.updateProviderList(allBrands)
     }
 
-    override fun showProgressBar() {
+    override fun showEmptyProviderList() {
 
     }
 
-    override fun showEmptyProviderList() {
+    override fun showPublishedProgramList(allPublishedProgram: HomeModel.PublishedProgramListRepo) {
+        info { allPublishedProgram }
+    }
+
+    override fun showEmptyPublishedProgramList() {
+        toast("Empty Published Program List")
+    }
+
+    override fun showProgressBar() {
 
     }
 
@@ -139,10 +142,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
         inner class BrandUnitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            lateinit private var homeBrandViewGroup: HomePartnerViewGroup
-
-            init {
-                homeBrandViewGroup = itemView?.findViewById(R.id.homePartnerViewGroup) as HomePartnerViewGroup
+            private val homeBrandViewGroup: HomePartnerViewGroup by lazy {
+                itemView?.findViewById(R.id.homePartnerViewGroup) as HomePartnerViewGroup
             }
 
             fun setModel(brand: BrandRepo) {
@@ -150,6 +151,19 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             }
 
         }
+    }
+
+    inner class ImageVideoPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            /* TODO: Return correctly fragment */
+            return Fragment()
+        }
+
+        override fun getCount(): Int {
+            /* TODO: Return correctly count */
+            return 0
+        }
+
     }
 
     /* Interface zone */

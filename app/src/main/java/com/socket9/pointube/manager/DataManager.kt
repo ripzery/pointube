@@ -14,11 +14,27 @@ import rx.schedulers.Schedulers
  * Created by Euro (ripzery@gmail.com) on 7/11/2016 AD.
  */
 object DataManager : AnkoLogger {
-    /* For get all brands */
+    /*
+    * Cache
+    * For get all brands
+    * */
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
         return Observable.concat(DiskProviderManager.getAllProvider(), NetworkProviderManager.getAllProvider())
                 .first { it.Results.size > 0 }
-                .doOnNext { info { it.IsDisk } }
+                .doOnNext { info { "getAllProvider ${it.IsDisk}" } }
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    /*
+    * Cache
+    * For get all published program
+    * */
+    fun getAllPublishedProgramList(): Observable<HomeModel.PublishedProgramListRepo> {
+        return Observable.concat(DiskProviderManager.getPublishedProgramList(), NetworkProviderManager.getPublishedProgramList())
+                .first { it.Results.size > 0 }
+                .doOnNext { info { "allPublishedProgram ${it.IsDisk}" } }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

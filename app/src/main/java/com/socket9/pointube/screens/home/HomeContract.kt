@@ -9,7 +9,11 @@ interface HomeContract {
     interface View {
         fun showProviderList(allBrands: HomeModel.AllBrands)
 
+        fun showPublishedProgramList(allPublishedProgram: HomeModel.PublishedProgramListRepo)
+
         fun showEmptyProviderList()
+
+        fun showEmptyPublishedProgramList()
 
         fun showProgressBar()
 
@@ -20,8 +24,10 @@ interface HomeContract {
         fun showLoggedInState()
     }
 
-    interface Presenter : BasePresenter{
+    interface Presenter : BasePresenter {
         fun loadProviderList()
+
+        fun loadPublishedProgramList()
 
         fun doLogin()
     }

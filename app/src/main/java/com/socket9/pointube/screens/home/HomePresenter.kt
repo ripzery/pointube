@@ -26,6 +26,16 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
                 })
     }
 
+    override fun loadPublishedProgramList() {
+        DataManager.getAllPublishedProgramList()
+            .subscribe({
+                view?.showPublishedProgramList(it)
+            },{
+                info { it }
+                view?.showEmptyPublishedProgramList()
+            })
+    }
+
     override fun doLogin() {
         view?.goLogin()
     }
@@ -33,6 +43,7 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
     override fun onCreate() {
         info { "Home : OnCreate" }
         loadProviderList()
+        loadPublishedProgramList()
         if(LoginState.isLogin()){
             view?.showLoggedInState()
             info { SharedPref.loadLoginResult().toString() }

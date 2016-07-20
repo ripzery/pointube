@@ -11,9 +11,15 @@ import rx.Observable
 /**
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
  */
-object NetworkProviderManager: AnkoLogger {
+object NetworkProviderManager : AnkoLogger {
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
         return RetrofitUtils.getInstance().getAllProvider().doOnNext {
+            saveToDisk(it.Results)
+        }
+    }
+
+    fun getPublishedProgramList(): Observable<HomeModel.PublishedProgramListRepo> {
+        return RetrofitUtils.getInstance().getPublishProgramList().doOnNext {
             saveToDisk(it.Results)
         }
     }

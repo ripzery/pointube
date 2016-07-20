@@ -19,7 +19,7 @@ import rx.Observable
  */
 object RetrofitUtils {
     private var retrofit: Retrofit? = null
-    private val BASE_URL = "http://test.pointube.com/"
+    private val BASE_URL = "http://service.pointube.com/"
     private val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
     fun getInstance(): PointubeAPI {
@@ -52,25 +52,25 @@ interface PointubeAPI {
     fun login(@Field("Email") email: String, @Field("Password") password: String): Observable<LoginModel.Login>
 
     @POST("api/Member/Create")
-    fun register(@Body registerModel: RegisterModel.Request.Register) : Observable<RegisterModel.Response.Register>
+    fun register(@Body registerModel: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register>
 
     @POST("api/Member/SaveMobileNo")
-    fun saveMobileNo(@Body mobileModel: RegisterModel.Request.SaveMobileNo) : Observable<RegisterModel.Response.SaveMobileNo>
+    fun saveMobileNo(@Body mobileModel: RegisterModel.Request.SaveMobileNo): Observable<RegisterModel.Response.SaveMobileNo>
 
     @POST("api/Member/VerifyPhoneNumber")
-    fun verifyPhoneNumber(@Body phoneModel: RegisterModel.Request.VerifyPhoneNumber) : Observable<RegisterModel.Response.VerifyPhoneNumber>
+    fun verifyPhoneNumber(@Body phoneModel: RegisterModel.Request.VerifyPhoneNumber): Observable<RegisterModel.Response.VerifyPhoneNumber>
 
     @POST("api/Member/GenOTP")
-    fun genOTP(@Body genOTPModel: RegisterModel.Request.GenOTP) : Observable<RegisterModel.Response.GenOTP>
+    fun genOTP(@Body genOTPModel: RegisterModel.Request.GenOTP): Observable<RegisterModel.Response.GenOTP>
 
     @POST("api/Member/GetMemberBrand")
-    fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand) : Observable<BrandModel.Response.GetMemberBrand>
+    fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand>
 
     @POST("api/Member/SaveBrand")
-    fun saveBrand(@Body saveBrandModel: BrandModel.Request.SaveBrand) : Observable<BrandModel.Response.SaveBrand>
+    fun saveBrand(@Body saveBrandModel: BrandModel.Request.SaveBrand): Observable<BrandModel.Response.SaveBrand>
 
     @POST("api/Member/GetMemberSelectedBrand")
-    fun getMemberSelectedBrand(@Body selectedBrandModel: BrandModel.Request.GetMemberSelectBrand) : Observable<BrandModel.Response.GetMemberSelectBrand>
+    fun getMemberSelectedBrand(@Body selectedBrandModel: BrandModel.Request.GetMemberSelectBrand): Observable<BrandModel.Response.GetMemberSelectBrand>
 
     @GET("api/Provider/GetProvider")
     fun getProviderById(@Query("ProviderId") providerId: Int)
@@ -79,7 +79,7 @@ interface PointubeAPI {
     fun getUnitById(@Query("UnitId") unitId: Int)
 
     @GET("api/Program/GetPublishedProgramList")
-    fun getPublishProgramList()
+    fun getPublishProgramList(): Observable<HomeModel.PublishedProgramListRepo>
 
     @GET("api/Program/GetProgramListByProvider")
     fun getProgramListByProvider(@Query("providerId") providerId: Int)
