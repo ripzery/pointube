@@ -26,7 +26,7 @@ object SharedPref : AnkoLogger {
         }
     }
 
-    fun loadLoginResult(): LoginModel.LoginResult {
-        return Gson().fromJson(sharePref?.getString(KEY_LOGIN_RESULT, ""), LoginModel.LoginResult::class.java)
+    fun loadLoginResult(): LoginModel.LoginResult? {
+        return Gson().fromJson(sharePref?.getString(KEY_LOGIN_RESULT, null), LoginModel.LoginResult::class.java)
     }
 }

@@ -20,7 +20,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
 
     /** Variable zone **/
     lateinit var param1: String
-    lateinit var mLoginPresenter: LoginContract.Presenter
+    private val mLoginPresenter: LoginContract.Presenter by lazy { LoginPresenter(this) }
 
     /** Static method zone **/
     companion object {
@@ -78,13 +78,17 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initInstance()
+        mLoginPresenter.onCreate()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mLoginPresenter.onDestroy()
     }
 
     /** Method zone **/
 
     private fun initInstance() {
-        mLoginPresenter = LoginPresenter(this)
-
         btnLogin.setOnClickListener {
             mLoginPresenter.doLogin(metUsername.text.toString(), metPassword.text.toString())
         }

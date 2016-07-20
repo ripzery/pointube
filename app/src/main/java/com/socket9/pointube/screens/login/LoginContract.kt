@@ -1,5 +1,7 @@
 package com.socket9.pointube.screens.login
 
+import com.socket9.pointube.base.BasePresenter
+
 /**
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
  */
@@ -16,7 +18,7 @@ interface LoginContract {
         fun showForgetPasswordDialog()
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter {
         fun doLogin(email:String, password: String)
 
         fun doSignUp()
