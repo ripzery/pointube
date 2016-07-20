@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.login
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -39,7 +40,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     /** Override View Interface zone **/
     override fun showLoginSuccess(msg: String) {
         toast(msg)
-        startActivity(Intent(context, MainActivity::class.java).putExtra("fragment", MainActivity.FRAGMENT_POINT))
+        activity.setResult(Activity.RESULT_OK, Intent().putExtra("fragment", MainActivity.FRAGMENT_POINT))
         activity.finish()
     }
 

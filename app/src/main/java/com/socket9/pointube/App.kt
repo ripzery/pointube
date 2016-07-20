@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.socket9.pointube.utils.SharedPref
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import rx_activity_result.RxActivityResult
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
@@ -16,5 +17,6 @@ class App : Application() {
         val realmConfig = RealmConfiguration.Builder(applicationContext).build()
         Realm.setDefaultConfiguration(realmConfig)
         SharedPref.sharePref = getSharedPreferences(SharedPref.NAME, Context.MODE_PRIVATE)
+        RxActivityResult.register(this)
     }
 }

@@ -1,8 +1,11 @@
 package com.socket9.pointube.screens.home
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -17,6 +20,7 @@ import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import rx_activity_result.RxActivityResult
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -26,7 +30,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /** Variable zone **/
     lateinit var param1: String
     lateinit private var mProviderListAdapter: BrandUnitAdapter
-    lateinit private var mHomePresenter: HomeContract.Presenter
+    private val mHomePresenter: HomeContract.Presenter by lazy { HomePresenter(this) }
+    private val mMainActivity:OnLoginListener by lazy { activity as OnLoginListener }
 
     /** Static method zone **/
     companion object {
@@ -49,6 +54,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         if (savedInstanceState == null) {
             /* if newly created */
             param1 = arguments.getString(ARG_1)
+            activity
         }
     }
 
@@ -61,11 +67,13 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initInstance()
+        mHomePresenter.onCreate()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Realm.getDefaultInstance().close()
+        mHomePresenter.onDestroy()
     }
 
     /** Override View Interface zone **/
@@ -82,8 +90,18 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     }
 
-    override fun showLogin() {
-        startActivity(Intent(context, LoginActivity::class.java))
+    override fun goLogin() {
+        mMainActivity.onLogin()
+    }
+
+    override fun showLoggedInState() {
+        btnLogin.visibility = View.GONE
+        layoutNewUser.visibility = View.GONE
+    }
+
+    override fun showUnLoggedInState() {
+        btnLogin.visibility = View.VISIBLE
+        layoutNewUser.visibility = View.VISIBLE
     }
 
     /** Method zone **/
@@ -93,14 +111,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         mProviderListAdapter = BrandUnitAdapter(HomeModel.AllBrands(false, mutableListOf()))
         recyclerView.adapter = mProviderListAdapter
         recyclerView.layoutManager = linearLayoutManager
-
-        mHomePresenter = HomePresenter(this)
-        mHomePresenter.loadProviderList()
-
         btnLogin.setOnClickListener {
             mHomePresenter.doLogin()
         }
     }
+
 
     /** Inner class zone **/
 
@@ -118,7 +133,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             return BrandUnitViewHolder(v)
         }
 
-        fun updateProviderList(providerList: HomeModel.AllBrands){
+        fun updateProviderList(providerList: HomeModel.AllBrands) {
             list = providerList
             notifyDataSetChanged()
         }
@@ -136,6 +151,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             }
 
         }
+    }
+
+    /* Interface zone */
+    interface OnLoginListener{
+        fun onLogin()
     }
 
 }
