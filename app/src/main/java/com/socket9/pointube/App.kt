@@ -1,6 +1,9 @@
 package com.socket9.pointube
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.socket9.pointube.utils.SharedPref
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -12,5 +15,6 @@ class App : Application() {
         super.onCreate()
         val realmConfig = RealmConfiguration.Builder(applicationContext).build()
         Realm.setDefaultConfiguration(realmConfig)
+        SharedPref.sharePref = getSharedPreferences(SharedPref.NAME, Context.MODE_PRIVATE)
     }
 }

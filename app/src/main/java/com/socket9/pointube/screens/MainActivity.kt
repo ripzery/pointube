@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
             }
             R.id.nav_setting_fragment -> {
                 fragment = SettingFragment.newInstance("Setting")
-
             }
             R.id.nav_about_fragment -> {
                 fragment = AboutFragment.newInstance("Home")

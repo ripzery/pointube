@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.home
 
+import com.google.gson.Gson
 import java.util.*
 
 /**
@@ -23,5 +24,10 @@ object LoginModel {
             val gender: String?,
             val address: String?,
             val birthday: Date?,
-            val token: String?)
+            val token: String?
+    ){
+        fun toJson(): String{
+            return Gson().toJson(this)
+        }
+    }
 }
