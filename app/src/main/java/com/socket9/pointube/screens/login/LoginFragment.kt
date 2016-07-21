@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.screens.MainActivity
+import com.socket9.pointube.screens.register.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
+import rx_activity_result.RxActivityResult
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -49,7 +52,16 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showSignUp() {
-        toast("SignUp")
+        val intent = Intent(activity, RegisterActivity::class.java)
+        RxActivityResult.on(this).startIntent(intent).subscribe { result ->
+            val data = result.data()
+            val resultCode = result.resultCode()
+            if(resultCode == Activity.RESULT_OK){
+                info("Register complete")
+            }else{
+                info("Cancel Register")
+            }
+        }
     }
 
     override fun showForgetPasswordDialog() {
@@ -102,4 +114,5 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
             mLoginPresenter.doSignUp()
         }
     }
+
 }
