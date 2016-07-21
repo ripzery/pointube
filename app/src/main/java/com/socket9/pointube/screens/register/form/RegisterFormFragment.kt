@@ -144,6 +144,8 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         metLastName.addValidator(ValidatorUtil.provideLastNameEnValidator())
         metFirstNameTH.addValidator(ValidatorUtil.provideFirstNameThValidator())
         metLastNameTH.addValidator(ValidatorUtil.provideLastNameThValidator())
+        metCitizenID.addValidator(ValidatorUtil.provideCitizenIdValidator())
+        metPassport.addValidator(ValidatorUtil.providePassportValidator())
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {

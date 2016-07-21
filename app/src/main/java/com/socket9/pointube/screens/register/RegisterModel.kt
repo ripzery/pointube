@@ -17,7 +17,7 @@ object RegisterModel {
                                    val Email: String,
                                    val Password: String,
                                    val Gender: String,
-                                   val Address: String,
+                                   val Address: String?,
                                    val Birthday: String
         )
 

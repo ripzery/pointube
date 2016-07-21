@@ -57,4 +57,16 @@ object ValidatorUtil : AnkoLogger{
             return !notValid
         }
     }
+
+    fun provideCitizenIdValidator() = object : METValidator("CitizenID must be 13 characters") {
+        override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
+            return text.length == 13
+        }
+    }
+
+    fun providePassportValidator() = object : METValidator("Passport must be at least 10 characters") {
+        override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
+            return text.length >= 10
+        }
+    }
 }
