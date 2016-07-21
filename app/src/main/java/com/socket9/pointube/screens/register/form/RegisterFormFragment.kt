@@ -135,8 +135,9 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
                 mFirstNameThObservable,
                 mLastNameThObservable,
                 mCitizenIdObservable,
-                mPassportObservable
-                )
+                mPassportObservable,
+                mDateOfBirthObservable,
+                mNationalityObservable)
 
         initValidator()
     }

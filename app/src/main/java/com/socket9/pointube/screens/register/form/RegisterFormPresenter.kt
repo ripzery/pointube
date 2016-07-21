@@ -15,35 +15,43 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     private var mTextDob: String = ""
     private var mRegisterRequest: RegisterModel.Request.Register? = null
     private var mIsTextFieldValid: Boolean = false
-    private var mIsCitizenIdValid: Boolean = false
-    private var mIsPassportValid: Boolean = false
-    private var mIsFormValid: Boolean = false
 
-    override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>
-                             , fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>) {
+    override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>,
+                             fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>,
+                             natObs: Observable<Boolean>) {
         /* Check all combination */
-        Observable.combineLatest(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs,
-                { t1, t2, t3, t4, t5, t6, t7, t8, t9 ->
-                    buildRegisterModel(t1, t2, t4, t5, t6, t7, t8, t9)
+        val listObservable: MutableList<Observable<out Any>> = mutableListOf(emailObs,
+                pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
 
-                    mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(t8, t8.isEmpty())
-                    mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(t9, t9.isEmpty())
+        Observable.combineLatest(listObservable, {
+            val list: MutableList<CharSequence> = mutableListOf()
+            it.take(it.size - 1).forEach {
+                list.add(it as CharSequence)
+            }
 
-                    val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
+            val thai: Boolean = it.last() as Boolean
 
-                    mIsTextFieldValid = ValidatorUtil.provideEmailValidator().isValid(t1, t1.isEmpty()) &&
-                            ValidatorUtil.providePasswordValidator().isValid(t2, t2.isEmpty()) &&
-                            ValidatorUtil.provideRepeatPasswordValidator(t2).isValid(t3, t3.isEmpty()) &&
-                            ValidatorUtil.provideFirstNameEnValidator().isValid(t4, t4.isEmpty()) &&
-                            ValidatorUtil.provideLastNameEnValidator().isValid(t5, t5.isEmpty()) &&
-                            ValidatorUtil.provideFirstNameThValidator().isValid(t6, t6.isEmpty()) &&
-                            ValidatorUtil.provideLastNameThValidator().isValid(t7, t7.isEmpty())
+            info { thai }
 
-                    mIsTextFieldValid && isNationalityRequiredValid && !mTextDob.isEmpty()
-                })
-                .subscribe {
-                    if (it) view?.enableNext() else view?.disableNext()
-                }
+            buildRegisterModel(list[0], list[1], list[3], list[4], list[5], list[6], list[7], list[8])
+
+            val mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(list[7], list[7].isEmpty())
+            val mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(list[8], list[8].isEmpty())
+
+            val isNationalityRequiredValid = if (thai) mIsCitizenIdValid else mIsPassportValid
+
+            ValidatorUtil.provideEmailValidator().isValid(list[0], list[0].isEmpty()) &&
+                    ValidatorUtil.providePasswordValidator().isValid(list[1], list[1].isEmpty()) &&
+                    ValidatorUtil.provideRepeatPasswordValidator(list[1]).isValid(list[2], list[2].isEmpty()) &&
+                    ValidatorUtil.provideFirstNameEnValidator().isValid(list[3], list[3].isEmpty()) &&
+                    ValidatorUtil.provideLastNameEnValidator().isValid(list[4], list[4].isEmpty()) &&
+                    ValidatorUtil.provideFirstNameThValidator().isValid(list[5], list[5].isEmpty()) &&
+                    ValidatorUtil.provideLastNameThValidator().isValid(list[6], list[6].isEmpty()) &&
+                    !list[9].isEmpty() &&
+                    isNationalityRequiredValid
+        }).subscribe {
+            if (it) view?.enableNext() else view?.disableNext()
+        }
 
         pwObs.filter { it.length > 0 }.subscribe { view?.validateRepeatPassword() }
     }
@@ -67,15 +75,10 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
 
     override fun setDob(dob: String) {
         mTextDob = dob
-        val isValid = !dob.isEmpty() && mIsTextFieldValid
-        if (isValid) view?.enableNext() else view?.disableNext()
     }
 
     override fun setNationalities(isThai: Boolean) {
         this.mIsThai = isThai
-        val isValid = if(mIsThai) mIsCitizenIdValid else mIsPassportValid && mIsTextFieldValid && !mTextDob.isEmpty()
-        if (isValid) view?.enableNext() else view?.disableNext()
-        mIsFormValid = isValid
     }
 
     override fun setGender(isMale: Boolean) {

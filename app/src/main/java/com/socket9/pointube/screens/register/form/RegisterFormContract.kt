@@ -26,7 +26,9 @@ interface RegisterFormContract {
                         fnThObs: Observable<CharSequence>,
                         lnThObs: Observable<CharSequence>,
                         citiObs: Observable<CharSequence>,
-                        ppObs: Observable<CharSequence>
+                        ppObs: Observable<CharSequence>,
+                        dobObs: Observable<CharSequence>,
+                        natObs: Observable<Boolean>
         )
 
         fun setNationalities(isThai: Boolean)
