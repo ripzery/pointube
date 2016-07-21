@@ -21,6 +21,8 @@ interface HomeContract {
 
         fun goLogin()
 
+        fun goSignUp()
+
         fun showUnLoggedInState()
 
         fun showLoggedInState()
@@ -34,5 +36,7 @@ interface HomeContract {
         fun loadPublishedProgramList()
 
         fun doLogin()
+
+        fun doSignUp()
     }
 }

@@ -24,4 +24,9 @@
         <attr name="isSale" format="boolean">false</attr>
         <attr name="isShowExtraPrice" format="boolean">false</attr>
     </declare-styleable>
+
+    <declare-styleable name="ToggleViewGroup">
+        <attr name="leftText" format="string" />
+        <attr name="rightText" format="string" />
+    </declare-styleable>
 </resources>

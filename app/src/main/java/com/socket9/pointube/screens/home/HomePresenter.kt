@@ -40,6 +40,10 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
         view?.goLogin()
     }
 
+    override fun doSignUp() {
+        view?.goSignUp()
+    }
+
     override fun onCreate() {
         loadProviderList()
         loadPublishedProgramList()

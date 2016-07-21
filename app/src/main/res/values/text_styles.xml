@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseEditText">
+        <item name="met_clearButton">true</item>
+        <item name="met_floatingLabel">highlight</item>
+        <item name="met_floatingLabelAlwaysShown">true</item>
+        <item name="android:maxLines">1</item>
+        <item name="met_helperText">Required</item>
+        <item name="met_autoValidate">true</item>
+    </style>
+</resources>

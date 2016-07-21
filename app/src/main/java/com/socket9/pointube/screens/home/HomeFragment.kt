@@ -100,6 +100,10 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         mMainActivity.onLogin()
     }
 
+    override fun goSignUp() {
+        mMainActivity.onSignUp()
+    }
+
     override fun showLoggedInState() {
         btnLogin.visibility = View.GONE
         layoutNewUser.visibility = View.GONE
@@ -128,8 +132,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         btnLogin.setOnClickListener {
             mHomePresenter.doLogin()
         }
-    }
 
+        tvSignUp.setOnClickListener {
+            mHomePresenter.doSignUp()
+        }
+    }
 
     /** Inner class zone **/
 
@@ -189,6 +196,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /* Interface zone */
     interface OnLoginListener {
         fun onLogin()
+        fun onSignUp()
     }
 
 }

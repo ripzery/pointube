@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".screens.register.RegisterActivity">
+        <activity android:name=".screens.register.RegisterActivity"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".screens.brand.SelectBrandActivity">
         </activity>

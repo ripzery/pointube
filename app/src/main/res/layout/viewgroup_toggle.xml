@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/layoutLeft"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/selector_left_toggle"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thai"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            tools:text="Left"/>
+
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/layoutRight"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="-1dp"
+        android:background="@drawable/selector_right_toggle"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expat"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            tools:text="Right"/>
+
+    </FrameLayout>
+
+</LinearLayout>

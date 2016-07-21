@@ -17,6 +17,7 @@ import com.socket9.pointube.screens.home.HomeFragment
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.point.PointFragment
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
+import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.screens.setting.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -130,5 +131,18 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
                 result.targetUI().selectMenu(data.getIntExtra("fragment", FRAGMENT_POINT))
             }
         })
+    }
+
+    override fun onSignUp() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        RxActivityResult.on(this).startIntent(intent).subscribe { result ->
+            val data = result.data()
+            val resultCode = result.resultCode()
+            if(resultCode == Activity.RESULT_OK){
+                info("Register complete")
+            }else{
+                info("Cancel Register")
+            }
+        }
     }
 }
