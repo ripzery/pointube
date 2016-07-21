@@ -163,6 +163,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:hint="Passport"
+                        app:met_minCharacters="10"
                         android:inputType="text" />
 
                 </LinearLayout>

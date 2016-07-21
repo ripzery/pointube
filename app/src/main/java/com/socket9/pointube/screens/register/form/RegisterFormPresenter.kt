@@ -10,32 +10,35 @@ import rx.Observable
  * Created by ripzery on 7/21/16.
  */
 class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, RegisterFormContract.Presenter {
-    private var isThai: Boolean = true
-    private var isMale: Boolean = true
-    private var textDob: String = ""
-    private var registerRequest: RegisterModel.Request.Register? = null
+    private var mIsThai: Boolean = true
+    private var mIsMale: Boolean = true
+    private var mTextDob: String = ""
+    private var mRegisterRequest: RegisterModel.Request.Register? = null
+    private var mIsFormValid: Boolean = false
+    private var mIsCitizenIdValid: Boolean = false
+    private var mIsPassportValid: Boolean = false
 
-    override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>, fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>) {
+    override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>
+                             , fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>) {
         /* Check all combination */
         Observable.combineLatest(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs,
                 { t1, t2, t3, t4, t5, t6, t7, t8, t9 ->
                     buildRegisterModel(t1, t2, t4, t5, t6, t7, t8, t9)
 
-                    val isNationalityRequiredValid = if (isThai)
-                        ValidatorUtil.provideCitizenIdValidator().isValid(t8, t8.isEmpty())
-                    else
-                        ValidatorUtil.providePassportValidator().isValid(t9, t9.isEmpty())
+                    mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(t8, t8.isEmpty())
+                    mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(t9, t9.isEmpty())
 
-                    ValidatorUtil.provideEmailValidator().isValid(t1, t1.isEmpty()) &&
+                    val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
+
+                    mIsFormValid = ValidatorUtil.provideEmailValidator().isValid(t1, t1.isEmpty()) &&
                             ValidatorUtil.providePasswordValidator().isValid(t2, t2.isEmpty()) &&
                             ValidatorUtil.provideRepeatPasswordValidator(t2).isValid(t3, t3.isEmpty()) &&
                             ValidatorUtil.provideFirstNameEnValidator().isValid(t4, t4.isEmpty()) &&
                             ValidatorUtil.provideLastNameEnValidator().isValid(t5, t5.isEmpty()) &&
                             ValidatorUtil.provideFirstNameThValidator().isValid(t6, t6.isEmpty()) &&
-                            ValidatorUtil.provideLastNameThValidator().isValid(t7, t7.isEmpty()) &&
-                            isNationalityRequiredValid
+                            ValidatorUtil.provideLastNameThValidator().isValid(t7, t7.isEmpty())
 
-
+                    mIsFormValid && isNationalityRequiredValid
                 })
                 .subscribe {
                     if (it) view?.enableNext() else view?.disableNext()
@@ -45,7 +48,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     }
 
     private fun buildRegisterModel(t1: CharSequence, t2: CharSequence, t4: CharSequence, t5: CharSequence, t6: CharSequence, t7: CharSequence, t8: CharSequence, t9: CharSequence) {
-        registerRequest = RegisterModel.Request.Register(
+        mRegisterRequest = RegisterModel.Request.Register(
                 t6.toString(),
                 t7.toString(),
                 t4.toString(),
@@ -55,26 +58,28 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                 null,
                 t1.toString(),
                 t2.toString(),
-                if (isMale) "1" else "2",
+                if (mIsMale) "1" else "2",
                 null,
-                textDob
+                mTextDob
         )
     }
 
     override fun setDob(dob: String) {
-        textDob = dob
+        mTextDob = dob
     }
 
     override fun setNationalities(isThai: Boolean) {
-        this.isThai = isThai
+        this.mIsThai = isThai
+        val isValid = if(mIsThai) mIsCitizenIdValid else mIsPassportValid && mIsFormValid
+        if (isValid) view?.enableNext() else view?.disableNext()
     }
 
     override fun setGender(isMale: Boolean) {
-        this.isMale = isMale
+        this.mIsMale = isMale
     }
 
     override fun next() {
-        info { " next " }
+        info { mRegisterRequest?.toString() }
 
         /* TODO : Go agreement page and save user object */
     }

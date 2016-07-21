@@ -9,7 +9,9 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.socket9.pointube.R
-import org.jetbrains.anko.find
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.subjects.PublishSubject
 
 /**
  * Created by ripzery on 7/21/16.
@@ -24,8 +26,9 @@ class ToggleViewGroup : FrameLayout {
     private val tvRight: TextView by lazy { viewContainer.findViewById(R.id.tvRight) as TextView }
     private val layoutLeft: FrameLayout by lazy { viewContainer.findViewById(R.id.layoutLeft) as FrameLayout }
     private val layoutRight: FrameLayout by lazy { viewContainer.findViewById(R.id.layoutRight) as FrameLayout }
+    private val toggleObservable: PublishSubject<Boolean> = PublishSubject.create()
 
-    companion object{
+    companion object {
         val LEFT = 1
         val RIGHT = 2
     }
@@ -65,11 +68,13 @@ class ToggleViewGroup : FrameLayout {
         layoutLeft.setOnClickListener {
             enableLeft()
             listener?.onToggleLeft(true)
+            toggleObservable.onNext(true)
         }
 
         layoutRight.setOnClickListener {
             enableRight()
             listener?.onToggleLeft(false)
+            toggleObservable.onNext(false)
         }
 
         enableLeft()
@@ -97,7 +102,7 @@ class ToggleViewGroup : FrameLayout {
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
 
-        val a : TypedArray  = context.theme.obtainStyledAttributes(
+        val a: TypedArray = context.theme.obtainStyledAttributes(
                 attrs,
                 R.styleable.ToggleViewGroup,
                 defStyleAttr, defStyleRes)
@@ -117,19 +122,25 @@ class ToggleViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    fun setEnable(side: Int){
-        if(LEFT == side) enableLeft() else enableRight()
+    fun getToggleObservable(): Observable<Boolean> {
+        return toggleObservable.subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getEnable() : Int{
+    fun setEnable(side: Int) {
+        if (LEFT == side) enableLeft() else enableRight()
+    }
+
+    fun getEnable(): Int {
         return currentEnable
     }
 
-    fun setOnToggleListener(listener: OnToggleListener){
+    fun setOnToggleListener(listener: OnToggleListener) {
         this.listener = listener
     }
 
-    interface OnToggleListener{
+    interface OnToggleListener {
         fun onToggleLeft(isLeft: Boolean)
     }
 }
