@@ -34,6 +34,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     private val mCitizenIdObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metCitizenID) }
     private val mPassportObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metPassport) }
     private val mNationalityObservable: Observable<Boolean> by lazy { toggleNationality.getToggleObservable() }
+    private val mDateOfBirthObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(tvDob) }
 
     /** Static method zone **/
     companion object {

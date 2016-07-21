@@ -14,9 +14,10 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     private var mIsMale: Boolean = true
     private var mTextDob: String = ""
     private var mRegisterRequest: RegisterModel.Request.Register? = null
-    private var mIsFormValid: Boolean = false
+    private var mIsTextFieldValid: Boolean = false
     private var mIsCitizenIdValid: Boolean = false
     private var mIsPassportValid: Boolean = false
+    private var mIsFormValid: Boolean = false
 
     override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>
                              , fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>) {
@@ -30,7 +31,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
 
                     val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
 
-                    mIsFormValid = ValidatorUtil.provideEmailValidator().isValid(t1, t1.isEmpty()) &&
+                    mIsTextFieldValid = ValidatorUtil.provideEmailValidator().isValid(t1, t1.isEmpty()) &&
                             ValidatorUtil.providePasswordValidator().isValid(t2, t2.isEmpty()) &&
                             ValidatorUtil.provideRepeatPasswordValidator(t2).isValid(t3, t3.isEmpty()) &&
                             ValidatorUtil.provideFirstNameEnValidator().isValid(t4, t4.isEmpty()) &&
@@ -38,7 +39,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                             ValidatorUtil.provideFirstNameThValidator().isValid(t6, t6.isEmpty()) &&
                             ValidatorUtil.provideLastNameThValidator().isValid(t7, t7.isEmpty())
 
-                    mIsFormValid && isNationalityRequiredValid
+                    mIsTextFieldValid && isNationalityRequiredValid && !mTextDob.isEmpty()
                 })
                 .subscribe {
                     if (it) view?.enableNext() else view?.disableNext()
@@ -66,12 +67,15 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
 
     override fun setDob(dob: String) {
         mTextDob = dob
+        val isValid = !dob.isEmpty() && mIsTextFieldValid
+        if (isValid) view?.enableNext() else view?.disableNext()
     }
 
     override fun setNationalities(isThai: Boolean) {
         this.mIsThai = isThai
-        val isValid = if(mIsThai) mIsCitizenIdValid else mIsPassportValid && mIsFormValid
+        val isValid = if(mIsThai) mIsCitizenIdValid else mIsPassportValid && mIsTextFieldValid && !mTextDob.isEmpty()
         if (isValid) view?.enableNext() else view?.disableNext()
+        mIsFormValid = isValid
     }
 
     override fun setGender(isMale: Boolean) {
