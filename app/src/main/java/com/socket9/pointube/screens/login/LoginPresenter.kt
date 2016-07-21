@@ -1,8 +1,8 @@
 package com.socket9.pointube.screens.login
 
 import com.socket9.pointube.manager.DataManager
-import com.socket9.pointube.utils.LoginState
-import com.socket9.pointube.utils.SharedPref
+import com.socket9.pointube.utils.LoginStateUtil
+import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.warn
@@ -18,7 +18,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                     info { it }
                     view?.showProgressDialog()
                     if (it.result.id != 0) {
-                        SharedPref.saveLoginResult(it.result)
+                        SharedPrefUtil.saveLoginResult(it.result)
                         view?.showLoginSuccess("Login success")
                     } else {
                         view?.showLoginError(it.result.message!!)

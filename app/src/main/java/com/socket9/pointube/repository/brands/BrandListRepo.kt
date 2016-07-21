@@ -13,7 +13,7 @@ open class BrandRepo(
         open var Name: String = "",
         open var LogoPath: String = "",
         open var CoverPath: String = "",
-        @Ignore open var TotalPrograms: Int = 1,
+        open var TotalPrograms: Int = 1,
         open var Units : RealmList<BrandUnitRepo> = RealmList()
 
 ) : RealmObject() {

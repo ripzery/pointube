@@ -21,10 +21,10 @@ object DataManager : AnkoLogger {
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
         return Observable.concat(DiskProviderManager.getAllProvider(), NetworkProviderManager.getAllProvider())
                 .first { it.Results.size > 0 }
-                .doOnNext { info { "getAllProvider ${it.IsDisk}" } }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .flatMap { DiskProviderManager.getAllProvider() }
     }
 
     /*
@@ -34,10 +34,10 @@ object DataManager : AnkoLogger {
     fun getAllPublishedProgramList(): Observable<HomeModel.PublishedProgramListRepo> {
         return Observable.concat(DiskProviderManager.getPublishedProgramList(), NetworkProviderManager.getPublishedProgramList())
                 .first { it.Results.size > 0 }
-                .doOnNext { info { "allPublishedProgram ${it.IsDisk}" } }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .flatMap { DiskProviderManager.getPublishedProgramList() }
     }
 
     /* For login */

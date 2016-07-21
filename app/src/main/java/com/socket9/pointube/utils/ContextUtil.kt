@@ -5,6 +5,6 @@ import android.content.Context
 /**
  * Created by ripzery on 7/20/16.
  */
-object Contextor {
+object ContextUtil {
     var context: Context? = null
 }

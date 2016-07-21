@@ -1,15 +1,17 @@
 package com.socket9.pointube.screens.home
 
 import com.socket9.pointube.base.BasePresenter
+import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
  */
 interface HomeContract {
     interface View {
-        fun showProviderList(allBrands: HomeModel.AllBrands)
+        fun showProviderList(allBrands: MutableList<BrandRepo>)
 
-        fun showPublishedProgramList(allPublishedProgram: HomeModel.PublishedProgramListRepo)
+        fun showPublishedProgramList(allPublishedProgram: MutableList<PublishedProgramItemRepo>)
 
         fun showEmptyProviderList()
 
@@ -23,7 +25,7 @@ interface HomeContract {
 
         fun showLoggedInState()
 
-        fun updatePromotionCount(newList : HomeModel.AllBrands)
+        fun updatePromotionCount(newList : MutableList<BrandRepo>)
     }
 
     interface Presenter : BasePresenter {
@@ -32,7 +34,5 @@ interface HomeContract {
         fun loadPublishedProgramList()
 
         fun doLogin()
-
-        fun countProviderProgram()
     }
 }

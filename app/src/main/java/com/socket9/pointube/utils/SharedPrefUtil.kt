@@ -10,7 +10,7 @@ import org.jetbrains.anko.warn
 /**
  * Created by ripzery on 7/20/16.
  */
-object SharedPref : AnkoLogger {
+object SharedPrefUtil : AnkoLogger {
     val NAME = "pointube.sp"
     var sharePref: SharedPreferences? = null
     val KEY_LOGIN_RESULT = "login_result"

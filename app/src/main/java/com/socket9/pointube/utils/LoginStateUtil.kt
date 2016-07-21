@@ -6,8 +6,8 @@ import org.jetbrains.anko.info
 /**
  * Created by ripzery on 7/20/16.
  */
-object LoginState : AnkoLogger {
+object LoginStateUtil : AnkoLogger {
     fun isLogin(): Boolean{
-        return SharedPref.loadLoginResult() != null
+        return SharedPrefUtil.loadLoginResult() != null
     }
 }

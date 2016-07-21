@@ -1,9 +1,10 @@
 package com.socket9.pointube.screens.home
 
 import com.socket9.pointube.manager.DataManager
-import com.socket9.pointube.utils.LoginState
+import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.utils.LoginStateUtil
 import com.socket9.pointube.utils.RealmUtil
-import com.socket9.pointube.utils.SharedPref
+import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -12,47 +13,27 @@ import org.jetbrains.anko.info
  */
 class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, AnkoLogger {
     /* Variable zone */
-    private var allProviders: HomeModel.AllBrands? = null
-    private var allPrograms: HomeModel.PublishedProgramListRepo? = null
-    private var isCountProviderList: Boolean = false
 
     /**  Override UserActionsListener Interface zone **/
     override fun loadProviderList() {
         DataManager.getAllProvider()
                 .subscribe({
-                    allProviders = it
-                    view?.showProviderList(it)
-                    countProviderProgram()
+                    view?.showProviderList(it.Results)
                 }, {
-                    info { it }
+                    it.printStackTrace()
                     view?.showEmptyProviderList()
                 })
     }
 
     override fun loadPublishedProgramList() {
         DataManager.getAllPublishedProgramList()
-                .doOnNext {
-                    allPrograms = it
-                }
                 .map { it.copy(true, null, it.Results.filter { it.IsHot }.toMutableList(), true) }
                 .subscribe({
-                    view?.showPublishedProgramList(it)
-                    countProviderProgram()
+                    view?.showPublishedProgramList(it.Results)
                 }, {
-                    info { it }
+                    it.printStackTrace()
                     view?.showEmptyPublishedProgramList()
                 })
-    }
-
-    override fun countProviderProgram() {
-        if (allPrograms != null && allProviders != null && !isCountProviderList) {
-            allProviders!!.Results.forEach {
-                val providerId = it.Id
-                it.TotalPrograms = allPrograms!!.Results.filter { it.ProviderId ==  providerId }.size
-            }
-            view?.updatePromotionCount(allProviders!!)
-            isCountProviderList = true
-        }
     }
 
     override fun doLogin() {
@@ -60,12 +41,12 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
     }
 
     override fun onCreate() {
-        info { "Home : OnCreate" }
         loadProviderList()
         loadPublishedProgramList()
-        if (LoginState.isLogin()) {
+
+        if (LoginStateUtil.isLogin()) {
             view?.showLoggedInState()
-            info { SharedPref.loadLoginResult().toString() }
+            info { SharedPrefUtil.loadLoginResult().toString() }
         } else {
             view?.showUnLoggedInState()
         }

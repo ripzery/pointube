@@ -3,8 +3,8 @@ package com.socket9.pointube
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.socket9.pointube.utils.Contextor
-import com.socket9.pointube.utils.SharedPref
+import com.socket9.pointube.utils.ContextUtil
+import com.socket9.pointube.utils.SharedPrefUtil
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import org.jetbrains.anko.AnkoLogger
@@ -22,8 +22,8 @@ class App : Application(), AnkoLogger {
                 .build()
         Realm.setDefaultConfiguration(realmConfig)
         info { "App is loaded" }
-        Contextor.context = applicationContext
-        SharedPref.sharePref = getSharedPreferences(SharedPref.NAME, Context.MODE_PRIVATE)
+        ContextUtil.context = applicationContext
+        SharedPrefUtil.sharePref = getSharedPreferences(SharedPrefUtil.NAME, Context.MODE_PRIVATE)
         RxActivityResult.register(this)
     }
 }

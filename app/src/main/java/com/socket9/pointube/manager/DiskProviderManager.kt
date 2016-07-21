@@ -12,16 +12,13 @@ import rx.Observable
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
  */
 object DiskProviderManager : AnkoLogger {
-
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
-        val realm = RealmUtil.getInstance()
-        val allBrands = realm.where(BrandRepo::class.java).findAll()
+        val allBrands = RealmUtil.readAll(BrandRepo::class.java)
         return Observable.just(HomeModel.AllBrands(true, allBrands.toMutableList(), true))
     }
 
     fun getPublishedProgramList(): Observable<HomeModel.PublishedProgramListRepo> {
-        val realm = RealmUtil.getInstance()
-        val allPublishedProgramList = realm.where(PublishedProgramItemRepo::class.java).findAll()
+        val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
         return Observable.just(HomeModel.PublishedProgramListRepo(true, null, allPublishedProgramList.toMutableList(), true))
     }
 }

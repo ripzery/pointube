@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.home
 
+import HomeImageVideoFragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -25,8 +26,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /** Variable zone **/
     lateinit var param1: String
     private val mLinearLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) }
-    private val mProviderListAdapter: BrandUnitAdapter by lazy { BrandUnitAdapter(HomeModel.AllBrands(false, mutableListOf())) }
-    private val mImageVideoPagerAdapter : ImageVideoPagerAdapter by lazy { ImageVideoPagerAdapter(childFragmentManager, mutableListOf()) }
+    private val mProviderListAdapter: BrandUnitAdapter by lazy { BrandUnitAdapter(mutableListOf()) }
+    private val mImageVideoPagerAdapter: ImageVideoPagerAdapter by lazy { ImageVideoPagerAdapter(childFragmentManager, mutableListOf()) }
     private val mHomePresenter: HomeContract.Presenter by lazy { HomePresenter(this) }
     private val mMainActivity: OnLoginListener by lazy { activity as OnLoginListener }
 
@@ -75,7 +76,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     /** Override View Interface zone **/
 
-    override fun showProviderList(allBrands: HomeModel.AllBrands) {
+    override fun showProviderList(allBrands: MutableList<BrandRepo>) {
         mProviderListAdapter.updateProviderList(allBrands)
     }
 
@@ -83,9 +84,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     }
 
-    override fun showPublishedProgramList(allPublishedProgram: HomeModel.PublishedProgramListRepo) {
-        info { allPublishedProgram }
-        mImageVideoPagerAdapter.updateList(allPublishedProgram.Results)
+    override fun showPublishedProgramList(allPublishedProgram: MutableList<PublishedProgramItemRepo>) {
+        mImageVideoPagerAdapter.updateList(allPublishedProgram)
     }
 
     override fun showEmptyPublishedProgramList() {
@@ -110,7 +110,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         layoutNewUser.visibility = View.VISIBLE
     }
 
-    override fun updatePromotionCount(newList : HomeModel.AllBrands) {
+    override fun updatePromotionCount(newList: MutableList<BrandRepo>) {
+        info { newList }
         mProviderListAdapter.updateProviderList(newList)
     }
 
@@ -132,14 +133,14 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     /** Inner class zone **/
 
-    inner class BrandUnitAdapter(var list: HomeModel.AllBrands) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
+    inner class BrandUnitAdapter(var list: MutableList<BrandRepo>) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
         override fun onBindViewHolder(holder: BrandUnitViewHolder?, position: Int) {
-            holder!!.setModel(list.Results[position])
-            holder.setBadgeCount(list.Results[position].TotalPrograms)
+            holder!!.setModel(list[position])
+            holder.setBadgeCount(list[position].TotalPrograms)
         }
 
         override fun getItemCount(): Int {
-            return list.Results.size
+            return list.size
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BrandUnitViewHolder {
@@ -147,7 +148,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             return BrandUnitViewHolder(v)
         }
 
-        fun updateProviderList(providerList: HomeModel.AllBrands) {
+        fun updateProviderList(providerList: MutableList<BrandRepo>) {
             list = providerList
             notifyDataSetChanged()
         }
@@ -162,13 +163,13 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
                 homeBrandViewGroup.setModel(brand)
             }
 
-            fun setBadgeCount(count: Int){
+            fun setBadgeCount(count: Int) {
                 homeBrandViewGroup.setBadgeCount(count)
             }
         }
     }
 
-    inner class ImageVideoPagerAdapter(fm: FragmentManager,var list: MutableList<PublishedProgramItemRepo>) : FragmentStatePagerAdapter(fm) {
+    inner class ImageVideoPagerAdapter(fm: FragmentManager, var list: MutableList<PublishedProgramItemRepo>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             /* TODO: Return correctly fragment */
             return HomeImageVideoFragment.newInstance(list[position].MasterPath, false)
@@ -179,7 +180,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             return list.size
         }
 
-        fun updateList(list: MutableList<PublishedProgramItemRepo>){
+        fun updateList(list: MutableList<PublishedProgramItemRepo>) {
             this.list = list
             notifyDataSetChanged()
         }
