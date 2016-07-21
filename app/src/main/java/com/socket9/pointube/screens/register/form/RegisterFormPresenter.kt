@@ -17,15 +17,17 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
 
     override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>,
                              fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>,
-                             natObs: Observable<Boolean>) {
+                             natObs: Observable<CharSequence>) {
         /* Check all combination */
         val listObservable: MutableList<Observable<out Any>> = mutableListOf(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
 
         Observable.combineLatest(listObservable, {
             val list: MutableList<CharSequence> = mutableListOf()
-            it.take(it.size - 1).forEach {
+            it.forEach {
                 list.add(it as CharSequence)
             }
+
+            info { "$mIsThai, ${list[9]}" }
 
             /* build register model on-the-fly */
             buildRegisterModel(list[0], list[1], list[3], list[4], list[5], list[6], list[7], list[8])
@@ -33,6 +35,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
             val mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(list[7], list[7].isEmpty())
             val mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(list[8], list[8].isEmpty())
             val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
+
 
             ValidatorUtil.provideEmailValidator().isValid(list[0], list[0].isEmpty()) &&
                     ValidatorUtil.providePasswordValidator().isValid(list[1], list[1].isEmpty()) &&

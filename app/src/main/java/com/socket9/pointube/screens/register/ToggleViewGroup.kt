@@ -26,7 +26,7 @@ class ToggleViewGroup : FrameLayout {
     private val tvRight: TextView by lazy { viewContainer.findViewById(R.id.tvRight) as TextView }
     private val layoutLeft: FrameLayout by lazy { viewContainer.findViewById(R.id.layoutLeft) as FrameLayout }
     private val layoutRight: FrameLayout by lazy { viewContainer.findViewById(R.id.layoutRight) as FrameLayout }
-    private val toggleObservable: PublishSubject<Boolean> = PublishSubject.create()
+    private val toggleObservable: PublishSubject<CharSequence> = PublishSubject.create()
 
     companion object {
         val LEFT = 1
@@ -68,16 +68,17 @@ class ToggleViewGroup : FrameLayout {
         layoutLeft.setOnClickListener {
             enableLeft()
             listener?.onToggleLeft(true)
-            toggleObservable.onNext(true)
+            toggleObservable.onNext("$LEFT")
         }
 
         layoutRight.setOnClickListener {
             enableRight()
             listener?.onToggleLeft(false)
-            toggleObservable.onNext(false)
+            toggleObservable.onNext("$RIGHT")
         }
 
         enableLeft()
+        toggleObservable.onNext("$LEFT")
     }
 
     private fun enableRight() {
@@ -122,7 +123,7 @@ class ToggleViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    fun getToggleObservable(): Observable<Boolean> {
+    fun getToggleObservable(): Observable<CharSequence> {
         return toggleObservable.subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(AndroidSchedulers.mainThread())

@@ -8,27 +8,20 @@ import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.register.form.RegisterFormFragment
+import com.socket9.pointube.screens.register.phone.PhoneFragment
 
-class RegisterActivity : AppCompatActivity() {
-
+class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        setupToolbar("Register")
         initInstance()
     }
 
     private fun initInstance() {
-        replaceFragment(fragment = RegisterFormFragment.newInstance("Register Form"))
+        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, RegisterFormFragment.newInstance(""), "register_form").addToBackStack("register_form").commit()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
-            android.R.id.home -> {
-                setResult(Activity.RESULT_CANCELED)
-                finish()
-            }
-        }
-        return true
+    override fun goPhoneFragment() {
+        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, PhoneFragment.newInstance(""), "phone").addToBackStack("phone").commit()
     }
 }

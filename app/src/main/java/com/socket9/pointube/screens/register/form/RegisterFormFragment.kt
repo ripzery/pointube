@@ -1,14 +1,18 @@
 package com.socket9.pointube.screens.register.form
 
+import android.app.Activity
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.register.ToggleViewGroup
 import com.socket9.pointube.utils.ValidatorUtil
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
@@ -33,7 +37,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     private val mLastNameThObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metLastNameTH) }
     private val mCitizenIdObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metCitizenID) }
     private val mPassportObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metPassport) }
-    private val mNationalityObservable: Observable<Boolean> by lazy { toggleNationality.getToggleObservable() }
+    private val mNationalityObservable: Observable<CharSequence> by lazy { toggleNationality.getToggleObservable() }
     private val mDateOfBirthObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(tvDob) }
 
     /** Static method zone **/
@@ -70,6 +74,19 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         super.onViewCreated(view, savedInstanceState)
         mRegisterFormPresenter.onCreate()
         initInstance()
+        (activity as AppCompatActivity).setupToolbar("Step 1 Of 3 - Register")
+        setHasOptionsMenu(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item!!.itemId){
+            android.R.id.home -> {
+                activity.setResult(Activity.RESULT_CANCELED)
+                activity.finish()
+            }
+        }
+
+        return true
     }
 
     override fun onDestroy() {
@@ -93,6 +110,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
 
     override fun goNext() {
         //TODO : Go to next fragment
+        (activity as RegisterFormListener).goPhoneFragment()
     }
 
     /** Method zone **/
@@ -165,5 +183,9 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
 
         metRepeatPassword.typeface = Typeface.DEFAULT
         metRepeatPassword.transformationMethod = PasswordTransformationMethod()
+    }
+
+    interface RegisterFormListener{
+        fun goPhoneFragment()
     }
 }
