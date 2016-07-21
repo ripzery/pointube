@@ -14,14 +14,12 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     private var mIsMale: Boolean = true
     private var mTextDob: String = ""
     private var mRegisterRequest: RegisterModel.Request.Register? = null
-    private var mIsTextFieldValid: Boolean = false
 
     override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>,
                              fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>,
                              natObs: Observable<Boolean>) {
         /* Check all combination */
-        val listObservable: MutableList<Observable<out Any>> = mutableListOf(emailObs,
-                pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
+        val listObservable: MutableList<Observable<out Any>> = mutableListOf(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
 
         Observable.combineLatest(listObservable, {
             val list: MutableList<CharSequence> = mutableListOf()
@@ -29,16 +27,12 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                 list.add(it as CharSequence)
             }
 
-            val thai: Boolean = it.last() as Boolean
-
-            info { thai }
-
+            /* build register model on-the-fly */
             buildRegisterModel(list[0], list[1], list[3], list[4], list[5], list[6], list[7], list[8])
 
             val mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(list[7], list[7].isEmpty())
             val mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(list[8], list[8].isEmpty())
-
-            val isNationalityRequiredValid = if (thai) mIsCitizenIdValid else mIsPassportValid
+            val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
 
             ValidatorUtil.provideEmailValidator().isValid(list[0], list[0].isEmpty()) &&
                     ValidatorUtil.providePasswordValidator().isValid(list[1], list[1].isEmpty()) &&
@@ -49,6 +43,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                     ValidatorUtil.provideLastNameThValidator().isValid(list[6], list[6].isEmpty()) &&
                     !list[9].isEmpty() &&
                     isNationalityRequiredValid
+
         }).subscribe {
             if (it) view?.enableNext() else view?.disableNext()
         }
