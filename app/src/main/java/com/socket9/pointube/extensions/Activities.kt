@@ -22,5 +22,8 @@ fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: B
     } else if(isShowBackButton){
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    } else if(!isShowBackButton) {
+        supportActionBar?.setDisplayShowHomeEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 }

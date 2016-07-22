@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import kotlinx.android.synthetic.main.fragment_otp.*
-import kotlinx.android.synthetic.main.fragment_register_form.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.support.v4.toast
 
@@ -21,8 +20,8 @@ class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
 
     /** Variable zone **/
     var memberId: Int = 0
-    lateinit var mOtpListener :OtpFragment.OtpListener
-    lateinit var mOtpPresenter:OtpContract.Presenter
+    lateinit var mOtpListener: OtpFragment.OtpListener
+    lateinit var mOtpPresenter: OtpContract.Presenter
 
     /** Static method zone **/
     companion object {
@@ -64,7 +63,7 @@ class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId){
+        when (item!!.itemId) {
             android.R.id.home -> {
                 mOtpListener.goBackFromOtp()
             }
@@ -76,11 +75,11 @@ class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
     /* Override View Interface */
 
     override fun enableNext() {
-        btnNext.isEnabled = true
+        btnVerifyOtp.isEnabled = true
     }
 
     override fun disableNext() {
-        btnNext.isEnabled = false
+        btnVerifyOtp.isEnabled = false
     }
 
     override fun goNext() {
@@ -100,7 +99,7 @@ class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
     private fun initInstance() {
         mOtpPresenter = OtpPresenter(this)
 
-        otpInput.addTextChangedListener(object: TextWatcher{
+        otpInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 mOtpPresenter.onTypeOtp(p0!!.toString())
             }
