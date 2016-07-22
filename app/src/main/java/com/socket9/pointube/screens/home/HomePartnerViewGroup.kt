@@ -58,15 +58,6 @@ class HomePartnerViewGroup : FrameLayout,AnkoLogger {
 
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
-
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        info { changed }
-        super.onLayout(changed, left, top, right, bottom)
-    }
-
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
         /*
         TypedArray a = getContext().getTheme().obtainStyledAttributes(

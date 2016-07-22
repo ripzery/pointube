@@ -149,7 +149,6 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         }
 
         override fun getItemCount(): Int {
-            info{ "Brandsize : ${list.size}"}
             return list.size
         }
 
