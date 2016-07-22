@@ -1,3 +1,4 @@
+import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.setupToolbar
+import com.socket9.pointube.screens.register.form.RegisterFormFragment
 import com.socket9.pointube.screens.register.term.TermsContract
 import com.socket9.pointube.screens.register.term.TermsPresenter
 import kotlinx.android.synthetic.main.fragment_terms.*
@@ -20,6 +22,7 @@ class TermsFragment : Fragment(), AnkoLogger, TermsContract.View {
     /** Variable zone **/
     private var memberId: Int = 0
     lateinit private var mTermsPresenter: TermsContract.Presenter
+    lateinit private var mTermsListener: TermsListener
 
 
     /** Static method zone **/
@@ -40,6 +43,7 @@ class TermsFragment : Fragment(), AnkoLogger, TermsContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mTermsListener = activity as TermsListener
         if (savedInstanceState == null) {
             /* if newly created */
             memberId = arguments.getInt(ARG_1, 0)
@@ -64,15 +68,6 @@ class TermsFragment : Fragment(), AnkoLogger, TermsContract.View {
         mTermsPresenter.onDestroy()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId){
-            android.R.id.home -> {
-                activity.supportFragmentManager.popBackStack()
-            }
-        }
-
-        return true
-    }
     /* Override View Interface */
     override fun enableNext() {
         btnNext.isEnabled = true
@@ -82,8 +77,8 @@ class TermsFragment : Fragment(), AnkoLogger, TermsContract.View {
         btnNext.isEnabled = false
     }
 
-    override fun goNext() {
-        (activity as TermsFragment.TermsListener).goPhoneFragment()
+    override fun goNext(memberId: Int) {
+        mTermsListener.goNextFromTerms(memberId)
     }
 
     /** Method zone **/
@@ -92,12 +87,12 @@ class TermsFragment : Fragment(), AnkoLogger, TermsContract.View {
         mTermsPresenter = TermsPresenter(this)
 
         cbAccept.setOnCheckedChangeListener { compoundButton, isChecked -> mTermsPresenter.checkTerms(isChecked) }
-        btnNext.setOnClickListener { mTermsPresenter.next() }
-
-        (activity as AppCompatActivity).setupToolbar("Step 2 of 4 - Register")
+        btnNext.setOnClickListener { mTermsPresenter.next(memberId) }
     }
 
     interface TermsListener {
-        fun goPhoneFragment()
+        fun goNextFromTerms(memberId: Int)
+
+        fun backFromTerms()
     }
 }

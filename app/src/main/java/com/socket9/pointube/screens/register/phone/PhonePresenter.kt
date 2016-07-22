@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.register.phone
 
+import com.socket9.pointube.manager.DataManager
 import org.jetbrains.anko.AnkoLogger
 
 /**
@@ -7,6 +8,7 @@ import org.jetbrains.anko.AnkoLogger
  */
 
 class PhonePresenter(var view: PhoneContract.View?) : PhoneContract.Presenter, AnkoLogger {
+
     private var mPhoneNumber: String = ""
 
     override fun onNumberChange(phoneNumber: String) {
@@ -18,8 +20,20 @@ class PhonePresenter(var view: PhoneContract.View?) : PhoneContract.Presenter, A
         }
     }
 
-    override fun next() {
-        view?.goNext()
+    override fun savePhoneNumber(memberId: Int, phoneNumber: String) {
+        /* Todo call api */
+        DataManager.saveMobileNo(memberId, phoneNumber)
+            .subscribe ({
+                if(it.IsSuccess){
+                    view?.showSavePhoneNumberSuccess()
+                    view?.goNext(it.Result.Id)
+                }else{
+                    view?.showSavePhoneNumberError(it.Message!!)
+                }
+            },{
+                it.printStackTrace()
+                view?.showSavePhoneNumberError("An error occured, please try again")
+            })
     }
 
     override fun onCreate() {

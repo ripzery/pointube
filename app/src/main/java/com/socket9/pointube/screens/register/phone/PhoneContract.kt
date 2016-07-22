@@ -11,13 +11,17 @@ interface PhoneContract {
 
         fun disableNext()
 
-        fun goNext()
+        fun goNext(memberId: Int)
+
+        fun showSavePhoneNumberError(msg: String)
+
+        fun showSavePhoneNumberSuccess()
 
     }
 
     interface Presenter : BasePresenter {
-        fun savePhoneNumber(phoneNumber: String)
+        fun onNumberChange(number: String)
 
-        fun next()
+        fun savePhoneNumber(memberId: Int, phoneNumber: String)
     }
 }

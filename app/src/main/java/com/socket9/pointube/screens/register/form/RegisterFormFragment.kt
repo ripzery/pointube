@@ -31,25 +31,14 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     /** Variable zone **/
     lateinit var param1: String
     lateinit private var mRegisterFormPresenter: RegisterFormContract.Presenter
-    private val mEmailChangeObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metEmail) }
-    private val mPasswordChangeObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metPassword) }
-    private val mPasswordRepeatChangeObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metRepeatPassword) }
-    private val mFirstNameEnObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metFirstName) }
-    private val mLastNameEnObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metLastName) }
-    private val mFirstNameThObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metFirstNameTH) }
-    private val mLastNameThObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metLastNameTH) }
-    private val mCitizenIdObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metCitizenID) }
-    private val mPassportObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metPassport) }
-    private val mNationalityObservable: Observable<CharSequence> by lazy { toggleNationality.getToggleObservable() }
-    private val mDateOfBirthObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(tvDob) }
+    lateinit private var mRegisterListener: RegisterFormListener
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): RegisterFormFragment {
+        fun newInstance(): RegisterFormFragment {
             var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
             val registerFormFragment: RegisterFormFragment = RegisterFormFragment()
             registerFormFragment.arguments = bundle
             return registerFormFragment
@@ -61,9 +50,10 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mRegisterListener = activity as RegisterFormListener
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+//            param1 = arguments.getString(ARG_1)
         }
     }
 
@@ -83,8 +73,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
-                activity.setResult(Activity.RESULT_CANCELED)
-                activity.finish()
+                mRegisterListener.backFromRegisterForm()
             }
         }
 
@@ -95,6 +84,10 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         super.onDestroyView()
         info { "Form destroy" }
         mRegisterFormPresenter.onDestroy()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     /* View interface zone */
@@ -112,7 +105,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     }
 
     override fun goNext(id: Int) {
-        (activity as RegisterFormListener).goTermsFragment(id)
+        mRegisterListener.goNextFromRegisterForm(id)
     }
 
     override fun showRegisterSuccess() {
@@ -127,8 +120,6 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     /** Method zone **/
 
     private fun initInstance() {
-        (activity as AppCompatActivity).setupToolbar("Step 1 of 3 - Register")
-
         mRegisterFormPresenter = RegisterFormPresenter(this)
         mRegisterFormPresenter.onCreate()
 
@@ -209,6 +200,8 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     }
 
     interface RegisterFormListener {
-        fun goTermsFragment(id: Int)
+        fun goNextFromRegisterForm(memberId: Int)
+
+        fun backFromRegisterForm()
     }
 }

@@ -8,8 +8,8 @@ class TermsPresenter(var view: TermsContract.View?) : TermsContract.Presenter {
         if(isChecked) view?.enableNext() else view?.disableNext()
     }
 
-    override fun next() {
-        view?.goNext()
+    override fun next(memberId: Int) {
+        view?.goNext(memberId)
     }
 
     override fun onCreate() {

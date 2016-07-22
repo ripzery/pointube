@@ -11,7 +11,7 @@ object RegisterModel {
                                    val LastName: String,
                                    val FirstNameEN: String,
                                    val LastNameEN: String,
-                                   val CitizenID: String,
+                                   val CitizenID: String?,
                                    val Passport: String?,
                                    val Mobile: String?,
                                    val Email: String,

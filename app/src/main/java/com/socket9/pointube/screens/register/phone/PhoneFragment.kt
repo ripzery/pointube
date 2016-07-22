@@ -16,13 +16,15 @@ import com.socket9.pointube.extensions.setupToolbar
 import kotlinx.android.synthetic.main.fragment_phone.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
 class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
     /** Variable zone **/
-    lateinit var param1: String
+    var memberId: Int = 0
+    lateinit private var mPhoneListener: PhoneListener
     private val mPhonePresenter: PhoneContract.Presenter by lazy { PhonePresenter(this) }
 
 
@@ -30,9 +32,9 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): PhoneFragment {
+        fun newInstance(memberId: Int): PhoneFragment {
             var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+            bundle.putInt(ARG_1, memberId)
             val phoneFragment: PhoneFragment = PhoneFragment()
             phoneFragment.arguments = bundle
             return phoneFragment
@@ -44,9 +46,10 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPhoneListener = activity as PhoneListener
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            memberId = arguments.getInt(ARG_1)
         }
     }
 
@@ -56,21 +59,9 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
         return rootView
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId){
-            android.R.id.home -> {
-                activity.supportFragmentManager.popBackStack()
-            }
-        }
-
-        return true
-    }
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initInstance()
-
-        setHasOptionsMenu(true)
     }
 
     /* Override View Interface zone */
@@ -82,8 +73,16 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
         btnNext.isEnabled = false
     }
 
-    override fun goNext() {
-        info { "go next" }
+    override fun goNext(memberId: Int) {
+        mPhoneListener.goNextFromPhone(memberId)
+    }
+
+    override fun showSavePhoneNumberSuccess() {
+        toast("Save phone number sucessful")
+    }
+
+    override fun showSavePhoneNumberError(msg: String) {
+        toast(msg)
     }
 
     /** Method zone **/
@@ -104,9 +103,12 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
 
         })
 
-        btnNext.setOnClickListener { mPhonePresenter.next() }
+        btnNext.setOnClickListener { mPhonePresenter.savePhoneNumber(memberId, telInput.text.toString()) }
+    }
 
-        (activity as AppCompatActivity).setupToolbar("Step 3 of 4 - Register")
+    interface PhoneListener{
+        fun goNextFromPhone(memberId: Int)
 
+        fun goBackFromPhone()
     }
 }

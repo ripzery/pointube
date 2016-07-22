@@ -5,216 +5,206 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <include layout="@layout/layout_toolbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACCOUNT" />
 
         <LinearLayout
+            android:id="@+id/layoutAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
 
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ACCOUNT" />
-
-            <LinearLayout
-                android:id="@+id/layoutAccount"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metEmail"
+                style="@style/BaseEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical">
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
 
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metEmail"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metPassword"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Password"
+                android:inputType="textPassword" />
 
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metPassword"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Password"
-                    android:inputType="textPassword" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metRepeatPassword"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Repeat password"
+                android:inputType="textPassword" />
 
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metRepeatPassword"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Repeat password"
-                    android:inputType="textPassword" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="YOUR PROFILE" />
+
+        <LinearLayout
+            android:id="@+id/layoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metFirstName"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="First name (en)"
+                android:inputType="textPersonName" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metLastName"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Last name (en)"
+                android:inputType="textPersonName" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metFirstNameTH"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="First name (th)"
+                android:inputType="textPersonName" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/metLastNameTH"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Last name (th)"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Date of Birth" />
+
+            <TextView
+                android:id="@+id/tvDob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:freezesText="true"
+                android:hint="Select date of birth" />
+
+            <LinearLayout
+                android:id="@+id/layoutVerifyCitizen"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="YOUR PROFILE" />
-
-            <LinearLayout
-                android:id="@+id/layoutProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metFirstName"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
+                <com.socket9.pointube.screens.register.ToggleViewGroup
+                    android:id="@+id/toggleNationality"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="First name (en)"
-                    android:inputType="textPersonName" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metLastName"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Last name (en)"
-                    android:inputType="textPersonName" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metFirstNameTH"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="First name (th)"
-                    android:inputType="textPersonName" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/metLastNameTH"
-                    style="@style/BaseEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Last name (th)"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Date of Birth" />
-
-                <TextView
-                    android:id="@+id/tvDob"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:freezesText="true"
-                    android:hint="Select date of birth" />
+                    app:leftText="Thai"
+                    app:rightText="Expat" />
 
                 <LinearLayout
-                    android:id="@+id/layoutVerifyCitizen"
+                    android:id="@+id/layoutCitizenID"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
-                    <com.socket9.pointube.screens.register.ToggleViewGroup
-                        android:id="@+id/toggleNationality"
-                        android:layout_width="200dp"
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/metCitizenID"
+                        style="@style/BaseEditText"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:leftText="Thai"
-                        app:rightText="Expat" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutCitizenID"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
-                        android:orientation="vertical">
+                        android:hint="Citizen ID"
+                        android:inputType="number"
+                        android:maxLength="13"
+                        app:met_iconLeft="@null"
+                        app:met_maxCharacters="13" />
 
-                        <com.rengwuxian.materialedittext.MaterialEditText
-                            android:id="@+id/metCitizenID"
-                            style="@style/BaseEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:hint="Citizen ID"
-                            android:inputType="number"
-                            app:met_iconLeft="@null"
-                            android:maxLength="13"
-                            app:met_maxCharacters="13" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:lineSpacingExtra="4dp"
-                            android:text="@string/fragment_register_citizen_id_description"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutPassport"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <com.rengwuxian.materialedittext.MaterialEditText
-                            android:id="@+id/metPassport"
-                            style="@style/BaseEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:hint="Passport"
-                            android:inputType="text"
-                            app:met_minCharacters="10" />
-
-                    </LinearLayout>
+                        android:lineSpacingExtra="4dp"
+                        android:text="@string/fragment_register_citizen_id_description" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:id="@+id/layoutPassport"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
-                    android:text="Gender" />
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-                <com.socket9.pointube.screens.register.ToggleViewGroup
-                    android:id="@+id/toggleGender"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:leftText="Male"
-                    app:rightText="Female" />
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/metPassport"
+                        style="@style/BaseEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="Passport"
+                        android:inputType="text"
+                        app:met_minCharacters="10" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnNext"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
-                android:enabled="false"
-                android:soundEffectsEnabled="true"
-                android:text="Next"
-                android:theme="@style/BaseButton.Teal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Gender" />
+
+            <com.socket9.pointube.screens.register.ToggleViewGroup
+                android:id="@+id/toggleGender"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:leftText="Male"
+                app:rightText="Female" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:soundEffectsEnabled="true"
+            android:text="Next"
+            android:theme="@style/BaseButton.Teal" />
 
     </LinearLayout>
 

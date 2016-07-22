@@ -13,13 +13,13 @@ fun AppCompatActivity.replaceFragment(container: Int = R.id.contentContainer, fr
     this.supportFragmentManager.beginTransaction().replace(container, fragment).commit()
 }
 
-fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: Boolean = false) {
+fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: Boolean = false, isShowBackButton:Boolean = true) {
     setSupportActionBar(toolbar)
     tvToolbarTitle.text = title
     supportActionBar?.title = ""
     if (showHamburger) {
 
-    } else {
+    } else if(isShowBackButton){
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

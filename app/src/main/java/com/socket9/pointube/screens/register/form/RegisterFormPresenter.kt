@@ -7,6 +7,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import rx.Observable
 import rx.Subscription
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by ripzery on 7/21/16.
@@ -19,7 +21,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     private var mValidateAllSubscription: Subscription? = null
     private var mPasswordSubscription: Subscription? = null
     private var mRegisterFormSubscription: Subscription? = null
-    private var mRegisteredId : Int = 0
+    private var mRegisteredId: Int = 0
 
     override fun validateAll(emailObs: Observable<CharSequence>, pwObs: Observable<CharSequence>, rpwObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>,
                              fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>,
@@ -28,22 +30,18 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
         val listObservable: MutableList<Observable<CharSequence>> = mutableListOf(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
 
         mValidateAllSubscription = Observable.combineLatest(listObservable, {
-            info { "combineLatest is working now" }
             val list: MutableList<CharSequence> = mutableListOf()
             it.forEach {
                 list.add(it as CharSequence)
             }
 
-            info { "$mIsThai, ${list[9]}" }
-
             /* build register model on-the-fly */
-            buildRegisterModel(list[0], list[1], list[3], list[4], list[5], list[6], list[7], list[8])
 
             val mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(list[7], list[7].isEmpty())
             val mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(list[8], list[8].isEmpty())
             val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
 
-            ValidatorUtil.provideEmailValidator().isValid(list[0], list[0].isEmpty()) &&
+            val isValid = ValidatorUtil.provideEmailValidator().isValid(list[0], list[0].isEmpty()) &&
                     ValidatorUtil.providePasswordValidator().isValid(list[1], list[1].isEmpty()) &&
                     ValidatorUtil.provideRepeatPasswordValidator(list[1]).isValid(list[2], list[2].isEmpty()) &&
                     ValidatorUtil.provideFirstNameEnValidator().isValid(list[3], list[3].isEmpty()) &&
@@ -53,50 +51,62 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                     !list[9].isEmpty() &&
                     isNationalityRequiredValid
 
+            if (isValid) {
+                buildRegisterModel(list[0], list[1], list[3], list[4], list[5], list[6], list[7], list[8], list[9])
+            }
+
+            isValid
         }).subscribe {
             if (it) view?.enableNext() else view?.disableNext()
         }
 
-//        mPasswordSubscription = pwObs.filter { it.length > 0 }.subscribe {
-//            view?.validateRepeatPassword()
-//            info{ "password typing... $it" }
-//        }
+        mPasswordSubscription = pwObs.filter { it.length > 0 }.subscribe {
+            view?.validateRepeatPassword()
+        }
     }
 
     override fun register() {
+        info { mRegisterRequest }
+
         mRegisterFormSubscription = DataManager.register(mRegisterRequest!!)
-                .subscribe ({
-                    info {it}
-                    if(it.IsSuccess){
+                .subscribe({
+                    info { it }
+                    if (it.IsSuccess) {
                         mRegisteredId = it.Id
                         view?.showRegisterSuccess()
-                    }else{
+                    } else {
                         view?.showRegisterError(it.Message)
                     }
-                },{
+                }, {
                     info { it }
                     view?.showRegisterError("An error occurred, please try again")
                 })
     }
 
-    private fun buildRegisterModel(t1: CharSequence, t2: CharSequence, t4: CharSequence, t5: CharSequence, t6: CharSequence, t7: CharSequence, t8: CharSequence, t9: CharSequence) {
+    private fun buildRegisterModel(t1: CharSequence, t2: CharSequence, t4: CharSequence, t5: CharSequence, t6: CharSequence, t7: CharSequence, t8: CharSequence, t9: CharSequence, t10: CharSequence) {
+        val date = Calendar.getInstance()
+        val split = t10.split("/")
+        date.set(split[2].toInt(), split[1].toInt(), split[0].toInt())
+        val dob = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(date.time)
+        info { dob }
         mRegisterRequest = RegisterModel.Request.Register(
                 t6.toString(),
                 t7.toString(),
                 t4.toString(),
                 t5.toString(),
-                t8.toString(),
-                t9.toString(),
+                if(t8.toString().isEmpty()) null else t8.toString(),
+                if(t9.toString().isEmpty()) null else t9.toString(),
                 null,
                 t1.toString(),
                 t2.toString(),
                 if (mIsMale) "1" else "2",
                 null,
-                mTextDob
+                dob
         )
     }
 
     override fun setDob(dob: String) {
+        info { dob }
         mTextDob = dob
     }
 

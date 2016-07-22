@@ -12,13 +12,13 @@ object ApiTest : AnkoLogger {
 
     /* Doesn't work */
     fun register() {
-        DataManager.register("Phuchut", "Sirimong", "1419900326966", "TH12345678", "0875567582", "ripzery222@gmail.com", "12345", "1",
-                "Socket9", "1992-06-27T19:30:22", "Phuchit", "Sirimongkolsathien")
-                .subscribe({
-                    info { it }
-                }, {
-                    info { it }
-                })
+//        DataManager.register("Phuchut", "Sirimong", "1419900326966", "TH12345678", "0875567582", "ripzery222@gmail.com", "12345", "1",
+//                "Socket9", "1992-06-27T19:30:22", "Phuchit", "Sirimongkolsathien")
+//                .subscribe({
+//                    info { it }
+//                }, {
+//                    info { it }
+//                })
     }
 
     fun login() {

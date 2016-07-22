@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Verify OTP" />
+
+    <TextView
+        style="@style/BaseTextTerm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="@string/fragment_register_phone_info" />
+
+    <me.philio.pinentry.PinEntryView
+        android:id="@+id/otpInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        app:accentType="character"
+        app:digitBackground="@drawable/background_border"
+        app:digitHeight="50dp"
+        app:digitSpacing="8dp"
+        app:digitWidth="50dp"
+        app:mask=""
+        app:numDigits="6"
+        app:pinInputType="number" />
+
+    <Button
+        android:id="@+id/btnVerifyOtp"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="16dp"
+        android:enabled="false"
+        android:soundEffectsEnabled="true"
+        android:text="Verify"
+        android:theme="@style/BaseButton.Teal" />
 
 </LinearLayout>

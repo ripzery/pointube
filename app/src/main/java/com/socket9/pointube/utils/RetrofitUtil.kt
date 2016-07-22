@@ -60,9 +60,6 @@ interface PointubeAPI {
     @POST("api/Member/VerifyPhoneNumber")
     fun verifyPhoneNumber(@Body phoneModel: RegisterModel.Request.VerifyPhoneNumber): Observable<RegisterModel.Response.VerifyPhoneNumber>
 
-    @POST("api/Member/GenOTP")
-    fun genOTP(@Body genOTPModel: RegisterModel.Request.GenOTP): Observable<RegisterModel.Response.GenOTP>
-
     @POST("api/Member/GetMemberBrand")
     fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand>
 

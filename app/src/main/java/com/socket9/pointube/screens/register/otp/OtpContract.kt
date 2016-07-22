@@ -12,13 +12,18 @@ interface OtpContract {
 
         fun disableNext()
 
+        fun showOtpError(msg: String)
+
+        fun showOtpSuccess()
+
         fun goNext()
 
     }
 
     interface Presenter : BasePresenter{
-        fun verifyPhoneNumber(otp: String)
 
-        fun register()
+        fun onTypeOtp(otp: String)
+
+        fun verifyPhoneNumber(memberId: Int)
     }
 }

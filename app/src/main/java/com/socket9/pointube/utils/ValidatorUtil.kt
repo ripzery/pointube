@@ -26,8 +26,6 @@ object ValidatorUtil : AnkoLogger{
     fun provideRepeatPasswordValidator(password: CharSequence) = object : METValidator("Repeat password is not match with password") {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty || !password.toString().equals(text.toString())
-            info{ "repeat pw is empty : $isEmpty" }
-            info { "Repeat pw $notValid : pw: $password, rpw: $text" }
             return !notValid
         }
     }

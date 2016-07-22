@@ -11,14 +11,14 @@ interface TermsContract {
 
         fun disableNext()
 
-        fun goNext()
+        fun goNext(memberId: Int)
     }
 
     interface Presenter : BasePresenter{
 
         fun checkTerms(isChecked: Boolean)
 
-        fun next()
+        fun next(memberId: Int)
 
     }
 }
