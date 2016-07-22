@@ -121,6 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:freezesText="true"
                     android:hint="Select date of birth" />
 
                 <LinearLayout
@@ -152,8 +153,16 @@
                             android:layout_marginTop="8dp"
                             android:hint="Citizen ID"
                             android:inputType="number"
+                            app:met_iconLeft="@null"
                             android:maxLength="13"
                             app:met_maxCharacters="13" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:lineSpacingExtra="4dp"
+                            android:text="@string/fragment_register_citizen_id_description"/>
 
                     </LinearLayout>
 

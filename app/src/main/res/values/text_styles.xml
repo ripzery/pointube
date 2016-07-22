@@ -8,4 +8,13 @@
         <item name="met_helperText">Required</item>
         <item name="met_autoValidate">true</item>
     </style>
+
+    <style name="BaseTextTerm">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="BaseTextTerm.TextTermsTitle">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

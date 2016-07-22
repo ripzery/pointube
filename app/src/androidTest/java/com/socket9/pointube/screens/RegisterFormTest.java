@@ -18,6 +18,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -177,17 +178,10 @@ public class RegisterFormTest {
                         isDisplayed()));
         editText.perform(replaceText("0871231581"));
 
-        ViewInteraction editText2 = onView(
-                allOf(withText("0871231581"),
-                        withParent(allOf(withId(R.id.telInput), withText("0871231581"))),
-                        isDisplayed()));
-        editText2.perform(pressImeActionButton());
-
-        ViewInteraction appCompatButton3 = onView(
+        ViewInteraction nextButton = onView(
                 allOf(withId(R.id.btnNext), withText("Next"), isDisplayed()));
 
-        appCompatButton3.perform(click());
-
+        nextButton.check(matches(withText("Next")));
     }
 
     private void sleepOne() {

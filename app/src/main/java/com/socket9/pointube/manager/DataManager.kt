@@ -3,9 +3,7 @@ package com.socket9.pointube.manager
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
-import com.socket9.pointube.utils.RetrofitUtils
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -42,39 +40,20 @@ object DataManager : AnkoLogger {
 
     /* For login */
     fun login(email: String, password: String): Observable<LoginModel.Login> {
-        return RetrofitUtils.getInstance().login(email, password)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        return NetworkProviderManager.login(email, password)
     }
 
     /* For create member */
-    fun register(firstName: String,
-                 lastName: String,
-                 citizenId: String,
-                 passport: String,
-                 mobile: String?,
-                 email: String,
-                 password: String,
-                 gender: String,
-                 address: String,
-                 birthday: String,
-                 firstNameEn: String,
-                 lastNameEN: String): Observable<RegisterModel.Response.Register> {
-        return RetrofitUtils.getInstance().register(RegisterModel.Request.Register(firstName, lastName,
-                firstNameEn,
-                lastNameEN,
-                citizenId,
-                passport,
-                mobile,
-                email,
-                password,
-                gender,
-                address,
-                birthday))
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+    fun register(model: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register> {
+        return NetworkProviderManager.register(model)
+    }
+
+    fun saveMobileNo(id: Int, phoneNumber: String): Observable<RegisterModel.Response.SaveMobileNo> {
+        return NetworkProviderManager.saveMobileNo(id, phoneNumber)
+    }
+
+    fun verifyPhoneNumber(id: Int, otp: String): Observable<RegisterModel.Response.VerifyPhoneNumber> {
+        return NetworkProviderManager.verifyPhoneNumber(id, otp)
     }
 
 }

@@ -24,8 +24,6 @@ object RegisterModel {
         data class SaveMobileNo(val Id: Int, val Mobile: String)
 
         data class VerifyPhoneNumber(val Id: Int, val OTP: String)
-
-        data class GenOTP(val Mobile: String)
     }
 
     object Response {

@@ -6,15 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.fragment_register_form.*
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class OtpFragment : Fragment() {
+class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
 
     /** Variable zone **/
     lateinit var param1: String
-
+    lateinit var mOtpPresenter:OtpContract.Presenter
 
     /** Static method zone **/
     companion object {
@@ -51,9 +53,24 @@ class OtpFragment : Fragment() {
         initInstance()
     }
 
+    /* Override View Interface */
+
+    override fun enableNext() {
+        btnNext.isEnabled = true
+    }
+
+    override fun disableNext() {
+        btnNext.isEnabled = false
+    }
+
+    override fun goNext() {
+
+    }
+
     /** Method zone **/
 
     private fun initInstance() {
+        mOtpPresenter = OtpPresenter(this)
 
     }
 }

@@ -2,4 +2,120 @@
     <string name="app_name">pointube</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="fragment_register_citizen_id_description">You must enter the citizen identification number exactly as it appears on the identification card.  Please re-check prior to submission.  You will not be able to correct the number once registered.  This is a part of the security measures to protect your personal information.</string>
+
+    <!-- terms and condition -->
+    <string name="fragment_register_terms_text_1">Last updated: May 18, 2016</string>
+    <string name="fragment_register_terms_text_2">These Terms and Conditions of Service ("Terms of Service") govern your account on the Pointube mobile site
+          (the "Pointube Sites" or the "Sites") and your use of the Sites and all products and services provided
+          through the Pointube Sites. Pointube mobile site is operated by New Dimension CO., Ltd. ("Pointube", "we",
+          or "our") and provides the content posted on the Sites subject to the following Terms of Service.</string>
+    <string name="fragment_register_terms_text_3">These Terms of Service incorporate the entirety of the Pointube Privacy Policy posted on the Sites. Please
+          read these Terms of Service carefully. By accessing and using the Sites, you agree to be bound by these
+          Terms of Service. If you do not agree with these Terms of Service, please do not use the Pointube Sites.</string>
+    <string name="fragment_register_terms_text_4">Pointube reserves the right to add to, delete, or change the Terms of Service at any time at its sole
+          discretion, without notice. As such, you should check these Terms of Service from time to time for such
+          changes.</string>
+    <string name="fragment_register_terms_text_5">USER ACCOUNTS</string>
+    <string name="fragment_register_terms_text_6">Account. If you create a user account for the Sites, you agree to complete the registration process by
+          providing current, complete, and accurate information as required by Pointube. You are responsible for all
+          activities that occur under your account. You agree to notify Pointube immediately of any unauthorized use
+          of your account or any other breach of security. Pointube will not be liable for any loss that you may incur
+          as a result of someone else using your account, either with or without your knowledge. In addition, you may
+          be held liable for any losses incurred by Pointube or another party due to someone else using your account.
+          You may not use anyone else\'s account at any time.</string>
+    <string name="fragment_register_terms_text_7">PRIVACY NOTICE</string>
+    <string name="fragment_register_terms_text_8">A copy of Pointube Privacy Policy that applies to the collection, use, disclosure and other processing of
+          personal information by Pointube is posted on the Sites. These Terms of Service incorporate the entirety of
+          the Pointube Privacy Policy. You consent to any personal information we may obtain about you (either via the
+          Pointube Sites, by email, telephone, or any other means) being collected, stored and otherwise processed in
+          accordance with the terms of the Privacy Policy.</string>
+    <string name="fragment_register_terms_text_9">SITE CONTENT</string>
+    <string name="fragment_register_terms_text_10">The Sites, including without limitation the text, graphics, photographs, software, video and audio content,
+          and the like that appear on the website or mobile site (the "Site Content"), is owned by or licensed to
+          Pointube, and is subject to copyright and other intellectual property rights under Thai Laws. Users may not
+          re-post, republish, reproduce or copy the Site Content to other web sites, mobile applications, or
+          otherwise, without the prior written consent of Pointube. Users cannot sell, or distribute, Site Content to
+          third parties, prepare derivative works of or otherwise exploit Content without the prior written permission
+          of Pointube. To request permission to re-post, republish, reproduce, copy, sell, distribute, prepare
+          derivative works of or otherwise exploit Site Content, please submit your request in writing via
+          service@pointube.com. Pointube has no obligation to grant you permission to re-post, republish, reproduce,
+          copy, sell, distribute, prepare derivative works of or otherwise exploit Site Content. All of the Pointube
+          trademarks, service marks and logos are owned by or licensed to Pointube and may not be used for any purpose
+          without the prior written consent of Pointube.</string>
+    <string name="fragment_register_terms_text_11">PERMITTED USES</string>
+    <string name="fragment_register_terms_text_12">You agree not to use the Sites in any manner that could damage, disable, overburden, or impair any server,
+          or the network(s) connected to any Pointube\' server, or interfere with any other party\'s use and enjoyment
+          of the Sites. You may not attempt to gain unauthorized access to any portion of the Sites, other accounts,
+          computer systems, or networks connected to any Pointube\' server, through hacking, password or data mining,
+          or any other means. You may not obtain or attempt to obtain any materials or information through any means
+          not intentionally made available to you on the Sites. You will not link to any part of the Sites if such
+          activity is illegal, will cause damage to, or will otherwise harm Pointube or any other party. Moreover,
+          Pointube reserves the right in its sole discretion to disable or otherwise terminate your use of the Sites,
+          or any links you make to the Sites, or request you to do the same. Pointube reserves all of its rights in
+          the Pointube Sites not expressly granted to you by these Terms of Service.</string>
+    <string name="fragment_register_terms_text_13">REDEMPTIONS POLICY</string>
+    <string name="fragment_register_terms_text_14">Pointube promotes the point and mile offers to you but does not guarantee the redemptions provided by the
+          partner loyalty program operators. Pointube is not responsible for the service, eligibility, or termination
+          of the offers.</string>
+    <string name="fragment_register_terms_text_15">CLAIM OF COPYRIGHT INFRINGEMENT</string>
+    <string name="fragment_register_terms_text_16">Pointube respects the intellectual property of others. If you believe in good faith that any Site Content,
+          or other matter posted on the Sites infringes the copyright in a work you own, please contact, with
+          correspondence containing the following:</string>
+    <string name="fragment_register_terms_text_17">A physical signature of the owner, or a person authorized to act on behalf of the owner, of the copyright
+          that is allegedly infringed; Identification of the copyrighted work allegedly infringed;</string>
+    <string name="fragment_register_terms_text_18">Identifying information reasonably sufficient to allow determination by Pointube of the location of the
+          material that is allegedly infringing; Information reasonably sufficient to permit Pointube to contact
+          you;</string>
+    <string name="fragment_register_terms_text_19">A statement that you have a good faith belief that use of the material in the manner complained of is not
+          authorized by the copyright owner, its agent, or the law; and</string>
+    <string name="fragment_register_terms_text_20">A statement that the information in the notification is accurate, and under penalty of perjury, that you
+          are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</string>
+    <string name="fragment_register_terms_text_21">You acknowledge that if you fail to comply with all of the requirements of this Section, your DMCA notice
+          may not be valid. For any questions regarding this procedure, or to submit a complaint, please contact
+          Pointube via service@pointube.com.</string>
+    <string name="fragment_register_terms_text_22">LINKS TO OTHER WEBSITES/ MOBILE SITES</string>
+    <string name="fragment_register_terms_text_23">The Sites may contain advertisements and/or links to other sites ("Third Party Sites"). These links are
+          provided solely for the convenience of the users. Pointube does not endorse, sanction or verify the accuracy
+          or ownership of the information contained in the advertisements or the content of any Third Party Sites or
+          any products or services advertised on Third Party Sites. If you decide to leave the Sites and navigate to
+          Third Party Sites, or install any applications, software or download content from any such websites or
+          mobile sites, you do so at your own risk. Once you access a Third Party Site through a link on the Pointube
+          Sites, you may no longer be protected by these Terms of Service and you may be subject to the terms of
+          service and other conditions of such Third Party Sites. You should review the applicable terms and policies,
+          including privacy and data gathering practices, of any such site to which you navigate to from the Pointube
+          Sites, or relating to any applications you use or install from such Third Party Sites. Concerns regarding a
+          Third Party Site should be directed to the Third Party Site itself. Pointube bears no responsibility for any
+          action associated with any Third Party Site. Moreover, Pointube does not imply an affiliation with any Third
+          Party Site.</string>
+    <string name="fragment_register_terms_text_24">LIMITATION OF LIABILITY</string>
+    <string name="fragment_register_terms_text_25">You agree Pointube will not be held liable for any loss or damage incurred as a result of use of the Sites
+          or services. You understand Pointube is not the seller of the goods or services advertised on the Sites.
+          Pointube is a service provider and data handler for partner loyalty program operators. Pointube is not the
+          agent of any partner loyalty program operators and takes no responsibility for the services or products for
+          which partner loyalty program operators provide. Pointube has the right at any time to change, modify,
+          correct, add to, discontinue, or retire any aspect or feature of the Sites, including, but not limited to,
+          hours of availability, equipment needed for access or use, or the availability of the Sites (or any part
+          thereof) on any particular device or communications service. Pointube has no obligation to provide you with
+          notice of any such changes, and Pointube is under no obligation to provide you with any support, error
+          corrections, updates, upgrades, bug fixes, and/or enhancements of the Sites.</string>
+    <string name="fragment_register_terms_text_26">INDEMNIFICATION</string>
+    <string name="fragment_register_terms_text_27">You agree to defend, indemnify, and hold harmless Pointube from all liabilities, claims, damages, losses,
+          and expenses, including attorneys\' fees that arise from your use of the Sites. Pointube reserves the right,
+          at its own expense, to assume the exclusive defense and control of any matter otherwise subject to
+          indemnification by you, in which event you will cooperate with Pointube in asserting any available defenses.</string>
+    <string name="fragment_register_terms_text_28">ARBITRATION AND JURISDICTION</string>
+    <string name="fragment_register_terms_text_29">All disputes arising out of, relating to or connected with these Terms of Service, Privacy Policy, or your
+          use of any part of the Pointube Sites, shall be referred to and finally resolved by arbitration under the
+          Thai law. All disputes in arbitration will be handled solely between the named parties, and not on any
+          representative of class basis. Notwithstanding any other provision of these Terms of Service, to the extent
+          that you have in any manner violated or threatened to violate Pointube\'s intellectual property rights,
+          Pointube reserves the right to seek injunctive or other appropriate relief in any court in Thailand, and you
+          consent to exclusive jurisdiction and venue in such courts.</string>
+
+    <string name="fragment_register_terms_accept_term">Accept Terms &amp; Conditions</string>
+
+    <!-- fragment register phone -->
+    <string name="fragment_register_phone_info"> Pleases input your mobile phone number In field below
+            Verification code will be sent  via SMS to your mobile phone.</string>
 </resources>

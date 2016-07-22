@@ -1,11 +1,12 @@
-package com.socket9.pointube.screens.register.phone
+package com.socket9.pointube.screens.register.otp
 
 import com.socket9.pointube.base.BasePresenter
 
 /**
  * Created by ripzery on 7/22/16.
  */
-interface PhoneContract {
+
+interface OtpContract {
     interface View {
         fun enableNext()
 
@@ -15,9 +16,9 @@ interface PhoneContract {
 
     }
 
-    interface Presenter : BasePresenter {
-        fun savePhoneNumber(phoneNumber: String)
+    interface Presenter : BasePresenter{
+        fun verifyPhoneNumber(otp: String)
 
-        fun next()
+        fun register()
     }
 }

@@ -18,6 +18,9 @@ import com.socket9.pointube.utils.ValidatorUtil
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_register_form.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
+import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.toast
 import rx.Observable
 import java.util.*
 
@@ -27,7 +30,7 @@ import java.util.*
 class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetListener, RegisterFormContract.View {
     /** Variable zone **/
     lateinit var param1: String
-    private val mRegisterFormPresenter: RegisterFormContract.Presenter by lazy { RegisterFormPresenter(this) }
+    lateinit private var mRegisterFormPresenter: RegisterFormContract.Presenter
     private val mEmailChangeObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metEmail) }
     private val mPasswordChangeObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metPassword) }
     private val mPasswordRepeatChangeObservable: Observable<CharSequence> by lazy { RxTextView.textChanges(metRepeatPassword) }
@@ -72,14 +75,13 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mRegisterFormPresenter.onCreate()
+        info { "Form create" }
         initInstance()
-        (activity as AppCompatActivity).setupToolbar("Step 1 Of 3 - Register")
         setHasOptionsMenu(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId){
+        when (item!!.itemId) {
             android.R.id.home -> {
                 activity.setResult(Activity.RESULT_CANCELED)
                 activity.finish()
@@ -89,8 +91,9 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         return true
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        info { "Form destroy" }
         mRegisterFormPresenter.onDestroy()
     }
 
@@ -108,16 +111,28 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         metRepeatPassword.validate()
     }
 
-    override fun goNext() {
-        //TODO : Go to next fragment
-        (activity as RegisterFormListener).goPhoneFragment()
+    override fun goNext(id: Int) {
+        (activity as RegisterFormListener).goTermsFragment(id)
+    }
+
+    override fun showRegisterSuccess() {
+        toast("Register successful")
+        mRegisterFormPresenter.next()
+    }
+
+    override fun showRegisterError(msg: String) {
+        toast(msg)
     }
 
     /** Method zone **/
 
     private fun initInstance() {
-        initEditText()
+        (activity as AppCompatActivity).setupToolbar("Step 1 of 3 - Register")
 
+        mRegisterFormPresenter = RegisterFormPresenter(this)
+        mRegisterFormPresenter.onCreate()
+
+        initEditText()
         /* Set Listener */
         tvDob.setOnClickListener {
             val now = Calendar.getInstance()
@@ -143,21 +158,24 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
             }
         })
 
-        btnNext.setOnClickListener { mRegisterFormPresenter.next() }
+        btnNext.setOnClickListener { mRegisterFormPresenter.register() }
 
-        mRegisterFormPresenter.validateAll(mEmailChangeObservable,
-                mPasswordChangeObservable,
-                mPasswordRepeatChangeObservable,
-                mFirstNameEnObservable,
-                mLastNameEnObservable,
-                mFirstNameThObservable,
-                mLastNameThObservable,
-                mCitizenIdObservable,
-                mPassportObservable,
-                mDateOfBirthObservable,
-                mNationalityObservable)
-
+        removeValidator()
         initValidator()
+
+        mRegisterFormPresenter.validateAll(
+                RxTextView.textChanges(metEmail),
+                RxTextView.textChanges(metPassword),
+                RxTextView.textChanges(metRepeatPassword),
+                RxTextView.textChanges(metFirstName),
+                RxTextView.textChanges(metLastName),
+                RxTextView.textChanges(metFirstNameTH),
+                RxTextView.textChanges(metLastNameTH),
+                RxTextView.textChanges(metCitizenID),
+                RxTextView.textChanges(metPassport),
+                RxTextView.textChanges(tvDob),
+                toggleNationality.getToggleObservable()
+        )
     }
 
     private fun initValidator() {
@@ -170,6 +188,11 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         metLastNameTH.addValidator(ValidatorUtil.provideLastNameThValidator())
         metCitizenID.addValidator(ValidatorUtil.provideCitizenIdValidator())
         metPassport.addValidator(ValidatorUtil.providePassportValidator())
+    }
+
+    private fun removeValidator() {
+        info { metRepeatPassword.hasValidators() }
+        metRepeatPassword.clearValidators()
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
@@ -185,7 +208,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         metRepeatPassword.transformationMethod = PasswordTransformationMethod()
     }
 
-    interface RegisterFormListener{
-        fun goPhoneFragment()
+    interface RegisterFormListener {
+        fun goTermsFragment(id: Int)
     }
 }

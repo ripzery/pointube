@@ -10,7 +10,7 @@ import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.register.form.RegisterFormFragment
 import com.socket9.pointube.screens.register.phone.PhoneFragment
 
-class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormListener {
+class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormListener, TermsFragment.TermsListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -24,4 +24,9 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
     override fun goPhoneFragment() {
         supportFragmentManager.beginTransaction().replace(R.id.contentContainer, PhoneFragment.newInstance(""), "phone").addToBackStack("phone").commit()
     }
+
+    override fun goTermsFragment(id: Int) {
+        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, TermsFragment.newInstance(id), "terms").addToBackStack("terms").commit()
+    }
+
 }

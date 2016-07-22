@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.register.form
 
 import com.socket9.pointube.base.BasePresenter
+import com.socket9.pointube.screens.register.RegisterModel
 import rx.Observable
 
 /**
@@ -12,9 +13,13 @@ interface RegisterFormContract {
 
         fun disableNext()
 
-        fun goNext()
+        fun goNext(id: Int)
 
         fun validateRepeatPassword()
+
+        fun showRegisterError(msg: String)
+
+        fun showRegisterSuccess()
     }
 
     interface Presenter : BasePresenter {
@@ -38,5 +43,7 @@ interface RegisterFormContract {
         fun setDob(dob: String)
 
         fun next()
+
+        fun register()
     }
 }

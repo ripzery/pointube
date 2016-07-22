@@ -106,7 +106,7 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
 
         btnNext.setOnClickListener { mPhonePresenter.next() }
 
-        (activity as AppCompatActivity).setupToolbar("Step 2 Of 3 - Register")
+        (activity as AppCompatActivity).setupToolbar("Step 3 of 4 - Register")
 
     }
 }
