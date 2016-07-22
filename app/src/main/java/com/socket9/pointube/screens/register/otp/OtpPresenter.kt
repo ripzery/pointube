@@ -20,15 +20,18 @@ class OtpPresenter(var view: OtpContract.View?) : AnkoLogger, OtpContract.Presen
     }
 
     override fun verifyPhoneNumber(memberId: Int) {
+        view?.showLoading()
         DataManager.verifyPhoneNumber(memberId, otp)
                 .subscribe({
-                    if(it.IsSuccess){
+                    view?.hideLoading()
+                    if(it.IsSuccess && it.Result.Id > 0){
                         view?.showOtpSuccess()
                         view?.goNext()
                     }else{
                         view?.showOtpError(it.Message!!)
                     }
                 }, {
+                    view?.hideLoading()
                     view?.showOtpError(it.message!!)
                     it.printStackTrace()
                 })

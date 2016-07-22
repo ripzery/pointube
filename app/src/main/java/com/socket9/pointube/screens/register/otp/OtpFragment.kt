@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.hideLoadingDialog
+import com.socket9.pointube.extensions.showLoadingDialog
 import kotlinx.android.synthetic.main.fragment_otp.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.support.v4.toast
@@ -91,7 +93,15 @@ class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
     }
 
     override fun showOtpSuccess() {
-        toast("Verify OTP successfully")
+        toast("Verify OTP successfully. Bazinga!!")
+    }
+
+    override fun showLoading() {
+        showLoadingDialog("Verify OTP", "Shovelling coal into the server...")
+    }
+
+    override fun hideLoading() {
+        hideLoadingDialog()
     }
 
     /** Method zone **/

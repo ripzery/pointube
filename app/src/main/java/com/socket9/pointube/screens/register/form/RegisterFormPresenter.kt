@@ -67,17 +67,19 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
 
     override fun register() {
         info { mRegisterRequest }
-
+        view?.showLoading()
         mRegisterFormSubscription = DataManager.register(mRegisterRequest!!)
                 .subscribe({
+                    view?.hideLoading()
                     info { it }
-                    if (it.IsSuccess) {
+                    if (it.IsSuccess && it.Id > 0) {
                         mRegisteredId = it.Id
                         view?.showRegisterSuccess()
                     } else {
                         view?.showRegisterError(it.Message)
                     }
                 }, {
+                    view?.hideLoading()
                     info { it }
                     view?.showRegisterError("An error occurred, please try again")
                 })
@@ -127,6 +129,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     }
 
     override fun onDestroy() {
+        view?.hideLoading()
         view = null
         mValidateAllSubscription?.unsubscribe()
         mPasswordSubscription?.unsubscribe()

@@ -21,9 +21,10 @@ class PhonePresenter(var view: PhoneContract.View?) : PhoneContract.Presenter, A
     }
 
     override fun savePhoneNumber(memberId: Int, phoneNumber: String) {
-        /* Todo call api */
+        view?.showLoading()
         DataManager.saveMobileNo(memberId, phoneNumber)
             .subscribe ({
+                view?.hideLoading()
                 if(it.IsSuccess){
                     view?.showSavePhoneNumberSuccess()
                     view?.goNext(it.Result.Id)
@@ -31,6 +32,7 @@ class PhonePresenter(var view: PhoneContract.View?) : PhoneContract.Presenter, A
                     view?.showSavePhoneNumberError(it.Message!!)
                 }
             },{
+                view?.hideLoading()
                 it.printStackTrace()
                 view?.showSavePhoneNumberError("An error occured, please try again")
             })

@@ -12,7 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding.view.enabled
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.setupToolbar
+import com.socket9.pointube.extensions.showLoadingDialog
 import kotlinx.android.synthetic.main.fragment_phone.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -83,6 +85,14 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
 
     override fun showSavePhoneNumberError(msg: String) {
         toast(msg)
+    }
+
+    override fun showLoading() {
+        showLoadingDialog("Save phone number", "Please wait, it's still faster than you could draw it")
+    }
+
+    override fun hideLoading() {
+        hideLoadingDialog()
     }
 
     /** Method zone **/

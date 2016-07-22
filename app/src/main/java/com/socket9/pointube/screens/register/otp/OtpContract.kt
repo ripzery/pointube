@@ -18,6 +18,9 @@ interface OtpContract {
 
         fun goNext()
 
+        fun showLoading()
+
+        fun hideLoading()
     }
 
     interface Presenter : BasePresenter{

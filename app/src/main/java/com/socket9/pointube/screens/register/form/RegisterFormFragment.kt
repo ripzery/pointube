@@ -1,10 +1,8 @@
 package com.socket9.pointube.screens.register.form
 
-import android.app.Activity
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -12,16 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.socket9.pointube.R
-import com.socket9.pointube.extensions.setupToolbar
+import com.socket9.pointube.extensions.hideLoadingDialog
+import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.screens.register.ToggleViewGroup
 import com.socket9.pointube.utils.ValidatorUtil
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_register_form.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
 import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
-import rx.Observable
 import java.util.*
 
 /**
@@ -115,6 +112,14 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
 
     override fun showRegisterError(msg: String) {
         toast(msg)
+    }
+
+    override fun showLoading() {
+        showLoadingDialog("Registering", " We're testing your patience...")
+    }
+
+    override fun hideLoading() {
+        hideLoadingDialog()
     }
 
     /** Method zone **/

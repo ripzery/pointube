@@ -17,6 +17,10 @@ interface PhoneContract {
 
         fun showSavePhoneNumberSuccess()
 
+        fun showLoading()
+
+        fun hideLoading()
+
     }
 
     interface Presenter : BasePresenter {

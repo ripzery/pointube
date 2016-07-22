@@ -20,6 +20,10 @@ interface RegisterFormContract {
         fun showRegisterError(msg: String)
 
         fun showRegisterSuccess()
+
+        fun showLoading()
+
+        fun hideLoading()
     }
 
     interface Presenter : BasePresenter {
