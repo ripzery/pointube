@@ -10,9 +10,11 @@ import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
 import de.hdodenhof.circleimageview.CircleImageView
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.info
 
-class HomePartnerViewGroup : FrameLayout {
+class HomePartnerViewGroup : FrameLayout,AnkoLogger {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
@@ -54,6 +56,15 @@ class HomePartnerViewGroup : FrameLayout {
         civLogo = find(R.id.civLogo)
         tvBadgeCount = find(R.id.tvBadgeCount)
 
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        info { changed }
+        super.onLayout(changed, left, top, right, bottom)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {

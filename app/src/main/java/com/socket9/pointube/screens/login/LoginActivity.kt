@@ -1,9 +1,11 @@
 package com.socket9.pointube.screens.login
 
 import android.app.Activity
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
@@ -32,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         setResult(Activity.RESULT_CANCELED)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun initInstance() {

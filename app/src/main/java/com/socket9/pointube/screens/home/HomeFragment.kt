@@ -65,12 +65,14 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initInstance()
+        info{"Create Home"}
         mHomePresenter.onCreate()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Realm.getDefaultInstance().close()
+        info{"Destroy Home"}
         mHomePresenter.onDestroy()
     }
 
@@ -147,6 +149,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         }
 
         override fun getItemCount(): Int {
+            info{ "Brandsize : ${list.size}"}
             return list.size
         }
 
