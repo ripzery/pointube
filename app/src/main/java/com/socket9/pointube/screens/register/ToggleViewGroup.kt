@@ -8,9 +8,11 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.jakewharton.rxbinding.view.RxView
 import com.socket9.pointube.R
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
+import rx.subjects.BehaviorSubject
 import rx.subjects.PublishSubject
 
 /**
@@ -26,7 +28,7 @@ class ToggleViewGroup : FrameLayout {
     private val tvRight: TextView by lazy { viewContainer.findViewById(R.id.tvRight) as TextView }
     private val layoutLeft: FrameLayout by lazy { viewContainer.findViewById(R.id.layoutLeft) as FrameLayout }
     private val layoutRight: FrameLayout by lazy { viewContainer.findViewById(R.id.layoutRight) as FrameLayout }
-    private val toggleObservable: PublishSubject<CharSequence> = PublishSubject.create()
+    private val toggleObservable: BehaviorSubject<CharSequence> = BehaviorSubject.create()
 
     companion object {
         val LEFT = 1

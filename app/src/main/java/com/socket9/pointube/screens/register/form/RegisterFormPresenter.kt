@@ -19,9 +19,10 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                              fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>,
                              natObs: Observable<CharSequence>) {
         /* Check all combination */
-        val listObservable: MutableList<Observable<out Any>> = mutableListOf(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
+        val listObservable: MutableList<Observable<CharSequence>> = mutableListOf(emailObs, pwObs, rpwObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs, natObs)
 
         Observable.combineLatest(listObservable, {
+            info { "combineLatest is working now" }
             val list: MutableList<CharSequence> = mutableListOf()
             it.forEach {
                 list.add(it as CharSequence)
@@ -85,7 +86,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
 
     override fun next() {
         info { mRegisterRequest?.toString() }
-
+        view?.goNext()
         /* TODO : Go agreement page and save user object */
     }
 
