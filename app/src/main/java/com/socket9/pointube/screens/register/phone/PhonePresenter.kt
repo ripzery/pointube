@@ -32,9 +32,13 @@ class PhonePresenter(var view: PhoneContract.View?) : PhoneContract.Presenter, A
                     view?.showSavePhoneNumberError(it.Message!!)
                 }
             },{
-                view?.hideLoading()
-                it.printStackTrace()
-                view?.showSavePhoneNumberError("An error occured, please try again")
+                try{
+                    view?.hideLoading()
+                    it.printStackTrace()
+                    view?.showSavePhoneNumberError("An error occured, please try again")
+                }catch (e: Exception){
+                    e.printStackTrace()
+                }
             })
     }
 

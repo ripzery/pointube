@@ -24,16 +24,20 @@ class OtpPresenter(var view: OtpContract.View?) : AnkoLogger, OtpContract.Presen
         DataManager.verifyPhoneNumber(memberId, otp)
                 .subscribe({
                     view?.hideLoading()
-                    if(it.IsSuccess && it.Result.Id > 0){
+                    if (it.IsSuccess && it.Result.Id > 0) {
                         view?.showOtpSuccess()
                         view?.goNext()
-                    }else{
+                    } else {
                         view?.showOtpError(it.Message!!)
                     }
                 }, {
-                    view?.hideLoading()
-                    view?.showOtpError(it.message!!)
-                    it.printStackTrace()
+                    try {
+                        view?.hideLoading()
+                        view?.showOtpError(it.message!!)
+                        it.printStackTrace()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 })
     }
 

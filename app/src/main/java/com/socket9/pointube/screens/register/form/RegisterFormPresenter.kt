@@ -79,9 +79,13 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                         view?.showRegisterError(it.Message)
                     }
                 }, {
-                    view?.hideLoading()
-                    info { it }
-                    view?.showRegisterError("An error occurred, please try again")
+                    try{
+                        view?.hideLoading()
+                        info { it }
+                        view?.showRegisterError("An error occurred, please try again")
+                    }catch (e: Exception){
+                        e.printStackTrace()
+                    }
                 })
     }
 
