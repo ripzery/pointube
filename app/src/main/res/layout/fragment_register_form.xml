@@ -203,7 +203,7 @@
             android:layout_marginTop="16dp"
             android:enabled="false"
             android:soundEffectsEnabled="true"
-            android:text="Next"
+            android:text="Register"
             android:theme="@style/BaseButton.Teal" />
 
     </LinearLayout>

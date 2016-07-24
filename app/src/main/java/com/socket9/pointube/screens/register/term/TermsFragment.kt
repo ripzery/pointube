@@ -93,6 +93,6 @@ class TermsFragment : Fragment(), AnkoLogger, TermsContract.View {
     interface TermsListener {
         fun goNextFromTerms(memberId: Int)
 
-        fun backFromTerms()
+        fun goBackFromTerms()
     }
 }

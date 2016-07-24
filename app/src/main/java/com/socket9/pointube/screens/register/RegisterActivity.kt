@@ -12,6 +12,9 @@ import com.socket9.pointube.screens.register.otp.OtpFragment
 import com.socket9.pointube.screens.register.phone.PhoneFragment
 
 class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormListener, TermsFragment.TermsListener, PhoneFragment.PhoneListener, OtpFragment.OtpListener {
+
+    private var mCurrentFragment: Int = FRAGMENT_REGISTER_FORM
+
     companion object {
         val FRAGMENT_REGISTER_FORM = 1
         val FRAGMENT_TERMS = 2
@@ -31,20 +34,38 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
         replaceFragment(fragment =  RegisterFormFragment.newInstance())
     }
 
+    override fun onBackPressed() {
+        when(mCurrentFragment){
+            FRAGMENT_REGISTER_FORM -> goBackFromRegisterForm()
+            FRAGMENT_TERMS -> goBackFromTerms()
+            FRAGMENT_TEL_NUMBER -> goBackFromOtp()
+            FRAGMENT_OTP -> goBackFromOtp()
+        }
+    }
+
     override fun goNextFromRegisterForm(memberId: Int) {
         setupToolbar("Terms and condition", isShowBackButton = false)
         replaceFragment(fragment =  TermsFragment.newInstance(memberId))
+        mCurrentFragment = FRAGMENT_TERMS
     }
 
     override fun goNextFromTerms(memberId: Int) {
         setupToolbar("Verify phone number", isShowBackButton = false)
-        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, PhoneFragment.newInstance(memberId)).commit()
+        replaceFragment(fragment = PhoneFragment.newInstance(memberId))
+//        supportFragmentManager.beginTransaction()
+//                .setCustomAnimations(R.anim.slide_enter_from_bottom, R.anim.slide_exit_to_bottom)
+//                .replace(R.id.contentContainer, PhoneFragment.newInstance(memberId))
+//                .commit()
+        mCurrentFragment = FRAGMENT_TEL_NUMBER
     }
 
     override fun goNextFromPhone(memberId: Int) {
         /*TODO : Go to OTP*/
         setupToolbar("Enter OTP")
-        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, OtpFragment.newInstance(memberId), "phone").addToBackStack("phone").commit()
+        supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.translate_enter_from_right, R.anim.translate_exit_to_left, R.anim.translate_enter_from_left, R.anim.translate_exit_to_right)
+                .replace(R.id.contentContainer, OtpFragment.newInstance(memberId), "phone").addToBackStack("phone").commit()
+        mCurrentFragment = FRAGMENT_OTP
     }
 
     override fun goNextFromOtp() {
@@ -52,12 +73,12 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
         finish()
     }
 
-    override fun backFromRegisterForm() {
+    override fun goBackFromRegisterForm() {
         setResult(Activity.RESULT_CANCELED)
         finish()
     }
 
-    override fun backFromTerms() {
+    override fun goBackFromTerms() {
         setResult(Activity.RESULT_OK)
         finish()
     }
@@ -68,11 +89,8 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
     }
 
     override fun goBackFromOtp() {
+        setupToolbar("Verify phone number", isShowBackButton = false)
         supportFragmentManager.popBackStack()
+        mCurrentFragment = FRAGMENT_TEL_NUMBER
     }
-
-//    override fun backFromOtp() {
-//        supportFragmentManager.popBackStack()
-//    }
-
 }

@@ -70,7 +70,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
-                mRegisterListener.backFromRegisterForm()
+                mRegisterListener.goBackFromRegisterForm()
             }
         }
 
@@ -207,6 +207,6 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     interface RegisterFormListener {
         fun goNextFromRegisterForm(memberId: Int)
 
-        fun backFromRegisterForm()
+        fun goBackFromRegisterForm()
     }
 }
