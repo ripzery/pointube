@@ -3,6 +3,7 @@ package com.socket9.pointube.manager
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
+import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -41,6 +42,9 @@ object DataManager : AnkoLogger {
     /* For login */
     fun login(email: String, password: String): Observable<LoginModel.Login> {
         return NetworkProviderManager.login(email, password)
+                .doOnNext {
+                    if (it.result.id != 0) SharedPrefUtil.saveLoginResult(it.result)
+                }
     }
 
     /* For create member */

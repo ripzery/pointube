@@ -69,21 +69,20 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
         info { mRegisterRequest }
         view?.showLoading()
         mRegisterFormSubscription = DataManager.register(mRegisterRequest!!)
+                .doOnNext { if (!it.IsSuccess || it.Id <= 0) view?.showRegisterError(it.Message) }
+                .filter { it.IsSuccess && it.Id > 0 }
+                .flatMap { DataManager.login(mRegisterRequest!!.Email, mRegisterRequest!!.Password) }
                 .subscribe({
-                    view?.hideLoading()
                     info { it }
-                    if (it.IsSuccess && it.Id > 0) {
-                        mRegisteredId = it.Id
-                        view?.showRegisterSuccess()
-                    } else {
-                        view?.showRegisterError(it.Message)
-                    }
+                    view?.hideLoading()
+                    mRegisteredId = it.result.id
+                    view?.showRegisterSuccess()
                 }, {
-                    try{
+                    try {
                         view?.hideLoading()
                         info { it }
                         view?.showRegisterError("An error occurred, please try again")
-                    }catch (e: Exception){
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 })
@@ -100,8 +99,8 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                 t7.toString(),
                 t4.toString(),
                 t5.toString(),
-                if(t8.toString().isEmpty()) null else t8.toString(),
-                if(t9.toString().isEmpty()) null else t9.toString(),
+                if (t8.toString().isEmpty()) null else t8.toString(),
+                if (t9.toString().isEmpty()) null else t9.toString(),
                 null,
                 t1.toString(),
                 t2.toString(),

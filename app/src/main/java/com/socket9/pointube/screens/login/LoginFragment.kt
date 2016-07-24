@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.hideLoadingDialog
+import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.screens.MainActivity
 import com.socket9.pointube.screens.register.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -69,7 +71,11 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showProgressDialog() {
+        showLoadingDialog("Please wait", "Logging In...")
+    }
 
+    override fun hideProgressDialog() {
+        hideLoadingDialog()
     }
 
     /** Activity method zone  **/

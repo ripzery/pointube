@@ -9,6 +9,8 @@ interface LoginContract {
     interface View {
         fun showProgressDialog()
 
+        fun hideProgressDialog()
+
         fun showLoginSuccess(msg: String)
 
         fun showLoginError(msg: String)

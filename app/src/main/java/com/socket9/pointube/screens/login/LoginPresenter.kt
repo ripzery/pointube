@@ -16,15 +16,14 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
         DataManager.login(email, password)
                 .subscribe({
                     info { it }
-                    view?.showProgressDialog()
+                    view?.hideProgressDialog()
                     if (it.result.id != 0) {
-                        SharedPrefUtil.saveLoginResult(it.result)
                         view?.showLoginSuccess("Login success")
                     } else {
                         view?.showLoginError(it.result.message!!)
                     }
                 }, {
-                    view?.showProgressDialog()
+                    view?.hideProgressDialog()
                     warn { it }
                     view?.showLoginError(it.message!!)
                 })
