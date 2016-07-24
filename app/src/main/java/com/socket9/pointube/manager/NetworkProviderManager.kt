@@ -20,8 +20,9 @@ object NetworkProviderManager : AnkoLogger {
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
         return RetrofitUtils.getInstance().getAllProvider()
                 .doOnNext { saveToDisk(it.Results) }
-                .flatMap { DiskProviderManager.getAllProvider() }
+                .flatMap { DataManager.getAllPublishedProgramList() }
                 .doOnNext { DataExtendingUtil.countProviderProgram() }
+                .flatMap { DiskProviderManager.getAllProvider() }
     }
 
     fun getPublishedProgramList(): Observable<HomeModel.PublishedProgramListRepo> {

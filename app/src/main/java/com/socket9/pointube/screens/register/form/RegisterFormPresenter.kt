@@ -69,7 +69,12 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
         info { mRegisterRequest }
         view?.showLoading()
         mRegisterFormSubscription = DataManager.register(mRegisterRequest!!)
-                .doOnNext { if (!it.IsSuccess || it.Id <= 0) view?.showRegisterError(it.Message) }
+                .doOnNext {
+                    if (!it.IsSuccess || it.Id <= 0) {
+                        view?.showRegisterError(it.Message)
+                        view?.hideLoading()
+                    }
+                }
                 .filter { it.IsSuccess && it.Id > 0 }
                 .flatMap { DataManager.login(mRegisterRequest!!.Email, mRegisterRequest!!.Password) }
                 .subscribe({

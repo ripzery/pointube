@@ -140,6 +140,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             val resultCode = result.resultCode()
             if(resultCode == Activity.RESULT_OK){
                 info("Register complete")
+                result.targetUI().initInstance()
+                result.targetUI().selectMenu(FRAGMENT_POINT)
             }else{
                 info("Cancel Register")
             }
