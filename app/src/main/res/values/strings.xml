@@ -118,4 +118,8 @@
     <!-- fragment register phone -->
     <string name="fragment_register_phone_info"> Pleases input your mobile phone number In field below
             Verification code will be sent  via SMS to your mobile phone.</string>
+
+    <!-- fragment otp -->
+    <string name="fragment_otp_info_1">Verification code has been sent to your mobile phone</string>
+    <string name="fragment_otp_info_2">Please input the 6 digit in the field below</string>
 </resources>

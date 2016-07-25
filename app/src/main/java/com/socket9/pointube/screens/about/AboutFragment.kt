@@ -27,7 +27,6 @@ class AboutFragment : Fragment() {
             aboutFragment.arguments = bundle
             return aboutFragment
         }
-
     }
 
     /** Activity method zone  **/

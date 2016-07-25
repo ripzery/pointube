@@ -18,7 +18,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="@string/fragment_register_phone_info" />
+        android:text="@string/fragment_otp_info_1" />
+
+    <TextView
+        style="@style/BaseTextTerm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="@string/fragment_otp_info_2" />
 
     <me.philio.pinentry.PinEntryView
         android:id="@+id/otpInput"
