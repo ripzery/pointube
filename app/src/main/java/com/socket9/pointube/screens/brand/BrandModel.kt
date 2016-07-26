@@ -18,7 +18,7 @@ object BrandModel {
     object Response {
         data class GetMemberBrand(val IsSuccess: Boolean, val Message: String?, val Results: MutableList<GetMemberBrandResult>)
 
-        data class GetMemberBrandResult(val Id: Int, val Name: String, val LogoPath: String, val Point: Int, val Code: String, val Message: String?, val IsBrandMember: Boolean)
+        data class GetMemberBrandResult(val Id: Int, val Name: String, val LogoPath: String, val Point: Int, val Code: String, val Message: String?, val IsBrandMember: Boolean, var isChecked: Boolean = false)
 
         data class SaveBrand(val IsSuccess: Boolean, val Message: String?)
 

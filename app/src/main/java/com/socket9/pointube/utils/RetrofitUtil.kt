@@ -26,7 +26,7 @@ object RetrofitUtils {
         if (retrofit == null) {
 
             val interceptor = HttpLoggingInterceptor()
-            interceptor.level = HttpLoggingInterceptor.Level.BASIC
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
             retrofit = Retrofit.Builder()
@@ -47,9 +47,8 @@ interface PointubeAPI {
     @GET("api/Provider/GetProviderList")
     fun getAllProvider(): Observable<HomeModel.AllBrands>
 
-    @FormUrlEncoded
     @POST("Account/Login")
-    fun login(@Field("Email") email: String, @Field("Password") password: String): Observable<LoginModel.Login>
+    fun login(@Body loginModel: LoginModel.Request.Login): Observable<LoginModel.Response.Login>
 
     @POST("api/Member/Create")
     fun register(@Body registerModel: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register>

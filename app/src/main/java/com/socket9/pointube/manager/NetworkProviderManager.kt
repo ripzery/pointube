@@ -1,5 +1,6 @@
 package com.socket9.pointube.manager
 
+import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
@@ -32,8 +33,8 @@ object NetworkProviderManager : AnkoLogger {
                 .doOnNext { DataExtendingUtil.countProviderProgram() }
     }
 
-    fun login(email: String, password: String): Observable<LoginModel.Login> {
-        return RetrofitUtils.getInstance().login(email, password)
+    fun login(model: LoginModel.Request.Login): Observable<LoginModel.Response.Login> {
+        return RetrofitUtils.getInstance().login(model)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -55,6 +56,13 @@ object NetworkProviderManager : AnkoLogger {
 
     fun verifyPhoneNumber(id: Int, otp: String): Observable<RegisterModel.Response.VerifyPhoneNumber> {
         return RetrofitUtils.getInstance().verifyPhoneNumber(RegisterModel.Request.VerifyPhoneNumber(id, otp))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand>{
+        return RetrofitUtils.getInstance().getMemberBrand(memberBrand)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

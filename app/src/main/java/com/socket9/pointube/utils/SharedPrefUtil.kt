@@ -15,7 +15,7 @@ object SharedPrefUtil : AnkoLogger {
     var sharePref: SharedPreferences? = null
     val KEY_LOGIN_RESULT = "login_result"
 
-    fun saveLoginResult(loginResult: LoginModel.LoginResult) {
+    fun saveLoginResult(loginResult: LoginModel.Response.LoginResult) {
         if (loginResult.id > 0) {
             /* login result is valid */
             sharePref?.edit()?.putString(KEY_LOGIN_RESULT, loginResult.toJson())?.apply()
@@ -26,7 +26,7 @@ object SharedPrefUtil : AnkoLogger {
         }
     }
 
-    fun loadLoginResult(): LoginModel.LoginResult? {
-        return Gson().fromJson(sharePref?.getString(KEY_LOGIN_RESULT, null), LoginModel.LoginResult::class.java)
+    fun loadLoginResult(): LoginModel.Response.LoginResult? {
+        return Gson().fromJson(sharePref?.getString(KEY_LOGIN_RESULT, null), LoginModel.Response.LoginResult::class.java)
     }
 }

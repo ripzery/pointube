@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -13,12 +12,14 @@ import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.about.AboutFragment
+import com.socket9.pointube.screens.brand.SelectBrandActivity
 import com.socket9.pointube.screens.home.HomeFragment
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.point.PointFragment
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.screens.setting.SettingFragment
+import com.socket9.pointube.test.ApiTest
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.AnkoLogger
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(drawerToggle.onOptionsItemSelected(item!!)){
+        if (drawerToggle.onOptionsItemSelected(item!!)) {
             return true
         }
 
@@ -70,22 +71,22 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         drawerToggle.onConfigurationChanged(newConfig)
     }
 
-    private fun setupDrawerToggle() : ActionBarDrawerToggle {
+    private fun setupDrawerToggle(): ActionBarDrawerToggle {
         return ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
     }
 
-    private fun setupDrawerContent(){
+    private fun setupDrawerContent() {
         nvView.setNavigationItemSelectedListener {
             selectDrawerItem(it)
             return@setNavigationItemSelectedListener true
         }
     }
 
-    private fun selectDrawerItem(menuItem: MenuItem){
+    private fun selectDrawerItem(menuItem: MenuItem) {
 
         var fragment: Fragment? = null
 
-        when(menuItem.itemId){
+        when (menuItem.itemId) {
             R.id.nav_home_fragment -> {
                 fragment = HomeFragment.newInstance("Home")
             }
@@ -112,9 +113,10 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     private fun initInstance() {
         selectMenu(FRAGMENT_HOME)
+        ApiTest.getAllMemberBrand()
     }
 
-    private fun selectMenu(page:Int) {
+    private fun selectMenu(page: Int) {
         val fragment = intent.getIntExtra("fragment", page)
         val item = nvView.menu.getItem(fragment)
         item.isChecked = true
@@ -138,13 +140,36 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         RxActivityResult.on(this).startIntent(intent).subscribe { result ->
             val data = result.data()
             val resultCode = result.resultCode()
-            if(resultCode == Activity.RESULT_OK){
+            if (resultCode == Activity.RESULT_OK) {
                 info("Register complete")
                 result.targetUI().initInstance()
-                result.targetUI().selectMenu(FRAGMENT_POINT)
-            }else{
+
+                /* Go to select brand activity after registration complete  */
+                val selectBrandIntent = Intent(this, SelectBrandActivity::class.java)
+                RxActivityResult.on(this).startIntent(selectBrandIntent)
+                        .subscribe { brandActivityResult ->
+                            if (brandActivityResult.resultCode() == Activity.RESULT_OK) {
+                                brandActivityResult.targetUI().initInstance()
+                                brandActivityResult.targetUI().selectMenu(FRAGMENT_POINT)
+                            } else {
+                                info("Cancel select brand")
+                            }
+                        }
+
+            } else {
                 info("Cancel Register")
             }
         }
+
+//        val selectBrandIntent = Intent(this, SelectBrandActivity::class.java)
+//        RxActivityResult.on(this).startIntent(selectBrandIntent)
+//                .subscribe { brandActivityResult ->
+//                    if(brandActivityResult.resultCode() == Activity.RESULT_OK){
+//                        brandActivityResult.targetUI().initInstance()
+//                        brandActivityResult.targetUI().selectMenu(FRAGMENT_POINT)
+//                    }else{
+//                        info("Cancel select brand")
+//                    }
+//                }
     }
 }

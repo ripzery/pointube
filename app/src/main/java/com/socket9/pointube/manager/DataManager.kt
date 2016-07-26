@@ -1,5 +1,6 @@
 package com.socket9.pointube.manager
 
+import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
@@ -40,8 +41,8 @@ object DataManager : AnkoLogger {
     }
 
     /* For login */
-    fun login(email: String, password: String): Observable<LoginModel.Login> {
-        return NetworkProviderManager.login(email, password)
+    fun login(model: LoginModel.Request.Login): Observable<LoginModel.Response.Login> {
+        return NetworkProviderManager.login(model)
                 .doOnNext {
                     if (it.result.id != 0) SharedPrefUtil.saveLoginResult(it.result)
                 }
@@ -58,6 +59,11 @@ object DataManager : AnkoLogger {
 
     fun verifyPhoneNumber(id: Int, otp: String): Observable<RegisterModel.Response.VerifyPhoneNumber> {
         return NetworkProviderManager.verifyPhoneNumber(id, otp)
+    }
+
+    /* Get member */
+    fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand) : Observable<BrandModel.Response.GetMemberBrand> {
+        return NetworkProviderManager.getAllBrandMember(memberBrand)
     }
 
 }

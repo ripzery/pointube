@@ -14,4 +14,11 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
+    <style name="BaseButton.Danger">
+        <item name="colorButtonNormal">@color/colorRed</item>
+        <item name="colorAccent">@color/colorRed</item>
+    </style>
+
+
+
 </resources>

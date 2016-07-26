@@ -8,26 +8,34 @@ import java.util.*
  */
 
 object LoginModel {
-    data class Login(val success: Boolean, val result: LoginResult)
 
-    data class LoginResult(
-            val message: String?,
-            val id: Int = 0,
-            val firstName: String?,
-            val lastName: String?,
-            val firstNameEN: String?,
-            val lastNameEN: String?,
-            val citizenID: String?,
-            val passport: String?,
-            val mobile: String?,
-            val email: String?,
-            val gender: String?,
-            val address: String?,
-            val birthday: Date?,
-            val token: String?
-    ){
-        fun toJson(): String{
-            return Gson().toJson(this)
+    object Request {
+        data class Login(val Email: String, val Password: String)
+    }
+
+    object Response{
+        data class Login(val success: Boolean, val result: LoginResult)
+
+        data class LoginResult(
+                val message: String?,
+                val id: Int = 0,
+                val firstName: String?,
+                val lastName: String?,
+                val firstNameEN: String?,
+                val lastNameEN: String?,
+                val citizenID: String?,
+                val passport: String?,
+                val mobile: String?,
+                val email: String?,
+                val gender: String?,
+                val address: String?,
+                val birthday: Date?,
+                val token: String?
+        ){
+            fun toJson(): String{
+                return Gson().toJson(this)
+            }
         }
     }
+
 }

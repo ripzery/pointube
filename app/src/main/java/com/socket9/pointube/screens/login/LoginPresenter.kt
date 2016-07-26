@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.login
 
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.utils.LoginStateUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
@@ -13,7 +14,7 @@ import org.jetbrains.anko.warn
 class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.Presenter {
     override fun doLogin(email: String, password: String) {
         view?.showProgressDialog()
-        DataManager.login(email, password)
+        DataManager.login(LoginModel.Request.Login(email, password))
                 .subscribe({
                     info { it }
                     view?.hideProgressDialog()

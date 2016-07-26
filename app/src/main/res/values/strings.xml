@@ -122,4 +122,17 @@
     <!-- fragment otp -->
     <string name="fragment_otp_info_1">Verification code has been sent to your mobile phone</string>
     <string name="fragment_otp_info_2">Please input the 6 digit in the field below</string>
+
+    <!-- fragment brand member -->
+    <string name="fragment_brand_member_info_1">Please select the Brand(s) you want to view into the POINTUBE wallet</string>
+    <string name="fragment_brand_member_select_all_title">Qualified Brands</string>
+    <string name="fragment_brand_member_select_all_info">Brand that you have registered</string>
+    <string name="fragment_brand_member_select_all_button">Select all</string>
+    <string name="fragment_brand_member_select_hint">*For any question on above member data, please contact your reward program provider\'s callcenter for details.</string>
+
+    <string name="fragment_brand_member_button_start">Let\'s start</string>
+
+
+    <!-- fragment brand non member -->
 </resources>
+

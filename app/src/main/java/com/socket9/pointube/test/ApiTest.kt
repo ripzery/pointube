@@ -1,7 +1,8 @@
 package com.socket9.pointube.test
 
 import com.socket9.pointube.manager.DataManager
-import io.realm.Realm
+import com.socket9.pointube.screens.brand.BrandModel
+import com.socket9.pointube.screens.home.LoginModel
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -22,7 +23,7 @@ object ApiTest : AnkoLogger {
     }
 
     fun login() {
-        DataManager.login("mon01@mon.com", "1234")
+        DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
                 .subscribe({
                     info { it }
                 }, {
@@ -37,5 +38,15 @@ object ApiTest : AnkoLogger {
                 }, {
                     info { it }
                 })
+    }
+
+    /* Login then get all member brand */
+    fun getAllMemberBrand() {
+        DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
+                .doOnNext { info { it.result.token } }
+                .flatMap { DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(it.result.id.toString(), it.result.token!!)) }
+                .subscribe {
+                    info { it }
+                }
     }
 }

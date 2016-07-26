@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.register.form
 
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
 import com.socket9.pointube.utils.ValidatorUtil
 import org.jetbrains.anko.AnkoLogger
@@ -76,7 +77,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                     }
                 }
                 .filter { it.IsSuccess && it.Id > 0 }
-                .flatMap { DataManager.login(mRegisterRequest!!.Email, mRegisterRequest!!.Password) }
+                .flatMap { DataManager.login(LoginModel.Request.Login(mRegisterRequest!!.Email, mRegisterRequest!!.Password)) }
                 .subscribe({
                     info { it }
                     view?.hideLoading()
