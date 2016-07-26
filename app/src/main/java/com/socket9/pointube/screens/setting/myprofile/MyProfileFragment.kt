@@ -1,5 +1,3 @@
-package com.socket9.pointube.screens.setting
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,9 +6,11 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 
 /**
- * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
+ * Created by ripzery on 7/20/16.
  */
-class SettingFragment : Fragment(), SettingContract.View {
+
+class MyProfileFragment : Fragment() {
+
     /** Variable zone **/
     lateinit var param1: String
 
@@ -19,34 +19,13 @@ class SettingFragment : Fragment(), SettingContract.View {
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): SettingFragment {
+        fun newInstance(param1: String): MyProfileFragment {
             var bundle: Bundle = Bundle()
             bundle.putString(ARG_1, param1)
-            val settingFragment: SettingFragment = SettingFragment()
-            settingFragment.arguments = bundle
-            return settingFragment
+            val myProfile: MyProfileFragment = MyProfileFragment()
+            myProfile.arguments = bundle
+            return myProfile
         }
-
-    }
-
-    /* Override view inter face */
-    override fun showMyBrand() {
-
-    }
-
-    override fun showMyProfile() {
-
-    }
-
-    override fun showLoading() {
-
-    }
-
-    override fun hideLoading() {
-
-    }
-
-    override fun goToHomeAndShowLogin() {
 
     }
 
@@ -61,7 +40,7 @@ class SettingFragment : Fragment(), SettingContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView: View = inflater!!.inflate(R.layout.fragment_setting, container, false)
+        val rootView: View = inflater!!.inflate(R.layout.fragment_my_profile, container, false)
 
         return rootView
     }
