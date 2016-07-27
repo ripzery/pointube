@@ -9,18 +9,19 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.toPx
+import kotlinx.android.synthetic.main.viewgroup_promotion_price_sale.view.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.find
 
 class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
-    lateinit private var promotionOriginal: PromotionPriceViewGroup
-    lateinit private var tvExtraPrice: TextView
-    lateinit private var promotionSale: PromotionPriceViewGroup
-    private var isSale: Boolean = false
-    private var isShowExtraPrice: Boolean = false
+    lateinit private var mPromotionOriginal: PromotionPriceViewGroup
+    lateinit private var mTvExtraPrice: TextView
+    lateinit private var mPromotionSale: PromotionPriceViewGroup
+    private var mIsSale: Boolean = false
+    private var mIsShowExtraPrice: Boolean = false
+    private var mSaleCurrency: String = "baht"
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -54,9 +55,9 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     private fun initInstances() {
         // findViewById here
-        promotionOriginal = viewContainer.findViewById(R.id.promotionPriceOriginal) as PromotionPriceViewGroup
-        promotionSale = viewContainer.findViewById(R.id.promotionPriceSale) as PromotionPriceViewGroup
-        tvExtraPrice = viewContainer.findViewById(R.id.tvExtraPrice) as TextView
+        mPromotionOriginal = viewContainer.findViewById(R.id.promotionPriceOriginal) as PromotionPriceViewGroup
+        mPromotionSale = viewContainer.findViewById(R.id.promotionPriceSale) as PromotionPriceViewGroup
+        mTvExtraPrice = viewContainer.findViewById(R.id.tvExtraPrice) as TextView
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -67,11 +68,12 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                 defStyleAttr, defStyleRes)
 
         try {
-            isSale = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isSale, false)
-            isShowExtraPrice = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isShowExtraPrice, false)
+            mIsSale = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isSale, false)
+            mIsShowExtraPrice = a.getBoolean(R.styleable.PromotionPriceSaleViewGroup_isShowExtraPrice, false)
+            mSaleCurrency = a.getString(R.styleable.PromotionPriceSaleViewGroup_saleCurrencyPromotion)
 
-            setIsSale(isSale)
-            showExtraPrice(isShowExtraPrice)
+            setIsSale(mIsSale)
+            showExtraPrice(mIsShowExtraPrice)
 
         } catch(e: IllegalStateException) {
 
@@ -92,27 +94,29 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
     }
 
     fun showExtraPrice(isShowExtraPrice: Boolean) {
-        this.isShowExtraPrice = isShowExtraPrice
-        tvExtraPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
+        this.mIsShowExtraPrice = isShowExtraPrice
+        mTvExtraPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
     }
 
     fun setIsSale(isSale: Boolean) {
-        this.isSale = isSale
-        promotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
-        setMargins(promotionSale, if (isSale) 40 else 0, 0, 0, 0)
+        this.mIsSale = isSale
+        mPromotionOriginal.visibility = if (isSale) View.VISIBLE else View.GONE
+        setMargins(mPromotionSale, if (isSale) 40 else 0, 0, 0, 0)
     }
 
     fun setOriginalPrice(price: String) {
-        promotionOriginal.setPrice(price)
+        mPromotionOriginal.setPrice(price)
     }
 
     fun setSalePrice(price: String) {
-        promotionSale.setPrice(price)
+        mPromotionSale.setPrice(price)
     }
 
     fun setCurrency(currency: String) {
-        promotionOriginal.setCurrency(currency)
-        promotionSale.setCurrency(currency)
+        mSaleCurrency = currency
+        mPromotionOriginal.setCurrency(mSaleCurrency)
+        mPromotionSale.setCurrency(mSaleCurrency)
+        mTvExtraPrice.text = tvExtraPrice.text.toString().replace("baht", mSaleCurrency)
     }
 
 }

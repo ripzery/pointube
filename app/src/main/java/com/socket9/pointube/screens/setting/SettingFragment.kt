@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.screens.setting.mybrand.MyBrandActivity
+import com.socket9.pointube.screens.setting.myprofile.MyProfileActivity
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -31,11 +34,11 @@ class SettingFragment : Fragment(), SettingContract.View {
 
     /* Override view inter face */
     override fun showMyBrand() {
-
+        startActivity<MyBrandActivity>()
     }
 
     override fun showMyProfile() {
-
+        startActivity<MyProfileActivity>()
     }
 
     override fun showLoading() {

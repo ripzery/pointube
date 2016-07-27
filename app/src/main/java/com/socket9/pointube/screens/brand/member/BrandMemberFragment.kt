@@ -101,7 +101,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
         hideLoadingDialog()
     }
 
-    override fun showEmptyQualifiedBrand() {
+    override fun showEmptyBrands() {
         toast("Empty qualified brand")
     }
 
@@ -130,7 +130,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
 
         tvUsername.text = "${mLoginModel.firstNameEN} ${mLoginModel.lastNameEN}"
 
-        mBrandMemberPresenter.loadQualifiedBrand(mLoginModel.id.toString(), mLoginModel.token!!)
+        mBrandMemberPresenter.loadAllBrands(mLoginModel.id.toString(), mLoginModel.token!!)
     }
 
     /* Inner class */

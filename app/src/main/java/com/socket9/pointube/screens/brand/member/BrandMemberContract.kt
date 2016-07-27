@@ -18,7 +18,7 @@ interface BrandMemberContract {
 
         fun hideLoading()
 
-        fun showEmptyQualifiedBrand()
+        fun showEmptyBrands()
 
         fun showLoadingError()
 
@@ -26,7 +26,7 @@ interface BrandMemberContract {
     }
 
     interface Presenter : BasePresenter {
-        fun loadQualifiedBrand(memberId: String, token: String)
+        fun loadAllBrands(memberId: String, token: String)
 
         fun selectAllBrand(isSelect: Boolean)
 

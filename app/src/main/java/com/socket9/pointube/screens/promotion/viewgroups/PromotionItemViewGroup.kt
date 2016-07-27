@@ -7,7 +7,10 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import kotlinx.android.synthetic.main.viewgroup_promotion_item.view.*
 import org.jetbrains.anko.find
 
 class PromotionItemViewGroup : FrameLayout {
@@ -16,6 +19,7 @@ class PromotionItemViewGroup : FrameLayout {
     lateinit private var viewContainer: View
     lateinit private var mPriceSaleViewGroup: PromotionPriceSaleViewGroup
     lateinit private var tvDayLeft: TextView
+    lateinit private var mTvTitle: TextView
     private var currency: String = ""
     private var salePrice: String = ""
     private var originalPrice: String = ""
@@ -57,6 +61,7 @@ class PromotionItemViewGroup : FrameLayout {
     private fun initInstances() {
         // findViewById here
         mPriceSaleViewGroup = viewContainer.find(R.id.promotionPrice)
+        mTvTitle = viewContainer.find(R.id.tvTitle)
         tvDayLeft = viewContainer.find(R.id.tvDayLeft)
     }
 
@@ -89,8 +94,12 @@ class PromotionItemViewGroup : FrameLayout {
 
     /** Method zone **/
 
-    fun setModel() {
-
+    fun setModel(model: PublishedProgramItemRepo) {
+        mPriceSaleViewGroup.setCurrency(model.UnitOfPoint)
+        mTvTitle.text = model.Title
+        Glide.with(context).load(model.MasterPath).into(ivCover)
+        tvContent.text = model.Description
+        isShowDayLeft(false)
     }
 
     fun setOriginalPrice(price: String) {

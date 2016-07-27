@@ -5,29 +5,29 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".App"
         android:theme="@style/AppTheme">
-        <activity android:name=".screens.MainActivity"
+        <activity
+            android:name=".screens.MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.register.RegisterActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
-        <activity android:name=".screens.brand.SelectBrandActivity">
-        </activity>
-        <activity android:name=".screens.login.LoginActivity">
-        </activity>
-        <activity android:name=".screens.promotion.detail.PromotionDetailActivity">
-        </activity>
+        <activity
+            android:name=".screens.register.RegisterActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".screens.brand.SelectBrandActivity" />
+        <activity android:name=".screens.login.LoginActivity" />
+        <activity android:name=".screens.promotion.detail.PromotionDetailActivity" />
+        <activity android:name=".screens.setting.mybrand.MyBrandActivity" />
+        <activity android:name=".screens.setting.myprofile.MyProfileActivity"></activity>
     </application>
 
 </manifest>

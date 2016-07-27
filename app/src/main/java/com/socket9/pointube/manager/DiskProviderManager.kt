@@ -4,7 +4,6 @@ import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.utils.RealmUtil
-import io.realm.Realm
 import org.jetbrains.anko.AnkoLogger
 import rx.Observable
 
@@ -20,5 +19,14 @@ object DiskProviderManager : AnkoLogger {
     fun getPublishedProgramList(): Observable<HomeModel.PublishedProgramListRepo> {
         val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
         return Observable.just(HomeModel.PublishedProgramListRepo(true, null, allPublishedProgramList.toMutableList(), true))
+    }
+
+    fun getPublishedProgramListByProgramType(programType: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
+        val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
+        if (programType < 11)
+            return Observable.just(allPublishedProgramList.filter { it.ProgramType == programType }.toMutableList())
+        else {
+            return Observable.just(allPublishedProgramList.filter { it.IsHot }.toMutableList())
+        }
     }
 }

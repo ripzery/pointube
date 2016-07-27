@@ -155,7 +155,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
                                 info("Cancel select brand")
                             }
                         }
-
             } else {
                 info("Cancel Register")
             }

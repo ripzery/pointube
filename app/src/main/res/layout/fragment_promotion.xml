@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <com.socket9.pointube.screens.promotion.viewgroups.PromotionItemViewGroup
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:currencyPromotion="baht"
-        app:salePricePromotion="100"
-        app:isShowExtraPriceSale="true"
-        app:originalPricePromotion="200"
-        app:isShowDayLeft="true"/>
+        android:background="#00000000">
 
-    <com.socket9.pointube.screens.promotion.viewgroups.PromotionItemViewGroup
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        <FrameLayout
+            android:id="@+id/wrapper_ntb_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:stl_defaultTabBackground="@color/colorPrimary"/>
+
+        </FrameLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:currencyPromotion="baht"
-        app:salePricePromotion="100"
-        app:originalPricePromotion="200"
-        app:isShowDayLeft="true"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

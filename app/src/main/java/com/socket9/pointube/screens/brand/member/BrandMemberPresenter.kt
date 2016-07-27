@@ -12,7 +12,7 @@ import rx.Observable
 class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberContract.Presenter, AnkoLogger {
     private var mAllBrandMember: BrandModel.Response.GetMemberBrand? = null
 
-    override fun loadQualifiedBrand(memberId: String, token: String) {
+    override fun loadAllBrands(memberId: String, token: String) {
         view?.showLoading()
         info { "$memberId : $token" }
         Observable.concat(DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(memberId, token)), Observable.just(mAllBrandMember))
@@ -24,7 +24,7 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
                         mAllBrandMember = it
                         view?.showQualifiedBrand(mAllBrandMember!!.Results)
                     } else {
-                        view?.showEmptyQualifiedBrand()
+                        view?.showEmptyBrands()
                     }
                 }, {
                     info { it }

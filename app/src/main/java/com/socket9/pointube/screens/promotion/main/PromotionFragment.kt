@@ -2,19 +2,33 @@ package com.socket9.pointube.screens.promotion.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import com.gigamole.navigationtabbar.ntb.NavigationTabBar
+import com.ogaclejapan.smarttablayout.SmartTabLayout
+import com.ogaclejapan.smarttablayout.utils.ViewPagerItem
+import com.ogaclejapan.smarttablayout.utils.ViewPagerItemAdapter
+import com.ogaclejapan.smarttablayout.utils.ViewPagerItems
 import com.socket9.pointube.R
+import com.socket9.pointube.customviews.TintableImageView
+import com.socket9.pointube.utils.ContextUtil
+import kotlinx.android.synthetic.main.fragment_promotion.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.find
+import org.jetbrains.anko.info
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class PromotionFragment : Fragment() {
-
+class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     /** Variable zone **/
     lateinit var param1: String
-
+    lateinit private var mPromotionPresenter : PromotionContract.Presenter
+    lateinit private var mPromotionPagerAdapter : PromotionPagerAdapter
 
     /** Static method zone **/
     companion object {
@@ -48,12 +62,49 @@ class PromotionFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mPromotionPresenter = PromotionPresenter(this)
         initInstance()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mPromotionPresenter.onDestroy()
+    }
+
+    override fun showNavigationTabBar(tabModels: MutableList<NavigationTabBar.Model>) {
+//        for(index in 0..11){
+            tabLayout.setCustomTabView({ viewGroup, i, pagerAdapter ->
+                val context = ContextUtil.context
+                val view: View = LayoutInflater.from(context).inflate(R.layout.layout_custom_tab_layout, viewGroup, false)
+                val ivIcon = view.find<TintableImageView>(R.id.ivIcon)
+                val layoutBackground = view.find<FrameLayout>(R.id.layoutBackground)
+//                ivIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_person_black_24dp))
+                layoutBackground.background.level = i
+                view
+            })
+//        }
+        tabLayout.setViewPager(viewpager)
+
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun setupViewPager() {
+        mPromotionPagerAdapter = PromotionPagerAdapter(fragmentManager)
+        viewpager.adapter = mPromotionPagerAdapter
     }
 
     /** Method zone **/
 
     private fun initInstance() {
-
+        mPromotionPresenter.onCreate()
+        mPromotionPresenter.prepareViewPager()
+        mPromotionPresenter.prepareTabBar()
     }
 }

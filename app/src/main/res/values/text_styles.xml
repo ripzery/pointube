@@ -17,4 +17,5 @@
     <style name="BaseTextTerm.TextTermsTitle">
         <item name="android:textStyle">bold</item>
     </style>
+
 </resources>

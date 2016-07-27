@@ -11,23 +11,40 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 import rx.Observable
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/11/2016 AD.
  */
 object RetrofitUtils {
     private var retrofit: Retrofit? = null
+//        private val BASE_URL = "http://192.168.100.252:8099"
     private val BASE_URL = "http://service.pointube.com/"
     private val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
     fun getInstance(): PointubeAPI {
         if (retrofit == null) {
-
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
-            val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
+            val client = OkHttpClient.Builder()
+                    .addInterceptor {
+                        val onGoing = it.request().newBuilder()
+                        if (SharedPrefUtil.loadLoginResult() != null) {
+                            val token = SharedPrefUtil.loadLoginResult()!!.token
+                            onGoing.addHeader("Authorization", "Bearer $token")
+                        }
+                        it.proceed(onGoing.build())
+                    }
+                    .addInterceptor(interceptor)
+                    .readTimeout(2, TimeUnit.MINUTES)
+                    .build()
+
 
             retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -38,16 +55,14 @@ object RetrofitUtils {
         }
 
         return retrofit!!.create(PointubeAPI::class.java)
-
     }
-
 }
 
 interface PointubeAPI {
     @GET("api/Provider/GetProviderList")
     fun getAllProvider(): Observable<HomeModel.AllBrands>
 
-    @POST("Account/Login")
+    @POST("api/Member/Login")
     fun login(@Body loginModel: LoginModel.Request.Login): Observable<LoginModel.Response.Login>
 
     @POST("api/Member/Create")

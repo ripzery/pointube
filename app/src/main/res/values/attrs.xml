@@ -23,10 +23,15 @@
     <declare-styleable name="PromotionPriceSaleViewGroup">
         <attr name="isSale" format="boolean">false</attr>
         <attr name="isShowExtraPrice" format="boolean">false</attr>
+        <attr name="saleCurrencyPromotion" format="string">baht</attr>
     </declare-styleable>
 
     <declare-styleable name="ToggleViewGroup">
         <attr name="leftText" format="string" />
         <attr name="rightText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="TintableImageView">
+        <attr name="tint" format="reference|color"/>
     </declare-styleable>
 </resources>

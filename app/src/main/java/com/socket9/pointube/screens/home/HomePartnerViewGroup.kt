@@ -84,6 +84,6 @@ class HomePartnerViewGroup : FrameLayout,AnkoLogger {
     }
 
     fun setBrandLogo(logo: String){
-        Glide.with(context).load(logo).into(civLogo)
+        Glide.with(context).load(logo.replace("192.168.100.252:8099", "service.pointube.com")).into(civLogo)
     }
 }

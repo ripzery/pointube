@@ -10,6 +10,7 @@
         android:id="@+id/ivCover"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scaleType="centerCrop"
         tools:src="@drawable/world_ball"
         android:src="@drawable/world_ball"
         />
@@ -21,22 +22,41 @@
         android:layout_marginLeft="4dp"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Content title"
-            android:maxLines="1"
-            android:ellipsize="end"
-            tools:text="Content title"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="Content description"
-            tools:text="Content description"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civLogo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/world_ball"/>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Content title"
+                android:maxLines="1"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@id/civLogo"
+                android:ellipsize="end"
+                tools:text="Content title"/>
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:layout_below="@id/tvTitle"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:layout_toRightOf="@id/civLogo"
+                android:layout_marginLeft="16dp"
+                android:text="Content description"
+                tools:text="Content description"/>
+
+        </RelativeLayout>
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceSaleViewGroup
             android:id="@+id/promotionPrice"
@@ -44,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:isShowExtraPrice="false"
-            app:isSale="true"/>
+            app:isSale="false"/>
 
         <TextView
             android:id="@+id/tvDayLeft"
@@ -56,20 +76,5 @@
             tools:text="5 days left"/>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="4dp"
-        android:layout_height="wrap_content">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civLogo"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/world_ball"/>
-
-    </LinearLayout>
-
 
 </LinearLayout>

@@ -80,7 +80,7 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
 
     /* Override view interface zone */
     override fun showImage(path: String) {
-        Glide.with(this).load(path).into(ivImage)
+        Glide.with(this).load(path.replace("192.168.100.252:8099", "service.pointube.com")).into(ivImage)
     }
 
     override fun showVideo(path: String) {

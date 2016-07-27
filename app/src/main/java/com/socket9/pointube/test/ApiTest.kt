@@ -5,6 +5,7 @@ import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.LoginModel
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.warn
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/11/2016 AD.
@@ -23,12 +24,12 @@ object ApiTest : AnkoLogger {
     }
 
     fun login() {
-        DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
-                .subscribe({
-                    info { it }
-                }, {
-                    info { it }
-                })
+//        DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
+//                .subscribe({
+//                    info { it }
+//                }, {
+//                    info { it }
+//                })
     }
 
     fun getAllBrands() {
@@ -45,8 +46,10 @@ object ApiTest : AnkoLogger {
         DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
                 .doOnNext { info { it.result.token } }
                 .flatMap { DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(it.result.id.toString(), it.result.token!!)) }
-                .subscribe {
+                .subscribe({
                     info { it }
-                }
+                }, {
+                    warn { it }
+                })
     }
 }

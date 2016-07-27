@@ -22,6 +22,7 @@ open class PublishedProgramItemRepo(
         open var PeriodStr: String = "",
         open var UnitOfPoint: String = "",
         open var TermAndCondition: String = "",
+        open var ProgramType: Int = 9,
         open var Place: String = "",
         open var HowTo: String = "",
         open var LogoPath: String = "",
