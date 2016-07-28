@@ -80,11 +80,7 @@ class PromotionItemViewGroup : FrameLayout {
             isShowDayLeft = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowDayLeft, false)
             isExtraPriceSale = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowExtraPriceSale, false)
 
-            setOriginalPrice(originalPrice)
-            setSalePrice(salePrice)
-            setCurrency(currency)
             isShowDayLeft(isShowDayLeft)
-            isShowExtraPrice(isExtraPriceSale)
 
         } finally {
             a.recycle()
@@ -95,30 +91,20 @@ class PromotionItemViewGroup : FrameLayout {
     /** Method zone **/
 
     fun setModel(model: PublishedProgramItemRepo) {
-        mPriceSaleViewGroup.setCurrency(model.UnitOfPoint)
-        mTvTitle.text = model.Title
-        Glide.with(context).load(model.MasterPath).into(ivCover)
-        tvContent.text = model.Description
-        isShowDayLeft(false)
-    }
+        /* pass model to price sale view group */
+        mPriceSaleViewGroup.setModel(model)
 
-    fun setOriginalPrice(price: String) {
-        mPriceSaleViewGroup.setOriginalPrice(price)
-    }
+        with(model){
+            mTvTitle.text = Title
+            tvContent.text = Description
+            Glide.with(context).load(MasterPath).into(ivCover)
+        }
 
-    fun setSalePrice(price: String) {
-        mPriceSaleViewGroup.setSalePrice(price)
-    }
-
-    fun setCurrency(currency: String) {
-        mPriceSaleViewGroup.setCurrency(currency)
+        /* Add logic to toggle showing day left */
+//        isShowDayLeft(false)
     }
 
     fun isShowDayLeft(isShowDayLeft: Boolean) {
         tvDayLeft.visibility = if (isShowDayLeft) View.VISIBLE else View.GONE
-    }
-
-    fun isShowExtraPrice(isShowExtraPrice: Boolean){
-        mPriceSaleViewGroup.showExtraPrice(isShowExtraPrice)
     }
 }

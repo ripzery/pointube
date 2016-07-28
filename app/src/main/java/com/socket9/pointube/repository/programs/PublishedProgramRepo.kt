@@ -16,6 +16,7 @@ open class PublishedProgramItemRepo(
         open var IsHot: Boolean = false,
         open var Point: Int = 0,
         open var SpecialPoint: Int = 0,
+        open var BahtValue: Int = 0,
         open var ProviderId: Int = 0,
         open var Description: String = "",
         open var MasterPath: String = "",
