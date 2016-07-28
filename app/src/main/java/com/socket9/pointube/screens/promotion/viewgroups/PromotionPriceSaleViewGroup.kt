@@ -114,6 +114,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
     }
 
     private fun setState(state: Int) {
+        viewContainer.visibility = View.VISIBLE
         when (state) {
             STATE_SHOW_RED -> {
                 /* Toggle visibility */
@@ -175,9 +176,10 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
             }
             STATE_SHOW_NOTHING -> {
                 /* Toggle visibility */
-                setShowGrey(false)
-                setShowRed(false)
-                showExtraPrice(false)
+//                setShowGrey(false)
+//                setShowRed(false)
+//                showExtraPrice(false)
+                viewContainer.visibility = View.GONE
             }
         }
     }
