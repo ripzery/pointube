@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             app:isCircleGrey="true"
             app:price="900"
-            app:mCurrency="point"/>
+            app:currency="point"/>
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionPriceSale"
@@ -27,7 +27,7 @@
             android:layout_marginStart="36dp"
             app:isCircleGrey="false"
             app:price="200"
-            app:mCurrency="point"/>
+            app:currency="point"/>
 
     </FrameLayout>
 

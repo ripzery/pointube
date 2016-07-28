@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:currencyPromotion="baht"
     android:layout_margin="8dp"
-    app:mIsShowDayLeft="true"
+    app:isShowDayLeft="true"
     app:isShowExtraPriceSale="true"
     app:originalPricePromotion="200"
     app:salePricePromotion="100" />

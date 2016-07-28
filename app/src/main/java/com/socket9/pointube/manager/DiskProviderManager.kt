@@ -29,4 +29,9 @@ object DiskProviderManager : AnkoLogger {
             return Observable.just(allPublishedProgramList.filter { it.IsHot }.toMutableList())
         }
     }
+
+    fun getProviderById(id: Int = 0) : Observable<BrandRepo>{
+        val brand = RealmUtil.readAll(BrandRepo::class.java).find { it.Id == id }
+        return Observable.just(brand)
+    }
 }

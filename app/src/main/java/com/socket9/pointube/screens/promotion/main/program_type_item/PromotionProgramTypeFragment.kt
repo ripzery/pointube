@@ -1,12 +1,12 @@
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.manager.DiskProviderManager
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.main.program_type_item.PromotionProgramTypeContract
 import com.socket9.pointube.screens.promotion.main.program_type_item.PromotionProgramTypePresenter
@@ -53,7 +53,7 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
             /* if newly created */
             mPosition = arguments.getInt(ARG_1, 0)
             mTitle = arguments.getString(ARG_2)
-        }else{
+        } else {
             mPosition = savedInstanceState.getInt("position")
             mTitle = savedInstanceState.getString("title", "")
         }
@@ -67,7 +67,7 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mPromotionProgramTypePresenter = PromotionProgramTypePresenter(this)
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             mPosition = savedInstanceState.getInt("position")
             mTitle = savedInstanceState.getString("title", "")
         }
@@ -117,7 +117,7 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
 
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if(position == 0) 2 else 1
+                return if (position == 0) 2 else 1
             }
         }
 
@@ -161,6 +161,9 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
 
             fun setModel(model: PublishedProgramItemRepo) {
                 mPromotionItemViewGroup.setModel(model)
+                DiskProviderManager.getProviderById(model.ProviderId).subscribe {
+                    mPromotionItemViewGroup.setLogo(it.LogoPath)
+                }
             }
 
         }

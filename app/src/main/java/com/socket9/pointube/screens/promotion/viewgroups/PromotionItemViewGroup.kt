@@ -117,6 +117,10 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
         /* Add logic to toggle showing day left */
     }
 
+    fun setLogo(logo: String){
+        Glide.with(context).load(logo).into(civLogo)
+    }
+
     fun isShowDayLeft(isShowDayLeft: Boolean) {
         mTvDayLeft.visibility = if (isShowDayLeft) View.VISIBLE else View.GONE
     }

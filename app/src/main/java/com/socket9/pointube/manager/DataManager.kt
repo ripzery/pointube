@@ -1,5 +1,6 @@
 package com.socket9.pointube.manager
 
+import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
@@ -70,6 +71,13 @@ object DataManager : AnkoLogger {
     /* get published program type */
     fun getPublishedProgramListByProgramType(programType: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
         return DiskProviderManager.getPublishedProgramListByProgramType(programType)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getProviderById(id: Int = 0): Observable<BrandRepo> {
+        return DiskProviderManager.getProviderById(id)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
