@@ -9,11 +9,15 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.farFrom
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import kotlinx.android.synthetic.main.viewgroup_promotion_item.view.*
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.info
+import java.util.*
 
-class PromotionItemViewGroup : FrameLayout {
+class PromotionItemViewGroup : FrameLayout, AnkoLogger {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
@@ -85,7 +89,6 @@ class PromotionItemViewGroup : FrameLayout {
         } finally {
             a.recycle()
         }
-
     }
 
     /** Method zone **/
@@ -94,10 +97,19 @@ class PromotionItemViewGroup : FrameLayout {
         /* pass model to price sale view group */
         mPriceSaleViewGroup.setModel(model)
 
-        with(model){
+        info { model.PublishPeriod!!.EndDate.toString() }
+
+        with(model) {
             mTvTitle.text = Title
             tvContent.text = Description
             Glide.with(context).load(MasterPath).into(ivCover)
+
+            if (PublishPeriod != null) {
+                val dayBetween = Date().farFrom(PublishPeriod!!.EndDate)
+                val isShow = dayBetween < 10
+                isShowDayLeft(isShow)
+                setDayLeft(dayBetween.toString())
+            }
         }
 
         /* Add logic to toggle showing day left */
@@ -106,5 +118,9 @@ class PromotionItemViewGroup : FrameLayout {
 
     fun isShowDayLeft(isShowDayLeft: Boolean) {
         tvDayLeft.visibility = if (isShowDayLeft) View.VISIBLE else View.GONE
+    }
+
+    fun setDayLeft(dayLeft: String){
+        tvDayLeft.text = "$dayLeft days left"
     }
 }

@@ -23,6 +23,11 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    packagingOptions {
+        exclude 'lib/arm64-v8a/lib.so'
+        exclude 'lib/mips/lib.so'
+    }
 }
 
 kapt {
