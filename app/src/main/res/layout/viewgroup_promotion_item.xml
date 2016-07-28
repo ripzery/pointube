@@ -24,12 +24,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civLogo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:src="@drawable/world_ball"/>
 
             <TextView
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="Content title"
                 android:maxLines="1"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@id/civLogo"
                 android:ellipsize="end"
                 tools:text="Content title"/>
@@ -51,8 +52,9 @@
                 android:layout_below="@id/tvTitle"
                 android:maxLines="3"
                 android:ellipsize="end"
+                android:textSize="10sp"
                 android:layout_toRightOf="@id/civLogo"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:text="Content description"
                 tools:text="Content description"/>
 

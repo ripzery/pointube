@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:currencyPromotion="baht"
+    android:layout_margin="8dp"
     app:isShowDayLeft="true"
     app:isShowExtraPriceSale="true"
     app:originalPricePromotion="200"
