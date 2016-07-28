@@ -35,7 +35,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
         val ARG_1 = "ARG_1"
 
         fun newInstance(param1: String): PromotionFragment {
-            var bundle: Bundle = Bundle()
+            val bundle: Bundle = Bundle()
             bundle.putString(ARG_1, param1)
             val promotionFragment: PromotionFragment = PromotionFragment()
             promotionFragment.arguments = bundle
@@ -79,7 +79,8 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
                 val ivIcon = view.find<TintableImageView>(R.id.ivIcon)
                 val layoutBackground = view.find<FrameLayout>(R.id.layoutBackground)
 //                ivIcon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_person_black_24dp))
-                layoutBackground.background.level = i
+                layoutBackground.background.level = PromotionPagerAdapter.PAIR_POSITION_TO_TYPE.find { i == it.first }!!.second
+
                 view
             })
 //        }

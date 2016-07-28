@@ -3,74 +3,73 @@
     <item android:maxLevel="0">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
-            <solid android:color="@color/colorHotDeal"/>
+            <solid android:color="@color/colorDining"/>
         </shape>
     </item>
     <item android:maxLevel="1">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
-            <solid android:color="@color/colorDining"/>
+            <solid android:color="@color/colorShopping"/>
         </shape>
     </item>
     <item android:maxLevel="2">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
-            <solid android:color="@color/colorShopping"/>
+            <solid android:color="@color/colorTravel"/>
         </shape>
     </item>
     <item android:maxLevel="3">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
-            <solid android:color="@color/colorTravel"/>
+            <solid android:color="@color/colorEntertain"/>
         </shape>
     </item>
     <item android:maxLevel="4">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
-            <solid android:color="@color/colorEntertain"/>
+            <solid android:color="@color/colorHealth"/>
         </shape>
     </item>
     <item android:maxLevel="5">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
-            <solid android:color="@color/colorHealth"/>
-        </shape>
-    </item>
-
-    <item android:maxLevel="6">
-        <shape android:shape="rectangle">
-            <corners android:radius="16dp"/>
-            <solid android:color="@color/colorBeauty"/>
-        </shape>
-    </item>
-    <item android:maxLevel="7">
-        <shape android:shape="rectangle">
-            <corners android:radius="16dp"/>
             <solid android:color="@color/colorEducation"/>
         </shape>
     </item>
-    <item android:maxLevel="8">
+    <item android:maxLevel="6">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
             <solid android:color="@color/colorReading"/>
         </shape>
     </item>
-    <item android:maxLevel="9">
+    <item android:maxLevel="7">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
             <solid android:color="@color/colorHomeLiving"/>
         </shape>
     </item>
-    <item android:maxLevel="10">
+    <item android:maxLevel="8">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
             <solid android:color="@color/colorItGadget"/>
         </shape>
     </item>
-    <item android:maxLevel="11">
+    <item android:maxLevel="9">
         <shape android:shape="rectangle">
             <corners android:radius="16dp"/>
             <solid android:color="@color/colorOther" />
+        </shape>
+    </item>
+    <item android:maxLevel="10">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/>
+            <solid android:color="@color/colorBeauty"/>
+        </shape>
+    </item>
+    <item android:maxLevel="11">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/>
+            <solid android:color="@color/colorHotDeal"/>
         </shape>
     </item>
 </level-list>

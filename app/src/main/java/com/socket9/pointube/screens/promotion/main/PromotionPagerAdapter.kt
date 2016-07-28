@@ -19,6 +19,7 @@ import org.jetbrains.anko.find
  */
 class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     companion object {
+        /* index in promotion */
         val INDEX_HOTDEAL = 0
         val INDEX_DINING = 1
         val INDEX_SHOPPING = 2
@@ -31,9 +32,40 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
         val INDEX_HOME_LIVING = 9
         val INDEX_IT_GADGET = 10
         val INDEX_OTHER = 11
+
+        /* type id */
+        val TYPE_HOTDEAL = 11
+        val TYPE_DINING = 0
+        val TYPE_SHOPPING = 1
+        val TYPE_TRAVEL = 2
+        val TYPE_ENTERTAINMENT = 3
+        val TYPE_HEALTH = 4
+        val TYPE_EDUCATION = 5
+        val TYPE_READING = 6
+        val TYPE_HOME_LIVING = 7
+        val TYPE_IT_GADGET = 8
+        val TYPE_OTHER = 9
+        val TYPE_BEAUTY = 10
+
+        /* map position to provider type */
+        val PAIR_POSITION_TO_TYPE = listOf(
+                INDEX_HOTDEAL to TYPE_HOTDEAL,
+                INDEX_DINING to TYPE_DINING,
+                INDEX_SHOPPING to TYPE_SHOPPING,
+                INDEX_TRAVEL to TYPE_TRAVEL,
+                INDEX_ENTERTAINMENT to TYPE_ENTERTAINMENT,
+                INDEX_HEALTH to TYPE_HEALTH,
+                INDEX_BEAUTY to TYPE_BEAUTY,
+                INDEX_EDUCATION to TYPE_EDUCATION,
+                INDEX_READING to TYPE_READING,
+                INDEX_HOME_LIVING to TYPE_HOME_LIVING,
+                INDEX_IT_GADGET to TYPE_IT_GADGET,
+                INDEX_OTHER to TYPE_OTHER
+        )
+
         private val TOTAL_PROMOTION = 12
 
-        val TAB_ITEM_TITLES = listOf<String>("Hot deal", "Dining", "Shopping", "Travel", "Entertainment",
+        val TAB_ITEM_TITLES = listOf("Hot deal", "Dining", "Shopping", "Travel", "Entertainment",
                 "Health", "Beauty", "Education", "Reading", "Home and Living", "IT Gadget", "Other")
 
          val TAB_ITEM_COLORS = mutableListOf(
@@ -68,7 +100,7 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
     }
 
     override fun getItem(position: Int): Fragment {
-        return PromotionProgramTypeFragment.newInstance(position, TAB_ITEM_TITLES[position])
+        return PromotionProgramTypeFragment.newInstance(PAIR_POSITION_TO_TYPE.find { it.first == position }!!.second, TAB_ITEM_TITLES[position])
     }
 
     override fun getCount(): Int {
