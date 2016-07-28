@@ -71,7 +71,7 @@
             app:isSale="false"/>
 
         <TextView
-            android:id="@+id/tvDayLeft"
+            android:id="@+id/mTvDayLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorRed"

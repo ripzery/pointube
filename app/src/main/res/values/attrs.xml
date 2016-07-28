@@ -6,7 +6,7 @@
 
     <declare-styleable name="PromotionPriceViewGroup">
         <attr name="showCurrency" format="boolean">true</attr>
-        <attr name="currency" format="string">baht</attr>
+        <attr name="mCurrency" format="string">baht</attr>
         <attr name="price" format="string">1,000</attr>
         <attr name="isCircleGrey" format="boolean">false</attr>
         <attr name="maxLines" format="integer">1</attr>
@@ -16,7 +16,7 @@
         <attr name="currencyPromotion" format="string">baht</attr>
         <attr name="salePricePromotion" format="string">1,000</attr>
         <attr name="originalPricePromotion" format="string">1,000</attr>
-        <attr name="isShowDayLeft" format="boolean">false</attr>
+        <attr name="mIsShowDayLeft" format="boolean">false</attr>
         <attr name="isShowExtraPriceSale" format="boolean">false</attr>
     </declare-styleable>
 

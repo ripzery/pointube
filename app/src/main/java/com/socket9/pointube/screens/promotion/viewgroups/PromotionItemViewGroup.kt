@@ -15,7 +15,6 @@ import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import kotlinx.android.synthetic.main.viewgroup_promotion_item.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
-import org.jetbrains.anko.info
 import java.util.*
 
 class PromotionItemViewGroup : FrameLayout, AnkoLogger {
@@ -25,15 +24,16 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
 
     lateinit private var viewContainer: View
     lateinit private var mPriceSaleViewGroup: PromotionPriceSaleViewGroup
-    lateinit private var tvDayLeft: TextView
+    lateinit private var mTvDayLeft: TextView
     lateinit private var mTvTitle: TextView
-    private var currency: String = ""
-    private var salePrice: String = ""
-    private var originalPrice: String = ""
-    private var isGrey: Boolean = false
-    private var isShowDayLeft: Boolean = false
-    private var isExtraPriceSale: Boolean = false
-    private var maxLines: Int = 1
+    lateinit private var mTvContent: TextView
+    private var mCurrency: String = ""
+    private var mSalePrice: String = ""
+    private var mOriginalPrice: String = ""
+    private var mIsGrey: Boolean = false
+    private var mIsShowDayLeft: Boolean = false
+    private var mIsExtraPriceSale: Boolean = false
+    private var mMaxLines: Int = 1
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -69,7 +69,8 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
         // findViewById here
         mPriceSaleViewGroup = viewContainer.find(R.id.promotionPrice)
         mTvTitle = viewContainer.find(R.id.tvTitle)
-        tvDayLeft = viewContainer.find(R.id.tvDayLeft)
+        mTvDayLeft = viewContainer.find(R.id.tvDayLeft)
+        mTvContent = viewContainer.find(R.id.tvContent)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -81,13 +82,13 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
 
         try {
 
-            currency = a.getString(R.styleable.PromotionItemViewGroup_currencyPromotion)
-            salePrice = a.getString(R.styleable.PromotionItemViewGroup_salePricePromotion)
-            originalPrice = a.getString(R.styleable.PromotionItemViewGroup_originalPricePromotion)
-            isShowDayLeft = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowDayLeft, false)
-            isExtraPriceSale = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowExtraPriceSale, false)
+            mCurrency = a.getString(R.styleable.PromotionItemViewGroup_currencyPromotion)
+            mSalePrice = a.getString(R.styleable.PromotionItemViewGroup_salePricePromotion)
+            mOriginalPrice = a.getString(R.styleable.PromotionItemViewGroup_originalPricePromotion)
+            mIsShowDayLeft = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowDayLeft, false)
+            mIsExtraPriceSale = a.getBoolean(R.styleable.PromotionItemViewGroup_isShowExtraPriceSale, false)
 
-            isShowDayLeft(isShowDayLeft)
+            isShowDayLeft(mIsShowDayLeft)
 
         } finally {
             a.recycle()
@@ -100,12 +101,9 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
         /* pass model to price sale view group */
         mPriceSaleViewGroup.setModel(model)
 
-        info { model.PublishPeriod!!.EndDate.toString() }
-
         with(model) {
             mTvTitle.text = Title
-            tvContent.text = Description.plainText()
-            info { Description.plainText() }
+            mTvContent.text = Description.plainText()
             Glide.with(context).load(MasterPath).into(ivCover)
 
             if (PublishPeriod != null) {
@@ -120,14 +118,14 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
     }
 
     fun isShowDayLeft(isShowDayLeft: Boolean) {
-        tvDayLeft.visibility = if (isShowDayLeft) View.VISIBLE else View.GONE
+        mTvDayLeft.visibility = if (isShowDayLeft) View.VISIBLE else View.GONE
     }
 
-    fun setDayLeft(dayLeft: Long){
-        when{
-            dayLeft == 1L -> tvDayLeft.text = "1 day left"
-            dayLeft > 1L ->  tvDayLeft.text = "$dayLeft days left"
-            dayLeft == 0L ->  tvDayLeft.text = "In 24 hours"
+    fun setDayLeft(dayLeft: Long) {
+        when {
+            dayLeft == 1L -> mTvDayLeft.text = "1 day left"
+            dayLeft > 1L -> mTvDayLeft.text = "$dayLeft days left"
+            dayLeft == 0L -> mTvDayLeft.text = "In 24 hours"
         }
     }
 }
