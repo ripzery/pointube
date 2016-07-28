@@ -13,16 +13,16 @@ import com.socket9.pointube.R
 class PromotionDetailFragment : Fragment() {
 
     /** Variable zone **/
-    lateinit var param1: String
+    private var mPromotionId: Int = 0
 
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): PromotionDetailFragment {
-            var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+        fun newInstance(promotionId: Int): PromotionDetailFragment {
+            val bundle: Bundle = Bundle()
+            bundle.putInt(ARG_1, promotionId)
             val promotionDetailFragment: PromotionDetailFragment = PromotionDetailFragment()
             promotionDetailFragment.arguments = bundle
             return promotionDetailFragment
@@ -36,7 +36,7 @@ class PromotionDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mPromotionId = arguments.getInt(ARG_1)
         }
     }
 

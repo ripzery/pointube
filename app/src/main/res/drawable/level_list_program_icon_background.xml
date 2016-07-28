@@ -3,73 +3,73 @@
     <item android:maxLevel="0">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorDining" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="1">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorShopping" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="2">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorTravel" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="3">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorEntertain" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="4">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorHealth" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="5">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorEducation" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="6">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorReading" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="7">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorHomeLiving" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="8">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorItGadget" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="9">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorOther" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="10">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorBeauty" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
     <item android:maxLevel="11">
         <selector>
             <item android:state_selected="true" android:drawable="@color/colorHotDeal" />
-            <item android:drawable="@android:color/black" />
+            <item android:drawable="@color/colorIconBackgroundInactive" />
         </selector>
     </item>
 </level-list>

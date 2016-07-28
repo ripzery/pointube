@@ -30,4 +30,11 @@
     <color name="colorHomeLiving">#4CAF50</color>
     <color name="colorItGadget">#607D8B</color>
     <color name="colorOther">#BDBDBD</color>
+
+    <!-- Promotion icon color -->
+    <color name="colorIconActive">#FFFFFF</color>
+    <color name="colorIconInactive">#80FFFFFF</color>
+
+    <!-- Promotion icon background color -->
+    <color name="colorIconBackgroundInactive">#60000000</color>
 </resources>

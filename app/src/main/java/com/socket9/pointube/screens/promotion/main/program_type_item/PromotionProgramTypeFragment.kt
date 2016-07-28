@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.manager.DiskProviderManager
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
 import com.socket9.pointube.screens.promotion.main.program_type_item.PromotionProgramTypeContract
 import com.socket9.pointube.screens.promotion.main.program_type_item.PromotionProgramTypePresenter
 import com.socket9.pointube.screens.promotion.viewgroups.PromotionItemViewGroup
 import kotlinx.android.synthetic.main.fragment_promotion_program_type.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -88,16 +90,19 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
     /* Override View Interface */
 
     override fun showAllProgram(list: MutableList<PublishedProgramItemRepo>) {
-        toast("${list.size}")
+        recyclerView.visibility = View.VISIBLE
+        empty.visibility = View.GONE
         mPromotionProgramTypeAdapter.updateList(list)
     }
 
     override fun showProgramDetail(id: Int) {
-
+        startActivity<PromotionDetailActivity>("id" to id)
     }
 
     override fun showProgramEmpty() {
-        toast("Empty")
+//        toast("Empty")
+        recyclerView.visibility = View.GONE
+        empty.visibility = View.VISIBLE
     }
 
     /** Method zone **/
@@ -107,7 +112,7 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
 
         mPromotionProgramTypeAdapter = PromotionProgramTypeAdapter(mutableListOf(), object : PromotionItemClickListener {
             override fun onItemClick(promotionId: Int) {
-                toast("$promotionId")
+                mPromotionProgramTypePresenter.clickPromotion(promotionId)
             }
         })
 

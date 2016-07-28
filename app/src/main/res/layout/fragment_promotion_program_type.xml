@@ -12,9 +12,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:background="@drawable/level_list_program_type"
+        android:freezesText="true"
         android:paddingBottom="8dp"
         android:paddingLeft="32dp"
-        android:freezesText="true"
         android:paddingRight="32dp"
         android:paddingTop="8dp"
         android:textColor="@android:color/white"
@@ -24,6 +24,11 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp" />
+
+    <include
+        android:id="@+id/empty"
+        android:visibility="gone"
+        layout="@layout/layout_promotion_empty" />
 
 </LinearLayout>

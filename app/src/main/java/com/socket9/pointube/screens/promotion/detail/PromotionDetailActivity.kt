@@ -6,8 +6,18 @@ import com.socket9.pointube.R
 
 class PromotionDetailActivity : AppCompatActivity() {
 
+    /* Variable */
+    private var mPromotionId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_promotion_detail)
+
+        initInstance()
+    }
+
+    private fun initInstance() {
+        mPromotionId = intent.getIntExtra("id", 0)
+
     }
 }
