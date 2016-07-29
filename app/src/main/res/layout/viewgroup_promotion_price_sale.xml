@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
-            android:id="@+id/promotionPriceOriginal"
+            android:id="@+id/promotionGrey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:isCircleGrey="true"
@@ -21,7 +21,7 @@
             app:currency="point"/>
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
-            android:id="@+id/promotionPriceSale"
+            android:id="@+id/promotionRed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"

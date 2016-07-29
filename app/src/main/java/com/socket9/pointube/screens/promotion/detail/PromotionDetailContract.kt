@@ -8,12 +8,14 @@ import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
  */
 interface PromotionDetailContract : BasePresenter {
     interface View {
-        fun showDetail(model: PublishedProgramItemRepo)
+        fun showDetail(model: PublishedProgramItemRepo, logoPath: String)
 
-
+        fun goBack()
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter{
+        fun getDetail(programId: Int)
 
+        fun back()
     }
 }

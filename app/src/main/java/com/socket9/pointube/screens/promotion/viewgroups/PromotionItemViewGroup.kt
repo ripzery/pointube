@@ -20,7 +20,9 @@ import java.util.*
 class PromotionItemViewGroup : FrameLayout, AnkoLogger {
 
     /** Variable zone **/
-    private val SHOW_DAY_LEFT_THRESHOLD = 10
+    companion object {
+        val SHOW_DAY_LEFT_THRESHOLD = 10
+    }
 
     lateinit private var viewContainer: View
     lateinit private var mPriceSaleViewGroup: PromotionPriceSaleViewGroup
@@ -117,7 +119,7 @@ class PromotionItemViewGroup : FrameLayout, AnkoLogger {
         /* Add logic to toggle showing day left */
     }
 
-    fun setLogo(logo: String){
+    fun setLogo(logo: String) {
         Glide.with(context).load(logo).into(civLogo)
     }
 

@@ -9,7 +9,7 @@ import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
  */
 interface PromotionContract {
     interface View {
-        fun showNavigationTabBar(tabModels: MutableList<NavigationTabBar.Model>)
+        fun showNavigationTabBar(iconList: MutableList<Int>)
 
         fun showLoading()
 

@@ -76,6 +76,13 @@ object DataManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun getPublishedProgramById(id: Int = 0): Observable<PublishedProgramItemRepo> {
+        return DiskProviderManager.getPublishedProgramById(id)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun getProviderById(id: Int = 0): Observable<BrandRepo> {
         return DiskProviderManager.getProviderById(id)
                 .subscribeOn(Schedulers.io())

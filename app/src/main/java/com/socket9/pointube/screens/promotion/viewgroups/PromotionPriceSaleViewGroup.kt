@@ -67,8 +67,8 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     private fun initInstances() {
         // findViewById here
-        mPromotionGrey = viewContainer.findViewById(R.id.promotionPriceOriginal) as PromotionPriceViewGroup
-        mPromotionRed = viewContainer.findViewById(R.id.promotionPriceSale) as PromotionPriceViewGroup
+        mPromotionGrey = viewContainer.findViewById(R.id.promotionGrey) as PromotionPriceViewGroup
+        mPromotionRed = viewContainer.findViewById(R.id.promotionRed) as PromotionPriceViewGroup
         mTvExtraPrice = viewContainer.findViewById(R.id.tvExtraPrice) as TextView
     }
 
@@ -85,7 +85,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
             mSaleCurrency = a.getString(R.styleable.PromotionPriceSaleViewGroup_saleCurrencyPromotion)
 
             setShowGrey(mIsSale)
-            showExtraPrice(mIsShowExtraPrice)
+            setShowExtraPrice(mIsShowExtraPrice)
 
         } catch(e: IllegalStateException) {
 
@@ -124,7 +124,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                 /* Toggle visibility */
                 setShowRed(true)
                 setShowGrey(false)
-                showExtraPrice(false)
+                setShowExtraPrice(false)
 
                 /* Set Value */
                 with(mModel!!) {
@@ -135,7 +135,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                 /* Toggle visibility */
                 setShowGrey(true)
                 setShowRed(true)
-                showExtraPrice(false)
+                setShowExtraPrice(false)
 
                 /* Set Value */
                 with(mModel!!) {
@@ -157,7 +157,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                 /* Toggle visibility */
                 setShowGrey(false)
                 setShowRed(true)
-                showExtraPrice(true)
+                setShowExtraPrice(true)
 
                 /* Set Value */
                 with(mModel!!) {
@@ -172,7 +172,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                 /* Toggle visibility */
                 setShowGrey(true)
                 setShowRed(true)
-                showExtraPrice(true)
+                setShowExtraPrice(true)
 
                 /* Set Value */
                 with(mModel!!) {
@@ -186,9 +186,6 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
             }
             STATE_SHOW_NOTHING -> {
                 /* Toggle visibility */
-//                setShowGrey(false)
-//                setShowRed(false)
-//                showExtraPrice(false)
                 viewContainer.visibility = View.GONE
             }
         }
@@ -200,7 +197,7 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
         view.layoutParams = layoutParams
     }
 
-    private fun showExtraPrice(isShowExtraPrice: Boolean) {
+    private fun setShowExtraPrice(isShowExtraPrice: Boolean) {
         this.mIsShowExtraPrice = isShowExtraPrice
         mTvExtraPrice.visibility = if (isShowExtraPrice) View.VISIBLE else View.GONE
     }

@@ -30,35 +30,28 @@ class PromotionPresenter(var view: PromotionContract.View?) : PromotionContract.
     }
 
     override fun prepareTabBar() {
-        val tabModels: MutableList<NavigationTabBar.Model> = mutableListOf()
+        val iconList: MutableList<Int> = mutableListOf()
         var idDrawable: Int = 0
-        var idColor: Int = 0
 
         for (i in INDEX_HOTDEAL..INDEX_OTHER) {
             when(i){
-                INDEX_HOTDEAL -> { idColor = R.color.colorHotDeal; idDrawable = R.drawable.ic_person_black_24dp }
-                INDEX_DINING -> { idColor = R.color.colorDining; idDrawable = R.drawable.ic_shopping_basket_black_24dp  }
-                INDEX_SHOPPING -> { idColor = R.color.colorShopping; idDrawable = R.drawable.world_ball }
-                INDEX_TRAVEL -> { idColor = R.color.colorTravel; idDrawable = R.drawable.world_ball }
-                INDEX_ENTERTAINMENT -> {idColor = R.color.colorEntertain; idDrawable = R.drawable.world_ball }
-                INDEX_HEALTH -> { idColor = R.color.colorHealth; idDrawable = R.drawable.world_ball }
-                INDEX_BEAUTY -> { idColor = R.color.colorBeauty; idDrawable = R.drawable.world_ball }
-                INDEX_EDUCATION -> { idColor = R.color.colorEducation; idDrawable = R.drawable.world_ball }
-                INDEX_READING -> { idColor = R.color.colorReading; idDrawable = R.drawable.world_ball }
-                INDEX_HOME_LIVING -> { idColor = R.color.colorHomeLiving; idDrawable = R.drawable.world_ball }
-                INDEX_IT_GADGET -> { idColor = R.color.colorItGadget; idDrawable = R.drawable.world_ball }
-                INDEX_OTHER -> { idColor = R.color.colorOther; idDrawable = R.drawable.world_ball }
+                INDEX_HOTDEAL -> {  idDrawable = R.drawable.ic_hot_deal }
+                INDEX_DINING -> {  idDrawable = R.drawable.ic_hot_deal  }
+                INDEX_SHOPPING -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_TRAVEL -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_ENTERTAINMENT -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_HEALTH -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_BEAUTY -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_EDUCATION -> {  idDrawable = R.drawable.ic_hot_deal }
+                INDEX_READING -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_HOME_LIVING -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_IT_GADGET -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_OTHER -> { idDrawable = R.drawable.ic_hot_deal }
             }
-
-            val model = NavigationTabBar.Model.Builder(
-                    ContextCompat.getDrawable(context, idDrawable),
-                    ContextCompat.getColor(context, idColor)
-            ).build()
-
-            tabModels.add(model)
+            iconList.add(idDrawable)
         }
 
-        view?.showNavigationTabBar(tabModels)
+        view?.showNavigationTabBar(iconList)
     }
 
     override fun onCreate() {

@@ -18,4 +18,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="BaseTextTerm.Body">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
 </resources>
