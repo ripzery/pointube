@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.promotion.main.program_type_item
 
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.screens.promotion.main.PromotionPagerAdapter
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.warn
@@ -24,6 +25,11 @@ class PromotionProgramTypePresenter(var view: PromotionProgramTypeContract.View?
 
     override fun clickPromotion(id: Int) {
         view?.showProgramDetail(id)
+    }
+
+    override fun setBackgroundColor(programType: Int) {
+        val index = PromotionPagerAdapter.PAIR_POSITION_TO_TYPE.find { programType == it.second }!!.first
+        view?.showBackgroundColor(PromotionPagerAdapter.TAB_ITEM_COLORS[index])
     }
 
     override fun onCreate() {

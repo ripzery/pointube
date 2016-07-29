@@ -1,7 +1,9 @@
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_promotion_program_type.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by ripzery on 7/20/16.
@@ -105,6 +106,11 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
         empty.visibility = View.VISIBLE
     }
 
+    override fun showBackgroundColor(color: Int) {
+        parentLayout.setBackgroundColor(ContextCompat.getColor(context, color))
+        parentLayout.background.alpha = 50
+    }
+
     /** Method zone **/
 
     private fun initInstance() {
@@ -117,19 +123,20 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
         })
 
 //        recyclerView.layoutManager = LinearLayoutManager(context)
-        val gridLayoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        val gridLayoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
         recyclerView.layoutManager = gridLayoutManager
 
-        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (position == 0) 2 else 1
-            }
-        }
+//        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+//            override fun getSpanSize(position: Int): Int {
+//                return if (position == 0) 2 else 1
+//            }
+//        }
 
         recyclerView.adapter = mPromotionProgramTypeAdapter
         tvTypeTitle.background.level = mPosition
         tvTypeTitle.text = mTitle
 
+        mPromotionProgramTypePresenter.setBackgroundColor(mPosition)
         mPromotionProgramTypePresenter.loadAllProgramByType(mPosition)
     }
 
@@ -142,6 +149,8 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
         }
 
         override fun onBindViewHolder(holder: PromotionProgramTypeViewHolder?, position: Int) {
+            val layoutParams = holder!!.itemView.layoutParams as StaggeredGridLayoutManager.LayoutParams
+            layoutParams.isFullSpan = position == 0
             holder!!.setModel(list[position])
         }
 

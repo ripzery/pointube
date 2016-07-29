@@ -4,6 +4,8 @@
     android:id="@+id/promotionItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
     app:currencyPromotion="baht"
     android:layout_margin="4dp"
     app:isShowDayLeft="true"

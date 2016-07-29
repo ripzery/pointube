@@ -12,11 +12,15 @@ interface PromotionProgramTypeContract {
 
         fun showProgramDetail(id: Int)
 
+        fun showBackgroundColor(color: Int)
+
         fun showProgramEmpty()
     }
 
     interface Presenter : BasePresenter {
         fun loadAllProgramByType(programType: Int = 0)
+
+        fun setBackgroundColor(programType: Int)
 
         fun clickPromotion(id: Int)
     }

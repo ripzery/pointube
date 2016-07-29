@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:paddingBottom="8dp"
+                android:layout_marginStart="44dp"
                 app:saleCurrencyPromotion="baht"
                 app:isShowExtraPrice="false"
                 app:isSale="false"/>
@@ -85,6 +86,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
                 android:layout_marginTop="8dp"
+                android:layout_gravity="right"
+                android:layout_marginEnd="8dp"
                 android:text="3 days left"
                 tools:text="5 days left"/>
 

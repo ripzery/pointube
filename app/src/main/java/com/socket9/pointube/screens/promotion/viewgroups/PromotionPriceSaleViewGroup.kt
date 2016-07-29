@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.toDp
 import com.socket9.pointube.extensions.toPx
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import org.jetbrains.anko.AnkoLogger
@@ -115,6 +117,8 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
 
     private fun setState(state: Int) {
         viewContainer.visibility = View.VISIBLE
+        val layoutParam = viewContainer.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParam.marginStart = 44.toPx().toInt()
         when (state) {
             STATE_SHOW_RED -> {
                 /* Toggle visibility */
@@ -160,6 +164,9 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                     setExtraPrice(" + ${BahtValue.toString()}")
                     setRedPrice(Point.toString())
                 }
+
+                /* set margin */
+                layoutParam.marginStart = 0
             }
             STATE_SHOW_GREY_RED_WITH_BAHT -> {
                 /* Toggle visibility */
@@ -173,6 +180,9 @@ class PromotionPriceSaleViewGroup : FrameLayout, AnkoLogger {
                     setRedPrice(SpecialPoint.toString())
                     setGreyPrice(Point.toString())
                 }
+
+                /* set margin */
+                layoutParam.marginStart = 0
             }
             STATE_SHOW_NOTHING -> {
                 /* Toggle visibility */
