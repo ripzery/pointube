@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.promotion.main.program_type_item
 
+import android.view.View
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.promotion.main.PromotionPagerAdapter
 import org.jetbrains.anko.AnkoLogger

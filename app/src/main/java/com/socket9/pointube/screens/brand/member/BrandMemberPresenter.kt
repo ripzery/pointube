@@ -15,7 +15,7 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
     override fun loadAllBrands(memberId: String, token: String) {
         view?.showLoading()
         info { "$memberId : $token" }
-        Observable.concat(DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(memberId, token)), Observable.just(mAllBrandMember))
+        Observable.concat(Observable.just(mAllBrandMember), DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(memberId, token)))
                 .first { it != null }
                 .subscribe({
                     view?.hideLoading()

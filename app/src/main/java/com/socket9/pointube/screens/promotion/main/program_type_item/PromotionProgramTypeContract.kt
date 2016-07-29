@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.promotion.main.program_type_item
 
+import android.view.View
 import com.socket9.pointube.base.BasePresenter
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 

@@ -113,7 +113,17 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     private fun initInstance() {
         selectMenu(FRAGMENT_HOME)
-        ApiTest.getAllMemberBrand()
+//        ApiTest.getAllMemberBrand()
+        val selectBrandIntent = Intent(this, SelectBrandActivity::class.java)
+        RxActivityResult.on(this).startIntent(selectBrandIntent)
+                .subscribe { brandActivityResult ->
+                    if (brandActivityResult.resultCode() == Activity.RESULT_OK) {
+                        brandActivityResult.targetUI().initInstance()
+                        brandActivityResult.targetUI().selectMenu(FRAGMENT_POINT)
+                    } else {
+                        info("Cancel select brand")
+                    }
+                }
     }
 
     private fun selectMenu(page: Int) {

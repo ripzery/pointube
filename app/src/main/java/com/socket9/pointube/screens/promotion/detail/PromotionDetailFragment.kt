@@ -48,6 +48,7 @@ class PromotionDetailFragment : Fragment(), AnkoLogger, PromotionDetailContract.
             info { MasterPath }
             Glide.with(this@PromotionDetailFragment).load(MasterPath).into(ivCover)
             Glide.with(this@PromotionDetailFragment).load(logoPath).into(civLogo)
+
             tvTitle.text = Title
             promotionPriceSale.setModel(this)
 
@@ -55,7 +56,7 @@ class PromotionDetailFragment : Fragment(), AnkoLogger, PromotionDetailContract.
             collapsing_toolbar.title = Title
 
 
-                    /* Calculate day left */
+            /* Calculate day left */
             if (PublishPeriod != null) {
                 val dayBetween = Date().farFrom(PublishPeriod!!.EndDate)
                 val isShow = dayBetween < PromotionItemViewGroup.SHOW_DAY_LEFT_THRESHOLD
@@ -82,7 +83,8 @@ class PromotionDetailFragment : Fragment(), AnkoLogger, PromotionDetailContract.
     }
 
     override fun goBack() {
-        activity.finish()
+        mActivity.finish()
+//        activity.overridePendingTransition(R.anim.translate_enter_from_left, R.anim.translate_exit_to_right);
     }
 
     /** Activity method zone  **/

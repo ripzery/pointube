@@ -51,6 +51,9 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
         if (savedInstanceState == null) {
             /* if newly created */
             param1 = arguments.getString(ARG_1)
+            retainInstance = true
+            mBrandMemberPresenter = BrandMemberPresenter(this)
+            mBrandMemberPresenter.onCreate()
         }
     }
 
@@ -69,14 +72,17 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBrandMemberPresenter = BrandMemberPresenter(this)
-        mBrandMemberPresenter.onCreate()
+
         initInstance()
         setHasOptionsMenu(true)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         mBrandMemberPresenter.onDestroy()
     }
 
@@ -90,6 +96,12 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
     }
 
     override fun showQualifiedBrand(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+        qualifiedList.add(qualifiedList[0])
+        qualifiedList.add(qualifiedList[0])
+        qualifiedList.add(qualifiedList[0])
+        qualifiedList.add(qualifiedList[0])
+        qualifiedList.add(qualifiedList[0])
+        qualifiedList.add(qualifiedList[0])
         mBrandMemberAdapter.updateList(qualifiedList)
     }
 
@@ -136,7 +148,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
     /* Inner class */
     inner class BrandMemberAdapter(var list: MutableList<BrandModel.Response.GetMemberBrandResult>) : RecyclerView.Adapter<BrandMemberAdapter.BrandMemberViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BrandMemberViewHolder {
-            val view: View = LayoutInflater.from(parent!!.context).inflate(R.layout.viewgroup_member_brand, parent, false)
+            val view: View = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_select_brand, parent, false)
             return BrandMemberViewHolder(view)
         }
 

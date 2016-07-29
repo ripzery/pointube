@@ -36,7 +36,6 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
             promotionFragment.arguments = bundle
             return promotionFragment
         }
-
     }
 
     /** Activity method zone  **/

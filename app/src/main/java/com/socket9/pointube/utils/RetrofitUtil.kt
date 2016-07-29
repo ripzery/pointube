@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitUtils {
     private var retrofit: Retrofit? = null
 //        private val BASE_URL = "http://192.168.100.252:8099"
-    private val BASE_URL = "http://service.pointube.com/"
+    private val BASE_URL = "http://test.pointube.com/"
     private val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
     fun getInstance(): PointubeAPI {
@@ -42,7 +42,8 @@ object RetrofitUtils {
                         it.proceed(onGoing.build())
                     }
                     .addInterceptor(interceptor)
-                    .readTimeout(2, TimeUnit.MINUTES)
+                    .readTimeout(1, TimeUnit.MINUTES)
+                    .writeTimeout(1, TimeUnit.MINUTES)
                     .build()
 
 
@@ -62,7 +63,7 @@ interface PointubeAPI {
     @GET("api/Provider/GetProviderList")
     fun getAllProvider(): Observable<HomeModel.AllBrands>
 
-    @POST("api/Member/Login")
+    @POST("Account/Login")
     fun login(@Body loginModel: LoginModel.Request.Login): Observable<LoginModel.Response.Login>
 
     @POST("api/Member/Create")

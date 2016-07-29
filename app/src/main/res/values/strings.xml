@@ -130,7 +130,7 @@
     <string name="fragment_brand_member_select_all_button">Select all</string>
     <string name="fragment_brand_member_select_hint">*For any question on above member data, please contact your reward program provider\'s callcenter for details.</string>
 
-    <string name="fragment_brand_member_button_start">Let\'s start</string>
+    <string name="fragment_brand_member_button_start">Next</string>
 
 
     <!-- fragment brand non member -->

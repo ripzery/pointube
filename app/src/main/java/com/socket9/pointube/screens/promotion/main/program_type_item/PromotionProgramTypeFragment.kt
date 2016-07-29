@@ -1,3 +1,4 @@
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -17,7 +18,6 @@ import com.socket9.pointube.screens.promotion.viewgroups.PromotionItemViewGroup
 import kotlinx.android.synthetic.main.fragment_promotion_program_type.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
-import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by ripzery on 7/20/16.
@@ -97,7 +97,10 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
     }
 
     override fun showProgramDetail(id: Int) {
-        startActivity<PromotionDetailActivity>("id" to id)
+        val intent = Intent(context, PromotionDetailActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
+//        activity.overridePendingTransition(R.anim.translate_enter_from_right, R.anim.translate_exit_to_left);
     }
 
     override fun showProgramEmpty() {

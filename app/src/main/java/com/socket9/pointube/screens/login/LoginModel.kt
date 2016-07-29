@@ -15,23 +15,23 @@ object LoginModel {
     }
 
     object Response{
-        data class Login(@SerializedName("Success") val success: Boolean,@SerializedName("Result") val result: LoginResult)
+        data class Login(@SerializedName("success") val success: Boolean,@SerializedName("result") val result: LoginResult)
 
         data class LoginResult(
-                @SerializedName("Message") val message: String?,
-                @SerializedName("Id") val id: Int = 0,
-                @SerializedName("FirstName") val firstName: String?,
-                @SerializedName("LastName") val lastName: String?,
-                @SerializedName("FirstNameEN") val firstNameEN: String?,
-                @SerializedName("LastNameEN") val lastNameEN: String?,
-                @SerializedName("CitizenID") val citizenID: String?,
-                @SerializedName("Passport") val passport: String?,
-                @SerializedName("Mobile") val mobile: String?,
-                @SerializedName("Email") val email: String?,
-                @SerializedName("Gender") val gender: String?,
-                @SerializedName("Address") val address: String?,
-                @SerializedName("Birthday") val birthday: Date?,
-                @SerializedName("Token") val token: String?
+                @SerializedName("message") val message: String?,
+                @SerializedName("id") val id: Int = 0,
+                @SerializedName("firstName") val firstName: String?,
+                @SerializedName("lastName") val lastName: String?,
+                @SerializedName("firstNameEN") val firstNameEN: String?,
+                @SerializedName("lastNameEN") val lastNameEN: String?,
+                @SerializedName("citizenID") val citizenID: String?,
+                @SerializedName("passport") val passport: String?,
+                @SerializedName("mobile") val mobile: String?,
+                @SerializedName("email") val email: String?,
+                @SerializedName("gender") val gender: String?,
+                @SerializedName("address") val address: String?,
+                @SerializedName("birthday") val birthday: Date?,
+                @SerializedName("token") val token: String?
         ){
             fun toJson(): String{
                 return Gson().toJson(this)

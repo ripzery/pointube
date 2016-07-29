@@ -25,7 +25,10 @@ class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNon
 
     private fun initInstance() {
         setupToolbar("Registered Brands", isShowBackButton = false)
-        replaceFragment(fragment = BrandMemberFragment.newInstance(""))
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.contentContainer, BrandMemberFragment.newInstance(""))
+                .commit()
     }
 
     override fun onBackPressed() {
@@ -56,11 +59,11 @@ class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNon
     override fun goNextFromBrandMember() {
         setupToolbar("Recommended Brands")
         mCurrentFragment = 2
-        replaceFragment(fragment = BrandNonMemberFragment.newInstance(""))
         supportFragmentManager
                 .beginTransaction()
                 .setCustomAnimations(R.anim.translate_enter_from_right, R.anim.translate_exit_to_left, R.anim.translate_enter_from_left, R.anim.translate_exit_to_right)
                 .replace(R.id.contentContainer, BrandNonMemberFragment.newInstance(""))
+                .addToBackStack("brand_member")
                 .commit()
     }
 
