@@ -36,17 +36,18 @@ class PromotionPresenter(var view: PromotionContract.View?) : PromotionContract.
         for (i in INDEX_HOTDEAL..INDEX_OTHER) {
             when(i){
                 INDEX_HOTDEAL -> {  idDrawable = R.drawable.ic_hot_deal }
-                INDEX_DINING -> {  idDrawable = R.drawable.ic_hot_deal  }
-                INDEX_SHOPPING -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_TRAVEL -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_ENTERTAINMENT -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_HEALTH -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_BEAUTY -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_EDUCATION -> {  idDrawable = R.drawable.ic_hot_deal }
-                INDEX_READING -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_HOME_LIVING -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_IT_GADGET -> { idDrawable = R.drawable.ic_hot_deal }
-                INDEX_OTHER -> { idDrawable = R.drawable.ic_hot_deal }
+                INDEX_DINING -> {  idDrawable = R.drawable.ic_dining  }
+                INDEX_SHOPPING -> { idDrawable = R.drawable.ic_shopping }
+                INDEX_TRAVEL -> { idDrawable = R.drawable.ic_travel }
+                INDEX_ENTERTAINMENT -> { idDrawable = R.drawable.ic_entertainment }
+                INDEX_HEALTH -> { idDrawable = R.drawable.ic_health }
+                INDEX_BEAUTY -> { idDrawable = R.drawable.ic_beauty }
+                INDEX_EDUCATION -> {  idDrawable = R.drawable.ic_education }
+                INDEX_READING -> { idDrawable = R.drawable.ic_reading }
+                INDEX_HOME_LIVING -> { idDrawable = R.drawable.ic_home_living }
+                INDEX_IT_GADGET -> { idDrawable = R.drawable.ic_it_gadget }
+                INDEX_OTHER -> { idDrawable = R.drawable.ic_other
+                }
             }
             iconList.add(idDrawable)
         }
