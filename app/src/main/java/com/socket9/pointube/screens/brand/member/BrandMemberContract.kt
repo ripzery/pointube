@@ -22,7 +22,7 @@ interface BrandMemberContract {
 
         fun showLoadingError()
 
-        fun goNext()
+        fun goNext(selectedBrand: MutableList<Int>)
     }
 
     interface Presenter : BasePresenter {

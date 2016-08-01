@@ -90,4 +90,9 @@ object DataManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    /* For save selected brand */
+    fun saveSelectedBrand(brandModel : BrandModel.Request.SaveBrand): Observable<BrandModel.Response.SaveBrand> {
+        return NetworkProviderManager.saveSelectedBrand(brandModel)
+    }
+
 }

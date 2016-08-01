@@ -26,3 +26,6 @@ object BrandModel {
     }
 
 }
+
+fun BrandModel.Response.GetMemberBrand.getIdBySelected(): MutableList<Int> = this.Results.filter { it.isChecked }.map { it.Id }.toMutableList()
+

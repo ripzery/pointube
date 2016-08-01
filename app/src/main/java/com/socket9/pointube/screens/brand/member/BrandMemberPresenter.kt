@@ -2,6 +2,7 @@ package com.socket9.pointube.screens.brand.member
 
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.brand.BrandModel
+import com.socket9.pointube.screens.brand.getIdBySelected
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import rx.Observable
@@ -42,7 +43,8 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
     }
 
     override fun next() {
-        view?.goNext()
+        val selectedBrand: MutableList<Int> = mAllBrandMember!!.getIdBySelected()
+        view?.goNext(selectedBrand)
     }
 
     override fun onCreate() {

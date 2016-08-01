@@ -50,7 +50,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         mRegisterListener = activity as RegisterFormListener
         if (savedInstanceState == null) {
             /* if newly created */
-//            param1 = arguments.getString(ARG_1)
+//            selectedBran = arguments.getString(ARG_1)
         }
     }
 

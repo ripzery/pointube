@@ -121,8 +121,8 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
         toast("Loading error")
     }
 
-    override fun goNext() {
-        mActivityListener.goNextFromBrandMember()
+    override fun goNext(selectedBrand: MutableList<Int>) {
+        mActivityListener.goNextFromBrandMember(selectedBrand)
     }
 
     /** Method zone **/
@@ -189,6 +189,6 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
     interface BrandMemberListener {
         fun goBackFromBrandMember()
 
-        fun goNextFromBrandMember()
+        fun goNextFromBrandMember(selectedBrand: MutableList<Int>)
     }
 }

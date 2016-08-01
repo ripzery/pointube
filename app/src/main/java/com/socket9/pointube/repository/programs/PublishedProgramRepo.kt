@@ -2,6 +2,7 @@ package com.socket9.pointube.repository.programs
 
 import io.realm.RealmList
 import io.realm.RealmObject
+import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
@@ -29,7 +30,8 @@ open class PublishedProgramItemRepo(
         open var LogoPath: String = "",
         open var Channels: RealmList<PublishedChannel> = RealmList(),
         open var ValidPeriod: PublishedPeriod? = null,
-        open var PublishPeriod: PublishedPeriod? = null
+        open var PublishPeriod: PublishedPeriod? = null,
+        @Ignore open var isChecked: Boolean = false
 ) : RealmObject() {
 
 }
