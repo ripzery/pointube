@@ -16,17 +16,20 @@ import com.socket9.pointube.screens.brand.BrandViewGroup
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_brand_member.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class BrandMemberFragment : Fragment(), BrandMemberContract.View {
+class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     /** Variable zone **/
     private lateinit var mActivityListener: BrandMemberListener
     private lateinit var mBrandMemberPresenter: BrandMemberContract.Presenter
     private lateinit var mBrandMemberAdapter: BrandMemberAdapter
     private val mLoginModel: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
+    private var mIsSelectAllSelected: Boolean = false
     private var param1:String = ""
 
     /** Static method zone **/
@@ -96,12 +99,6 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
     }
 
     override fun showQualifiedBrand(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
-        qualifiedList.add(qualifiedList[0])
-        qualifiedList.add(qualifiedList[0])
-        qualifiedList.add(qualifiedList[0])
-        qualifiedList.add(qualifiedList[0])
-        qualifiedList.add(qualifiedList[0])
-        qualifiedList.add(qualifiedList[0])
         mBrandMemberAdapter.updateList(qualifiedList)
     }
 
@@ -114,7 +111,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
     }
 
     override fun showEmptyBrands() {
-        toast("Empty qualified brand")
+//        toast("Empty qualified brand")
     }
 
     override fun showLoadingError() {
@@ -134,8 +131,12 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
 
         btnNext.setOnClickListener { mBrandMemberPresenter.next() }
 
+        /* Initial btn select all */
+        btnSelectAll.isSelected = mIsSelectAllSelected
+        btnSelectAll.text = if(mIsSelectAllSelected) "Unselect all" else "Select all"
         btnSelectAll.setOnClickListener {
             it.isSelected = !it.isSelected
+            mIsSelectAllSelected = it.isSelected
             btnSelectAll.text = if(it.isSelected) "Unselect all" else "Select all"
             mBrandMemberPresenter.selectAllBrand(it.isSelected)
         }
@@ -176,6 +177,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View {
                 mBrandMember.getCheckedObservable()
                         .subscribe {
                             list[adapterPosition].isChecked = it
+                            info { it }
                         }
             }
 
