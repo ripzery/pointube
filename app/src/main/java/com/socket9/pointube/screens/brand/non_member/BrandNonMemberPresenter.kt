@@ -40,6 +40,7 @@ class BrandNonMemberPresenter(var view: BrandNonMemberContract.View?) : BrandNon
                     view?.hideLoading()
                     if (it.IsSuccess) {
                         view?.showSaveSuccess()
+                        view?.goNext()
                     } else {
                         view?.showSaveFailed()
                     }

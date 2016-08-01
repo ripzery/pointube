@@ -10,7 +10,7 @@ import com.socket9.pointube.screens.brand.member.BrandMemberFragment
 import com.socket9.pointube.screens.brand.non_member.BrandNonMemberFragment
 
 class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNonMemberListener, BrandMemberFragment.BrandMemberListener {
-    private var mCurrentFragment = 0
+    private var mCurrentFragment = FRAGMENT_BRAND_MEMBER
 
     companion object {
         val FRAGMENT_BRAND_MEMBER = 1
