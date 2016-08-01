@@ -135,6 +135,14 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
 
         btnStart.setOnClickListener { mBrandNonMemberPresenter.save(mLoginModel.id.toString(), mLoginModel.token!!, mBrandNonMemberAdapter.getBrandList()) }
 
+        btnSelectAll.setOnClickListener {
+            it.isSelected = !it.isSelected
+            btnSelectAll.text = if (it.isSelected) "Unselect all" else "Select all"
+            mBrandNonMemberPresenter.selectAllBrand(it.isSelected)
+        }
+
+        tvUsername.text = "${mLoginModel.firstNameEN} ${mLoginModel.lastNameEN}"
+
         mBrandNonMemberPresenter.loadAllBrands(mSelectedBrands)
     }
 
