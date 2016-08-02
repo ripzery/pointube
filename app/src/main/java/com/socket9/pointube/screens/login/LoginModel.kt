@@ -21,6 +21,7 @@ object LoginModel {
                 @SerializedName("isSuccess") val isSuccess: Boolean = false,
                 @SerializedName("message") val message: String?,
                 @SerializedName("id") val id: Int = 0,
+                @SerializedName("code") val code: String?,
                 @SerializedName("firstName") val firstName: String?,
                 @SerializedName("lastName") val lastName: String?,
                 @SerializedName("firstNameEN") val firstNameEN: String?,

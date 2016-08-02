@@ -4,6 +4,7 @@ import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
+import com.socket9.pointube.screens.setting.SettingModel
 import com.socket9.pointube.utils.DataExtendingUtil
 import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.RetrofitUtils
@@ -49,6 +50,13 @@ object NetworkProviderManager : AnkoLogger {
 
     fun register(model: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register> {
         return RetrofitUtils.getInstance().register(model)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun updateProfile(model: SettingModel.Request.UpdateProfile): Observable<SettingModel.Response.UpdateProfile> {
+        return RetrofitUtils.getInstance().updateProfile(model)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

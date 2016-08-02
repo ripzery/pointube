@@ -6,6 +6,7 @@ import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
+import com.socket9.pointube.screens.setting.SettingModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -71,6 +72,9 @@ interface PointubeAPI {
 
     @POST("api/Member/Create")
     fun register(@Body registerModel: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register>
+
+    @POST("api/Member/UpdateMember")
+    fun updateProfile(@Body updateModel: SettingModel.Request.UpdateProfile): Observable<SettingModel.Response.UpdateProfile>
 
     @POST("api/Member/SaveMobileNo")
     fun saveMobileNo(@Body mobileModel: RegisterModel.Request.SaveMobileNo): Observable<RegisterModel.Response.SaveMobileNo>

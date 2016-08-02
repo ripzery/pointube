@@ -87,7 +87,7 @@ class ToggleViewGroup : FrameLayout {
         currentEnable = 2
         layoutLeft.isSelected = false
         layoutRight.isSelected = true
-        tvLeft.setTextColor(tvRight.currentTextColor)
+        tvLeft.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
         tvRight.setTextColor(ContextCompat.getColor(context, android.R.color.white))
         layoutLeft.isEnabled = true
         layoutRight.isEnabled = false
@@ -97,7 +97,7 @@ class ToggleViewGroup : FrameLayout {
         currentEnable = 1
         layoutLeft.isSelected = true
         layoutRight.isSelected = false
-        tvRight.setTextColor(tvLeft.currentTextColor)
+        tvRight.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
         tvLeft.setTextColor(ContextCompat.getColor(context, android.R.color.white))
         layoutLeft.isEnabled = false
         layoutRight.isEnabled = true

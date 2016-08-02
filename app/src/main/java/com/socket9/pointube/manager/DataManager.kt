@@ -6,6 +6,7 @@ import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
+import com.socket9.pointube.screens.setting.SettingModel
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import rx.Observable
@@ -63,6 +64,11 @@ object DataManager : AnkoLogger {
     /* For create member */
     fun register(model: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register> {
         return NetworkProviderManager.register(model)
+    }
+
+    /* Fore update profile */
+    fun updateProfile(model: SettingModel.Request.UpdateProfile) : Observable<SettingModel.Response.UpdateProfile>{
+        return NetworkProviderManager.updateProfile(model)
     }
 
     fun saveMobileNo(id: Int, phoneNumber: String): Observable<RegisterModel.Response.SaveMobileNo> {

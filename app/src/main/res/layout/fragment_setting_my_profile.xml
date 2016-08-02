@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metEmail"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metFirstName"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="First name (en)"
+            android:inputType="textPersonName" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metLastName"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Last name (en)"
+            android:inputType="textPersonName" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metFirstNameTH"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="First name (th)"
+            android:inputType="textPersonName" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metLastNameTH"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Last name (th)"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Date of Birth" />
+
+        <TextView
+            android:id="@+id/tvDob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:freezesText="true"
+            android:hint="Select date of birth" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metCitizenID"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Citizen ID"
+            android:inputType="number"
+            android:maxLength="13"
+            app:met_iconLeft="@null"
+            app:met_maxCharacters="13" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/metPassport"
+            style="@style/BaseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Passport"
+            android:inputType="text"
+            android:visibility="gone"
+            app:met_minCharacters="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Gender" />
+
+        <com.socket9.pointube.screens.register.ToggleViewGroup
+            android:id="@+id/toggleGender"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:leftText="Male"
+            app:rightText="Female" />
+
+        <Button
+            android:id="@+id/btnChangePw"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:soundEffectsEnabled="true"
+            android:text="Change Password"
+            android:theme="@style/BaseButton.Amber" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:soundEffectsEnabled="true"
+            android:text="Save"
+            android:theme="@style/BaseButton.Teal" />
+
+    </LinearLayout>
+
+</ScrollView>

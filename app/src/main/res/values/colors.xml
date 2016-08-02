@@ -10,6 +10,10 @@
     <color name="colorRed">#F44336</color>
     <color name="colorGrey">#9E9E9E</color>
     <color name="colorIndigo">#3F51B5</color>
+    <color name="colorYellow">#ffeb3b</color>
+
+    <!-- material color 700's shade -->
+    <color name="colorAmber">#ffa000</color>
 
     <!--material color 300's shade -->
     <color name="colorIndigoLighter">#7986CB</color>
