@@ -18,6 +18,7 @@ object LoginModel {
         data class Login(@SerializedName("success") val success: Boolean,@SerializedName("result") val result: LoginResult)
 
         data class LoginResult(
+                @SerializedName("isSuccess") val isSuccess: Boolean = false,
                 @SerializedName("message") val message: String?,
                 @SerializedName("id") val id: Int = 0,
                 @SerializedName("firstName") val firstName: String?,

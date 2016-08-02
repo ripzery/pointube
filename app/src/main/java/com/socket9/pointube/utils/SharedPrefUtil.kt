@@ -29,4 +29,8 @@ object SharedPrefUtil : AnkoLogger {
     fun loadLoginResult(): LoginModel.Response.LoginResult? {
         return Gson().fromJson(sharePref?.getString(KEY_LOGIN_RESULT, null), LoginModel.Response.LoginResult::class.java)
     }
+
+    fun clearLogin(){
+        sharePref?.edit()?.remove(KEY_LOGIN_RESULT)?.apply()
+    }
 }

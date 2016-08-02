@@ -50,6 +50,16 @@ object DataManager : AnkoLogger {
                 }
     }
 
+    /* For logout*/
+    fun logout(memberId: Int): Observable<LoginModel.Response.Login> {
+        return NetworkProviderManager.logout(memberId)
+                .doOnNext {
+                    if (it.result.isSuccess) {
+                        SharedPrefUtil.clearLogin()
+                    }
+                }
+    }
+
     /* For create member */
     fun register(model: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register> {
         return NetworkProviderManager.register(model)
@@ -91,7 +101,7 @@ object DataManager : AnkoLogger {
     }
 
     /* For save selected brand */
-    fun saveSelectedBrand(brandModel : BrandModel.Request.SaveBrand): Observable<BrandModel.Response.SaveBrand> {
+    fun saveSelectedBrand(brandModel: BrandModel.Request.SaveBrand): Observable<BrandModel.Response.SaveBrand> {
         return NetworkProviderManager.saveSelectedBrand(brandModel)
     }
 

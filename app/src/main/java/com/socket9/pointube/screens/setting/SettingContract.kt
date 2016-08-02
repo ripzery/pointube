@@ -15,7 +15,7 @@ interface SettingContract {
 
         fun hideLoading()
 
-        fun goToHomeAndShowLogin()
+        fun showLogout()
     }
 
     interface Presenter : BasePresenter {
@@ -23,6 +23,7 @@ interface SettingContract {
 
         fun clickMyProfile()
 
-        fun verifyLogin()
+        fun clickLogout()
+
     }
 }

@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.hideLoadingDialog
+import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.screens.setting.mybrand.MyBrandActivity
 import com.socket9.pointube.screens.setting.myprofile.MyProfileActivity
+import kotlinx.android.synthetic.main.fragment_setting.*
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -16,6 +19,8 @@ import org.jetbrains.anko.support.v4.startActivity
 class SettingFragment : Fragment(), SettingContract.View {
     /** Variable zone **/
     lateinit var param1: String
+    lateinit var mActivity: SettingListener
+    lateinit var mSettingPresenter: SettingContract.Presenter
 
 
     /** Static method zone **/
@@ -32,27 +37,6 @@ class SettingFragment : Fragment(), SettingContract.View {
 
     }
 
-    /* Override view inter face */
-    override fun showMyBrand() {
-        startActivity<MyBrandActivity>()
-    }
-
-    override fun showMyProfile() {
-        startActivity<MyProfileActivity>()
-    }
-
-    override fun showLoading() {
-
-    }
-
-    override fun hideLoading() {
-
-    }
-
-    override fun goToHomeAndShowLogin() {
-
-    }
-
     /** Activity method zone  **/
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +44,7 @@ class SettingFragment : Fragment(), SettingContract.View {
         if (savedInstanceState == null) {
             /* if newly created */
             param1 = arguments.getString(ARG_1)
+            mActivity = activity as SettingListener
         }
     }
 
@@ -71,12 +56,48 @@ class SettingFragment : Fragment(), SettingContract.View {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mSettingPresenter = SettingPresenter(this)
+        mSettingPresenter.onCreate()
         initInstance()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mSettingPresenter.onDestroy()
+    }
+
+    /* Override View Interface */
+    override fun showMyBrand() {
+        startActivity<MyBrandActivity>()
+    }
+
+    override fun showMyProfile() {
+        startActivity<MyProfileActivity>()
+    }
+
+    override fun showLoading() {
+        showLoadingDialog("Please wait", "Logging out...")
+    }
+
+    override fun hideLoading() {
+        hideLoadingDialog()
+    }
+
+    override fun showLogout() {
+        mActivity.onLogout()
     }
 
     /** Method zone **/
 
     private fun initInstance() {
+        btnLogout.setOnClickListener { mSettingPresenter.clickLogout() }
 
+        layoutMyBrand.setOnClickListener { mSettingPresenter.clickMyBrand() }
+
+        layoutMyProfile.setOnClickListener { mSettingPresenter.clickMyProfile() }
+    }
+
+    interface SettingListener {
+        fun onLogout()
     }
 }

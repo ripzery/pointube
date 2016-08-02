@@ -25,7 +25,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import rx_activity_result.RxActivityResult
 
-class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener {
+class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener {
 
     companion object {
         val FRAGMENT_HOME = 0
@@ -150,6 +150,10 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         })
     }
 
+    override fun onLogout() {
+        selectMenu(FRAGMENT_HOME)
+    }
+
     override fun onSignUp() {
         val intent = Intent(this, RegisterActivity::class.java)
         RxActivityResult.on(this).startIntent(intent).subscribe { result ->
@@ -165,17 +169,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
                 info("Cancel Register")
             }
         }
-
-//        val selectBrandIntent = Intent(this, SelectBrandActivity::class.java)
-//        RxActivityResult.on(this).startIntent(selectBrandIntent)
-//                .subscribe { brandActivityResult ->
-//                    if(brandActivityResult.resultCode() == Activity.RESULT_OK){
-//                        brandActivityResult.targetUI().initInstance()
-//                        brandActivityResult.targetUI().selectMenu(FRAGMENT_POINT)
-//                    }else{
-//                        info("Cancel select brand")
-//                    }
-//                }
     }
 
     private fun startSelectBrandActivity() {

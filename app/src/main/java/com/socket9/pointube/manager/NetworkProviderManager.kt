@@ -40,6 +40,13 @@ object NetworkProviderManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun logout(memberId: Int): Observable<LoginModel.Response.Login> {
+        return RetrofitUtils.getInstance().logout(memberId)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun register(model: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register> {
         return RetrofitUtils.getInstance().register(model)
                 .subscribeOn(Schedulers.io())
