@@ -76,10 +76,18 @@ class BrandViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    fun setModel(model: BrandModel.Response.GetMemberBrandResult) {
+    fun setModel(model: BrandModel.Response.GetMemberBrandResult, isShowPoint: Boolean = false) {
         Glide.with(context).load(model.LogoPath).into(civBrandLogo)
         tvBrandName.text = model.Name
-        cbSelect.isChecked = model.isChecked
+
+        cbSelect.visibility = if (isShowPoint) View.GONE else View.VISIBLE
+        tvPoint.visibility = if (isShowPoint) View.VISIBLE else View.GONE
+
+        if (!isShowPoint) {
+            cbSelect.isChecked = model.isChecked
+        } else {
+            tvPoint.text = model.Points.toString()
+        }
     }
 
     fun setModel(model: BrandRepo) {

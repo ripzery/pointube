@@ -69,7 +69,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
 
     /* Implement View Interface zone */
     override fun showBrands(allBrands: MutableList<BrandModel.Response.GetMemberBrandResult>) {
-
+        mPointAdapter.updateList(allBrands)
     }
 
     override fun showLoading() {
@@ -83,6 +83,8 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     /** Method zone **/
 
     private fun initInstance() {
+
+        /* Init recycler view */
         recyclerView.layoutManager = LinearLayoutManager(context)
         mPointAdapter = PointAdapter(mutableListOf(), object: PointListener{
             override fun onBrandClick(id: Int) {
@@ -108,6 +110,11 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             return PointViewHolder(view)
         }
 
+        fun updateList(newList: MutableList<BrandModel.Response.GetMemberBrandResult>){
+            list = newList
+            notifyDataSetChanged()
+        }
+
 
         inner class PointViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val mBrandViewGroup: BrandViewGroup by lazy { itemView.findViewById(R.id.brandViewGroup) as BrandViewGroup }
@@ -119,7 +126,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             }
 
             fun setModel(model: BrandModel.Response.GetMemberBrandResult) {
-                mBrandViewGroup.setModel(model)
+                mBrandViewGroup.setModel(model, true) /* true for showPoint instead of checkBox */
             }
 
         }
