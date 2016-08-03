@@ -96,7 +96,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
                 val dpd = DatePickerDialog.newInstance(
                         this@MyProfileFragment,
                         year.toInt(),
-                        month.toInt(),
+                        month.toInt()-1,
                         day.toInt()
                 )
 
