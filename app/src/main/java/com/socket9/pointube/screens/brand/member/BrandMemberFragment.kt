@@ -30,15 +30,15 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     private lateinit var mBrandMemberAdapter: BrandMemberAdapter
     private val mLoginModel: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
     private var mIsSelectAllSelected: Boolean = false
-    private var param1:String = ""
+    private var mIsEdit: Boolean = false
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): BrandMemberFragment {
-            var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+        fun newInstance(isEdit: Boolean = false): BrandMemberFragment {
+            val bundle: Bundle = Bundle()
+            bundle.putBoolean(ARG_1, isEdit)
             val brandMemberFragment: BrandMemberFragment = BrandMemberFragment()
             brandMemberFragment.arguments = bundle
             return brandMemberFragment
@@ -53,7 +53,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
         mActivityListener = activity as BrandMemberListener
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mIsEdit = arguments.getBoolean(ARG_1)
             retainInstance = true
             mBrandMemberPresenter = BrandMemberPresenter(this)
             mBrandMemberPresenter.onCreate()
@@ -118,8 +118,22 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
         toast("Loading error")
     }
 
-    override fun goNext(selectedBrand: MutableList<Int>) {
-        mActivityListener.goNextFromBrandMember(selectedBrand)
+    override fun showSaveFailed(msg: String) {
+        toast(msg)
+    }
+
+    override fun showSaveSuccess() {
+        toast("Save successful")
+        mActivityListener.goNextFromBrandMember(mutableListOf(), mutableListOf())
+    }
+
+    override fun goNext(selectedBrand: MutableList<Int>, qualifiedBrandIdList: MutableList<Int>) {
+        /* If in select brand first time*/
+        if (!mIsEdit) {
+            mActivityListener.goNextFromBrandMember(selectedBrand, qualifiedBrandIdList)
+        } else { /* If edit brand member later */
+            mBrandMemberPresenter.saveBrand()
+        }
     }
 
     /** Method zone **/
@@ -129,21 +143,26 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = mBrandMemberAdapter
 
-        btnNext.setOnClickListener { mBrandMemberPresenter.next() }
+        if(!mIsEdit)
+            btnNext.setOnClickListener { mBrandMemberPresenter.next() }
+        else
+            btnNext.setOnClickListener { mBrandMemberPresenter.saveBrand() }
 
         /* Initial btn select all */
         btnSelectAll.isSelected = mIsSelectAllSelected
-        btnSelectAll.text = if(mIsSelectAllSelected) "Unselect all" else "Select all"
+        btnSelectAll.text = if (mIsSelectAllSelected) "Unselect all" else "Select all"
         btnSelectAll.setOnClickListener {
             it.isSelected = !it.isSelected
             mIsSelectAllSelected = it.isSelected
-            btnSelectAll.text = if(it.isSelected) "Unselect all" else "Select all"
+            btnSelectAll.text = if (it.isSelected) "Unselect all" else "Select all"
             mBrandMemberPresenter.selectAllBrand(it.isSelected)
         }
 
         tvUsername.text = "${mLoginModel.firstNameEN} ${mLoginModel.lastNameEN}"
 
-        mBrandMemberPresenter.loadAllBrands(mLoginModel.id.toString(), mLoginModel.token!!)
+        btnNext.text = if (mIsEdit) "Save" else "Next"
+
+        mBrandMemberPresenter.loadAllBrands(mLoginModel.id.toString(), mLoginModel.token!!, mIsEdit)
     }
 
     /* Inner class */
@@ -191,6 +210,6 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     interface BrandMemberListener {
         fun goBackFromBrandMember()
 
-        fun goNextFromBrandMember(selectedBrand: MutableList<Int>)
+        fun goNextFromBrandMember(selectedBrand: MutableList<Int>, qualifiedBrandIdList: MutableList<Int>)
     }
 }

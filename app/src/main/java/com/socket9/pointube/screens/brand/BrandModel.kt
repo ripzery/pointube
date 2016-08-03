@@ -22,7 +22,7 @@ object BrandModel {
 
         data class SaveBrand(val IsSuccess: Boolean, val Message: String?)
 
-        data class GetMemberSelectBrand(val IsSuccess: Boolean, val Message: String?, val Brands: GetMemberBrandResult)
+        data class GetMemberSelectBrand(val IsSuccess: Boolean, val Message: String?, val Brands: MutableList<GetMemberBrandResult>)
     }
 
 }

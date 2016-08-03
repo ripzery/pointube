@@ -33,7 +33,7 @@ interface BrandNonMemberContract {
     }
 
     interface Presenter : BasePresenter {
-        fun loadAllBrands(exceptProvider: MutableList<Int>)
+        fun loadAllBrands(exceptProviderId: MutableList<Int>, allSelectedQualifiedProviderId: MutableList<Int>)
 
         fun selectAllBrand(isSelect: Boolean)
 

@@ -83,6 +83,14 @@ object NetworkProviderManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun getAllBrandSelectMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<BrandModel.Response.GetMemberSelectBrand> {
+        return RetrofitUtils.getInstance().getMemberSelectedBrand(memberBrand)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+
     fun saveSelectedBrand(brandModel: BrandModel.Request.SaveBrand): Observable<BrandModel.Response.SaveBrand> {
         return RetrofitUtils.getInstance().saveBrand(brandModel)
                 .subscribeOn(Schedulers.io())

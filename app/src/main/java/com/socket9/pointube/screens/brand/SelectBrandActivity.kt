@@ -10,6 +10,7 @@ import com.socket9.pointube.screens.brand.member.BrandMemberFragment
 import com.socket9.pointube.screens.brand.non_member.BrandNonMemberFragment
 
 class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNonMemberListener, BrandMemberFragment.BrandMemberListener {
+
     private var mCurrentFragment = FRAGMENT_BRAND_MEMBER
 
     companion object {
@@ -27,7 +28,7 @@ class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNon
         setupToolbar("Registered Brands", isShowBackButton = false)
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.contentContainer, BrandMemberFragment.newInstance(""))
+                .replace(R.id.contentContainer, BrandMemberFragment.newInstance(false))
                 .commit()
     }
 
@@ -56,13 +57,13 @@ class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNon
         finish()
     }
 
-    override fun goNextFromBrandMember(selectedBrand: MutableList<Int>) {
+    override fun goNextFromBrandMember(selectedBrand: MutableList<Int>, qualifiedBrandIdList: MutableList<Int>) {
         setupToolbar("Recommended Brands")
         mCurrentFragment = 2
         supportFragmentManager
                 .beginTransaction()
                 .setCustomAnimations(R.anim.translate_enter_from_right, R.anim.translate_exit_to_left, R.anim.translate_enter_from_left, R.anim.translate_exit_to_right)
-                .replace(R.id.contentContainer, BrandNonMemberFragment.newInstance(selectedBrand))
+                .replace(R.id.contentContainer, BrandNonMemberFragment.newInstance(selectedBrand, qualifiedBrandIdList))
                 .addToBackStack("brand_member")
                 .commit()
     }

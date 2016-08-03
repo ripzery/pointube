@@ -27,6 +27,7 @@ import java.util.*
 class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.View {
     /** Variable zone **/
     lateinit var mSelectedBrands: ArrayList<Int>
+    lateinit var mQualifiedBrandIdList: ArrayList<Int>
     lateinit var mActivityListener: BrandNonMemberListener
     lateinit var mBrandNonMemberPresenter: BrandNonMemberContract.Presenter
     lateinit var mBrandNonMemberAdapter: BrandNonMemberAdapter
@@ -36,10 +37,12 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
+        val ARG_2 = "ARG_2"
 
-        fun newInstance(selectedBrand: MutableList<Int>): BrandNonMemberFragment {
+        fun newInstance(selectedBrand: MutableList<Int>, qualifiedBrandIdList: MutableList<Int>): BrandNonMemberFragment {
             val bundle: Bundle = Bundle()
             bundle.putIntegerArrayList(ARG_1, ArrayList(selectedBrand))
+            bundle.putIntegerArrayList(ARG_2, ArrayList(qualifiedBrandIdList))
             val brandNonMemberFragment: BrandNonMemberFragment = BrandNonMemberFragment()
             brandNonMemberFragment.arguments = bundle
             return brandNonMemberFragment
@@ -54,6 +57,7 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
         if (savedInstanceState == null) {
             /* if newly created */
             mSelectedBrands = arguments.getIntegerArrayList(ARG_1)
+            mQualifiedBrandIdList = arguments.getIntegerArrayList(ARG_2)
             info { mSelectedBrands }
         }
     }
@@ -143,7 +147,7 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
 
         tvUsername.text = "${mLoginModel.firstNameEN} ${mLoginModel.lastNameEN}"
 
-        mBrandNonMemberPresenter.loadAllBrands(mSelectedBrands)
+        mBrandNonMemberPresenter.loadAllBrands(mQualifiedBrandIdList, mSelectedBrands)
     }
 
     /* Inner class */

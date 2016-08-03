@@ -22,13 +22,19 @@ interface BrandMemberContract {
 
         fun showLoadingError()
 
-        fun goNext(selectedBrand: MutableList<Int>)
+        fun showSaveSuccess()
+
+        fun showSaveFailed(msg: String)
+
+        fun goNext(selectedBrand: MutableList<Int>, qualifiedBrandIdList: MutableList<Int>)
     }
 
     interface Presenter : BasePresenter {
-        fun loadAllBrands(memberId: String, token: String)
+        fun loadAllBrands(memberId: String, token: String, isEdit: Boolean = false)
 
         fun selectAllBrand(isSelect: Boolean)
+
+        fun saveBrand()
 
         fun next()
     }

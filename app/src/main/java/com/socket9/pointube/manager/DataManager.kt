@@ -84,6 +84,11 @@ object DataManager : AnkoLogger {
         return NetworkProviderManager.getAllBrandMember(memberBrand)
     }
 
+    /* Get selected brand member */
+    fun getAllBrandSelectedMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<BrandModel.Response.GetMemberSelectBrand> {
+        return NetworkProviderManager.getAllBrandSelectMember(memberBrand)
+    }
+
     /* get published program type */
     fun getPublishedProgramListByProgramType(programType: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
         return DiskProviderManager.getPublishedProgramListByProgramType(programType)
