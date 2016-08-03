@@ -65,6 +65,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
 
     override fun showUpdateSuccess() {
         toast("Update successful")
+        activity.finish()
     }
 
     override fun showLoading() {
@@ -86,6 +87,20 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
             metPassport.setText(passport)
             toggleGender.setEnable(if (loginData.gender.equals("1")) ToggleViewGroup.LEFT else ToggleViewGroup.RIGHT)
             tvDob.text = SimpleDateFormat("dd/MM/yyyy").format(birthday!!)
+
+            /* Set new on date click */
+            val day = tvDob.text.split("/")[0]
+            val month = tvDob.text.split("/")[1]
+            val year = tvDob.text.split("/")[2]
+            tvDob.setOnClickListener {
+                val dpd = DatePickerDialog.newInstance(
+                        this@MyProfileFragment,
+                        day.toInt(),
+                        month.toInt(),
+                        year.toInt())
+
+                dpd.show(activity.fragmentManager, "Datepickerdialog")
+            }
         }
     }
 

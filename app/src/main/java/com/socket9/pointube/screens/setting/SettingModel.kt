@@ -17,7 +17,7 @@ object SettingModel {
                                  val Passport: String?,
                                  val Birthday: String,
                                  val Code: String,
-                                 val Gender: String)
+                                 var Gender: String)
     }
 
     object Response {

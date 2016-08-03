@@ -84,6 +84,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
     }
 
     override fun setGender(isMale: Boolean) {
+        info { isMale }
         mIsMale = isMale
     }
 
@@ -97,6 +98,8 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
 
     override fun save() {
         view?.showLoading()
+        /* update gender */
+        mUpdateProfileRequest!!.Gender = if(mIsMale) "1" else "2"
         DataManager.updateProfile(mUpdateProfileRequest!!)
                 .subscribe({
                     view?.hideLoading()
