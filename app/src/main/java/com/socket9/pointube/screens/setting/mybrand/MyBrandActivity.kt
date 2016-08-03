@@ -17,7 +17,7 @@ class MyBrandActivity : AppCompatActivity(), BrandMemberFragment.BrandMemberList
     }
 
     private fun initInstance() {
-        setupToolbar("My Brands", isShowBackButton = false)
+        setupToolbar("My Brands", isShowBackButton = true)
         supportFragmentManager.beginTransaction().replace(R.id.contentContainer, BrandMemberFragment.newInstance(true)).commit()
     }
 
