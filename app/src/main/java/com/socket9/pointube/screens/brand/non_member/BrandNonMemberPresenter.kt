@@ -34,7 +34,9 @@ class BrandNonMemberPresenter(var view: BrandNonMemberContract.View?) : BrandNon
 
     override fun save(memberId: String, token: String, brandRepoList: MutableList<BrandRepo>) {
         view?.showLoading()
-        val selectedBrand: MutableList<BrandModel.Request.Brand> = brandRepoList.map { BrandModel.Request.Brand(it.Id, it.isChecked) }.toMutableList()
+//        val selectedBrand: MutableList<BrandModel.Request.Brand> = brandRepoList.map { BrandModel.Request.Brand(it.Id, it.isChecked) }.toMutableList()
+        /* use isMemberBrand false because we don't want brands in this page show up immediately */
+        val selectedBrand: MutableList<BrandModel.Request.Brand> = brandRepoList.map { BrandModel.Request.Brand(it.Id, false) }.toMutableList()
         DataManager.saveSelectedBrand(BrandModel.Request.SaveBrand(memberId, token, selectedBrand))
                 .subscribe({
                     view?.hideLoading()
