@@ -1,8 +1,8 @@
 package com.socket9.pointube.screens.brand
 
 import android.app.Activity
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
@@ -26,14 +26,11 @@ class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNon
 
     private fun initInstance() {
         setupToolbar("Registered Brands", isShowBackButton = false)
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.contentContainer, BrandMemberFragment.newInstance(false))
-                .commit()
+        replaceFragment(fragment = BrandMemberFragment.newInstance(false))
     }
 
     override fun onBackPressed() {
-        when(mCurrentFragment){
+        when (mCurrentFragment) {
             FRAGMENT_BRAND_MEMBER -> goBackFromBrandMember()
             FRAGMENT_BRAND_NON_MEMBER -> goBackFromBrandNonMember()
         }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
 
 class MyProfileActivity : AppCompatActivity() {
@@ -26,6 +27,6 @@ class MyProfileActivity : AppCompatActivity() {
     private fun initInstance() {
         setupToolbar("Edit Profile", false, true)
 
-        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, MyProfileFragment.newInstance("")).commit()
+        replaceFragment(fragment = MyProfileFragment.newInstance(""))
     }
 }

@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         }
 
         replaceFragment(fragment = fragment!!)
+//        replaceFragmentWithAnimation(fragment = fragment!!)
 
         menuItem.isCheckable = true
         title = menuItem.title

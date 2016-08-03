@@ -3,6 +3,7 @@ package com.socket9.pointube.screens.setting.mybrand
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.member.BrandMemberFragment
@@ -18,7 +19,7 @@ class MyBrandActivity : AppCompatActivity(), BrandMemberFragment.BrandMemberList
 
     private fun initInstance() {
         setupToolbar("My Brands", isShowBackButton = true)
-        supportFragmentManager.beginTransaction().replace(R.id.contentContainer, BrandMemberFragment.newInstance(true)).commit()
+        replaceFragment(fragment = BrandMemberFragment.newInstance(true))
     }
 
     /* Override View Interface */

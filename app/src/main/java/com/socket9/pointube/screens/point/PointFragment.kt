@@ -26,7 +26,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     /** Variable zone **/
     lateinit var param1: String
     lateinit var mPointPresenter: PointContract.Presenter
-    lateinit var mPointAdapter : PointAdapter
+    lateinit var mPointAdapter: PointAdapter
 
     /** Static method zone **/
     companion object {
@@ -94,7 +94,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
 
         /* Init recycler view */
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mPointAdapter = PointAdapter(mutableListOf(), object: PointListener{
+        mPointAdapter = PointAdapter(mutableListOf(), object : PointListener {
             override fun onBrandClick(id: Int) {
                 /* TODO: Do something when user tapped brand point  */
             }
@@ -102,7 +102,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
         recyclerView.adapter = mPointAdapter
 
         mPointPresenter.loadUser()
-
+        mPointPresenter.loadBrands()
     }
 
     /* Inner class zone */
@@ -120,7 +120,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             return PointViewHolder(view)
         }
 
-        fun updateList(newList: MutableList<BrandModel.Response.GetMemberBrandResult>){
+        fun updateList(newList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
             list = newList
             notifyDataSetChanged()
         }

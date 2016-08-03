@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.socket9.pointube.R
-import com.socket9.pointube.extensions.replaceFragment
+import com.socket9.pointube.extensions.replaceFragmentWithAnimation
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.register.form.RegisterFormFragment
 import com.socket9.pointube.screens.register.otp.OtpFragment
@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
 
     private fun initInstance() {
         setupToolbar("Register")
-        replaceFragment(fragment =  RegisterFormFragment.newInstance())
+        replaceFragmentWithAnimation(fragment =  RegisterFormFragment.newInstance())
     }
 
     override fun onBackPressed() {
@@ -45,13 +45,13 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
 
     override fun goNextFromRegisterForm(memberId: Int) {
         setupToolbar("Terms and condition", isShowBackButton = false)
-        replaceFragment(fragment =  TermsFragment.newInstance(memberId))
+        replaceFragmentWithAnimation(fragment =  TermsFragment.newInstance(memberId))
         mCurrentFragment = FRAGMENT_TERMS
     }
 
     override fun goNextFromTerms(memberId: Int) {
         setupToolbar("Verify phone number", isShowBackButton = false)
-        replaceFragment(fragment = PhoneFragment.newInstance(memberId))
+        replaceFragmentWithAnimation(fragment = PhoneFragment.newInstance(memberId))
 //        supportFragmentManager.beginTransaction()
 //                .setCustomAnimations(R.anim.slide_enter_from_bottom, R.anim.slide_exit_to_bottom)
 //                .replace(R.id.contentContainer, PhoneFragment.newInstance(memberId))

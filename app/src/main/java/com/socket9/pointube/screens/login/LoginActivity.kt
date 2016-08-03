@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import com.socket9.pointube.R
-import com.socket9.pointube.extensions.replaceFragment
+import com.socket9.pointube.extensions.replaceFragmentWithAnimation
 import com.socket9.pointube.extensions.setupToolbar
 
 class LoginActivity : AppCompatActivity() {
@@ -41,6 +41,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-        replaceFragment(fragment = LoginFragment.newInstance("Login"))
+        replaceFragmentWithAnimation(fragment = LoginFragment.newInstance("Login"))
     }
 }

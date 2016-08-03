@@ -86,7 +86,8 @@ class BrandViewGroup : FrameLayout {
         if (!isShowPoint) {
             cbSelect.isChecked = model.isChecked
         } else {
-            tvPoint.text = model.Points.toString()
+            val formattedPoint = String.format("%,d", model.Points.toInt())
+            tvPoint.text = formattedPoint
         }
     }
 
