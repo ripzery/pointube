@@ -137,5 +137,9 @@
     <string name="fragment_brand_non_member_select_all_title">Register</string>
     <string name="fragment_brand_non_member_button_start">Let\'s start</string>
 
+    <!-- fragment point -->
+    <string name="fragment_point_title">Outstanding Points</string>
+    <string name="fragment_point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
+
 </resources>
 
