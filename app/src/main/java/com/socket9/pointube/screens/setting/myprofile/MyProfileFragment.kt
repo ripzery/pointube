@@ -95,9 +95,10 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
             tvDob.setOnClickListener {
                 val dpd = DatePickerDialog.newInstance(
                         this@MyProfileFragment,
-                        day.toInt(),
+                        year.toInt(),
                         month.toInt(),
-                        year.toInt())
+                        day.toInt()
+                )
 
                 dpd.show(activity.fragmentManager, "Datepickerdialog")
             }
@@ -145,17 +146,6 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
 
     private fun initInstance() {
         mMyProfilePresenter.loadCurrentUser()
-
-        tvDob.setOnClickListener {
-            val now = Calendar.getInstance()
-            val dpd = DatePickerDialog.newInstance(
-                    this,
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH))
-
-            dpd.show(activity.fragmentManager, "Datepickerdialog")
-        }
 
         initValidator()
 
