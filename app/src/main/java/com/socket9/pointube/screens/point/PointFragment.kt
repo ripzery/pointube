@@ -12,13 +12,16 @@ import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.BrandViewGroup
-import kotlinx.android.synthetic.main.fragment_brand_member.*
+import com.socket9.pointube.screens.home.LoginModel
+import kotlinx.android.synthetic.main.fragment_point.*
 import org.jetbrains.anko.AnkoLogger
+import java.text.SimpleDateFormat
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
 class PointFragment : Fragment(), AnkoLogger, PointContract.View {
+
 
     /** Variable zone **/
     lateinit var param1: String
@@ -80,6 +83,11 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
         hideLoadingDialog()
     }
 
+    override fun initUser(model: LoginModel.Response.LoginResult) {
+        tvUsername.text = "${model.firstNameEN} ${model.lastNameEN}"
+        tvDate.text = SimpleDateFormat("dd/MM/yyyy").format(model.birthday)
+    }
+
     /** Method zone **/
 
     private fun initInstance() {
@@ -92,6 +100,8 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             }
         })
         recyclerView.adapter = mPointAdapter
+
+        mPointPresenter.loadUser()
 
     }
 
@@ -114,7 +124,6 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             list = newList
             notifyDataSetChanged()
         }
-
 
         inner class PointViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val mBrandViewGroup: BrandViewGroup by lazy { itemView.findViewById(R.id.brandViewGroup) as BrandViewGroup }
