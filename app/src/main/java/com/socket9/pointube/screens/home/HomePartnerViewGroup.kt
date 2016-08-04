@@ -22,6 +22,7 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
     lateinit private var civLogo: CircleImageView
     lateinit private var tvBadgeCount: TextView
     lateinit private var mTvPoint: TextView
+    lateinit private var mLayoutBadgeCount: FrameLayout
     private val mLoginResult: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
 
     /** Override method zone **/
@@ -59,6 +60,7 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
         civLogo = viewContainer.find(R.id.civLogo)
         tvBadgeCount = viewContainer.find(R.id.tvBadgeCount)
         mTvPoint = viewContainer.find(R.id.tvPoint)
+        mLayoutBadgeCount = viewContainer.find(R.id.layoutBadgeCount)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -81,6 +83,7 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
     fun setModel(brand: BrandRepo) {
         setBrandLogo(brand.LogoPath)
         mTvPoint.visibility = if (!brand.Points.isEmpty()) View.VISIBLE else View.INVISIBLE
+        mLayoutBadgeCount.visibility = if (brand.TotalPrograms > 0) View.VISIBLE else View.INVISIBLE
         setPoint(brand.Points)
     }
 
