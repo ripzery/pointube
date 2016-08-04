@@ -99,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tvBegin"
                     android:layout_below="@id/tvBegin"
+                    app:saleCurrencyPromotion="baht"
                     android:layout_marginTop="16dp" />
 
                 <TextView

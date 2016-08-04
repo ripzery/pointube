@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     private fun initInstance() {
         selectMenu(FRAGMENT_HOME)
 //        ApiTest.getAllMemberBrand(
-    }g
+    }
 
     private fun selectMenu(page: Int) {
         val fragment = intent.getIntExtra("fragment", page)

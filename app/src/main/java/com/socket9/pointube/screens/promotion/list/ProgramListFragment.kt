@@ -17,19 +17,22 @@ import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.fragment_promotion_detail.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by ripzery on 7/20/16.
  */
 
-class ProgramListFragment : Fragment(), ProgramListContract.View {
+class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     /** Variable zone **/
     private var mBrandId: Int = 0
     private var mBrandTitle: String = ""
     lateinit private var mProgramListPresenter: ProgramListContract.Presenter
     lateinit private var mProgramListAdapter: ProgramListAdapter
     lateinit private var mActivity: AppCompatActivity
+
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
@@ -101,6 +104,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View {
     }
 
     override fun showCover(path: String) {
+        info { "Loading path $path" }
         Glide.with(this).load(path).into(ivCover)
     }
 
@@ -109,7 +113,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View {
     private fun initInstance() {
         /* Set recycler view adapter */
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mProgramListAdapter = ProgramListAdapter(mutableListOf(), object: ProgramListListener{
+        mProgramListAdapter = ProgramListAdapter(mutableListOf(), object : ProgramListListener {
             override fun onItemClick(programId: Int) {
                 mProgramListPresenter.clickProgram(programId)
             }
@@ -122,13 +126,16 @@ class ProgramListFragment : Fragment(), ProgramListContract.View {
         /* Load program list by brand */
         mProgramListPresenter.loadProgramList(mBrandId)
 
+        /* Load brand cover url */
+        mProgramListPresenter.loadCover(mBrandId)
+
         /* Setup toolbar */
         mActivity = activity as AppCompatActivity
         mActivity.setSupportActionBar(toolbar)
         mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    inner class ProgramListAdapter(var list: MutableList<PublishedProgramItemRepo>,val listener: ProgramListListener) : RecyclerView.Adapter<ProgramListAdapter.ProgramListViewHolder>() {
+    inner class ProgramListAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: ProgramListListener) : RecyclerView.Adapter<ProgramListAdapter.ProgramListViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ProgramListViewHolder {
             val view = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_promotion_list, parent, false)
             return ProgramListViewHolder(view)
@@ -142,7 +149,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View {
             holder!!.setModel(list[position])
         }
 
-        fun updateProgramList(newList: MutableList<PublishedProgramItemRepo>){
+        fun updateProgramList(newList: MutableList<PublishedProgramItemRepo>) {
             this.list = newList
             notifyDataSetChanged()
         }
