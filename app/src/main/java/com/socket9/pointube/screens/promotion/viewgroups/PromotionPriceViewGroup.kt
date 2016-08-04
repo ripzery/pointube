@@ -97,6 +97,10 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
 
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+
     /** Method zone **/
 
     fun setModel(price: String, currency: String) {

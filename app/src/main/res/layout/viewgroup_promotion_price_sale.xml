@@ -14,16 +14,16 @@
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionGrey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             app:isCircleGrey="true"
             app:price="900"
             app:currency="point"/>
 
         <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
             android:id="@+id/promotionRed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="36dp"
             app:isCircleGrey="false"
             app:price="200"
