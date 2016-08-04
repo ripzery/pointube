@@ -11,15 +11,15 @@ import org.jetbrains.anko.info
  * Created by ripzery on 8/3/16.
  */
 class PointPresenter(var view: PointContract.View?) : AnkoLogger, PointContract.Presenter {
-    private val mLoginResult: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
+    private val mLoginResult: LoginModel.Response.LoginResult? by lazy { SharedPrefUtil.loadLoginResult() }
 
     override fun loadUser() {
-        view?.initUser(mLoginResult)
+        view?.initUser(mLoginResult!!)
     }
 
     override fun loadBrands() {
         view?.showLoading()
-        DataManager.getAllBrandSelectedMember(BrandModel.Request.GetMemberSelectBrand(mLoginResult.id.toString(), mLoginResult.token.toString(), true))
+        DataManager.getAllBrandSelectedMember(BrandModel.Request.GetMemberSelectBrand(mLoginResult!!.id.toString(), mLoginResult!!.token.toString(), true))
                 .subscribe({
                     view?.hideLoading()
 

@@ -11,7 +11,6 @@ import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.utils.SharedPrefUtil
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.viewgroup_member_brand.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 
@@ -23,6 +22,7 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
     lateinit private var tvBadgeCount: TextView
     lateinit private var mTvPoint: TextView
     lateinit private var mLayoutBadgeCount: FrameLayout
+    private val mIsLoggedIn: Boolean by lazy { SharedPrefUtil.loadLoginResult() != null }
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -81,7 +81,13 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
 
     fun setModel(brand: BrandRepo) {
         setBrandLogo(brand.LogoPath)
-        mTvPoint.visibility = if (!brand.Points.isEmpty()) View.VISIBLE else View.INVISIBLE
+
+        if (mIsLoggedIn) {
+            mTvPoint.visibility = if (!brand.Points.isEmpty()) View.VISIBLE else View.INVISIBLE
+        } else {
+            mTvPoint.visibility = View.GONE
+        }
+
         mLayoutBadgeCount.visibility = if (brand.TotalPrograms > 0) View.VISIBLE else View.INVISIBLE
         setPoint(brand.Points)
     }
