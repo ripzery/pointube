@@ -1,9 +1,13 @@
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.MaterialDialog
 import com.jakewharton.rxbinding.widget.RxTextView
+import com.rengwuxian.materialedittext.MaterialEditText
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
@@ -15,6 +19,7 @@ import com.socket9.pointube.utils.SharedPrefUtil
 import com.socket9.pointube.utils.ValidatorUtil
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_setting_my_profile.*
+import kotlinx.android.synthetic.main.layout_dialog_change_password.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
@@ -56,8 +61,37 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     }
 
     override fun showChangePassword() {
-        toast("Show change password")
+        val wrapInScrollView = true;
+        val changePwBuilder = MaterialDialog.Builder(context)
+                .title("Change password")
+                .customView(R.layout.layout_dialog_change_password, wrapInScrollView)
+                .positiveText("OK")
+                .negativeText("Cancel")
+                .onPositive { materialDialog, dialogAction ->
+                    mMyProfilePresenter.changePassword()
+                }
+                .build()
+
+        changePwBuilder.show()
+
+        changePasswordFontFace(changePwBuilder.customView!!)
     }
+
+    /* Must use when show change password only */
+    private fun changePasswordFontFace(view: View) {
+        val oldPassword = view.findViewById(R.id.metOldPassword) as MaterialEditText
+        oldPassword.typeface = Typeface.DEFAULT
+        oldPassword.transformationMethod = PasswordTransformationMethod()
+
+        val newPassword = view.findViewById(R.id.metNewPassword) as MaterialEditText
+        newPassword.typeface = Typeface.DEFAULT
+        newPassword.transformationMethod = PasswordTransformationMethod()
+
+        val repeatPassword = view.findViewById(R.id.metRepeatPassword) as MaterialEditText
+        repeatPassword.typeface = Typeface.DEFAULT
+        repeatPassword.transformationMethod = PasswordTransformationMethod()
+    }
+
 
     override fun showUpdateError(msg: String) {
         toast(msg)
@@ -96,7 +130,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
                 val dpd = DatePickerDialog.newInstance(
                         this@MyProfileFragment,
                         year.toInt(),
-                        month.toInt()-1,
+                        month.toInt(),
                         day.toInt()
                 )
 

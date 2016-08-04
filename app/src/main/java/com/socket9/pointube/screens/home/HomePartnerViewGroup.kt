@@ -9,17 +9,20 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.utils.SharedPrefUtil
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.viewgroup_member_brand.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
-import org.jetbrains.anko.info
 
-class HomePartnerViewGroup : FrameLayout,AnkoLogger {
+class HomePartnerViewGroup : FrameLayout, AnkoLogger {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
     lateinit private var civLogo: CircleImageView
     lateinit private var tvBadgeCount: TextView
+    lateinit private var mTvPoint: TextView
+    private val mLoginResult: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -53,9 +56,9 @@ class HomePartnerViewGroup : FrameLayout,AnkoLogger {
 
     private fun initInstances() {
         // findViewById here
-        civLogo = find(R.id.civLogo)
-        tvBadgeCount = find(R.id.tvBadgeCount)
-
+        civLogo = viewContainer.find(R.id.civLogo)
+        tvBadgeCount = viewContainer.find(R.id.tvBadgeCount)
+        mTvPoint = viewContainer.find(R.id.tvPoint)
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -77,13 +80,22 @@ class HomePartnerViewGroup : FrameLayout,AnkoLogger {
 
     fun setModel(brand: BrandRepo) {
         setBrandLogo(brand.LogoPath)
+        mTvPoint.visibility = if (!brand.Points.isEmpty()) View.VISIBLE else View.INVISIBLE
+        setPoint(brand.Points)
     }
 
-    fun setBadgeCount(count: Int){
+    fun setBadgeCount(count: Int) {
         tvBadgeCount.text = "$count"
     }
 
-    fun setBrandLogo(logo: String){
+    fun setPoint(point: String) {
+        if (!point.isEmpty()) {
+            val formattedPoint = String.format("%,d", point.toInt())
+            mTvPoint.text = "$formattedPoint Points"
+        }
+    }
+
+    fun setBrandLogo(logo: String) {
         Glide.with(context).load(logo.replace("192.168.100.252:8099", "service.pointube.com")).into(civLogo)
     }
 }

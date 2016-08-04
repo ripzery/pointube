@@ -143,6 +143,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
 
     override fun changePassword() {
         info { "Change password" }
+        view?.showChangePassword()
     }
 
     override fun onCreate() {

@@ -15,6 +15,7 @@ open class BrandRepo(
         open var CoverPath: String = "",
         open var TotalPrograms: Int = 1,
         open var Units : RealmList<BrandUnitRepo> = RealmList(),
+        @Ignore open var Points: String = "",
         @Ignore open var isChecked: Boolean = false
 
 ) : RealmObject() {

@@ -1,9 +1,8 @@
 package com.socket9.pointube.screens.home
 
 import com.socket9.pointube.manager.DataManager
-import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.utils.LoginStateUtil
-import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -13,16 +12,41 @@ import org.jetbrains.anko.info
  */
 class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, AnkoLogger {
     /* Variable zone */
+    private val mLoginResult: LoginModel.Response.LoginResult? by lazy { SharedPrefUtil.loadLoginResult() }
 
     /**  Override UserActionsListener Interface zone **/
     override fun loadProviderList() {
-        DataManager.getAllProvider()
-                .subscribe({
-                    view?.showProviderList(it.Results)
-                }, {
-                    it.printStackTrace()
-                    view?.showEmptyProviderList()
-                })
+        if (mLoginResult == null) { /* Don't get point when user doesn't logged in */
+            DataManager.getAllProvider()
+                    .subscribe({
+                        view?.showProviderList(it.Results)
+                    }, {
+                        it.printStackTrace()
+                        view?.showEmptyProviderList()
+                    })
+        } else { /* Get point with provider when user is logged in */
+            var memberBrand: BrandModel.Response.GetMemberBrand? = null
+            DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(mLoginResult!!.id.toString(), mLoginResult!!.token!!))
+                    .doOnNext { memberBrand = it }
+                    .flatMap { DataManager.getAllProvider() }
+                    .map {
+                        it.Results.forEach {
+                            val providerItem = it
+                            val memberBrandItem = memberBrand!!.Results.find { it.Id == providerItem.Id }
+                            if (memberBrandItem != null) {
+                                providerItem.Points = memberBrandItem.Points.toString()
+                            }
+                        }
+                        it
+                    }
+                    .subscribe({
+                        view?.showProviderList(it.Results)
+                    }, {
+                        it.printStackTrace()
+                        view?.showEmptyProviderList()
+                    })
+
+        }
     }
 
     override fun loadPublishedProgramList() {

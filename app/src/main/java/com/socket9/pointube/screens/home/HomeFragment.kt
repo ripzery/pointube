@@ -169,6 +169,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             }
 
             fun setModel(brand: BrandRepo) {
+                info{brand.Points}
                 homeBrandViewGroup.setModel(brand)
             }
 
@@ -180,12 +181,10 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     inner class ImageVideoPagerAdapter(fm: FragmentManager, var list: MutableList<PublishedProgramItemRepo>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            /* TODO: Return correctly fragment */
             return HomeImageVideoFragment.newInstance(list[position].MasterPath, false)
         }
 
         override fun getCount(): Int {
-            /* TODO: Return correctly count */
             return list.size
         }
 
