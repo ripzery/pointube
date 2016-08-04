@@ -18,12 +18,21 @@
             <com.socket9.pointube.customviews.OneOneHeightImageView
                 android:id="@+id/ivLogo"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="128dp"
+                android:src="@drawable/world_ball"
                 tools:src="@drawable/world_ball" />
 
             <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:id="@+id/promotionPrice"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                app:currency="Points"
+                app:price="1000"
+                app:unitTextSize="6sp"
+                app:valueTextSize="8sp" />
 
         </FrameLayout>
 
@@ -35,11 +44,12 @@
 
             <TextView
                 android:id="@+id/tvBrandName"
+                style="BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                style="BaseTextTerm.TextTermsTitle"
                 android:textSize="18sp"
+
                 tools:text="The one card" />
 
             <TextView
@@ -47,27 +57,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:textSize="12sp"
                 tools:text="พิเศษ The 1 card เพียง" />
 
         </LinearLayout>
 
-
-        <android.support.v4.widget.Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/tvPoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            tools:text="4,123" />
-
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="8dp"
+        android:text="Read more..." />
 
 </android.support.v7.widget.CardView>
 

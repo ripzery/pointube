@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.home
 
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.utils.LoginStateUtil
 import com.socket9.pointube.utils.SharedPrefUtil
@@ -47,6 +48,10 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
                     })
 
         }
+    }
+
+    override fun clickBrand(brand: BrandRepo) {
+        view?.showProgramListByBrand(brand.Id, brand.Name)
     }
 
     override fun loadPublishedProgramList() {

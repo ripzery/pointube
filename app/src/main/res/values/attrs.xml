@@ -9,6 +9,8 @@
         <attr name="currency" format="string">baht</attr>
         <attr name="price" format="string">1,000</attr>
         <attr name="isCircleGrey" format="boolean">false</attr>
+        <attr name="valueTextSize" format="dimension" />
+        <attr name="unitTextSize" format="dimension" />
         <attr name="maxLines" format="integer">1</attr>
     </declare-styleable>
 

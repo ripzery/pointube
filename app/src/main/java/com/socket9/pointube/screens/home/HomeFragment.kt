@@ -13,10 +13,12 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.promotion.list.ProgramListActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -25,8 +27,8 @@ import org.jetbrains.anko.support.v4.toast
 class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /** Variable zone **/
     lateinit var param1: String
+    lateinit private var mProviderListAdapter: BrandUnitAdapter
     private val mLinearLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) }
-    private val mProviderListAdapter: BrandUnitAdapter by lazy { BrandUnitAdapter(mutableListOf()) }
     private val mImageVideoPagerAdapter: ImageVideoPagerAdapter by lazy { ImageVideoPagerAdapter(childFragmentManager, mutableListOf()) }
     private val mHomePresenter: HomeContract.Presenter by lazy { HomePresenter(this) }
     private val mMainActivity: OnLoginListener by lazy { activity as OnLoginListener }
@@ -124,6 +126,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
+        mProviderListAdapter = BrandUnitAdapter(mutableListOf(), object: BrandListener{
+            override fun onBrandClick(brand: BrandRepo) {
+                mHomePresenter.clickBrand(brand)
+            }
+        })
         recyclerView.adapter = mProviderListAdapter
         recyclerView.layoutManager = mLinearLayoutManager
 
@@ -140,9 +147,13 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         }
     }
 
+    override fun showProgramListByBrand(brandId: Int, brandTitle: String) {
+        startActivity<ProgramListActivity>("brandId" to brandId, "brandTitle" to brandTitle)
+    }
+
     /** Inner class zone **/
 
-    inner class BrandUnitAdapter(var list: MutableList<BrandRepo>) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
+    inner class BrandUnitAdapter(var list: MutableList<BrandRepo>, val listener: BrandListener) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
         override fun onBindViewHolder(holder: BrandUnitViewHolder?, position: Int) {
             holder!!.setModel(list[position])
             holder.setBadgeCount(list[position].TotalPrograms)
@@ -166,6 +177,12 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
             private val homeBrandViewGroup: HomePartnerViewGroup by lazy {
                 itemView?.findViewById(R.id.homePartnerViewGroup) as HomePartnerViewGroup
+            }
+
+            init {
+                homeBrandViewGroup.setOnClickListener {
+                    listener.onBrandClick(list[adapterPosition])
+                }
             }
 
             fun setModel(brand: BrandRepo) {
@@ -198,6 +215,10 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     interface OnLoginListener {
         fun onLogin()
         fun onSignUp()
+    }
+
+    interface BrandListener {
+        fun onBrandClick(brand: BrandRepo)
     }
 
 }

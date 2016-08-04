@@ -23,6 +23,8 @@ interface HomeContract {
 
         fun goSignUp()
 
+        fun showProgramListByBrand(brandId: Int, brandTitle: String)
+
         fun showUnLoggedInState()
 
         fun showLoggedInState()
@@ -34,6 +36,8 @@ interface HomeContract {
         fun loadProviderList()
 
         fun loadPublishedProgramList()
+
+        fun clickBrand(brand: BrandRepo)
 
         fun doLogin()
 

@@ -30,7 +30,7 @@ object DiskProviderManager : AnkoLogger {
         }
     }
 
-    fun getPublishedProgramById(programId: Int = 0): Observable<PublishedProgramItemRepo> {
+    fun getPublishedProgramById(programId: Int): Observable<PublishedProgramItemRepo> {
         val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
         return Observable.just(allPublishedProgramList.find { it.Id == programId })
     }
@@ -38,5 +38,10 @@ object DiskProviderManager : AnkoLogger {
     fun getProviderById(id: Int = 0): Observable<BrandRepo> {
         val brand = RealmUtil.readAll(BrandRepo::class.java).find { it.Id == id }
         return Observable.just(brand)
+    }
+
+    fun getPublishedProgramByProviderId(providerId: Int): Observable<MutableList<PublishedProgramItemRepo>> {
+        val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
+        return Observable.just(allPublishedProgramList.filter { it.ProviderId == providerId }.toMutableList())
     }
 }

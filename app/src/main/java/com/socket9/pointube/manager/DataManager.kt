@@ -67,7 +67,7 @@ object DataManager : AnkoLogger {
     }
 
     /* Fore update profile */
-    fun updateProfile(model: SettingModel.Request.UpdateProfile) : Observable<SettingModel.Response.UpdateProfile>{
+    fun updateProfile(model: SettingModel.Request.UpdateProfile): Observable<SettingModel.Response.UpdateProfile> {
         return NetworkProviderManager.updateProfile(model)
     }
 
@@ -99,6 +99,14 @@ object DataManager : AnkoLogger {
 
     fun getPublishedProgramById(id: Int = 0): Observable<PublishedProgramItemRepo> {
         return DiskProviderManager.getPublishedProgramById(id)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+
+    fun getPublishedProgramByProviderId(providerId: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
+        return DiskProviderManager.getPublishedProgramByProviderId(providerId)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

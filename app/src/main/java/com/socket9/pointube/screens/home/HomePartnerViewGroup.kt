@@ -23,7 +23,6 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
     lateinit private var tvBadgeCount: TextView
     lateinit private var mTvPoint: TextView
     lateinit private var mLayoutBadgeCount: FrameLayout
-    private val mLoginResult: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {

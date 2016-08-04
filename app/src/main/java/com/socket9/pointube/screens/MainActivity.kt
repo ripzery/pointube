@@ -16,6 +16,7 @@ import com.socket9.pointube.screens.brand.SelectBrandActivity
 import com.socket9.pointube.screens.home.HomeFragment
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.point.PointFragment
+import com.socket9.pointube.screens.promotion.list.ProgramListActivity
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.screens.setting.SettingFragment
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.startActivity
 import rx_activity_result.RxActivityResult
 
 class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener {
@@ -113,24 +115,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     private fun initInstance() {
         selectMenu(FRAGMENT_HOME)
-//        ApiTest.getAllMemberBrand()
-//        DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
-//                .subscribe({
-//                    info { it }
-//                    val selectBrandIntent = Intent(this, SelectBrandActivity::class.java)
-//                    RxActivityResult.on(this).startIntent(selectBrandIntent)
-//                            .subscribe { brandActivityResult ->
-//                                if (brandActivityResult.resultCode() == Activity.RESULT_OK) {
-//                                    brandActivityResult.targetUI().initInstance()
-//                                    brandActivityResult.targetUI().selectMenu(FRAGMENT_POINT)
-//                                } else {
-//                                    info("Cancel select brand")
-//                                }
-//                            }
-//                }, {
-//                    warn { it }
-//                })
-    }
+//        ApiTest.getAllMemberBrand(
+    }g
 
     private fun selectMenu(page: Int) {
         val fragment = intent.getIntExtra("fragment", page)

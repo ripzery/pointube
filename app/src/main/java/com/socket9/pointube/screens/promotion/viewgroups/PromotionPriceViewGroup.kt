@@ -9,10 +9,11 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.socket9.pointube.R
-import com.socket9.pointube.extensions.toDp
+import com.socket9.pointube.extensions.toPx
 import com.socket9.pointube.screens.home.CircleFrameLayout
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.info
 
 class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
 
@@ -26,6 +27,8 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
     private var price: String = ""
     private var isGrey: Boolean = false
     private var maxLines: Int = 1
+    private var mValueTextSize: Int = 0
+    private var mUnitTextSize: Int = 0
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -78,12 +81,21 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
             price = a.getString(R.styleable.PromotionPriceViewGroup_price) ?: ""
             maxLines = a.getInt(R.styleable.PromotionPriceViewGroup_maxLines, 1)
             currency = a.getString(R.styleable.PromotionPriceViewGroup_currency) ?: ""
+            mUnitTextSize = a.getDimensionPixelSize(R.styleable.PromotionPriceViewGroup_unitTextSize, 14.toPx().toInt()).toInt()
+            mValueTextSize = a.getDimensionPixelSize(R.styleable.PromotionPriceViewGroup_valueTextSize, 14.toPx().toInt()).toInt()
 
             setCurrency(currency)
             setPrice(price)
             setIsGrey(isGrey)
             tvPrice.maxLines = maxLines
             tvUnit.maxLines = maxLines
+
+            info { mValueTextSize }
+
+            if (mValueTextSize > 0 && mUnitTextSize > 0) {
+                tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_PX, mValueTextSize.toFloat())
+                tvUnit.setTextSize(TypedValue.COMPLEX_UNIT_PX, mUnitTextSize.toFloat())
+            }
             setShowCurrency(showCurrency)
 
         } catch(e: IllegalStateException) {

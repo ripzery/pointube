@@ -27,8 +27,10 @@
         <activity android:name=".screens.login.LoginActivity" />
         <activity android:name=".screens.promotion.detail.PromotionDetailActivity" />
         <activity android:name=".screens.setting.mybrand.MyBrandActivity" />
-        <activity android:name=".screens.setting.myprofile.MyProfileActivity"
+        <activity
+            android:name=".screens.setting.myprofile.MyProfileActivity"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".screens.promotion.list.ProgramListActivity"></activity>
     </application>
 
 </manifest>
