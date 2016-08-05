@@ -2,6 +2,7 @@ package com.socket9.pointube.screens.home
 
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.GetMemberBrand
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.utils.LoginStateUtil
 import com.socket9.pointube.utils.SharedPrefUtil
@@ -26,7 +27,7 @@ class HomePresenter(var view: HomeContract.View?) : HomeContract.Presenter, Anko
                         view?.showEmptyProviderList()
                     })
         } else { /* Get point with provider when user is logged in */
-            var memberBrand: BrandModel.Response.GetMemberBrand? = null
+            var memberBrand: GetMemberBrand? = null
             DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(mLoginResult!!.id.toString(), mLoginResult!!.token!!))
                     .doOnNext { memberBrand = it }
                     .flatMap { DataManager.getAllProvider() }
