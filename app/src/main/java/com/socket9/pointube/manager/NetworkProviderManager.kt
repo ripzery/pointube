@@ -80,6 +80,7 @@ object NetworkProviderManager : AnkoLogger {
 
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return RetrofitUtils.getInstance().getMemberBrand(memberBrand)
+                .doOnNext { saveToDisk(it) }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -87,6 +88,7 @@ object NetworkProviderManager : AnkoLogger {
 
     fun getAllBrandSelectMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand> {
         return RetrofitUtils.getInstance().getMemberSelectedBrand(memberBrand)
+                .doOnNext { saveToDisk(it) }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -106,6 +108,15 @@ object NetworkProviderManager : AnkoLogger {
                 it.copyToRealmOrUpdate(networkData)
             }
             info { networkData[0].javaClass.simpleName + " is saved successful" }
+        }
+    }
+
+    private fun <T : RealmModel> saveToDisk(networkData: T?) {
+        if (networkData != null) {
+            RealmUtil.write {
+                it.copyToRealmOrUpdate(networkData)
+            }
+            info { networkData.javaClass.simpleName + " is saved successful" }
         }
     }
 }
