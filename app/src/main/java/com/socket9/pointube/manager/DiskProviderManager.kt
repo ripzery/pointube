@@ -22,12 +22,12 @@ object DiskProviderManager : AnkoLogger {
 
     fun getAllBrandMember(): Observable<GetMemberBrand> {
         val allBrands = RealmUtil.readAll(GetMemberBrand::class.java)
-        return Observable.just(allBrands.first())
+        return Observable.just(allBrands.firstOrNull())
     }
 
     fun getAllBrandSelectMember(): Observable<GetMemberSelectBrand>{
         val allBrands = RealmUtil.readAll(GetMemberSelectBrand::class.java)
-        return Observable.just(allBrands.first())
+        return Observable.just(allBrands.firstOrNull())
     }
 
     /* Programs */
