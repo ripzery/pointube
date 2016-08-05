@@ -6,6 +6,7 @@ import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.repository.brands.getIdBySelected
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -107,6 +108,8 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
                     view?.hideLoading()
                     if (it.IsSuccess) {
                         view?.showSaveSuccess()
+                        /* save update brand to disk */
+                        RealmUtil.write { mAllBrandMember }
                     } else {
                         view?.showSaveFailed(it.Message!!)
                     }
