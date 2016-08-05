@@ -26,6 +26,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     lateinit var param1: String
     lateinit var mRecommendMePresenter : RecommendMeContract.Presenter
     lateinit var mActivity: AppCompatActivity
+    lateinit var mRecommendMeAdapter: RecommendMeAdapter
 //    lateinit var mAdapter
 
 
@@ -94,6 +95,12 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
 
     private fun initInstance() {
         /* Init recycler view */
+        mRecommendMeAdapter = RecommendMeAdapter(mutableListOf(), object: RecommendMeListener{
+            override fun onItemClick(programId: Int) {
+                /* TODO: show program detail*/
+            }
+        })
+
     }
 
     inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {
