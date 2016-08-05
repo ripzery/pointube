@@ -25,6 +25,7 @@ class PromotionListViewGroup : FrameLayout {
     lateinit private var mTvBrandDetail: TextView
     lateinit private var mIvLogo: OneOneHeightImageView
     lateinit private var mPromotionPriceViewGroup: PromotionPriceViewGroup
+
     /** Override method zone **/
     constructor(context: Context) : super(context) {
         initInflate()
@@ -78,11 +79,13 @@ class PromotionListViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    fun setModel(model : PublishedProgramItemRepo){
-        with(model){
+    fun setModel(model: PublishedProgramItemRepo) {
+        with(model) {
             mTvBrandTitle.text = Title
             mTvBrandDetail.text = Description.plainText()
             Glide.with(context).load(this.MasterPath).into(mIvLogo)
+
+            mPromotionPriceViewGroup.visibility = if (Point == 0) View.GONE else View.VISIBLE
             mPromotionPriceViewGroup.setPrice(Point.toString())
             mPromotionPriceViewGroup.setCurrency(UnitOfPoint)
         }
