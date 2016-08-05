@@ -25,6 +25,10 @@ class RecommendMePresenter(var view: RecommendMeContract.View?) : RecommendMeCon
                 })
     }
 
+    override fun clickProgram(programId: Int) {
+        view?.showProgramDetail(programId)
+    }
+
     override fun onCreate() {
 
     }
