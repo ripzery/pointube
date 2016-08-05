@@ -2,7 +2,6 @@ package com.socket9.pointube
 
 import android.app.Application
 import android.content.Context
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatDelegate
 import com.socket9.pointube.utils.ContextUtil
 import com.socket9.pointube.utils.SharedPrefUtil

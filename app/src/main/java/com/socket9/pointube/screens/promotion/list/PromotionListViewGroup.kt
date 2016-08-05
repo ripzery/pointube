@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.customviews.OneOneHeightImageView
+import com.socket9.pointube.extensions.plainText
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
 import org.jetbrains.anko.find
@@ -80,7 +81,7 @@ class PromotionListViewGroup : FrameLayout {
     fun setModel(model : PublishedProgramItemRepo){
         with(model){
             mTvBrandTitle.text = Title
-            mTvBrandDetail.text = Description
+            mTvBrandDetail.text = Description.plainText()
             Glide.with(context).load(this.MasterPath).into(mIvLogo)
             mPromotionPriceViewGroup.setPrice(Point.toString())
             mPromotionPriceViewGroup.setCurrency(UnitOfPoint)

@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +21,7 @@
             <com.socket9.pointube.customviews.OneOneHeightImageView
                 android:id="@+id/ivLogo"
                 android:layout_width="0dp"
-                android:layout_height="128dp"
+                android:layout_height="144dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/world_ball"
                 tools:src="@drawable/world_ball" />
@@ -49,8 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textSize="18sp"
-
                 tools:text="The one card" />
 
             <TextView
@@ -63,11 +67,11 @@
                 android:maxLines="3"
                 android:textSize="12sp"
                 tools:text="พิเศษ The 1 card เพียง" />
-            
+
             <android.support.v4.widget.Space
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <TextView
                 android:layout_width="wrap_content"

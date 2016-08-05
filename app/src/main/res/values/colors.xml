@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorWhite200">#EEEEEE</color>
 
     <!-- material color 500's shade -->
     <color name="colorGreen">#4CAF50</color>
