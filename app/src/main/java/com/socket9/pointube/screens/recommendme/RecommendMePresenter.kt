@@ -25,7 +25,7 @@ class RecommendMePresenter(var view: RecommendMeContract.View?) : RecommendMeCon
                     val allBrands = it.Results
                     val brandResult = allBrands.find { it.Name.equals("The 1 Card") }
                     view?.showBrandInfo(brandResult!!)
-                    allPublishedProgram.filter { it.Point <= brandResult!!.Points }.toMutableList()
+                    allPublishedProgram.filter { it.Point <= brandResult!!.Points }.sortedByDescending { it.Point }.take(3).toMutableList()
                 }
                 .subscribe({
                     view?.hideLoading()

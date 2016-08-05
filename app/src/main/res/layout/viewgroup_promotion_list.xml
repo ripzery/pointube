@@ -28,15 +28,15 @@
 
             <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceViewGroup
                 android:id="@+id/promotionPrice"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 app:currency="Points"
                 app:price="1000"
-                app:unitTextSize="6sp"
-                app:valueTextSize="8sp" />
+                app:unitTextSize="8sp"
+                app:valueTextSize="10sp" />
 
         </FrameLayout>
 
