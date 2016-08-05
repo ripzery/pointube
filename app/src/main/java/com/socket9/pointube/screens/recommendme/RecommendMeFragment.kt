@@ -1,19 +1,30 @@
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.hideLoadingDialog
+import com.socket9.pointube.extensions.showLoadingDialog
+import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.recommendme.RecommendMeContract
+import com.socket9.pointube.screens.recommendme.RecommendMePresenter
+import kotlinx.android.synthetic.main.fragment_recommend_me.*
 import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by ripzery on 7/20/16.
  */
 
-class RecommendMeFragment : Fragment(),AnkoLogger {
-
+class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     /** Variable zone **/
     lateinit var param1: String
+    lateinit var mRecommendMePresenter : RecommendMeContract.Presenter
+    lateinit var mActivity: AppCompatActivity
+//    lateinit var mAdapter
 
 
     /** Static method zone **/
@@ -48,7 +59,33 @@ class RecommendMeFragment : Fragment(),AnkoLogger {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mRecommendMePresenter = RecommendMePresenter(this)
         initInstance()
+    }
+
+    /* Override View Interface */
+    override fun showRecommendMe(list: MutableList<PublishedProgramItemRepo>) {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showBrandInfo(model: BrandRepo) {
+        with(model){
+            tvBrandName.text = this.Name
+            tvPoint.text = String.format("%,d", Points.toInt());
+            Glide.with(this@RecommendMeFragment).load(LogoPath).into(ivLogo)
+        }
+    }
+
+    override fun showLoading() {
+        showLoadingDialog("Please wait", "Loading recommend promotion...")
+    }
+
+    override fun hideLoading() {
+        hideLoadingDialog()
+    }
+
+    override fun showEmptyView() {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /** Method zone **/

@@ -11,6 +11,7 @@
         android:orientation="horizontal">
 
         <com.socket9.pointube.customviews.OneOneHeightImageView
+            android:id="@+id/ivLogo"
             android:layout_width="wrap_content"
             android:layout_height="80dp" />
 
