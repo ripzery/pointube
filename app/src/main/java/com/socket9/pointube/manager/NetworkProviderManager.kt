@@ -84,6 +84,7 @@ object NetworkProviderManager : AnkoLogger {
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .flatMap { DiskProviderManager.getAllBrandMember() }
     }
 
     fun getAllBrandSelectMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand> {
@@ -92,6 +93,7 @@ object NetworkProviderManager : AnkoLogger {
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .flatMap { DiskProviderManager.getAllBrandSelectMember() }
     }
 
 

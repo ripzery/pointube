@@ -83,12 +83,20 @@ object DataManager : AnkoLogger {
 
     /* Get member */
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
-        return NetworkProviderManager.getAllBrandMember(memberBrand)
+        return Observable.concat(DiskProviderManager.getAllBrandMember(), NetworkProviderManager.getAllBrandMember(memberBrand))
+                .first { it != null && it.IsSuccess }
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
     /* Get selected brand member */
     fun getAllBrandSelectedMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand> {
-        return NetworkProviderManager.getAllBrandSelectMember(memberBrand)
+        return Observable.concat(DiskProviderManager.getAllBrandSelectMember(), NetworkProviderManager.getAllBrandSelectMember(memberBrand))
+                .first { it != null && it.IsSuccess }
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
     /* get published program type */
