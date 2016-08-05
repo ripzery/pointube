@@ -13,6 +13,8 @@ interface RecommendMeContract {
 
         fun showBrandInfo(model: BrandRepo)
 
+        fun showProgramDetail(programId: Int)
+
         fun showLoading()
 
         fun hideLoading()
@@ -24,5 +26,7 @@ interface RecommendMeContract {
         fun loadRecommendMe(brandId: Int)
 
         fun loadBrand(brandId: Int)
+
+        fun clickProgram(programId: Int)
     }
 }

@@ -103,6 +103,8 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         })
         recyclerView.adapter = mRecommendMeAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+
     }
 
     inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {
