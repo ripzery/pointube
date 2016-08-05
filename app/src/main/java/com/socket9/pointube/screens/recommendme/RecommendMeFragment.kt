@@ -1,6 +1,7 @@
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.promotion.list.PromotionListViewGroup
 import com.socket9.pointube.screens.recommendme.RecommendMeContract
 import com.socket9.pointube.screens.recommendme.RecommendMePresenter
 import kotlinx.android.synthetic.main.fragment_recommend_me.*
@@ -91,6 +93,42 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     /** Method zone **/
 
     private fun initInstance() {
+        /* Init recycler view */
+    }
 
+    inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecommendMeViewHolder {
+            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_promotion_list, parent, false)
+            return RecommendMeViewHolder(view)
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        override fun onBindViewHolder(holder: RecommendMeViewHolder?, position: Int) {
+            holder!!.setModel(list[position])
+        }
+
+        fun updateProgramList(newList: MutableList<PublishedProgramItemRepo>) {
+            this.list = newList
+            notifyDataSetChanged()
+        }
+
+        inner class RecommendMeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+            val mPromotionListViewGroup: PromotionListViewGroup by lazy { itemView.findViewById(R.id.promotionList) as PromotionListViewGroup }
+
+            init {
+                mPromotionListViewGroup.setOnClickListener { listener.onItemClick(list[adapterPosition].Id) }
+            }
+
+            fun setModel(model: PublishedProgramItemRepo) {
+                mPromotionListViewGroup.setModel(model)
+            }
+        }
+    }
+
+    interface RecommendMeListener{
+        fun onItemClick(programId: Int)
     }
 }
