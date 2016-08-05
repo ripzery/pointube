@@ -60,7 +60,6 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView: View = inflater!!.inflate(R.layout.fragment_recommend_me, container, false)
-
         return rootView
     }
 
