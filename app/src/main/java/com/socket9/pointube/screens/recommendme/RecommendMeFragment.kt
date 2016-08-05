@@ -3,12 +3,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by ripzery on 7/20/16.
  */
 
-class RecommendMeFragment : Fragment() {
+class RecommendMeFragment : Fragment(),AnkoLogger {
 
     /** Variable zone **/
     lateinit var param1: String
@@ -19,11 +20,11 @@ class RecommendMeFragment : Fragment() {
         val ARG_1 = "ARG_1"
 
         fun newInstance(param1: String): RecommendMeFragment {
-            var bundle: Bundle = Bundle()
+            val bundle: Bundle = Bundle()
             bundle.putString(ARG_1, param1)
-            val templateFragment: RecommendMeFragment = RecommendMeFragment()
-            templateFragment.arguments = bundle
-            return templateFragment
+            val recommendMe: RecommendMeFragment = RecommendMeFragment()
+            recommendMe.arguments = bundle
+            return recommendMe
         }
 
     }

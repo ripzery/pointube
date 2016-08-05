@@ -30,7 +30,8 @@
         <activity
             android:name=".screens.setting.myprofile.MyProfileActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".screens.promotion.list.ProgramListActivity"></activity>
+        <activity android:name=".screens.promotion.list.ProgramListActivity" />
+        <activity android:name=".screens.recommendme.RecommendMeActivity"></activity>
     </application>
 
 </manifest>
