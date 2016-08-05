@@ -2,6 +2,8 @@ package com.socket9.pointube.utils
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.socket9.pointube.repository.brands.GetMemberBrand
+import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
@@ -83,13 +85,13 @@ interface PointubeAPI {
     fun verifyPhoneNumber(@Body phoneModel: RegisterModel.Request.VerifyPhoneNumber): Observable<RegisterModel.Response.VerifyPhoneNumber>
 
     @POST("api/Member/GetMemberBrand")
-    fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand>
+    fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand>
 
     @POST("api/Member/SaveBrand")
     fun saveBrand(@Body saveBrandModel: BrandModel.Request.SaveBrand): Observable<BrandModel.Response.SaveBrand>
 
     @POST("api/Member/GetMemberSelectedBrand")
-    fun getMemberSelectedBrand(@Body selectedBrandModel: BrandModel.Request.GetMemberSelectBrand): Observable<BrandModel.Response.GetMemberSelectBrand>
+    fun getMemberSelectedBrand(@Body selectedBrandModel: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand>
 
     @GET("api/Provider/GetProvider")
     fun getProviderById(@Query("ProviderId") providerId: Int)
