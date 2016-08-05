@@ -67,7 +67,13 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mRecommendMePresenter = RecommendMePresenter(this)
+        mRecommendMePresenter.onCreate()
         initInstance()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mRecommendMePresenter.onDestroy()
     }
 
     /* Override View Interface */

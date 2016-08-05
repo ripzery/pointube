@@ -10,7 +10,15 @@ import org.jetbrains.anko.info
 
 class RecommendMePresenter(var view: RecommendMeContract.View?) : RecommendMeContract.Presenter, AnkoLogger {
     override fun loadRecommendMe(brandId: Int) {
-//        DataManager
+        view?.showLoading()
+        DataManager.getPublishedProgramByProviderId(brandId)
+                .subscribe({
+                    view?.hideLoading()
+                    view?.showRecommendMe(it)
+                }, {
+                    view?.hideLoading()
+                    info { it }
+                })
     }
 
     override fun loadBrand(brandId: Int) {
