@@ -105,7 +105,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         /* Init recycler view */
         mRecommendMeAdapter = RecommendMeAdapter(mutableListOf(), object: RecommendMeListener{
             override fun onItemClick(programId: Int) {
-                /* TODO: show program detail*/
+                mRecommendMePresenter.clickProgram(programId)
             }
         })
         recyclerView.adapter = mRecommendMeAdapter
