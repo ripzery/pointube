@@ -19,6 +19,7 @@ import com.socket9.pointube.screens.recommendme.RecommendMePresenter
 import kotlinx.android.synthetic.main.fragment_recommend_me.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by ripzery on 7/20/16.
@@ -71,7 +72,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
 
     /* Override View Interface */
     override fun showRecommendMe(list: MutableList<PublishedProgramItemRepo>) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mRecommendMeAdapter.updateProgramList(list)
     }
 
     override fun showBrandInfo(model: BrandRepo) {
@@ -91,7 +92,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     }
 
     override fun showEmptyView() {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        toast("Show empty View")
     }
 
     override fun showProgramDetail(programId: Int) {
