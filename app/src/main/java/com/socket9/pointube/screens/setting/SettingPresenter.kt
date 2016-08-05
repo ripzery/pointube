@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.setting
 
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -24,7 +25,7 @@ class SettingPresenter(var view: SettingContract.View?) : AnkoLogger, SettingCon
                     view?.hideLoading()
                     if (it.result.isSuccess) {
                         SharedPrefUtil.clearLogin()
-
+                        RealmUtil.deleteMemberBrand()
                         view?.showLogout()
                     } else {
                         /* Member not found. Should not be possible */
@@ -33,6 +34,7 @@ class SettingPresenter(var view: SettingContract.View?) : AnkoLogger, SettingCon
                 }, {
                     view?.hideLoading()
                     SharedPrefUtil.clearLogin()
+                    RealmUtil.deleteMemberBrand()
                     view?.showLogout()
                     info { it }
                 })
