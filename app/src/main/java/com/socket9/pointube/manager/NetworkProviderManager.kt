@@ -78,6 +78,7 @@ object NetworkProviderManager : AnkoLogger {
 
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand> {
         return RetrofitUtils.getInstance().getMemberBrand(memberBrand)
+//                .doOnNext { saveToDisk(it) }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
