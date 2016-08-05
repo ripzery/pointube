@@ -108,8 +108,8 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
                     view?.hideLoading()
                     if (it.IsSuccess) {
                         view?.showSaveSuccess()
-                        /* save update brand to disk */
-                        RealmUtil.write { mAllBrandMember }
+                        /* delete all brand member */
+                        RealmUtil.deleteMemberBrand()
                     } else {
                         view?.showSaveFailed(it.Message!!)
                     }
