@@ -1,6 +1,7 @@
 package com.socket9.pointube.repository.brands
 
 import com.socket9.pointube.screens.brand.BrandModel
+import com.socket9.pointube.utils.SharedPrefUtil
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.Ignore
@@ -10,12 +11,14 @@ import io.realm.annotations.PrimaryKey
  * Created by ripzery on 8/5/16.
  */
 open class GetMemberBrand(
+        @PrimaryKey open var Id: Int = SharedPrefUtil.loadLoginResult()!!.id,
         open var IsSuccess: Boolean = false,
         open var Message: String? = "",
         open var Results: RealmList<GetMemberBrandResult> = RealmList()
 ) : RealmObject() {}
 
 open class GetMemberSelectBrand(
+        @PrimaryKey open var Id: Int = SharedPrefUtil.loadLoginResult()!!.id,
         open var IsSuccess: Boolean = false,
         open var Message: String? = "",
         open var Brands: RealmList<GetMemberBrandResult> = RealmList()
