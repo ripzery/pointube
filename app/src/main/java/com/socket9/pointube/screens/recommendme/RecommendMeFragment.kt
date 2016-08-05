@@ -12,11 +12,13 @@ import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
 import com.socket9.pointube.screens.promotion.list.PromotionListViewGroup
 import com.socket9.pointube.screens.recommendme.RecommendMeContract
 import com.socket9.pointube.screens.recommendme.RecommendMePresenter
 import kotlinx.android.synthetic.main.fragment_recommend_me.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by ripzery on 7/20/16.
@@ -90,6 +92,10 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
 
     override fun showEmptyView() {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showProgramDetail(programId: Int) {
+        startActivity<PromotionDetailActivity>("id" to programId)
     }
 
     /** Method zone **/
