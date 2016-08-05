@@ -23,6 +23,8 @@ class SettingPresenter(var view: SettingContract.View?) : AnkoLogger, SettingCon
                 .subscribe({
                     view?.hideLoading()
                     if (it.result.isSuccess) {
+                        SharedPrefUtil.clearLogin()
+
                         view?.showLogout()
                     } else {
                         /* Member not found. Should not be possible */

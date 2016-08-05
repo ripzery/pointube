@@ -84,7 +84,7 @@ object DataManager : AnkoLogger {
     /* Get member */
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return Observable.concat(DiskProviderManager.getAllBrandMember(), NetworkProviderManager.getAllBrandMember(memberBrand))
-                .first { it != null && it.IsSuccess }
+                .first { it != null }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -93,7 +93,7 @@ object DataManager : AnkoLogger {
     /* Get selected brand member */
     fun getAllBrandSelectedMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand> {
         return Observable.concat(DiskProviderManager.getAllBrandSelectMember(), NetworkProviderManager.getAllBrandSelectMember(memberBrand))
-                .first { it != null && it.IsSuccess }
+                .first { it != null }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
