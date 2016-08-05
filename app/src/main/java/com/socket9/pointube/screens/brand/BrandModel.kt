@@ -16,12 +16,16 @@ object BrandModel {
     }
 
     object Response {
+
+        /* Using MemberBrandRepo instead for caching */
         data class GetMemberBrand(val IsSuccess: Boolean, val Message: String?, val Results: MutableList<GetMemberBrandResult>)
 
+        /* Using MemberBrandRepo instead for caching */
         data class GetMemberBrandResult(val Id: Int, val Name: String, val LogoPath: String, val Points: Int, val Code: String, val Message: String?, val IsBrandMember: Boolean, var isChecked: Boolean = false)
 
         data class SaveBrand(val IsSuccess: Boolean, val Message: String?)
 
+        /* Using MemberBrandRepo instead for caching */
         data class GetMemberSelectBrand(val IsSuccess: Boolean, val Message: String?, val Brands: MutableList<GetMemberBrandResult>)
     }
 

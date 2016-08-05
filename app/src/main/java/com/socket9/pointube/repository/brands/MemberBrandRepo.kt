@@ -4,6 +4,7 @@ import com.socket9.pointube.screens.brand.BrandModel
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.Ignore
+import io.realm.annotations.PrimaryKey
 
 /**
  * Created by ripzery on 8/5/16.
@@ -21,7 +22,7 @@ open class GetMemberSelectBrand(
 ) : RealmObject() {}
 
 open class GetMemberBrandResult(
-        open var Id: Int,
+        @PrimaryKey open var Id: Int,
         open var Name: String,
         open var LogoPath: String,
         open var Points: Int,
