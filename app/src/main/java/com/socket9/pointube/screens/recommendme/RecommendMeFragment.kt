@@ -12,12 +12,14 @@ import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
 import com.socket9.pointube.screens.promotion.list.PromotionListViewGroup
 import com.socket9.pointube.screens.recommendme.RecommendMeContract
 import com.socket9.pointube.screens.recommendme.RecommendMePresenter
 import kotlinx.android.synthetic.main.fragment_recommend_me.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
@@ -80,7 +82,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         mRecommendMeAdapter.updateProgramList(list)
     }
 
-    override fun showBrandInfo(model: BrandRepo) {
+    override fun showBrandInfo(model: BrandModel.Response.GetMemberBrandResult) {
         with(model){
             tvBrandName.text = this.Name
             tvPoint.text = String.format("%,d", Points.toInt());
@@ -117,7 +119,6 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         mRecommendMePresenter.loadRecommendMe(mBrandId)
-        mRecommendMePresenter.loadBrand(mBrandId)
     }
 
     inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {

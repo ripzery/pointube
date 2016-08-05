@@ -26,6 +26,6 @@ class RecommendMeActivity : AppCompatActivity() {
 
     private fun initInstance() {
         setupToolbar("Recommend Me")
-        replaceFragment(fragment = RecommendMeFragment.newInstance(intent.getIntExtra("id")))
+        replaceFragment(fragment = RecommendMeFragment.newInstance(intent.getIntExtra("id", 1)))
     }
 }
