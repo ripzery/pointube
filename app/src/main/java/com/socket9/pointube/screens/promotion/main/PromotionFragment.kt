@@ -3,22 +3,23 @@ package com.socket9.pointube.screens.promotion.main
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.FrameLayout
 import com.socket9.pointube.R
 import com.socket9.pointube.customviews.TintableImageView
+import com.socket9.pointube.screens.recommendme.RecommendMeActivity
 import com.socket9.pointube.utils.ContextUtil
 import kotlinx.android.synthetic.main.fragment_promotion.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
 class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     /** Variable zone **/
+    private val THE_ONE_CARD_ID = 1
     lateinit var param1: String
     lateinit private var mPromotionPresenter: PromotionContract.Presenter
     lateinit private var mPromotionPagerAdapter: PromotionPagerAdapter
@@ -43,7 +44,20 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
         if (savedInstanceState == null) {
             /* if newly created */
             param1 = arguments.getString(ARG_1)
+            setHasOptionsMenu(true)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.menu_recommend -> startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+        }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater!!.inflate(R.menu.menu_recommend_me, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

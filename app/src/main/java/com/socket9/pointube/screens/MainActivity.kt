@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
@@ -93,6 +94,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             }
             R.id.nav_point_fragment -> {
                 fragment = PointFragment.newInstance("Point")
+
             }
             R.id.nav_promotion_fragment -> {
                 fragment = PromotionFragment.newInstance("Promotion")

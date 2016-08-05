@@ -27,7 +27,7 @@ import org.jetbrains.anko.support.v4.toast
 
 class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     /** Variable zone **/
-    lateinit var param1: String
+    private var mBrandId: Int = 1
     lateinit var mRecommendMePresenter : RecommendMeContract.Presenter
     lateinit var mActivity: AppCompatActivity
     lateinit var mRecommendMeAdapter: RecommendMeAdapter
@@ -38,9 +38,9 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): RecommendMeFragment {
+        fun newInstance(brandId: Int): RecommendMeFragment {
             val bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+            bundle.putInt(ARG_1, brandId)
             val recommendMe: RecommendMeFragment = RecommendMeFragment()
             recommendMe.arguments = bundle
             return recommendMe
@@ -54,7 +54,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mBrandId = arguments.getInt(ARG_1)
         }
     }
 
@@ -116,7 +116,8 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         recyclerView.adapter = mRecommendMeAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-
+        mRecommendMePresenter.loadRecommendMe(mBrandId)
+        mRecommendMePresenter.loadBrand(mBrandId)
     }
 
     inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {

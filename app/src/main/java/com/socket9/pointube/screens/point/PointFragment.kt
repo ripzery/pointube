@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.BrandViewGroup
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.screens.recommendme.RecommendMeActivity
 import kotlinx.android.synthetic.main.fragment_point.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.support.v4.startActivity
 import java.text.SimpleDateFormat
 
 /**
@@ -24,6 +24,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
 
 
     /** Variable zone **/
+    private val THE_ONE_CARD_ID = 1
     lateinit var param1: String
     lateinit var mPointPresenter: PointContract.Presenter
     lateinit var mPointAdapter: PointAdapter
@@ -39,7 +40,6 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             templateFragment.arguments = bundle
             return templateFragment
         }
-
     }
 
     /** Activity method zone  **/
@@ -48,8 +48,21 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
+            setHasOptionsMenu(true)
             param1 = arguments.getString(ARG_1)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater!!.inflate(R.menu.menu_recommend_me, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.menu_recommend -> startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+        }
+        return true
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
