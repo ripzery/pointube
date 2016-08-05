@@ -1,6 +1,7 @@
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -100,7 +101,8 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
                 /* TODO: show program detail*/
             }
         })
-
+        recyclerView.adapter = mRecommendMeAdapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
     inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {
