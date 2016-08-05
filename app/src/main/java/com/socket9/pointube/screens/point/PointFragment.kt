@@ -8,6 +8,7 @@ import android.view.*
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.BrandViewGroup
 import com.socket9.pointube.screens.home.LoginModel
@@ -84,7 +85,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     }
 
     /* Implement View Interface zone */
-    override fun showBrands(allBrands: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+    override fun showBrands(allBrands: MutableList<GetMemberBrandResult>) {
         mPointAdapter.updateList(allBrands)
     }
 
@@ -119,7 +120,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     }
 
     /* Inner class zone */
-    inner class PointAdapter(var list: MutableList<BrandModel.Response.GetMemberBrandResult>, var listener: PointListener) : RecyclerView.Adapter<PointAdapter.PointViewHolder>() {
+    inner class PointAdapter(var list: MutableList<GetMemberBrandResult>, var listener: PointListener) : RecyclerView.Adapter<PointAdapter.PointViewHolder>() {
         override fun getItemCount(): Int {
             return list.size
         }
@@ -133,7 +134,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
             return PointViewHolder(view)
         }
 
-        fun updateList(newList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+        fun updateList(newList: MutableList<GetMemberBrandResult>) {
             list = newList
             notifyDataSetChanged()
         }
@@ -147,7 +148,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
                 }
             }
 
-            fun setModel(model: BrandModel.Response.GetMemberBrandResult) {
+            fun setModel(model: GetMemberBrandResult) {
                 mBrandViewGroup.setModel(model, true) /* true for showPoint instead of checkBox */
             }
 

@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.point
 
 import com.socket9.pointube.base.BasePresenter
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.LoginModel
 
@@ -9,7 +10,7 @@ import com.socket9.pointube.screens.home.LoginModel
  */
 interface PointContract {
     interface View {
-        fun showBrands(allBrands: MutableList<BrandModel.Response.GetMemberBrandResult>)
+        fun showBrands(allBrands: MutableList<GetMemberBrandResult>)
 
         fun showLoading()
 

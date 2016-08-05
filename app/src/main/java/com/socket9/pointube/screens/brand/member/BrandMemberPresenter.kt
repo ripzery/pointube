@@ -1,8 +1,10 @@
 package com.socket9.pointube.screens.brand.member
 
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.repository.brands.GetMemberBrand
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
+import com.socket9.pointube.repository.brands.getIdBySelected
 import com.socket9.pointube.screens.brand.BrandModel
-import com.socket9.pointube.screens.brand.getIdBySelected
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
@@ -13,7 +15,7 @@ import rx.Observable
  * Created by ripzery on 7/25/16.
  */
 class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberContract.Presenter, AnkoLogger {
-    private var mAllBrandMember: BrandModel.Response.GetMemberBrand? = null
+    private var mAllBrandMember: GetMemberBrand? = null
     private val mLoginResult: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
 
     override fun loadAllBrands(memberId: String, token: String, isEdit: Boolean) {
@@ -46,7 +48,7 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
         view?.showLoading()
 
         /* initialize member selected brand */
-        var memberSelectedBrand: MutableList<BrandModel.Response.GetMemberBrandResult> = mutableListOf()
+        var memberSelectedBrand: MutableList<GetMemberBrandResult> = mutableListOf()
 
         /* get "all selected brand member" then check if they are contained in "all brand member"
          * if yes -> checked

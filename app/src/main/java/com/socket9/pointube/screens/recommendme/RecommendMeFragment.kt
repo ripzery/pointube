@@ -10,16 +10,14 @@ import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
-import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
-import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
 import com.socket9.pointube.screens.promotion.list.PromotionListViewGroup
 import com.socket9.pointube.screens.recommendme.RecommendMeContract
 import com.socket9.pointube.screens.recommendme.RecommendMePresenter
 import kotlinx.android.synthetic.main.fragment_recommend_me.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
@@ -27,10 +25,10 @@ import org.jetbrains.anko.support.v4.toast
  * Created by ripzery on 7/20/16.
  */
 
-class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
+class RecommendMeFragment : Fragment(), AnkoLogger, RecommendMeContract.View {
     /** Variable zone **/
     private var mBrandId: Int = 1
-    lateinit var mRecommendMePresenter : RecommendMeContract.Presenter
+    lateinit var mRecommendMePresenter: RecommendMeContract.Presenter
     lateinit var mActivity: AppCompatActivity
     lateinit var mRecommendMeAdapter: RecommendMeAdapter
 //    lateinit var mAdapter
@@ -82,8 +80,8 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         mRecommendMeAdapter.updateProgramList(list)
     }
 
-    override fun showBrandInfo(model: BrandModel.Response.GetMemberBrandResult) {
-        with(model){
+    override fun showBrandInfo(model: GetMemberBrandResult) {
+        with(model) {
             tvBrandName.text = this.Name
             tvPoint.text = String.format("%,d", Points.toInt());
             Glide.with(this@RecommendMeFragment).load(LogoPath).into(ivLogo)
@@ -110,7 +108,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
 
     private fun initInstance() {
         /* Init recycler view */
-        mRecommendMeAdapter = RecommendMeAdapter(mutableListOf(), object: RecommendMeListener{
+        mRecommendMeAdapter = RecommendMeAdapter(mutableListOf(), object : RecommendMeListener {
             override fun onItemClick(programId: Int) {
                 mRecommendMePresenter.clickProgram(programId)
             }
@@ -121,7 +119,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         mRecommendMePresenter.loadRecommendMe(mBrandId)
     }
 
-    inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener ) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {
+    inner class RecommendMeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: RecommendMeListener) : RecyclerView.Adapter<RecommendMeAdapter.RecommendMeViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecommendMeViewHolder {
             val view = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_promotion_list, parent, false)
             return RecommendMeViewHolder(view)
@@ -140,7 +138,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
             notifyDataSetChanged()
         }
 
-        inner class RecommendMeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        inner class RecommendMeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val mPromotionListViewGroup: PromotionListViewGroup by lazy { itemView.findViewById(R.id.promotionList) as PromotionListViewGroup }
 
             init {
@@ -153,7 +151,7 @@ class RecommendMeFragment : Fragment(),AnkoLogger, RecommendMeContract.View {
         }
     }
 
-    interface RecommendMeListener{
+    interface RecommendMeListener {
         fun onItemClick(programId: Int)
     }
 }

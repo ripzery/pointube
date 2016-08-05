@@ -1,5 +1,7 @@
 package com.socket9.pointube.manager
 
+import com.socket9.pointube.repository.brands.GetMemberBrand
+import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
@@ -76,14 +78,14 @@ object NetworkProviderManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand> {
+    fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return RetrofitUtils.getInstance().getMemberBrand(memberBrand)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getAllBrandSelectMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<BrandModel.Response.GetMemberSelectBrand> {
+    fun getAllBrandSelectMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand> {
         return RetrofitUtils.getInstance().getMemberSelectedBrand(memberBrand)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

@@ -1,6 +1,8 @@
 package com.socket9.pointube.manager
 
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.GetMemberBrand
+import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
@@ -80,12 +82,12 @@ object DataManager : AnkoLogger {
     }
 
     /* Get member */
-    fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<BrandModel.Response.GetMemberBrand> {
+    fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return NetworkProviderManager.getAllBrandMember(memberBrand)
     }
 
     /* Get selected brand member */
-    fun getAllBrandSelectedMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<BrandModel.Response.GetMemberSelectBrand> {
+    fun getAllBrandSelectedMember(memberBrand: BrandModel.Request.GetMemberSelectBrand): Observable<GetMemberSelectBrand> {
         return NetworkProviderManager.getAllBrandSelectMember(memberBrand)
     }
 

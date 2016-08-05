@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.brand.member
 
 import com.socket9.pointube.base.BasePresenter
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.screens.brand.BrandModel
 
 /**
@@ -8,11 +9,11 @@ import com.socket9.pointube.screens.brand.BrandModel
  */
 interface BrandMemberContract {
     interface View {
-        fun highlightAllBrands(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>)
+        fun highlightAllBrands(qualifiedList: MutableList<GetMemberBrandResult>)
 
-        fun unHighlightAllBrands(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>)
+        fun unHighlightAllBrands(qualifiedList: MutableList<GetMemberBrandResult>)
 
-        fun showQualifiedBrand(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>)
+        fun showQualifiedBrand(qualifiedList: MutableList<GetMemberBrandResult>)
 
         fun showLoading()
 

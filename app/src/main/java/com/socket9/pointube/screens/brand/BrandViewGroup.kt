@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import kotlinx.android.synthetic.main.viewgroup_member_brand.view.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -76,7 +77,7 @@ class BrandViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    fun setModel(model: BrandModel.Response.GetMemberBrandResult, isShowPoint: Boolean = false) {
+    fun setModel(model: GetMemberBrandResult, isShowPoint: Boolean = false) {
         Glide.with(context).load(model.LogoPath).into(civBrandLogo)
         tvBrandName.text = model.Name
 

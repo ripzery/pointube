@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.BrandViewGroup
 import com.socket9.pointube.screens.home.LoginModel
@@ -90,15 +91,15 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     }
 
     /* Override View Interface zone */
-    override fun highlightAllBrands(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+    override fun highlightAllBrands(qualifiedList: MutableList<GetMemberBrandResult>) {
         mBrandMemberAdapter.updateList(qualifiedList)
     }
 
-    override fun unHighlightAllBrands(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+    override fun unHighlightAllBrands(qualifiedList: MutableList<GetMemberBrandResult>) {
         mBrandMemberAdapter.updateList(qualifiedList)
     }
 
-    override fun showQualifiedBrand(qualifiedList: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+    override fun showQualifiedBrand(qualifiedList: MutableList<GetMemberBrandResult>) {
         mBrandMemberAdapter.updateList(qualifiedList)
     }
 
@@ -166,7 +167,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     }
 
     /* Inner class */
-    inner class BrandMemberAdapter(var list: MutableList<BrandModel.Response.GetMemberBrandResult>) : RecyclerView.Adapter<BrandMemberAdapter.BrandMemberViewHolder>() {
+    inner class BrandMemberAdapter(var list: MutableList<GetMemberBrandResult>) : RecyclerView.Adapter<BrandMemberAdapter.BrandMemberViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BrandMemberViewHolder {
             val view: View = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_select_brand, parent, false)
             return BrandMemberViewHolder(view)
@@ -180,12 +181,12 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
             return list.size
         }
 
-        fun updateList(list: MutableList<BrandModel.Response.GetMemberBrandResult>) {
+        fun updateList(list: MutableList<GetMemberBrandResult>) {
             this.list = list
             notifyDataSetChanged()
         }
 
-        fun getBrandList(): MutableList<BrandModel.Response.GetMemberBrandResult> {
+        fun getBrandList(): MutableList<GetMemberBrandResult> {
             return list
         }
 
@@ -200,7 +201,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
                         }
             }
 
-            fun setModel(brand: BrandModel.Response.GetMemberBrandResult) {
+            fun setModel(brand: GetMemberBrandResult) {
                 mBrandMember.setModel(brand)
             }
 
