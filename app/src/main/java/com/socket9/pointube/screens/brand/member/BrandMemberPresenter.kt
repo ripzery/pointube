@@ -104,10 +104,8 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
         view?.showLoading()
 //        val selectedBrand: MutableList<BrandModel.Request.Brand> = brandRepoList.map { BrandModel.Request.Brand(it.Id, it.isChecked) }.toMutableList()
 
-        /* use isMemberBrand false because we don't want brands in this page show up immediately */
+        /* use isMemberBrand true because api recognise this brand is member */
         val selectedBrand: MutableList<BrandModel.Request.Brand> = mAllBrandMember!!.Results.filter { it.isChecked }.map { BrandModel.Request.Brand(it.Id, true) }.toMutableList()
-
-        info { selectedBrand }
 
         DataManager.saveSelectedBrand(BrandModel.Request.SaveBrand(mLoginResult.id.toString(), mLoginResult.token!!, selectedBrand))
                 .subscribe({
