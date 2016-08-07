@@ -1,6 +1,7 @@
 package com.socket9.pointube.utils
 
 import com.socket9.pointube.repository.brands.GetMemberBrand
+import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import io.realm.Realm
 import io.realm.RealmObject
@@ -15,18 +16,23 @@ object RealmUtil {
     }
 
     fun write(code: (Realm) -> Unit) {
-        getInstance().beginTransaction()
-        code(getInstance())
-        getInstance().commitTransaction()
-        getInstance().close()
+        with(getInstance()) {
+            beginTransaction()
+            code(this)
+            commitTransaction()
+            close()
+        }
     }
 
     fun deleteMemberBrand() {
-        getInstance().beginTransaction()
-        getInstance().delete(GetMemberBrand::class.java)
-        getInstance().delete(GetMemberSelectBrand::class.java)
-        getInstance().commitTransaction()
-        getInstance().close()
+        with(getInstance()) {
+            beginTransaction()
+            delete(GetMemberBrand::class.java)
+            delete(GetMemberSelectBrand::class.java)
+            delete(GetMemberBrandResult::class.java)
+            commitTransaction()
+            close()
+        }
     }
 
     fun <T : RealmObject> readAll(table: Class<T>): RealmResults<T> {

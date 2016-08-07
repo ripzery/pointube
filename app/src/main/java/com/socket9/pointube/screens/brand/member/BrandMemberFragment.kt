@@ -12,9 +12,9 @@ import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.brands.GetMemberBrandResult
-import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.BrandViewGroup
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import org.jetbrains.anko.AnkoLogger
@@ -144,10 +144,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = mBrandMemberAdapter
 
-        if(!mIsEdit)
-            btnNext.setOnClickListener { mBrandMemberPresenter.next() }
-        else
-            btnNext.setOnClickListener { mBrandMemberPresenter.saveBrand() }
+        btnNext.setOnClickListener { mBrandMemberPresenter.next() }
 
         /* Initial btn select all */
         btnSelectAll.isSelected = mIsSelectAllSelected
@@ -196,7 +193,9 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
             init {
                 mBrandMember.getCheckedObservable()
                         .subscribe {
-                            list[adapterPosition].isChecked = it
+                            RealmUtil.write{ realm ->
+                                list[adapterPosition].isChecked = it
+                            }
                             info { it }
                         }
             }

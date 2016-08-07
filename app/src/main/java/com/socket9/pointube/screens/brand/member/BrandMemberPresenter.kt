@@ -67,7 +67,9 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
                         /* set isChecked by finding each one from memberSelectedBrand */
                         mAllBrandMember!!.Results.forEach {
                             val brand = it
-                            it.isChecked = memberSelectedBrand.find { it.Id == brand.Id } != null
+                            RealmUtil.write {
+                                brand.isChecked = memberSelectedBrand.find { it.Id == brand.Id } != null
+                            }
                         }
 
                         view?.showQualifiedBrand(mAllBrandMember!!.Results)
@@ -83,7 +85,9 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
 
     override fun selectAllBrand(isSelect: Boolean) {
         mAllBrandMember!!.Results.forEach {
-            it.isChecked = isSelect
+            RealmUtil.write { realm ->
+                it.isChecked = isSelect
+            }
         }
         if (isSelect) view?.highlightAllBrands(mAllBrandMember!!.Results)
         else view?.unHighlightAllBrands(mAllBrandMember!!.Results)
@@ -103,12 +107,13 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
         /* use isMemberBrand false because we don't want brands in this page show up immediately */
         val selectedBrand: MutableList<BrandModel.Request.Brand> = mAllBrandMember!!.Results.filter { it.isChecked }.map { BrandModel.Request.Brand(it.Id, true) }.toMutableList()
 
+        info { selectedBrand }
+
         DataManager.saveSelectedBrand(BrandModel.Request.SaveBrand(mLoginResult.id.toString(), mLoginResult.token!!, selectedBrand))
                 .subscribe({
                     view?.hideLoading()
                     if (it.IsSuccess) {
                         view?.showSaveSuccess()
-                        /* delete all brand member */
                         RealmUtil.deleteMemberBrand()
                     } else {
                         view?.showSaveFailed(it.Message!!)

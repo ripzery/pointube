@@ -32,7 +32,7 @@ open class GetMemberBrandResult(
         open var Code: String = "",
         open var Message: String? = "",
         open var IsBrandMember: Boolean = false,
-        @Ignore open var isChecked: Boolean = false
+        open var isChecked: Boolean = false
 ) : RealmObject() {}
 
 fun GetMemberBrand.getIdBySelected(): MutableList<Int> = this.Results.filter { it.isChecked }.map { it.Id }.toMutableList()
