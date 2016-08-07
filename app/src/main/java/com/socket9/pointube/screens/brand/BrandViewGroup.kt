@@ -10,18 +10,30 @@ import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import kotlinx.android.synthetic.main.viewgroup_member_brand.view.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.subjects.PublishSubject
+import kotlin.properties.Delegates
+import kotlin.reflect.KProperty
 
 /**
  * Created by ripzery on 7/21/16.
  */
-class BrandViewGroup : FrameLayout {
+class BrandViewGroup : FrameLayout, AnkoLogger {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
-    private var mCheckedObservable: PublishSubject<Boolean> = PublishSubject.create()
+    private var mObserveChecked: (Boolean) -> Unit = { info { "Waiting for subscription checked: $it" } }
+
+    private var mIsChecked: Boolean by Delegates.observable(false) { meta: KProperty<*>, oldValue: Boolean, newValue: Boolean ->
+        with(newValue) {
+            cbSelect.isChecked = this
+            viewContainer.isSelected = this
+            mObserveChecked(this)
+        }
+    }
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -55,9 +67,7 @@ class BrandViewGroup : FrameLayout {
 
     private fun initInstances() {
         viewContainer.setOnClickListener {
-            cbSelect.isChecked = !cbSelect.isChecked
-            it.isSelected = cbSelect.isChecked
-            mCheckedObservable.onNext(it.isSelected)
+            mIsChecked = !mIsChecked
         }
     }
 
@@ -85,7 +95,7 @@ class BrandViewGroup : FrameLayout {
         tvPoint.visibility = if (isShowPoint) View.VISIBLE else View.GONE
 
         if (!isShowPoint) {
-            cbSelect.isChecked = model.isChecked
+            mIsChecked = model.isChecked
         } else {
             val formattedPoint = String.format("%,d", model.Points.toInt())
             tvPoint.text = formattedPoint
@@ -93,24 +103,14 @@ class BrandViewGroup : FrameLayout {
     }
 
     fun setModel(model: BrandRepo) {
-        Glide.with(context).load(model.LogoPath).into(civBrandLogo)
-        tvBrandName.text = model.Name
-        cbSelect.isChecked = model.isChecked
+        with(model) {
+            Glide.with(context).load(LogoPath).into(civBrandLogo)
+            tvBrandName.text = Name
+            mIsChecked = isChecked
+        }
     }
 
-    fun setChecked(checked: Boolean) {
-        cbSelect.isChecked = checked
+    fun observeChecked(code: (Boolean) -> Unit) {
+        mObserveChecked = code
     }
-
-    fun getChecked(): Boolean {
-        return cbSelect.isChecked
-    }
-
-    fun getCheckedObservable(): Observable<Boolean> {
-        return mCheckedObservable
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-    }
-
 }

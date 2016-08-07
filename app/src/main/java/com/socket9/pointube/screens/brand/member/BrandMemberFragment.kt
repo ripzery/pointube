@@ -18,7 +18,6 @@ import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -188,16 +187,14 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
         }
 
         inner class BrandMemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val mBrandMember: BrandViewGroup by lazy { itemView.findViewById(R.id.brandViewGroup) as BrandViewGroup }
+            private val mBrandMember: BrandViewGroup by lazy { itemView.findViewById(R.id.brandViewGroup) as BrandViewGroup }
 
             init {
-                mBrandMember.getCheckedObservable()
-                        .subscribe {
-                            RealmUtil.write{ realm ->
-                                list[adapterPosition].isChecked = it
-                            }
-                            info { it }
-                        }
+                mBrandMember.observeChecked {
+                    RealmUtil.write { realm ->
+                        list[adapterPosition].isChecked = it
+                    }
+                }
             }
 
             fun setModel(brand: GetMemberBrandResult) {

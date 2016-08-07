@@ -14,6 +14,7 @@ import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.brand.BrandViewGroup
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_brand_non_member.*
 import org.jetbrains.anko.AnkoLogger
@@ -178,10 +179,11 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
             val mBrandMember: BrandViewGroup by lazy { itemView.findViewById(R.id.brandViewGroup) as BrandViewGroup }
 
             init {
-                mBrandMember.getCheckedObservable()
-                        .subscribe {
-                            list[adapterPosition].isChecked = it
-                        }
+                mBrandMember.observeChecked {
+                    RealmUtil.write { realm ->
+                        list[adapterPosition].isChecked = it
+                    }
+                }
             }
 
             fun setModel(brand: BrandRepo) {
