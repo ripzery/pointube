@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -27,6 +28,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
 import rx_activity_result.RxActivityResult
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener {
 
@@ -141,6 +143,10 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     override fun onLogout() {
         selectMenu(FRAGMENT_HOME)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onSignUp() {

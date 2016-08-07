@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.setting.mybrand
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.socket9.pointube.R
@@ -7,6 +8,7 @@ import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.brand.member.BrandMemberFragment
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class MyBrandActivity : AppCompatActivity(), BrandMemberFragment.BrandMemberListener {
 
@@ -15,6 +17,10 @@ class MyBrandActivity : AppCompatActivity(), BrandMemberFragment.BrandMemberList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_brand)
         initInstance()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     private fun initInstance() {

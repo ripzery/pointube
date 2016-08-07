@@ -1,9 +1,11 @@
 package com.socket9.pointube.screens.promotion.list
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class ProgramListActivity : AppCompatActivity() {
 
@@ -11,6 +13,10 @@ class ProgramListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program_list)
         initInstance()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     private fun initInstance() {

@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.register
 
 import android.app.Activity
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.register.form.RegisterFormFragment
 import com.socket9.pointube.screens.register.otp.OtpFragment
 import com.socket9.pointube.screens.register.phone.PhoneFragment
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormListener, TermsFragment.TermsListener, PhoneFragment.PhoneListener, OtpFragment.OtpListener {
 
@@ -27,6 +29,10 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
         setContentView(R.layout.activity_register)
 
         initInstance()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     private fun initInstance() {

@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragmentWithAnimation
 import com.socket9.pointube.extensions.setupToolbar
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,6 +20,10 @@ class LoginActivity : AppCompatActivity() {
         setupToolbar("Login", false)
         initInstance()
 
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

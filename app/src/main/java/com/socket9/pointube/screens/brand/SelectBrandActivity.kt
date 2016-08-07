@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.brand
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
@@ -8,6 +9,7 @@ import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.screens.brand.member.BrandMemberFragment
 import com.socket9.pointube.screens.brand.non_member.BrandNonMemberFragment
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNonMemberListener, BrandMemberFragment.BrandMemberListener {
 
@@ -52,6 +54,10 @@ class SelectBrandActivity : AppCompatActivity(), BrandNonMemberFragment.BrandNon
         mCurrentFragment = 1
         setResult(Activity.RESULT_CANCELED)
         finish()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun goNextFromBrandMember(selectedBrand: MutableList<Int>, qualifiedBrandIdList: MutableList<Int>) {
