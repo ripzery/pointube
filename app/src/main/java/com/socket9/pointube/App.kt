@@ -10,6 +10,7 @@ import io.realm.RealmConfiguration
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import rx_activity_result.RxActivityResult
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
@@ -26,5 +27,6 @@ class App : Application(), AnkoLogger {
         SharedPrefUtil.sharePref = getSharedPreferences(SharedPrefUtil.NAME, Context.MODE_PRIVATE)
         RxActivityResult.register(this)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        CalligraphyConfig.initDefault(CalligraphyConfig.Builder().setDefaultFontPath("fonts/QuarkLight.ttf").setFontAttrId(R.attr.fontPath).build())
     }
 }
