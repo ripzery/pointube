@@ -126,11 +126,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-        mProviderListAdapter = BrandUnitAdapter(mutableListOf(), object: BrandListener{
-            override fun onBrandClick(brand: BrandRepo) {
-                mHomePresenter.clickBrand(brand)
-            }
-        })
+        mProviderListAdapter = BrandUnitAdapter(mutableListOf()) { mHomePresenter.clickBrand(it) }
         recyclerView.adapter = mProviderListAdapter
         recyclerView.layoutManager = mLinearLayoutManager
 
@@ -153,7 +149,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     /** Inner class zone **/
 
-    inner class BrandUnitAdapter(var list: MutableList<BrandRepo>, val listener: BrandListener) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
+    inner class BrandUnitAdapter(var list: MutableList<BrandRepo>, val brandClickObserved: (BrandRepo) -> Unit) : RecyclerView.Adapter<BrandUnitAdapter.BrandUnitViewHolder>() {
         override fun onBindViewHolder(holder: BrandUnitViewHolder?, position: Int) {
             holder!!.setModel(list[position])
             holder.setBadgeCount(list[position].TotalPrograms)
@@ -180,13 +176,11 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
             }
 
             init {
-                homeBrandViewGroup.setOnClickListener {
-                    listener.onBrandClick(list[adapterPosition])
-                }
+                homeBrandViewGroup.setOnClickListener { brandClickObserved(list[adapterPosition]) }
             }
 
             fun setModel(brand: BrandRepo) {
-                info{brand.Points}
+                info { brand.Points }
                 homeBrandViewGroup.setModel(brand)
             }
 
@@ -216,9 +210,4 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         fun onLogin()
         fun onSignUp()
     }
-
-    interface BrandListener {
-        fun onBrandClick(brand: BrandRepo)
-    }
-
 }

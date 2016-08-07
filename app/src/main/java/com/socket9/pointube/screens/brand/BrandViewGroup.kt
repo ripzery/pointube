@@ -26,7 +26,6 @@ class BrandViewGroup : FrameLayout, AnkoLogger {
     /** Variable zone **/
     lateinit private var viewContainer: View
     private var mObserveChecked: (Boolean) -> Unit = { info { "Waiting for subscription checked: $it" } }
-
     private var mIsChecked: Boolean by Delegates.observable(false) { meta: KProperty<*>, oldValue: Boolean, newValue: Boolean ->
         with(newValue) {
             cbSelect.isChecked = this
