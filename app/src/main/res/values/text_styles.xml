@@ -16,6 +16,7 @@
 
     <style name="BaseTextTerm.TextTermsTitle">
         <item name="android:textStyle">bold</item>
+        <item name="fontPath">fonts/QuarkBold.ttf</item>
     </style>
 
     <style name="BaseTextTerm.Body">
