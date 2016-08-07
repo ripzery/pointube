@@ -119,11 +119,9 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
     private fun initInstance() {
         mPromotionProgramTypePresenter.onCreate()
 
-        mPromotionProgramTypeAdapter = PromotionProgramTypeAdapter(mutableListOf(), object : PromotionItemClickListener {
-            override fun onItemClick(promotionId: Int) {
-                mPromotionProgramTypePresenter.clickPromotion(promotionId)
-            }
-        })
+        mPromotionProgramTypeAdapter = PromotionProgramTypeAdapter(mutableListOf()) {
+            mPromotionProgramTypePresenter.clickPromotion(it)
+        }
 
 //        recyclerView.layoutManager = LinearLayoutManager(context)
         val gridLayoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
@@ -145,7 +143,7 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
 
     /* Inner class */
 
-    class PromotionProgramTypeAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: PromotionItemClickListener) : RecyclerView.Adapter<PromotionProgramTypeAdapter.PromotionProgramTypeViewHolder>() {
+    class PromotionProgramTypeAdapter(var list: MutableList<PublishedProgramItemRepo>, val observedItemClick: (Int) -> Unit) : RecyclerView.Adapter<PromotionProgramTypeAdapter.PromotionProgramTypeViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PromotionProgramTypeViewHolder {
             val view: View = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_promotion_item, parent, false)
             return PromotionProgramTypeViewHolder(view)
@@ -172,7 +170,7 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
 
             init {
                 mPromotionItemViewGroup.setOnClickListener {
-                    listener.onItemClick(list[adapterPosition].Id)
+                    observedItemClick(list[adapterPosition].Id)
                 }
             }
 
@@ -184,12 +182,5 @@ class PromotionProgramTypeFragment : Fragment(), AnkoLogger, PromotionProgramTyp
             }
 
         }
-
-
     }
-
-    interface PromotionItemClickListener {
-        fun onItemClick(promotionId: Int)
-    }
-
 }
