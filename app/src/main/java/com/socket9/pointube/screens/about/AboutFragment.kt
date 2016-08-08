@@ -65,8 +65,6 @@ class AboutFragment : Fragment() {
         mLayoutManager = GridLayoutManager(context, 3)
         recyclerView.layoutManager = mLayoutManager
         recyclerView.adapter = mAboutAdapter
-
-
     }
 
     inner class AboutAdapter(var list: MutableList<AboutItem>, val listener: (Int) -> Unit) : RecyclerView.Adapter<AboutAdapter.AboutViewHolder>() {
