@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by ripzery on 7/20/16.
  */
 
-class AboutDetailFragment : Fragment() {
+class AboutDetailFragment : Fragment(), AnkoLogger {
 
     /** Variable zone **/
     var mAboutId: Int = 0
