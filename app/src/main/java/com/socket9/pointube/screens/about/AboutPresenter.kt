@@ -34,7 +34,7 @@ class AboutPresenter(var view: AboutContract.View?) : AboutContract.Presenter {
     }
 
     override fun clickAboutDetail(position: Int) {
-        view?.showAboutDetail(position)
+        view?.showAboutDetail(position + 1)
     }
 
     override fun loadAboutList() {

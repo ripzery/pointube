@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.screens.about.detail.AboutDetailActivity
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_about.view.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -66,6 +68,7 @@ class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
     /* Implemented about presenter */
     override fun showAboutDetail(position: Int) {
         // TODO: show about detail list
+        startActivity<AboutDetailActivity>("id" to position)
     }
 
     override fun showAboutList(list: MutableList<AboutItem>) {
