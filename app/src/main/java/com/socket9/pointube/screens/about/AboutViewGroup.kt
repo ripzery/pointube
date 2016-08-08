@@ -2,12 +2,12 @@ package com.socket9.pointube.screens.about
 
 import android.annotation.TargetApi
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.bumptech.glide.Glide
 import com.socket9.pointube.R
-import com.socket9.pointube.screens.about.AboutItem
 import kotlinx.android.synthetic.main.viewgroup_about_pointube.view.*
 
 /**
@@ -67,11 +67,15 @@ class AboutViewGroup : FrameLayout {
         */
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec)
+    }
+
     /** Method zone **/
     fun setModel(model: AboutItem) {
         with(model) {
             viewContainer.tvAbout.text = title
-            Glide.with(context).load(icon).into(viewContainer.ivIconAbout)
+            viewContainer.ivIconAbout.setImageDrawable(ContextCompat.getDrawable(context, icon))
         }
     }
 }

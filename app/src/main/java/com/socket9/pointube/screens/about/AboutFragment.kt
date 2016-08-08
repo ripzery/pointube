@@ -12,6 +12,7 @@ import com.socket9.pointube.screens.about.detail.AboutDetailActivity
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_about.view.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -72,6 +73,7 @@ class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
 
     override fun showAboutList(list: MutableList<AboutItem>) {
         mAboutAdapter.updateList(list)
+        info { list }
     }
 
     /** Method zone **/
@@ -109,7 +111,6 @@ class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
         }
 
         inner class AboutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
             init {
                 itemView.aboutViewGroup.setOnClickListener {
                     listener(adapterPosition)

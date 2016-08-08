@@ -38,7 +38,6 @@ class AboutPresenter(var view: AboutContract.View?) : AboutContract.Presenter {
     }
 
     override fun loadAboutList() {
-        /*  TODO: create list and send to view*/
         view?.showAboutList(mAboutItemList)
     }
 
