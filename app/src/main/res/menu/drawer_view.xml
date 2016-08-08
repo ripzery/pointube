@@ -16,6 +16,6 @@
             android:title="Setting" />
         <item
             android:id="@+id/nav_about_fragment"
-            android:title="About" />
+            android:title="About Pointube" />
     </group>
 </menu>
