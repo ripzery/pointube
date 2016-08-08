@@ -99,7 +99,8 @@ class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AboutViewHolder {
-            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.itemview_about, parent, false)
+            return AboutViewHolder(view)
         }
 
         fun updateList(newList: MutableList<AboutItem>) {
