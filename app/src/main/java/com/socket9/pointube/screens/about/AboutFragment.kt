@@ -2,10 +2,12 @@ package com.socket9.pointube.screens.about
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.itemview_about.view.*
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -54,5 +56,23 @@ class AboutFragment : Fragment() {
 
     private fun initInstance() {
 
+    }
+
+    inner class AboutAdapter(list: MutableList<AboutItem>) {
+
+
+        inner class AboutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            init {
+                itemView.aboutViewGroup.setOnClickListener {
+                    
+                }
+            }
+
+            fun setModel(model: AboutItem) {
+                itemView.aboutViewGroup.setModel(model)
+            }
+
+        }
     }
 }

@@ -1,3 +1,5 @@
+package com.socket9.pointube.screens.about
+
 import android.annotation.TargetApi
 import android.content.Context
 import android.util.AttributeSet
