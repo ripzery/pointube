@@ -3,6 +3,7 @@ package com.socket9.pointube.screens.thai_airline
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.replaceFragment
 
 class ThaiAirlineAwardActivity : AppCompatActivity() {
 
@@ -13,6 +14,6 @@ class ThaiAirlineAwardActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-
+        replaceFragment(fragment = ThaiAirlineAwardFragment.newInstance(""))
     }
 }
