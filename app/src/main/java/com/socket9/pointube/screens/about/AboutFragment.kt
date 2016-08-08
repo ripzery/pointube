@@ -67,7 +67,6 @@ class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
 
     /* Implemented about presenter */
     override fun showAboutDetail(position: Int) {
-        // TODO: show about detail list
         startActivity<AboutDetailActivity>("id" to position)
     }
 
