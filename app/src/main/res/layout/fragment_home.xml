@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:fillViewport="true">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -20,57 +20,54 @@
 
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/indicator"
-                android:layout_gravity="bottom"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_gravity="bottom" />
 
         </FrameLayout>
-
-
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Partner reward programs"
+            android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:layout_gravity="center"/>
+            android:text="Partner reward programs" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             android:text="Login"
-            android:theme="@style/BaseButton.Teal"
-            />
+            android:theme="@style/BaseButton.Teal" />
 
         <LinearLayout
+            android:id="@+id/layoutNewUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:id="@+id/layoutNewUser"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New user?"/>
+                android:text="New user?" />
 
             <TextView
                 android:id="@+id/tvSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
                 android:layout_marginLeft="8dp"
-                android:text="Sign Up"/>
+                android:text="Sign Up"
+                android:textColor="@color/colorAccent" />
 
         </LinearLayout>
 

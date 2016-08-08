@@ -32,7 +32,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".screens.promotion.list.ProgramListActivity" />
         <activity android:name=".screens.recommendme.RecommendMeActivity" />
-        <activity android:name=".screens.about.detail.AboutDetailActivity"></activity>
+        <activity android:name=".screens.about.detail.AboutDetailActivity" />
+        <activity android:name=".screens.thai_airline.ThaiAirlineAwardActivity"></activity>
     </application>
 
 </manifest>
