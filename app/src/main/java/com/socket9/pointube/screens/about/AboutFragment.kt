@@ -77,11 +77,14 @@ class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
     private fun initInstance() {
         /* Init recycler view */
         mAboutAdapter = AboutAdapter(mutableListOf()) {
-            /* TODO: handle click here */
+            mAboutPresenter.clickAboutDetail(it)
         }
         mLayoutManager = GridLayoutManager(context, 3)
         recyclerView.layoutManager = mLayoutManager
         recyclerView.adapter = mAboutAdapter
+
+        /* Load about data */
+        mAboutPresenter.loadAboutList()
     }
 
     inner class AboutAdapter(var list: MutableList<AboutItem>, val listener: (Int) -> Unit) : RecyclerView.Adapter<AboutAdapter.AboutViewHolder>() {
