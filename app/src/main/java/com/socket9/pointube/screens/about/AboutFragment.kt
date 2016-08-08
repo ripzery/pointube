@@ -2,11 +2,13 @@ package com.socket9.pointube.screens.about
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_about.view.*
 
 /**
@@ -16,7 +18,8 @@ class AboutFragment : Fragment() {
 
     /** Variable zone **/
     lateinit var param1: String
-
+    lateinit private var mLayoutManager: RecyclerView.LayoutManager
+    lateinit private var mAboutAdapter: AboutAdapter
 
     /** Static method zone **/
     companion object {
@@ -55,10 +58,18 @@ class AboutFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
+        /* Init recycler view */
+        mAboutAdapter = AboutAdapter(mutableListOf()) {
+            /* TODO: handle click here */
+        }
+        mLayoutManager = GridLayoutManager(context, 3)
+        recyclerView.layoutManager = mLayoutManager
+        recyclerView.adapter = mAboutAdapter
+
 
     }
 
-    inner class AboutAdapter(var list: MutableList<AboutItem>) : RecyclerView.Adapter<AboutAdapter.AboutViewHolder>() {
+    inner class AboutAdapter(var list: MutableList<AboutItem>, val listener: (Int) -> Unit) : RecyclerView.Adapter<AboutAdapter.AboutViewHolder>() {
         override fun onBindViewHolder(holder: AboutViewHolder?, position: Int) {
             holder!!.setModel(list[position])
         }
@@ -80,7 +91,7 @@ class AboutFragment : Fragment() {
 
             init {
                 itemView.aboutViewGroup.setOnClickListener {
-                    // TODO : call higher-order function
+                    listener(adapterPosition)
                 }
             }
 
