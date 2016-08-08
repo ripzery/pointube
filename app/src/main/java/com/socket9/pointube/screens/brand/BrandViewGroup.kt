@@ -90,21 +90,21 @@ class BrandViewGroup : FrameLayout, AnkoLogger {
         Glide.with(context).load(model.LogoPath).into(civBrandLogo)
         tvBrandName.text = model.Name
 
-        cbSelect.visibility = if (isShowPoint) View.GONE else View.VISIBLE
-        tvPoint.visibility = if (isShowPoint) View.VISIBLE else View.GONE
+        viewContainer.cbSelect.visibility = if (isShowPoint) View.GONE else View.VISIBLE
+        viewContainer.tvPoint.visibility = if (isShowPoint) View.VISIBLE else View.GONE
 
         if (!isShowPoint) {
             mIsChecked = model.isChecked
         } else {
             val formattedPoint = String.format("%,d", model.Points.toInt())
-            tvPoint.text = formattedPoint
+            viewContainer.tvPoint.text = formattedPoint
         }
     }
 
     fun setModel(model: BrandRepo) {
         with(model) {
-            Glide.with(context).load(LogoPath).into(civBrandLogo)
-            tvBrandName.text = Name
+            Glide.with(context).load(LogoPath).into(viewContainer.civBrandLogo)
+            viewContainer.tvBrandName.text = Name
             mIsChecked = isChecked
         }
     }

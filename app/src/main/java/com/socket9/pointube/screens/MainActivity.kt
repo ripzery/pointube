@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
@@ -18,15 +17,15 @@ import com.socket9.pointube.screens.brand.SelectBrandActivity
 import com.socket9.pointube.screens.home.HomeFragment
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.point.PointFragment
-import com.socket9.pointube.screens.promotion.list.ProgramListActivity
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.screens.setting.SettingFragment
+import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_nav_header.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.jetbrains.anko.startActivity
 import rx_activity_result.RxActivityResult
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
@@ -119,7 +118,16 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     private fun initInstance() {
         selectMenu(FRAGMENT_HOME)
+
+        setupNavHeader()
 //        ApiTest.getAllMemberBrand(
+    }
+
+    fun setupNavHeader() {
+        val headerLayout = nvView.getHeaderView(0)
+        val loginResult = SharedPrefUtil.loadLoginResult()
+        if (loginResult != null)
+            headerLayout.tvAccountUsername.text = "${loginResult.firstNameEN} ${loginResult.lastNameEN}"
     }
 
     private fun selectMenu(page: Int) {
