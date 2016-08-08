@@ -141,5 +141,13 @@
     <string name="fragment_point_title">Outstanding Points</string>
     <string name="fragment_point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
 
+    <!-- fragment about -->
+    <string name="fragment_about_what_is_pointube">What is Pointube?</string>
+    <string name="fragment_about_who_should_use">Who should use Pointube?</string>
+    <string name="fragment_about_how_to_use">How to use Pointube?</string>
+    <string name="fragment_about_faq">FAQ</string>
+    <string name="fragment_about_contact_us">Contact Us</string>
+    <string name="fragment_about_privacy">Privacy Policy</string>
+    <string name="fragment_about_terms_of_use">Terms of Use</string>
 </resources>
 
