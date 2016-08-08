@@ -14,16 +14,16 @@ import com.socket9.pointube.R
 class AboutDetailFragment : Fragment() {
 
     /** Variable zone **/
-    lateinit var param1: String
+    var mAboutId: Int = 0
 
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): AboutDetailFragment {
-            var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+        fun newInstance(aboutId: Int): AboutDetailFragment {
+            val bundle: Bundle = Bundle()
+            bundle.putInt(ARG_1, aboutId)
             val aboutDetailFragment: AboutDetailFragment = AboutDetailFragment()
             aboutDetailFragment.arguments = bundle
             return aboutDetailFragment
@@ -37,7 +37,7 @@ class AboutDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mAboutId = arguments.getInt(ARG_1)
         }
     }
 
