@@ -58,14 +58,29 @@ class AboutFragment : Fragment() {
 
     }
 
-    inner class AboutAdapter(list: MutableList<AboutItem>) {
+    inner class AboutAdapter(var list: MutableList<AboutItem>) : RecyclerView.Adapter<AboutAdapter.AboutViewHolder>() {
+        override fun onBindViewHolder(holder: AboutViewHolder?, position: Int) {
+            holder!!.setModel(list[position])
+        }
 
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AboutViewHolder {
+            throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        fun updateList(newList: MutableList<AboutItem>) {
+            list = newList
+            notifyDataSetChanged()
+        }
 
         inner class AboutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             init {
                 itemView.aboutViewGroup.setOnClickListener {
-                    
+                    // TODO : call higher-order function
                 }
             }
 
