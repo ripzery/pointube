@@ -10,16 +10,17 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_about.view.*
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
-class AboutFragment : Fragment() {
-
+class AboutFragment : Fragment(), AnkoLogger, AboutContract.View {
     /** Variable zone **/
     lateinit var param1: String
     lateinit private var mLayoutManager: RecyclerView.LayoutManager
     lateinit private var mAboutAdapter: AboutAdapter
+    lateinit private var mAboutPresenter: AboutContract.Presenter
 
     /** Static method zone **/
     companion object {
@@ -52,7 +53,23 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mAboutPresenter = AboutPresenter(this)
+        mAboutPresenter.onCreate()
         initInstance()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mAboutPresenter.onDestroy()
+    }
+
+    /* Implemented about presenter */
+    override fun showAboutDetail(position: Int) {
+        // TODO: show about detail list
+    }
+
+    override fun showAboutList(list: MutableList<AboutItem>) {
+        mAboutAdapter.updateList(list)
     }
 
     /** Method zone **/
