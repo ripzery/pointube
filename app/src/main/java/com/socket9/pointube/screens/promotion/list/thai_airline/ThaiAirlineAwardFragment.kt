@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.fragment_thai_airline_award.*
 
 /**
  * Created by ripzery on 7/20/16.
@@ -53,6 +54,8 @@ class ThaiAirlineAwardFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
-
+        airAwardChart.setOnClickListener {
+//            startActivity()
+        }
     }
 }
