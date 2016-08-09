@@ -9,15 +9,6 @@ import org.jetbrains.anko.warn
  * Created by ripzery on 8/4/16.
  */
 class ProgramListPresenter(var view: ProgramListContract.View?) : AnkoLogger, ProgramListContract.Presenter {
-    override fun loadCover(brandId: Int) {
-        DataManager.getProviderById(brandId)
-                .subscribe({
-                    view?.showCover(it.CoverPath)
-                }, {
-                    warn { it }
-                })
-    }
-
     override fun loadProgramList(brandId: Int) {
         view?.showLoading()
         DataManager.getPublishedProgramByProviderId(brandId)

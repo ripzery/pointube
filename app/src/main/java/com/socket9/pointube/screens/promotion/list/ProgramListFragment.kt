@@ -103,11 +103,6 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
         startActivity<PromotionDetailActivity>("id" to programId)
     }
 
-    override fun showCover(path: String) {
-        info { "Loading path $path" }
-        Glide.with(this).load(path).into(ivCover)
-    }
-
     /** Method zone **/
 
     private fun initInstance() {
