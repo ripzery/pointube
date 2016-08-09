@@ -22,7 +22,7 @@ class CollapsingListPresenter(var view: CollapsingListContract.View?) : Collapsi
     }
 
     override fun onDestroy() {
-
+        view = null
     }
 
 }
