@@ -41,6 +41,15 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
 
     }
 
+    /* Implement View Interface zone */
+    override fun showDefaultPromotionList() {
+        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId))
+    }
+
+    override fun showThaiAirwayPromotionList() {
+        replaceFragment(fragment = ThaiAirlineAwardFragment.newInstance(mBrandId))
+    }
+
     /** Activity method zone  **/
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,7 +104,6 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
         mActivity.setSupportActionBar(toolbar)
         mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        /* TODO: Check if brandId is Thai airway */
-        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId))
+        mCollapsingListPresenter.selectPromotionList(mBrandId)
     }
 }

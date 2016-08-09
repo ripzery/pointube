@@ -12,16 +12,16 @@ import com.socket9.pointube.R
 class ThaiAirlineAwardFragment : Fragment() {
 
     /** Variable zone **/
-    lateinit var param1: String
+    private var mBrandId: Int = 0
 
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
 
-        fun newInstance(param1: String): ThaiAirlineAwardFragment {
+        fun newInstance(brandId: Int): ThaiAirlineAwardFragment {
             var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+            bundle.putInt(ARG_1, brandId)
             val templateFragment: ThaiAirlineAwardFragment = ThaiAirlineAwardFragment()
             templateFragment.arguments = bundle
             return templateFragment
@@ -35,7 +35,7 @@ class ThaiAirlineAwardFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mBrandId = arguments.getInt(ARG_1)
         }
     }
 
