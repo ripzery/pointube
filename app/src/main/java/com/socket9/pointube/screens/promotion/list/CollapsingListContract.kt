@@ -8,9 +8,15 @@ import com.socket9.pointube.base.BasePresenter
 interface CollapsingListContract {
     interface View {
         fun showCover(path: String)
+
+        fun showDefaultPromotionList()
+
+        fun showThaiAirwayPromotionList()
     }
 
     interface Presenter : BasePresenter {
         fun loadCover(brandId: Int)
+
+        fun selectPromotionList(brandId: Int)
     }
 }
