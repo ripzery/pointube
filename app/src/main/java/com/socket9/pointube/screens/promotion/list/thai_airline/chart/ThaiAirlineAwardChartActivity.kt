@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
+import com.socket9.pointube.extensions.setupToolbar
 
 class ThaiAirlineAwardChartActivity : AppCompatActivity() {
 
@@ -14,6 +15,8 @@ class ThaiAirlineAwardChartActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
+        setupToolbar("Airline Award Chart")
+
         replaceFragment(fragment = AwardChartFragment.newInstance(""))
     }
 }
