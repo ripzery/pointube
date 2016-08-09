@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
+import kotlinx.android.synthetic.main.fragment_promotion_detail.*
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by ripzery on 7/20/16.
  */
 
-class CollapsingListFragment : Fragment() {
-
+class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.View {
     /** Variable zone **/
     private var mBrandId: Int = 0
     private var mBrandTitle: String = ""
@@ -65,14 +67,29 @@ class CollapsingListFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        mCollapsingListPresenter = CollapsingListPresenter(this)
+        mCollapsingListPresenter = CollapsingListPresenter(this)
         mCollapsingListPresenter.onCreate()
         initInstance()
+    }
+
+    override fun showCover(path: String) {
+        Glide.with(this).load(path).into(ivCover)
     }
 
     /** Method zone **/
 
     private fun initInstance() {
+        /* Set toolbar title */
+        collapsing_toolbar.title = mBrandTitle
+
+        /* Load brand cover url */
+        mCollapsingListPresenter.loadCover(mBrandId)
+
+        /* Setup toolbar*/
+        mActivity = activity as AppCompatActivity
+        mActivity.setSupportActionBar(toolbar)
+        mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId, mBrandTitle))
     }
 }

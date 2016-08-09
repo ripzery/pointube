@@ -120,19 +120,11 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
         })
         recyclerView.adapter = mProgramListAdapter
 
-        /* Set toolbar title */
-        collapsing_toolbar.title = mBrandTitle
-
         /* Load program list by brand */
         mProgramListPresenter.loadProgramList(mBrandId)
 
         /* Load brand cover url */
-        mProgramListPresenter.loadCover(mBrandId)
-
-        /* Setup toolbar */
-        mActivity = activity as AppCompatActivity
-        mActivity.setSupportActionBar(toolbar)
-        mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        mProgramListPresenter.loadCover(mBrandId)
     }
 
     inner class ProgramListAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: ProgramListListener) : RecyclerView.Adapter<ProgramListAdapter.ProgramListViewHolder>() {
