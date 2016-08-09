@@ -70,7 +70,7 @@ interface PointubeAPI {
     fun login(@Body loginModel: LoginModel.Request.Login): Observable<LoginModel.Response.Login>
 
     @GET("Account/SignOut")
-    fun logout(@Query("memberId") memberId: Int) : Observable<LoginModel.Response.Login>
+    fun logout(@Query("MemberId") memberId: Int) : Observable<LoginModel.Response.Login>
 
     @POST("api/Member/Create")
     fun register(@Body registerModel: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register>

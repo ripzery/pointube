@@ -32,8 +32,8 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
 
         fun newInstance(brandId: Int, brandTitle: String): CollapsingListFragment {
             val bundle: Bundle = Bundle()
-            bundle.putInt(ProgramListFragment.ARG_1, brandId)
-            bundle.putString(ProgramListFragment.ARG_2, brandTitle)
+            bundle.putInt(ARG_1, brandId)
+            bundle.putString(ARG_2, brandTitle)
             val collapsingListFragment: CollapsingListFragment = CollapsingListFragment()
             collapsingListFragment.arguments = bundle
             return collapsingListFragment
@@ -47,8 +47,8 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            mBrandId = arguments.getInt(ProgramListFragment.ARG_1)
-            mBrandTitle = arguments.getString(ProgramListFragment.ARG_2)
+            mBrandId = arguments.getInt(ARG_1)
+            mBrandTitle = arguments.getString(ARG_2)
         }
     }
 
@@ -72,6 +72,11 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
         initInstance()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mCollapsingListPresenter.onDestroy()
+    }
+
     override fun showCover(path: String) {
         Glide.with(this).load(path).into(ivCover)
     }
@@ -90,6 +95,7 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
         mActivity.setSupportActionBar(toolbar)
         mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId, mBrandTitle))
+        /* TODO: Check if brandId is Thai airway */
+        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId))
     }
 }

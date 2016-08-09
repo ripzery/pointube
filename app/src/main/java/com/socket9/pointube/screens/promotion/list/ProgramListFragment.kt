@@ -28,7 +28,6 @@ import org.jetbrains.anko.support.v4.startActivity
 class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     /** Variable zone **/
     private var mBrandId: Int = 0
-    private var mBrandTitle: String = ""
     lateinit private var mProgramListPresenter: ProgramListContract.Presenter
     lateinit private var mProgramListAdapter: ProgramListAdapter
     lateinit private var mActivity: AppCompatActivity
@@ -36,12 +35,10 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
-        val ARG_2 = "ARG_2"
 
-        fun newInstance(brandId: Int, brandTitle: String): ProgramListFragment {
+        fun newInstance(brandId: Int): ProgramListFragment {
             val bundle: Bundle = Bundle()
             bundle.putInt(ARG_1, brandId)
-            bundle.putString(ARG_2, brandTitle)
             val programListFragment: ProgramListFragment = ProgramListFragment()
             programListFragment.arguments = bundle
             return programListFragment
@@ -56,7 +53,6 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
         if (savedInstanceState == null) {
             /* if newly created */
             mBrandId = arguments.getInt(ARG_1)
-            mBrandTitle = arguments.getString(ARG_2)
         }
     }
 
