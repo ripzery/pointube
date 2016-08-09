@@ -149,5 +149,7 @@
     <string name="fragment_about_contact_us">Contact Us</string>
     <string name="fragment_about_privacy">Privacy Policy</string>
     <string name="fragment_about_terms_of_use">Terms of Use</string>
+
+    <!-- fragment about detail test html -->
 </resources>
 
