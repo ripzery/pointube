@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.fragment_about_detail.*
 import org.jetbrains.anko.AnkoLogger
 
 /**
@@ -56,6 +57,6 @@ class AboutDetailFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-
+        webView.loadUrl("file:///android_asset/webview/template-app-test.html")
     }
 }
