@@ -20,6 +20,7 @@ class ProgramListActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-        replaceFragment(fragment = ProgramListFragment.newInstance(intent.getIntExtra("brandId", 1), intent.getStringExtra("brandTitle")))
+//        replaceFragment(fragment = ProgramListFragment.newInstance(intent.getIntExtra("brandId", 1), intent.getStringExtra("brandTitle")))
+        replaceFragment(fragment = CollapsingListFragment.newInstance(intent.getIntExtra("brandId", 1), intent.getStringExtra("brandTitle")))
     }
 }

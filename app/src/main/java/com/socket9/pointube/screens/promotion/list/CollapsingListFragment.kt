@@ -2,10 +2,13 @@ package com.socket9.pointube.screens.promotion.list
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.replaceFragment
 
 /**
  * Created by ripzery on 7/20/16.
@@ -14,16 +17,21 @@ import com.socket9.pointube.R
 class CollapsingListFragment : Fragment() {
 
     /** Variable zone **/
+    private var mBrandId: Int = 0
+    private var mBrandTitle: String = ""
+    lateinit private var mCollapsingListPresenter: CollapsingListContract.Presenter
     lateinit var param1: String
-
+    lateinit private var mActivity: AppCompatActivity
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
+        val ARG_2 = "ARG_2"
 
-        fun newInstance(param1: String): CollapsingListFragment {
+        fun newInstance(brandId: Int, brandTitle: String): CollapsingListFragment {
             val bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+            bundle.putInt(ProgramListFragment.ARG_1, brandId)
+            bundle.putString(ProgramListFragment.ARG_2, brandTitle)
             val collapsingListFragment: CollapsingListFragment = CollapsingListFragment()
             collapsingListFragment.arguments = bundle
             return collapsingListFragment
@@ -37,24 +45,34 @@ class CollapsingListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mBrandId = arguments.getInt(ProgramListFragment.ARG_1)
+            mBrandTitle = arguments.getString(ProgramListFragment.ARG_2)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView: View = inflater!!.inflate(R.layout.fragment_collapsing_list, container, false)
-
+        setHasOptionsMenu(true)
         return rootView
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> mActivity.finish()
+        }
+        return true
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        mCollapsingListPresenter = CollapsingListPresenter(this)
+        mCollapsingListPresenter.onCreate()
         initInstance()
     }
 
     /** Method zone **/
 
     private fun initInstance() {
-
+        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId, mBrandTitle))
     }
 }
