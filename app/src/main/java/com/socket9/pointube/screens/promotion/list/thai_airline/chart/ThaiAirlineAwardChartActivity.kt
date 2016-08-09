@@ -14,6 +14,6 @@ class ThaiAirlineAwardChartActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-
+//        replaceFragment()
     }
 }
