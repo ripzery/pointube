@@ -1,7 +1,7 @@
 package com.socket9.pointube.screens.promotion.list.thai_airline.chart
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 
@@ -14,6 +14,6 @@ class ThaiAirlineAwardChartActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-//        replaceFragment()
+        replaceFragment(fragment = AwardChartFragment.newInstance(""))
     }
 }
