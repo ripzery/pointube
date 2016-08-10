@@ -2,10 +2,12 @@ package com.socket9.pointube.screens.promotion.list.thai_airline.chart
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.itemview_award_chart.view.*
 
 /**
  * Created by ripzery on 7/20/16.
@@ -15,6 +17,7 @@ class AwardChartFragment : Fragment() {
 
     /** Variable zone **/
     lateinit var param1: String
+//    lateinit var mAward
 
 
     /** Static method zone **/
@@ -55,6 +58,35 @@ class AwardChartFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
+        /* TODO: Init recycler view */
+    }
 
+    inner class AwardChartAdapter(var list: MutableList<AwardChartModel>) : RecyclerView.Adapter<AwardChartAdapter.AwardChartViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AwardChartViewHolder {
+            val view = LayoutInflater.from(context).inflate(R.layout.itemview_award_chart, parent, false)
+            return AwardChartViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: AwardChartViewHolder?, position: Int) {
+            holder!!.setModel(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+
+        inner class AwardChartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            private val mAwardChartViewGroup: AwardChartViewGroup by lazy { itemView.awardChartViewGroup }
+
+            init {
+
+            }
+
+            fun setModel(model: AwardChartModel) {
+                mAwardChartViewGroup.setModel(model)
+            }
+        }
     }
 }

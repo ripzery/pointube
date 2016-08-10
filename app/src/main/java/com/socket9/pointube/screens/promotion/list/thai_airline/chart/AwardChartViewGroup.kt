@@ -67,7 +67,7 @@ class AwardChartViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    private fun setModel(model : AwardChartModel) {
+    fun setModel(model : AwardChartModel) {
         with(model){
             viewContainer.tvTitle.text = title
             viewContainer.tvSubTitle.text = subtitle
