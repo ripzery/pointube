@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.screens.promotion.list.thai_airline.chart.ThaiAirlineAwardChartActivity
 import kotlinx.android.synthetic.main.fragment_thai_airline_award.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by ripzery on 7/20/16.
@@ -14,6 +16,7 @@ class ThaiAirlineAwardFragment : Fragment() {
 
     /** Variable zone **/
     private var mBrandId: Int = 0
+    lateinit var test: String
 
 
     /** Static method zone **/
@@ -21,7 +24,7 @@ class ThaiAirlineAwardFragment : Fragment() {
         val ARG_1 = "ARG_1"
 
         fun newInstance(brandId: Int): ThaiAirlineAwardFragment {
-            var bundle: Bundle = Bundle()
+            val bundle: Bundle = Bundle()
             bundle.putInt(ARG_1, brandId)
             val templateFragment: ThaiAirlineAwardFragment = ThaiAirlineAwardFragment()
             templateFragment.arguments = bundle
@@ -55,7 +58,7 @@ class ThaiAirlineAwardFragment : Fragment() {
 
     private fun initInstance() {
         airAwardChart.setOnClickListener {
-//            startActivity()
+            startActivity<ThaiAirlineAwardChartActivity>()
         }
     }
 }
