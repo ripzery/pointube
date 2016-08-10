@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.viewgroup_airline_award_chart.view.*
 
 /**
  * Created by ripzery on 7/21/16.
@@ -66,5 +67,11 @@ class AwardChartViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-
+    private fun setModel(model : AwardChartModel) {
+        with(model){
+            viewContainer.tvTitle.text = title
+            viewContainer.tvSubTitle.text = subtitle
+            viewContainer.tvDescription.text = description
+        }
+    }
 }

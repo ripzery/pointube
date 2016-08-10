@@ -57,8 +57,4 @@ class AwardChartFragment : Fragment() {
     private fun initInstance() {
 
     }
-
-    private fun setModel(model : AwardChartModel) {
-
-    }
 }
