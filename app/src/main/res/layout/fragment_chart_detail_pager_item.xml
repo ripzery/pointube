@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvZone"
+        style="@style/BaseTextTerm.TextTermsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Zone 1"/>
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        style="@style/BaseTextTerm.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Within Thailand"/>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        style="@style/BaseTextTerm.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Thailand, Japan, Vietnam, Hong Kong, Sudan"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Economy class" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvEconomyClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="15000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Economy class" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvPremiumEconomy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="17500" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Royal Silk Class" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvRoyalSilkClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Royal First Class" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvRoyalFirstClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="15000" />
+
+    </LinearLayout>
+
+</LinearLayout>
