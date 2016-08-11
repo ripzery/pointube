@@ -7,6 +7,7 @@ import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.HomeModel
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.screens.promotion.list.thai_airline.chart.AwardChartModel
 import com.socket9.pointube.screens.register.RegisterModel
 import com.socket9.pointube.screens.setting.SettingModel
 import com.socket9.pointube.utils.SharedPrefUtil
@@ -114,6 +115,12 @@ object DataManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun getAirlineAwardChartList(): Observable<MutableList<AwardChartModel>> {
+        return DiskProviderManager.getAirlineAwardChartList()
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
 
     fun getPublishedProgramByProviderId(providerId: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
         return DiskProviderManager.getPublishedProgramByProviderId(providerId)

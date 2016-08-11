@@ -20,6 +20,7 @@
         <TextView
             android:id="@+id/tvTitle"
             style="@style/BaseTextTerm.TextTermsTitle"
+            android:layout_marginTop="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Zone 1" />
