@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.fragment_chart_detail.*
 
 /**
  * Created by ripzery on 7/20/16.
@@ -58,10 +59,13 @@ class ChartDetailFragment : Fragment() {
 
     private fun initInstance() {
 
+        viewPager.adapter = ChartDetailFragmentPagerAdapter(mPosition, childFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
     }
 
     inner class ChartDetailFragmentPagerAdapter(val chartPosition: Int, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         val TOTAL_PAGE = 2
+        val PAGE_TITLES = listOf("Round Trip", "One way Trip")
 
         override fun getItem(position: Int): Fragment {
             return ChartDetailPagerItemFragment.newInstance(chartPosition, position == 0)
@@ -71,5 +75,8 @@ class ChartDetailFragment : Fragment() {
             return TOTAL_PAGE
         }
 
+        override fun getPageTitle(position: Int): CharSequence {
+            return PAGE_TITLES[position]
+        }
     }
 }
