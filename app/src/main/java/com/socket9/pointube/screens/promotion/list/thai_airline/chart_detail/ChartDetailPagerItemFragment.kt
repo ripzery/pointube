@@ -14,16 +14,18 @@ import com.socket9.pointube.R
 class ChartDetailPagerItemFragment : Fragment() {
 
     /** Variable zone **/
-    lateinit var param1: String
-
+    private var mIsRound: Boolean = false
+    private var mPosition: Int = 0
 
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
+        val ARG_2 = "ARG_2"
 
-        fun newInstance(param1: String): ChartDetailPagerItemFragment {
-            var bundle: Bundle = Bundle()
-            bundle.putString(ARG_1, param1)
+        fun newInstance(position: Int, isRound: Boolean): ChartDetailPagerItemFragment {
+            val bundle: Bundle = Bundle()
+            bundle.putInt(ARG_1, position)
+            bundle.putBoolean(ARG_2, isRound)
             val chartDetailPagerItem: ChartDetailPagerItemFragment = ChartDetailPagerItemFragment()
             chartDetailPagerItem.arguments = bundle
             return chartDetailPagerItem
@@ -37,7 +39,8 @@ class ChartDetailPagerItemFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             /* if newly created */
-            param1 = arguments.getString(ARG_1)
+            mPosition = arguments.getInt(ARG_1)
+            mIsRound = arguments.getBoolean(ARG_2)
         }
     }
 
