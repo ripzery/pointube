@@ -73,7 +73,7 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
     }
 
     override fun showChartList(list: MutableList<AwardChartModel>) {
-
+        mAwardChartAdapter.updateList(list)
     }
 
     /** Method zone **/
@@ -100,6 +100,10 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
             return list.size
         }
 
+        fun updateList(newList: MutableList<AwardChartModel>) {
+            list = newList
+            notifyDataSetChanged()
+        }
 
         inner class AwardChartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
