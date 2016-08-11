@@ -15,6 +15,7 @@ class AwardChartViewGroup : FrameLayout {
 
     /** Variable zone **/
     lateinit private var viewContainer: View
+    private var mClickListener: () -> Unit = {}
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -48,7 +49,9 @@ class AwardChartViewGroup : FrameLayout {
 
     private fun initInstances() {
         // findViewById here
-
+        viewContainer.cardViewAirline.setOnClickListener {
+            mClickListener()
+        }
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -67,11 +70,16 @@ class AwardChartViewGroup : FrameLayout {
     }
 
     /** Method zone **/
-    fun setModel(model : AwardChartModel) {
-        with(model){
+    fun setModel(model: AwardChartModel) {
+        with(model) {
             viewContainer.tvTitle.text = title
             viewContainer.tvSubTitle.text = subtitle
             viewContainer.tvDescription.text = description
         }
+    }
+
+
+    fun setOnAwardClick(code: () -> Unit) {
+        this.mClickListener = code
     }
 }

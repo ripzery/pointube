@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.screens.promotion.list.thai_airline.chart_detail.ChartDetailActivity
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_award_chart.view.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by ripzery on 7/20/16.
@@ -70,6 +73,7 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
 
     override fun showChartDetail(position: Int) {
         /* TODO: Show chart detail */
+        startActivity<ChartDetailActivity>("id" to position)
     }
 
     override fun showChartList(list: MutableList<AwardChartModel>) {
@@ -111,7 +115,7 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
             private val mAwardChartViewGroup: AwardChartViewGroup by lazy { itemView.awardChartViewGroup }
 
             init {
-                mAwardChartViewGroup.setOnClickListener {
+                mAwardChartViewGroup.setOnAwardClick {
                     listener(adapterPosition)
                 }
             }

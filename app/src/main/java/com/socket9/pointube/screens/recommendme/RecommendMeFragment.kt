@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
+import com.socket9.pointube.extensions.thousandSeparator
 import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
@@ -83,7 +84,7 @@ class RecommendMeFragment : Fragment(), AnkoLogger, RecommendMeContract.View {
     override fun showBrandInfo(model: GetMemberBrandResult) {
         with(model) {
             tvBrandName.text = this.Name
-            tvPoint.text = String.format("%,d", Points.toInt());
+            tvPoint.text = Points.toString().thousandSeparator()
             Glide.with(this@RecommendMeFragment).load(LogoPath).into(ivLogo)
         }
     }

@@ -6,3 +6,7 @@ package com.socket9.pointube.extensions
 fun String.plainText() : String{
     return replace("<.*?>".toRegex(), "").replace("\n","").replace("&nbsp;","")
 }
+
+fun String.thousandSeparator() : String{
+    return String.format("%,d", this.toInt())
+}

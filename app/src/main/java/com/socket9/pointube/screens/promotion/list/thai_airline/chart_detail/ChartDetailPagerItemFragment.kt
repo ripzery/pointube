@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.thousandSeparator
 import com.socket9.pointube.screens.promotion.list.thai_airline.chart.AwardPriceTrip
 import kotlinx.android.synthetic.main.fragment_chart_detail_pager_item.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.warn
 
 /**
  * Created by ripzery on 7/20/16.
@@ -72,10 +74,15 @@ class ChartDetailPagerItemFragment : Fragment(), AnkoLogger, ChartDetailPagerIte
             tvSubtitle.text = subtitle
             tvDescription.text = description
 
-            tvEconomyClass.text = economy
-            tvPremiumEconomy.text = premiumEconomy
-            tvRoyalSilkClass.text = silkClass
-            tvRoyalFirstClass.text = firstClass
+            try {
+                tvEconomyClass.text = economy.thousandSeparator()
+                tvPremiumEconomy.text = premiumEconomy.thousandSeparator()
+                tvRoyalSilkClass.text = silkClass.thousandSeparator()
+                tvRoyalFirstClass.text = firstClass.thousandSeparator()
+            }catch (e: Exception){
+                warn { e }
+                tvRoyalFirstClass.text = firstClass
+            }
         }
     }
 

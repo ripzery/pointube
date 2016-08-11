@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.thousandSeparator
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.utils.SharedPrefUtil
 import de.hdodenhof.circleimageview.CircleImageView
@@ -98,8 +99,7 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
 
     fun setPoint(point: String) {
         if (!point.isEmpty()) {
-            val formattedPoint = String.format("%,d", point.toInt())
-            mTvPoint.text = "$formattedPoint Points"
+            mTvPoint.text = "${point.thousandSeparator()} Points"
         }
     }
 

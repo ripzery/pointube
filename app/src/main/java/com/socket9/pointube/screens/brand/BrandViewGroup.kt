@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.extensions.thousandSeparator
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import kotlinx.android.synthetic.main.viewgroup_member_brand.view.*
@@ -96,8 +97,7 @@ class BrandViewGroup : FrameLayout, AnkoLogger {
         if (!isShowPoint) {
             mIsChecked = model.isChecked
         } else {
-            val formattedPoint = String.format("%,d", model.Points.toInt())
-            viewContainer.tvPoint.text = formattedPoint
+            viewContainer.tvPoint.text = model.Points.toString().thousandSeparator()
         }
     }
 

@@ -25,7 +25,7 @@ class ChartDetailActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-        setupToolbar("Airline Award Chart")
+        setupToolbar("Chart detail")
         replaceFragment(fragment = ChartDetailFragment.newInstance(intent.getIntExtra("id", 1)))
     }
 }
