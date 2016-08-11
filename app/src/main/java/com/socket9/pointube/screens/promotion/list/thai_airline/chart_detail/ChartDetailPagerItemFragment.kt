@@ -82,6 +82,6 @@ class ChartDetailPagerItemFragment : Fragment(), AnkoLogger, ChartDetailPagerIte
     /** Method zone **/
 
     private fun initInstance() {
-
+        mChartDetailPagerItemPresenter.loadChartDetail(mIsRound, mPosition)
     }
 }
