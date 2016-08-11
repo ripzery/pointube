@@ -33,7 +33,8 @@
         <activity android:name=".screens.promotion.list.any.ProgramListActivity" />
         <activity android:name=".screens.recommendme.RecommendMeActivity" />
         <activity android:name=".screens.about.detail.AboutDetailActivity" />
-        <activity android:name="com.socket9.pointube.screens.promotion.list.thai_airline.chart.ThaiAirlineAwardChartActivity" />
+        <activity android:name=".screens.promotion.list.thai_airline.chart.ThaiAirlineAwardChartActivity" />
+        <activity android:name=".screens.promotion.list.thai_airline.chart_detail.ChartDetailActivity"></activity>
     </application>
 
 </manifest>
