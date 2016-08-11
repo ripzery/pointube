@@ -83,7 +83,8 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
         mAwardChartAdapter = AwardChartAdapter(mutableListOf())
         recyclerView.adapter = mAwardChartAdapter
 
-
+        /* Load mockup chart */
+        mAwardChartPresenter.loadCharts()
     }
 
     inner class AwardChartAdapter(var list: MutableList<AwardChartModel>) : RecyclerView.Adapter<AwardChartAdapter.AwardChartViewHolder>() {

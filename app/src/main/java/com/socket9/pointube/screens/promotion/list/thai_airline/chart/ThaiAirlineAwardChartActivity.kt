@@ -16,7 +16,7 @@ class ThaiAirlineAwardChartActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId){
+        when (item!!.itemId) {
             android.R.id.home -> finish()
         }
         return true
@@ -24,7 +24,6 @@ class ThaiAirlineAwardChartActivity : AppCompatActivity() {
 
     private fun initInstance() {
         setupToolbar("Airline Award Chart")
-
         replaceFragment(fragment = AwardChartFragment.newInstance(""))
     }
 }
