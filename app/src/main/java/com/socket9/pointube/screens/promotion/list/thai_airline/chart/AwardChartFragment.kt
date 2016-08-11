@@ -10,16 +10,17 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_award_chart.view.*
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * Created by ripzery on 7/20/16.
  */
 
-class AwardChartFragment : Fragment() {
-
+class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
     /** Variable zone **/
     lateinit var param1: String
-    lateinit var mAwardChartAdapter : AwardChartAdapter
+    lateinit var mAwardChartAdapter: AwardChartAdapter
+    lateinit var mAwardChartPresenter: AwardChartContract.Presenter
 //    lateinit var mAward
 
 
@@ -55,7 +56,24 @@ class AwardChartFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mAwardChartPresenter = AwardChartPresenter(this)
+        mAwardChartPresenter.onCreate()
         initInstance()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mAwardChartPresenter.onDestroy()
+    }
+
+    /*  Implement View Interface zone*/
+
+    override fun showChartDetail(position: Int) {
+
+    }
+
+    override fun showChartList(list: MutableList<AwardChartModel>) {
+
     }
 
     /** Method zone **/
