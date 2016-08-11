@@ -8,7 +8,7 @@ import com.socket9.pointube.screens.promotion.list.thai_airline.chart.AwardPrice
  */
 interface ChartDetailPagerItemContract {
     interface View {
-        fun showChartList(model: AwardPriceTrip)
+        fun showChartList(model: AwardPriceTrip, title: String, subtitle: String, description: String)
     }
 
     interface Presenter : BasePresenter {

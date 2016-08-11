@@ -8,7 +8,7 @@ import com.socket9.pointube.manager.DataManager
 class ChartDetailPagerItemPresenter(var view: ChartDetailPagerItemContract.View?) : ChartDetailPagerItemContract.Presenter {
     override fun loadChartDetail(isRound: Boolean, position: Int) {
         DataManager.getAirlineAwardChartList().subscribe {
-            view?.showChartList(if (isRound) it[position].priceRound else it[position].priceOneWay)
+            view?.showChartList(if (isRound) it[position].priceRound else it[position].priceOneWay, it[position].title, it[position].subtitle, it[position].description)
         }
     }
 
