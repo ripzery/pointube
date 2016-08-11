@@ -28,11 +28,11 @@ class AwardChartFragment : Fragment() {
         val ARG_1 = "ARG_1"
 
         fun newInstance(param1: String): AwardChartFragment {
-            var bundle: Bundle = Bundle()
+            val bundle: Bundle = Bundle()
             bundle.putString(ARG_1, param1)
-            val templateFragment: AwardChartFragment = AwardChartFragment()
-            templateFragment.arguments = bundle
-            return templateFragment
+            val awardChartFragment: AwardChartFragment = AwardChartFragment()
+            awardChartFragment.arguments = bundle
+            return awardChartFragment
         }
 
     }
@@ -64,6 +64,8 @@ class AwardChartFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         mAwardChartAdapter = AwardChartAdapter(mutableListOf())
         recyclerView.adapter = mAwardChartAdapter
+
+
     }
 
     inner class AwardChartAdapter(var list: MutableList<AwardChartModel>) : RecyclerView.Adapter<AwardChartAdapter.AwardChartViewHolder>() {
