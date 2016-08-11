@@ -2,11 +2,13 @@ package com.socket9.pointube.screens.promotion.list.thai_airline.chart
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.itemview_award_chart.view.*
 
 /**
@@ -17,6 +19,7 @@ class AwardChartFragment : Fragment() {
 
     /** Variable zone **/
     lateinit var param1: String
+    lateinit var mAwardChartAdapter : AwardChartAdapter
 //    lateinit var mAward
 
 
@@ -58,7 +61,9 @@ class AwardChartFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
-        /* TODO: Init recycler view */
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        mAwardChartAdapter = AwardChartAdapter(mutableListOf())
+        recyclerView.adapter = mAwardChartAdapter
     }
 
     inner class AwardChartAdapter(var list: MutableList<AwardChartModel>) : RecyclerView.Adapter<AwardChartAdapter.AwardChartViewHolder>() {
