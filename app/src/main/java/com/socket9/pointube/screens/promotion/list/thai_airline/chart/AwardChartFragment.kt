@@ -80,14 +80,14 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
 
     private fun initInstance() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAwardChartAdapter = AwardChartAdapter(mutableListOf())
+        mAwardChartAdapter = AwardChartAdapter(mutableListOf()) { mAwardChartPresenter.clickChart(it) }
         recyclerView.adapter = mAwardChartAdapter
 
         /* Load mockup chart */
         mAwardChartPresenter.loadCharts()
     }
 
-    inner class AwardChartAdapter(var list: MutableList<AwardChartModel>) : RecyclerView.Adapter<AwardChartAdapter.AwardChartViewHolder>() {
+    inner class AwardChartAdapter(var list: MutableList<AwardChartModel>, val listener: (Int) -> Unit) : RecyclerView.Adapter<AwardChartAdapter.AwardChartViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AwardChartViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.itemview_award_chart, parent, false)
             return AwardChartViewHolder(view)
@@ -111,7 +111,9 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
             private val mAwardChartViewGroup: AwardChartViewGroup by lazy { itemView.awardChartViewGroup }
 
             init {
-
+                mAwardChartViewGroup.setOnClickListener {
+                    listener(adapterPosition)
+                }
             }
 
             fun setModel(model: AwardChartModel) {
