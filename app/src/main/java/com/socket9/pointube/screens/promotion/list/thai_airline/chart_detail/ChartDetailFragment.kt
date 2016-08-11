@@ -2,6 +2,8 @@ package com.socket9.pointube.screens.promotion.list.thai_airline.chart_detail
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +57,19 @@ class ChartDetailFragment : Fragment() {
     /** Method zone **/
 
     private fun initInstance() {
+
+    }
+
+    inner class ChartDetailFragmentPagerAdapter(val chartPosition: Int, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+        val TOTAL_PAGE = 2
+
+        override fun getItem(position: Int): Fragment {
+            return ChartDetailPagerItemFragment.newInstance(chartPosition, position == 0)
+        }
+
+        override fun getCount(): Int {
+            return TOTAL_PAGE
+        }
 
     }
 }
