@@ -69,7 +69,7 @@ class AwardChartFragment : Fragment(), AnkoLogger, AwardChartContract.View {
     /*  Implement View Interface zone*/
 
     override fun showChartDetail(position: Int) {
-
+        /* TODO: Show chart detail */
     }
 
     override fun showChartList(list: MutableList<AwardChartModel>) {

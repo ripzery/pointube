@@ -1,4 +1,4 @@
-package com.socket9.pointube.screens.promotion.list
+package com.socket9.pointube.screens.promotion.list.any
 
 import com.socket9.pointube.manager.DataManager
 import org.jetbrains.anko.AnkoLogger

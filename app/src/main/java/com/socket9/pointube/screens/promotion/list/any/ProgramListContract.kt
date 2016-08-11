@@ -1,4 +1,4 @@
-package com.socket9.pointube.screens.promotion.list
+package com.socket9.pointube.screens.promotion.list.any
 
 import com.socket9.pointube.base.BasePresenter
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo

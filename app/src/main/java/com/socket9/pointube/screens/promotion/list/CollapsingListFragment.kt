@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
+import com.socket9.pointube.screens.promotion.list.any.ProgramListFragment
 import kotlinx.android.synthetic.main.fragment_promotion_detail.*
 import org.jetbrains.anko.AnkoLogger
 

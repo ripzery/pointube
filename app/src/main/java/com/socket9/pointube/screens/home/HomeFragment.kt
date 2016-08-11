@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
-import com.socket9.pointube.screens.promotion.list.ProgramListActivity
+import com.socket9.pointube.screens.promotion.list.any.ProgramListActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.AnkoLogger

@@ -1,10 +1,11 @@
-package com.socket9.pointube.screens.promotion.list
+package com.socket9.pointube.screens.promotion.list.any
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
+import com.socket9.pointube.screens.promotion.list.CollapsingListFragment
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class ProgramListActivity : AppCompatActivity() {

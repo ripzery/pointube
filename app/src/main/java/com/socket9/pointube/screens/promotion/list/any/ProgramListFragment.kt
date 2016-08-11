@@ -1,4 +1,4 @@
-package com.socket9.pointube.screens.promotion.list
+package com.socket9.pointube.screens.promotion.list.any
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -15,6 +15,7 @@ import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
+import com.socket9.pointube.screens.promotion.list.any.PromotionListViewGroup
 import kotlinx.android.synthetic.main.fragment_brand_member.*
 import kotlinx.android.synthetic.main.fragment_promotion_detail.*
 import org.jetbrains.anko.AnkoLogger

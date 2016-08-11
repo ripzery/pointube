@@ -13,7 +13,7 @@ import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
-import com.socket9.pointube.screens.promotion.list.PromotionListViewGroup
+import com.socket9.pointube.screens.promotion.list.any.PromotionListViewGroup
 import com.socket9.pointube.screens.recommendme.RecommendMeContract
 import com.socket9.pointube.screens.recommendme.RecommendMePresenter
 import kotlinx.android.synthetic.main.fragment_recommend_me.*

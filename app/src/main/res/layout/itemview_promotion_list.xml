@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.socket9.pointube.screens.promotion.list.PromotionListViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+<com.socket9.pointube.screens.promotion.list.any.PromotionListViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/promotionList"
     android:layout_width="match_parent"
     android:layout_marginTop="4dp"

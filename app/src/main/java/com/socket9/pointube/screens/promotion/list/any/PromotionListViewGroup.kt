@@ -1,4 +1,4 @@
-package com.socket9.pointube.screens.promotion.list
+package com.socket9.pointube.screens.promotion.list.any
 
 import android.annotation.TargetApi
 import android.content.Context
