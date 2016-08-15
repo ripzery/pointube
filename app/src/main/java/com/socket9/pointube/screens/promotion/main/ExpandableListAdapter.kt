@@ -40,11 +40,16 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
         private val mParentViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
 
         init {
-
+            /* TODO: setOnClickListener */
+            mParentViewGroup.setExpandClickListener { if (it) expandView() else collapseView() }
         }
 
         fun setModel(model: BrandRepo) {
             mParentViewGroup.setModel(model)
+        }
+
+        override fun shouldItemViewClickToggleExpansion(): Boolean {
+            return false
         }
     }
 
@@ -52,7 +57,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
         private val mChildViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
 
         init {
-
+            /* TODO: setOnClickListener */
         }
 
         fun setModel(model: BrandUnitRepo) {

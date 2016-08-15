@@ -21,6 +21,9 @@ class FilteredBrandViewGroup : FrameLayout {
     lateinit private var civLogo: CircleImageView
     lateinit private var tvBrandName: TextView
     lateinit private var ivExpand: ImageView
+    private var mIsExpand: Boolean = false
+    private var mExpandListener: (Boolean) -> Unit = {}
+    private var mBrandClickListener: () -> Unit = {}
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -57,6 +60,13 @@ class FilteredBrandViewGroup : FrameLayout {
         civLogo = find(R.id.civLogo)
         tvBrandName = find(R.id.tvBrandName)
         ivExpand = find(R.id.ivExpand)
+
+        civLogo.setOnClickListener {
+            mIsExpand = !mIsExpand
+            mExpandListener(mIsExpand)
+        }
+
+        viewContainer.setOnClickListener { mBrandClickListener() }
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -90,5 +100,13 @@ class FilteredBrandViewGroup : FrameLayout {
             tvBrandName.text = Name
             ivExpand.visibility = View.GONE
         }
+    }
+
+    fun setExpandClickListener(listener: (Boolean) -> Unit) {
+        mExpandListener = listener
+    }
+
+    fun setItemClickListener(listener: () -> Unit){
+        mBrandClickListener = listener
     }
 }
