@@ -46,6 +46,7 @@
             android:layout_marginTop="0dp"
             android:background="@color/colorWhite200"
             android:padding="8dp"
+            android:textSize="18sp"
             android:text="Search by Brand" />
 
         <android.support.v7.widget.RecyclerView
