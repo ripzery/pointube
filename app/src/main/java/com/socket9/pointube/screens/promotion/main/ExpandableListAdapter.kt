@@ -42,7 +42,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
         }
 
         fun setModel(model: BrandRepo){
-
+            mParentViewGroup.setModel(model)
         }
     }
 
@@ -54,7 +54,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
         }
 
         fun setModel(model: BrandRepo){
-
+            mChildViewGroup.setModel(model)
         }
 
     }
