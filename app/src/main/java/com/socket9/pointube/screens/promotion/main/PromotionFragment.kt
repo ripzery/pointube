@@ -23,6 +23,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     lateinit var param1: String
     lateinit private var mPromotionPresenter: PromotionContract.Presenter
     lateinit private var mPromotionPagerAdapter: PromotionPagerAdapter
+    lateinit private var mListener: PromotionListener
 
     /** Static method zone **/
     companion object {
@@ -51,6 +52,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.menu_recommend -> startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+            R.id.menu_filtered_brand -> mListener.onShowFilteredBrand()
         }
         return true
     }
@@ -69,6 +71,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mPromotionPresenter = PromotionPresenter(this)
+        mListener = activity as PromotionListener
         initInstance()
     }
 
@@ -113,5 +116,10 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
         mPromotionPresenter.onCreate()
         mPromotionPresenter.prepareViewPager()
         mPromotionPresenter.prepareTabBar()
+    }
+
+    /* Listener zone */
+    interface PromotionListener {
+        fun onShowFilteredBrand()
     }
 }
