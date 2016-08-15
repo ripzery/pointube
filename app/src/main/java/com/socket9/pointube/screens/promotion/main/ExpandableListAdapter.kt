@@ -7,7 +7,12 @@ import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
+import com.socket9.pointube.R
+import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.utils.ContextUtil
+import kotlinx.android.synthetic.main.itemview_filtered_brand.*
+import org.jetbrains.anko.find
 
 /**
  * Created by ripzery on 8/15/16.
@@ -30,10 +35,27 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
     }
 
     inner class BrandParentViewHolder(itemView: View) : ParentViewHolder(itemView) {
-        // TODO : Implement Parent Viewholder
+        private val mParentViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
+
+        init {
+
+        }
+
+        fun setModel(model: BrandRepo){
+
+        }
     }
 
     inner class BrandChildViewHolder(itemView: View) : ChildViewHolder(itemView) {
-        // TODO : Implement Child Viewholder
+        private val mChildViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
+
+        init {
+
+        }
+
+        fun setModel(model: BrandRepo){
+
+        }
+
     }
 }

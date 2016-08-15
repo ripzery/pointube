@@ -7,7 +7,9 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.socket9.pointube.R
+import com.socket9.pointube.repository.brands.BrandRepo
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
 
@@ -73,7 +75,11 @@ class FilteredBrandViewGroup : FrameLayout {
 
     /** Method zone **/
 
-    fun setModel() {
-
+    fun setModel(model: BrandRepo) {
+        with(model) {
+            Glide.with(context).load(this.LogoPath).into(civLogo)
+            tvBrandName.text = Name
+            ivExpand.visibility = if (Units.size > 0) View.VISIBLE else View.GONE
+        }
     }
 }
