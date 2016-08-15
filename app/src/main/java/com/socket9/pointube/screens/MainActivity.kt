@@ -19,6 +19,7 @@ import com.socket9.pointube.screens.brand.SelectBrandActivity
 import com.socket9.pointube.screens.home.HomeFragment
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.point.PointFragment
+import com.socket9.pointube.screens.promotion.list.any.ProgramListActivity
 import com.socket9.pointube.screens.promotion.main.ExpandableListAdapter
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import com.socket9.pointube.screens.register.RegisterActivity
@@ -29,6 +30,8 @@ import kotlinx.android.synthetic.main.layout_nav_header.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import rx_activity_result.RxActivityResult
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
@@ -185,13 +188,11 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     /* For filtered brand in promotion menu */
     override fun onLoadAllBrands(allBrands: MutableList<BrandRepo>) {
         info { allBrands }
-        mExpandListAdapter = ExpandableListAdapter(this, allBrands) {
-
+        mExpandListAdapter = ExpandableListAdapter(this, allBrands) { brandId, brandTitle ->
+            startActivity<ProgramListActivity>("brandId" to brandId, "brandTitle" to brandTitle)
         }
-//        mFilteredBrandPresenter?.loadAllBrands()
         brandListView.adapter = mExpandListAdapter
         brandListView.layoutManager = LinearLayoutManager(this)
-//        mExpandListAdapter?.updateList(allBrands)
     }
 
     override fun onShowFilteredBrand() {

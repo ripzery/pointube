@@ -25,7 +25,7 @@ class FilteredBrandViewGroup : FrameLayout {
 
     private var mIsExpand: Boolean = false
     private var mExpandListener: (Boolean) -> Unit = {}
-    private var mBrandClickListener: (Int) -> Unit = {}
+    private var mBrandClickListener: (Int, String) -> Unit = {a,b -> }
     private var mBrandModel: BrandRepo? = null
     private var mBrandUnitModel: BrandUnitRepo? = null
 
@@ -73,9 +73,9 @@ class FilteredBrandViewGroup : FrameLayout {
 
         viewContainer.setOnClickListener {
             if (mBrandModel == null) {
-                mBrandClickListener(mBrandUnitModel!!.ProviderId)
+                mBrandClickListener(mBrandUnitModel!!.ProviderId, mBrandModel!!.Name)
             } else {
-                mBrandClickListener(mBrandModel!!.Id)
+                mBrandClickListener(mBrandModel!!.Id, mBrandModel!!.Name)
             }
         }
     }
@@ -121,7 +121,7 @@ class FilteredBrandViewGroup : FrameLayout {
         mExpandListener = listener
     }
 
-    fun setItemClickListener(listener: (Int) -> Unit) {
+    fun setItemClickListener(listener: (Int, String) -> Unit) {
         mBrandClickListener = listener
     }
 }

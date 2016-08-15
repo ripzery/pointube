@@ -17,7 +17,7 @@ import org.jetbrains.anko.find
 /**
  * Created by ripzery on 8/15/16.
  */
-class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var parentListItem: MutableList<BrandRepo>, val brandClickListener: (Int) -> Unit) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
+class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var parentListItem: MutableList<BrandRepo>, val brandClickListener: (Int, String) -> Unit) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup?): BrandParentViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.itemview_filtered_brand, parentViewGroup, false)
         return BrandParentViewHolder(view)
@@ -46,8 +46,8 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
 
         init {
             mParentViewGroup.setExpandClickListener { if (it) expandView() else collapseView() }
-            mParentViewGroup.setItemClickListener {
-                brandClickListener(it)
+            mParentViewGroup.setItemClickListener { brandId, brandName ->
+                brandClickListener(brandId, brandName)
             }
         }
 
@@ -64,8 +64,8 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
         private val mChildViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
 
         init {
-            mChildViewGroup.setItemClickListener {
-                brandClickListener(it)
+            mChildViewGroup.setItemClickListener { brandId, brandName ->
+                brandClickListener(brandId, brandName)
             }
         }
 
