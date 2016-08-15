@@ -36,7 +36,7 @@
         android:id="@+id/brandListView"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="#111" />
+        android:background="#fff"
+        android:layout_gravity="end" />
 
 </android.support.v4.widget.DrawerLayout>

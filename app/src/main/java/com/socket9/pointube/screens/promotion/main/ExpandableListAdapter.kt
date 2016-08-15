@@ -54,7 +54,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
         }
 
         override fun shouldItemViewClickToggleExpansion(): Boolean {
-            return false
+            return true
         }
     }
 

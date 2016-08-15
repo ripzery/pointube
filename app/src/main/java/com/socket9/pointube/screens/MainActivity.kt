@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
@@ -134,8 +135,10 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         setupNavMenu()
 
         /* Initial right drawer */
-        mExpandListAdapter = ExpandableListAdapter(this, mutableListOf())
+//        mExpandListAdapter = ExpandableListAdapter(this, mutableListOf())
         mFilteredBrandPresenter?.loadAllBrands()
+//        brandListView.adapter = mExpandListAdapter
+//        brandListView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun setupNavMenu() {
@@ -181,7 +184,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     /* For filtered brand in promotion menu */
     override fun onLoadAllBrands(allBrands: MutableList<BrandRepo>) {
-        mExpandListAdapter?.updateList(allBrands)
+        info { allBrands }
+        mExpandListAdapter = ExpandableListAdapter(this, allBrands)
+//        mFilteredBrandPresenter?.loadAllBrands()
+        brandListView.adapter = mExpandListAdapter
+        brandListView.layoutManager = LinearLayoutManager(this)
+//        mExpandListAdapter?.updateList(allBrands)
     }
 
     override fun onShowFilteredBrand() {

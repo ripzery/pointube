@@ -90,8 +90,6 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
             tvPrice.maxLines = maxLines
             tvUnit.maxLines = maxLines
 
-            info { mValueTextSize }
-
             if (mValueTextSize > 0 && mUnitTextSize > 0) {
                 tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_PX, mValueTextSize.toFloat())
                 tvUnit.setTextSize(TypedValue.COMPLEX_UNIT_PX, mUnitTextSize.toFloat())

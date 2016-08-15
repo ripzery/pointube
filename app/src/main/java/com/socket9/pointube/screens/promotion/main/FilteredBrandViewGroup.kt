@@ -100,6 +100,8 @@ class FilteredBrandViewGroup : FrameLayout {
             tvBrandName.text = Name
             ivExpand.visibility = View.GONE
         }
+
+        viewContainer.setBackgroundResource(R.color.colorWhite200)
     }
 
     fun setExpandClickListener(listener: (Boolean) -> Unit) {
