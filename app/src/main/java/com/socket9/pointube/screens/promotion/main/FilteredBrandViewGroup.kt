@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.BrandUnitRepo
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.find
 
@@ -80,6 +81,14 @@ class FilteredBrandViewGroup : FrameLayout {
             Glide.with(context).load(this.LogoPath).into(civLogo)
             tvBrandName.text = Name
             ivExpand.visibility = if (Units.size > 0) View.VISIBLE else View.GONE
+        }
+    }
+
+    fun setModel(model: BrandUnitRepo) {
+        with(model) {
+            Glide.with(context).load(this.LogoPath).into(civLogo)
+            tvBrandName.text = Name
+            ivExpand.visibility = View.GONE
         }
     }
 }

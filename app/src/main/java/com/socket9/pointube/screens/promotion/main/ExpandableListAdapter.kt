@@ -10,20 +10,21 @@ import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder
 import com.socket9.pointube.R
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.BrandUnitRepo
 import com.socket9.pointube.utils.ContextUtil
 import org.jetbrains.anko.find
 
 /**
  * Created by ripzery on 8/15/16.
  */
-class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parentListItem: MutableList<ParentListItem>) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
+class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parentListItem: MutableList<BrandRepo>) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup?): BrandParentViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.itemview_filtered_brand, parentViewGroup, false)
         return BrandParentViewHolder(view)
     }
 
     override fun onBindChildViewHolder(childViewHolder: BrandChildViewHolder?, position: Int, childListItem: Any?) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        childViewHolder?.setModel(childListItem as BrandUnitRepo)
     }
 
     override fun onCreateChildViewHolder(childViewGroup: ViewGroup?): BrandChildViewHolder {
@@ -32,7 +33,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
     }
 
     override fun onBindParentViewHolder(parentViewHolder: BrandParentViewHolder?, position: Int, parentListItem: ParentListItem?) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        parentViewHolder?.setModel(parentListItem!! as BrandRepo)
     }
 
     inner class BrandParentViewHolder(itemView: View) : ParentViewHolder(itemView) {
@@ -54,7 +55,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
 
         }
 
-        fun setModel(model: BrandRepo) {
+        fun setModel(model: BrandUnitRepo) {
             mChildViewGroup.setModel(model)
         }
 
