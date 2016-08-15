@@ -197,7 +197,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     override fun onShowFilteredBrand() {
         with(drawerLayout) {
-            if (isDrawerOpen(brandListView)) closeDrawer(brandListView) else openDrawer(brandListView)
+            if (isDrawerOpen(layoutFilteredBrand)) closeDrawer(layoutFilteredBrand) else openDrawer(layoutFilteredBrand)
         }
     }
 
