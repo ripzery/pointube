@@ -2,6 +2,7 @@ package com.socket9.pointube.screens.promotion.main
 
 import android.annotation.TargetApi
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
@@ -21,9 +22,12 @@ class FilteredBrandViewGroup : FrameLayout {
     lateinit private var civLogo: CircleImageView
     lateinit private var tvBrandName: TextView
     lateinit private var ivExpand: ImageView
+
     private var mIsExpand: Boolean = false
     private var mExpandListener: (Boolean) -> Unit = {}
-    private var mBrandClickListener: () -> Unit = {}
+    private var mBrandClickListener: (Int) -> Unit = {}
+    private var mBrandModel: BrandRepo? = null
+    private var mBrandUnitModel: BrandUnitRepo? = null
 
     /** Override method zone **/
     constructor(context: Context) : super(context) {
@@ -61,12 +65,19 @@ class FilteredBrandViewGroup : FrameLayout {
         tvBrandName = find(R.id.tvBrandName)
         ivExpand = find(R.id.ivExpand)
 
-        civLogo.setOnClickListener {
+        ivExpand.setOnClickListener {
             mIsExpand = !mIsExpand
             mExpandListener(mIsExpand)
+            ivExpand.setImageDrawable(ContextCompat.getDrawable(context, if (mIsExpand) R.drawable.ic_keyboard_arrow_up_white_24dp else R.drawable.ic_keyboard_arrow_down_white_24dp))
         }
 
-        viewContainer.setOnClickListener { mBrandClickListener() }
+        viewContainer.setOnClickListener {
+            if (mBrandModel == null) {
+                mBrandClickListener(mBrandUnitModel!!.ProviderId)
+            } else {
+                mBrandClickListener(mBrandModel!!.Id)
+            }
+        }
     }
 
     private fun initWithAttrs(attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) {
@@ -87,6 +98,7 @@ class FilteredBrandViewGroup : FrameLayout {
     /** Method zone **/
 
     fun setModel(model: BrandRepo) {
+        mBrandModel = model
         with(model) {
             Glide.with(context).load(this.LogoPath).into(civLogo)
             tvBrandName.text = Name
@@ -95,6 +107,7 @@ class FilteredBrandViewGroup : FrameLayout {
     }
 
     fun setModel(model: BrandUnitRepo) {
+        mBrandUnitModel = model
         with(model) {
             Glide.with(context).load(this.LogoPath).into(civLogo)
             tvBrandName.text = Name
@@ -108,7 +121,7 @@ class FilteredBrandViewGroup : FrameLayout {
         mExpandListener = listener
     }
 
-    fun setItemClickListener(listener: () -> Unit){
+    fun setItemClickListener(listener: (Int) -> Unit) {
         mBrandClickListener = listener
     }
 }

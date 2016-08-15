@@ -185,7 +185,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     /* For filtered brand in promotion menu */
     override fun onLoadAllBrands(allBrands: MutableList<BrandRepo>) {
         info { allBrands }
-        mExpandListAdapter = ExpandableListAdapter(this, allBrands)
+        mExpandListAdapter = ExpandableListAdapter(this, allBrands) {
+
+        }
 //        mFilteredBrandPresenter?.loadAllBrands()
         brandListView.adapter = mExpandListAdapter
         brandListView.layoutManager = LinearLayoutManager(this)

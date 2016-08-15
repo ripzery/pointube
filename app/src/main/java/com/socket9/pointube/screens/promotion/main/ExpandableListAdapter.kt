@@ -17,14 +17,14 @@ import org.jetbrains.anko.find
 /**
  * Created by ripzery on 8/15/16.
  */
-class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var parentListItem: MutableList<BrandRepo>) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
+class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var parentListItem: MutableList<BrandRepo>, val brandClickListener: (Int) -> Unit) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup?): BrandParentViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.itemview_filtered_brand, parentViewGroup, false)
         return BrandParentViewHolder(view)
     }
 
-    override fun onBindChildViewHolder(childViewHolder: BrandChildViewHolder?, position: Int, childListItem: Any?) {
-        childViewHolder?.setModel(childListItem as BrandUnitRepo)
+    override fun onBindParentViewHolder(parentViewHolder: BrandParentViewHolder?, position: Int, parentListItem: ParentListItem?) {
+        parentViewHolder?.setModel(parentListItem!! as BrandRepo)
     }
 
     override fun onCreateChildViewHolder(childViewGroup: ViewGroup?): BrandChildViewHolder {
@@ -32,8 +32,8 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
         return BrandChildViewHolder(view)
     }
 
-    override fun onBindParentViewHolder(parentViewHolder: BrandParentViewHolder?, position: Int, parentListItem: ParentListItem?) {
-        parentViewHolder?.setModel(parentListItem!! as BrandRepo)
+    override fun onBindChildViewHolder(childViewHolder: BrandChildViewHolder?, position: Int, childListItem: Any?) {
+        childViewHolder?.setModel(childListItem as BrandUnitRepo)
     }
 
     fun updateList(allBrands: MutableList<BrandRepo>) {
@@ -46,7 +46,9 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
 
         init {
             mParentViewGroup.setExpandClickListener { if (it) expandView() else collapseView() }
-            mParentViewGroup.setItemClickListener { /* TODO: Implement onItemClicked */ }
+            mParentViewGroup.setItemClickListener {
+                brandClickListener(it)
+            }
         }
 
         fun setModel(model: BrandRepo) {
@@ -54,7 +56,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
         }
 
         override fun shouldItemViewClickToggleExpansion(): Boolean {
-            return true
+            return false
         }
     }
 
@@ -62,7 +64,9 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var pa
         private val mChildViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
 
         init {
-            mChildViewGroup.setItemClickListener { /* TODO: Implement onItemClicked */ }
+            mChildViewGroup.setItemClickListener {
+                brandClickListener(it)
+            }
         }
 
         fun setModel(model: BrandUnitRepo) {
