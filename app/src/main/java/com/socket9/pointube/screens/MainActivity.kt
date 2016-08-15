@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
     lateinit private var drawerToggle: ActionBarDrawerToggle
     private var mExpandListAdapter: ExpandableListAdapter? = null
+    private var mFilteredBrandPresenter: FilteredBrandContract.Presenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +54,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
         setupToolbar(showHamburger = true)
         setupDrawerContent()
+        mFilteredBrandPresenter = FilteredBrandPresenter(this)
+        mFilteredBrandPresenter?.onCreate()
         initInstance()
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -75,6 +77,11 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         super.onConfigurationChanged(newConfig)
 
         drawerToggle.onConfigurationChanged(newConfig)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mFilteredBrandPresenter?.onDestroy()
     }
 
     private fun setupDrawerToggle(): ActionBarDrawerToggle {
@@ -128,6 +135,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
 
         /* Initial right drawer */
         mExpandListAdapter = ExpandableListAdapter(this, mutableListOf())
+        mFilteredBrandPresenter?.loadAllBrands()
     }
 
     private fun setupNavMenu() {
