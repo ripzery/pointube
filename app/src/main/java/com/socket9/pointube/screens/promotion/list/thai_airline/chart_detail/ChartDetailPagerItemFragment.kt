@@ -10,7 +10,6 @@ import com.socket9.pointube.extensions.thousandSeparator
 import com.socket9.pointube.screens.promotion.list.thai_airline.chart.AwardPriceTrip
 import kotlinx.android.synthetic.main.fragment_chart_detail_pager_item.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.warn
 
 /**
  * Created by ripzery on 7/20/16.
@@ -74,15 +73,10 @@ class ChartDetailPagerItemFragment : Fragment(), AnkoLogger, ChartDetailPagerIte
             tvSubtitle.text = subtitle
             tvDescription.text = description
 
-            try {
-                tvEconomyClass.text = economy.thousandSeparator()
-                tvPremiumEconomy.text = premiumEconomy.thousandSeparator()
-                tvRoyalSilkClass.text = silkClass.thousandSeparator()
-                tvRoyalFirstClass.text = firstClass.thousandSeparator()
-            }catch (e: Exception){
-                warn { e }
-                tvRoyalFirstClass.text = firstClass
-            }
+            tvEconomyClass.text = economy.thousandSeparator()
+            tvPremiumEconomy.text = premiumEconomy.thousandSeparator()
+            tvRoyalSilkClass.text = silkClass.thousandSeparator()
+            tvRoyalFirstClass.text = firstClass.thousandSeparator()
         }
     }
 

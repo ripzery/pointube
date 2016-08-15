@@ -120,7 +120,17 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         selectMenu(FRAGMENT_HOME)
 
         setupNavHeader()
+        setupNavMenu()
 //        ApiTest.getAllMemberBrand(
+    }
+
+    private fun setupNavMenu() {
+        val pointMenu = nvView.menu.findItem(R.id.nav_point_fragment)
+        val settingMenu = nvView.menu.findItem(R.id.nav_setting_fragment)
+
+        val isLogin = SharedPrefUtil.loadLoginResult() != null
+        pointMenu.isEnabled = isLogin
+        settingMenu.isEnabled = isLogin
     }
 
     fun setupNavHeader() {
@@ -145,12 +155,14 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             if (resultCode == Activity.RESULT_OK) {
                 result.targetUI().initInstance()
                 result.targetUI().selectMenu(data.getIntExtra("fragment", FRAGMENT_POINT))
+                result.targetUI().setupNavMenu()
             }
         })
     }
 
     override fun onLogout() {
         selectMenu(FRAGMENT_HOME)
+        setupNavMenu()
     }
 
     override fun attachBaseContext(newBase: Context) {
