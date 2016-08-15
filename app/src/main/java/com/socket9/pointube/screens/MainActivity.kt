@@ -29,8 +29,7 @@ import org.jetbrains.anko.info
 import rx_activity_result.RxActivityResult
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
-class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener {
-
+class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener, PromotionFragment.PromotionListener {
     companion object {
         val FRAGMENT_HOME = 0
         val FRAGMENT_POINT = 1
@@ -163,6 +162,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     override fun onLogout() {
         selectMenu(FRAGMENT_HOME)
         setupNavMenu()
+    }
+
+    override fun onShowFilteredBrand() {
+        with(drawerLayout){
+            if(isDrawerOpen(brandListView)) closeDrawer(brandListView) else openDrawer(brandListView)
+        }
     }
 
     override fun attachBaseContext(newBase: Context) {
