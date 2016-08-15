@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_recommend"
         android:title="Recommend Me"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_filtered_brand"
+        android:icon="@drawable/ic_more_vert_white_24dp"
+        android:title="Filter brand"
+        app:showAsAction="ifRoom" />
 </menu>
