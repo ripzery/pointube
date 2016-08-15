@@ -12,11 +12,13 @@ import android.view.MenuItem
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
 import com.socket9.pointube.extensions.setupToolbar
+import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.about.AboutFragment
 import com.socket9.pointube.screens.brand.SelectBrandActivity
 import com.socket9.pointube.screens.home.HomeFragment
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.point.PointFragment
+import com.socket9.pointube.screens.promotion.main.ExpandableListAdapter
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.screens.setting.SettingFragment
@@ -29,7 +31,8 @@ import org.jetbrains.anko.info
 import rx_activity_result.RxActivityResult
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
-class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener, PromotionFragment.PromotionListener {
+class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListener, SettingFragment.SettingListener, PromotionFragment.PromotionListener, FilteredBrandContract.View {
+
     companion object {
         val FRAGMENT_HOME = 0
         val FRAGMENT_POINT = 1
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     }
 
     lateinit private var drawerToggle: ActionBarDrawerToggle
+    private var mExpandListAdapter: ExpandableListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,9 +122,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     private fun initInstance() {
         selectMenu(FRAGMENT_HOME)
 
+        /* Initial left drawer header and set enable/disable item menu based on auth permission */
         setupNavHeader()
         setupNavMenu()
-//        ApiTest.getAllMemberBrand(
+
+        /* Initial right drawer */
+        mExpandListAdapter = ExpandableListAdapter(this, mutableListOf())
     }
 
     private fun setupNavMenu() {
@@ -164,13 +171,15 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         setupNavMenu()
     }
 
+    /* For filtered brand in promotion menu */
+    override fun onLoadAllBrands(allBrands: MutableList<BrandRepo>) {
+        mExpandListAdapter?.updateList(allBrands)
+    }
+
     override fun onShowFilteredBrand() {
-        with(drawerLayout){
-            if(isDrawerOpen(brandListView)) closeDrawer(brandListView) else openDrawer(brandListView)
+        with(drawerLayout) {
+            if (isDrawerOpen(brandListView)) closeDrawer(brandListView) else openDrawer(brandListView)
         }
-
-        /* TODO: add expandable list view */
-
     }
 
     override fun attachBaseContext(newBase: Context) {

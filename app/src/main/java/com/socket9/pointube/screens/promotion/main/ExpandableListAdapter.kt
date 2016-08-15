@@ -17,7 +17,7 @@ import org.jetbrains.anko.find
 /**
  * Created by ripzery on 8/15/16.
  */
-class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parentListItem: MutableList<BrandRepo>) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
+class ExpandableListAdapter(val context: Context = ContextUtil.context!!, var parentListItem: MutableList<BrandRepo>) : ExpandableRecyclerAdapter<ExpandableListAdapter.BrandParentViewHolder, ExpandableListAdapter.BrandChildViewHolder>(parentListItem) {
     override fun onCreateParentViewHolder(parentViewGroup: ViewGroup?): BrandParentViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.itemview_filtered_brand, parentViewGroup, false)
         return BrandParentViewHolder(view)
@@ -36,12 +36,17 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
         parentViewHolder?.setModel(parentListItem!! as BrandRepo)
     }
 
+    fun updateList(allBrands: MutableList<BrandRepo>) {
+        parentListItem = allBrands
+        notifyDataSetChanged()
+    }
+
     inner class BrandParentViewHolder(itemView: View) : ParentViewHolder(itemView) {
         private val mParentViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
 
         init {
-            /* TODO: setOnClickListener */
             mParentViewGroup.setExpandClickListener { if (it) expandView() else collapseView() }
+            mParentViewGroup.setItemClickListener { /* TODO: Implement onItemClicked */ }
         }
 
         fun setModel(model: BrandRepo) {
@@ -57,7 +62,7 @@ class ExpandableListAdapter(val context: Context = ContextUtil.context!!, parent
         private val mChildViewGroup = itemView.find<FilteredBrandViewGroup>(R.id.filteredBrandViewGroup)
 
         init {
-            /* TODO: setOnClickListener */
+            mChildViewGroup.setItemClickListener { /* TODO: Implement onItemClicked */ }
         }
 
         fun setModel(model: BrandUnitRepo) {
