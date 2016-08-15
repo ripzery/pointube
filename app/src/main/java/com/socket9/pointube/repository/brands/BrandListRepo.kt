@@ -1,5 +1,6 @@
 package com.socket9.pointube.repository.brands
 
+import com.bignerdranch.expandablerecyclerview.Model.ParentListItem
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.Ignore
@@ -18,7 +19,15 @@ open class BrandRepo(
         @Ignore open var Points: String = "",
         @Ignore open var isChecked: Boolean = false
 
-) : RealmObject() {
+) : RealmObject(), ParentListItem /* For support expandable list */ {
+
+    override fun getChildItemList(): MutableList<BrandUnitRepo>? {
+        return Units
+    }
+
+    override fun isInitiallyExpanded(): Boolean {
+        return false
+    }
 
 }
 
