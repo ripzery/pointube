@@ -50,7 +50,11 @@ object DataManager : AnkoLogger {
     fun login(model: LoginModel.Request.Login): Observable<LoginModel.Response.Login> {
         return NetworkProviderManager.login(model)
                 .doOnNext {
-                    if (it.result.id != 0) SharedPrefUtil.saveLoginResult(it.result)
+                    if (it.result != null) {
+                        if (it.result.id != 0) SharedPrefUtil.saveLoginResult(it.result)
+                    } else {
+
+                    }
                 }
     }
 
@@ -58,8 +62,10 @@ object DataManager : AnkoLogger {
     fun logout(memberId: Int): Observable<LoginModel.Response.Login> {
         return NetworkProviderManager.logout(memberId)
                 .doOnNext {
-                    if (it.result.isSuccess) {
-                        SharedPrefUtil.clearLogin()
+                    if (it.result != null) {
+                        if (it.result.isSuccess) {
+                            SharedPrefUtil.clearLogin()
+                        }
                     }
                 }
     }
@@ -69,7 +75,7 @@ object DataManager : AnkoLogger {
         return NetworkProviderManager.register(model)
     }
 
-    /* Fore update profile */
+    /* For update profile */
     fun updateProfile(model: SettingModel.Request.UpdateProfile): Observable<SettingModel.Response.UpdateProfile> {
         return NetworkProviderManager.updateProfile(model)
     }

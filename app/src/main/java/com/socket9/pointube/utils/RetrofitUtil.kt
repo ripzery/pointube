@@ -66,10 +66,10 @@ interface PointubeAPI {
     @GET("api/Provider/GetProviderList")
     fun getAllProvider(): Observable<HomeModel.AllBrands>
 
-    @POST("Account/Login")
+    @POST("api/Member/Login")
     fun login(@Body loginModel: LoginModel.Request.Login): Observable<LoginModel.Response.Login>
 
-    @GET("Account/SignOut")
+    @GET("api/Member/SignOut")
     fun logout(@Query("MemberId") memberId: Int) : Observable<LoginModel.Response.Login>
 
     @POST("api/Member/Create")

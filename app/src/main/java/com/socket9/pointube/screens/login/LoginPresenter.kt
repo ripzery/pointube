@@ -18,10 +18,10 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                 .subscribe({
                     info { it }
                     view?.hideProgressDialog()
-                    if (it.result.id != 0) {
+                    if (it.result != null && it.result.id != 0) {
                         view?.showLoginSuccess("Login success")
                     } else {
-                        view?.showLoginError(it.result.message!!)
+                        view?.showLoginError(it.message!!)
                     }
                 }, {
                     view?.hideProgressDialog()

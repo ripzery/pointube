@@ -14,12 +14,14 @@ object LoginModel {
         data class Login(val Email: String, val Password: String)
     }
 
-    object Response{
-        data class Login(@SerializedName("success") val success: Boolean,@SerializedName("result") val result: LoginResult)
+    object Response {
+        data class Login(@SerializedName(value = "IsSuccess", alternate = arrayOf("isSuccess")) val isSuccess: Boolean,
+                         @SerializedName("Message", alternate = kotlin.arrayOf("message")) val message: String?,
+                         @SerializedName("result", alternate = kotlin.arrayOf("Result")) val result: LoginResult?)
 
         data class LoginResult(
                 @SerializedName("isSuccess") val isSuccess: Boolean = false,
-                @SerializedName("message") val message: String?,
+                @SerializedName("message") val message: String? = "",
                 @SerializedName("id") val id: Int = 0,
                 @SerializedName("code") val code: String?,
                 @SerializedName("firstName") val firstName: String?,
@@ -34,8 +36,8 @@ object LoginModel {
                 @SerializedName("address") val address: String?,
                 @SerializedName("birthday") val birthday: Date?,
                 @SerializedName("token") val token: String?
-        ){
-            fun toJson(): String{
+        ) {
+            fun toJson(): String {
                 return Gson().toJson(this)
             }
         }

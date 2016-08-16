@@ -23,7 +23,7 @@ class SettingPresenter(var view: SettingContract.View?) : AnkoLogger, SettingCon
         DataManager.logout(SharedPrefUtil.loadLoginResult()!!.id)
                 .subscribe({
                     view?.hideLoading()
-                    if (it.result.isSuccess) {
+                    if (it.isSuccess) {
                         SharedPrefUtil.clearLogin()
                         RealmUtil.deleteMemberBrand()
                         view?.showLogout()

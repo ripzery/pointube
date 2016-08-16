@@ -45,7 +45,7 @@ object ApiTest : AnkoLogger {
     fun getAllMemberBrand() {
         DataManager.login(LoginModel.Request.Login("euro03@google.com", "1234"))
                 .doOnNext { info { it } }
-                .flatMap { DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(it.result.id.toString(), it.result.token!!)) }
+                .flatMap { DataManager.getAllBrandMember(BrandModel.Request.GetMemberBrand(it.result!!.id.toString(), it.result.token!!)) }
                 .subscribe({
                     info { it }
                 }, {

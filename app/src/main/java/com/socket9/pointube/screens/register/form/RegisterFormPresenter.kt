@@ -81,7 +81,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                 .subscribe({
                     info { it }
                     view?.hideLoading()
-                    mRegisteredId = it.result.id
+                    mRegisteredId = it.result!!.id
                     view?.showRegisterSuccess()
                 }, {
                     try {
