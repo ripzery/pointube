@@ -9,10 +9,12 @@ import com.socket9.pointube.R
 import com.socket9.pointube.customviews.TintableImageView
 import com.socket9.pointube.screens.recommendme.RecommendMeActivity
 import com.socket9.pointube.utils.ContextUtil
+import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_promotion.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
@@ -51,7 +53,13 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.menu_recommend -> startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+            R.id.menu_recommend -> {
+                if (SharedPrefUtil.loadLoginResult() != null)
+                    startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+                else{
+                    toast("Please login to see recommend promotion")
+                }
+            }
             R.id.menu_filtered_brand -> mListener.onShowFilteredBrand()
         }
         return true

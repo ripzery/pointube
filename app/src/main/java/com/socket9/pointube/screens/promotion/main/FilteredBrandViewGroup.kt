@@ -73,7 +73,7 @@ class FilteredBrandViewGroup : FrameLayout {
 
         viewContainer.setOnClickListener {
             if (mBrandModel == null) {
-                mBrandClickListener(mBrandUnitModel!!.ProviderId, mBrandUnitModel!!.Name)
+                mBrandClickListener(mBrandUnitModel!!.Id, mBrandUnitModel!!.Name)
             } else {
                 mBrandClickListener(mBrandModel!!.Id, mBrandModel!!.Name)
             }
