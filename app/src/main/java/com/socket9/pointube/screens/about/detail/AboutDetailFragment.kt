@@ -17,6 +17,13 @@ class AboutDetailFragment : Fragment(), AnkoLogger {
 
     /** Variable zone **/
     var mAboutId: Int = 0
+    private val WHAT_IS_POINTUBE = 1
+    private val WHO_USE_POINTUBE = 2
+    private val HOW_TO_USE_POINTUBE = 3
+    private val FAQ = 4
+    private val CONTACT_US = 5
+    private val PRIVACY_POLICY = 6
+    private val TERMS_OF_USE = 7
 
 
     /** Static method zone **/
@@ -57,6 +64,21 @@ class AboutDetailFragment : Fragment(), AnkoLogger {
     /** Method zone **/
 
     private fun initInstance() {
-        webView.loadUrl("file:///android_asset/webview/template-app-test.html")
+        loadWebView()
+    }
+
+    private fun loadWebView() {
+        val htmlFile: String
+        htmlFile = when (mAboutId) {
+            WHAT_IS_POINTUBE -> "about-whatis.html"
+            WHO_USE_POINTUBE -> "about-whoshould.html"
+            HOW_TO_USE_POINTUBE -> "about-howtouse.html"
+            FAQ -> "about-faq-question.html"
+            CONTACT_US -> "about-contact.html"
+            PRIVACY_POLICY -> "about-privacy.html"
+            TERMS_OF_USE -> "about-terms.html"
+            else -> ""
+        }
+        webView.loadUrl("file:///android_asset/en/$htmlFile")
     }
 }
