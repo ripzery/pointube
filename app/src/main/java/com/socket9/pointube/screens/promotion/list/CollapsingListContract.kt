@@ -15,8 +15,8 @@ interface CollapsingListContract {
     }
 
     interface Presenter : BasePresenter {
-        fun loadCover(brandId: Int)
+        fun loadCover(brandName: String)
 
-        fun selectPromotionList(brandId: Int)
+        fun selectPromotionList(brandName: String)
     }
 }

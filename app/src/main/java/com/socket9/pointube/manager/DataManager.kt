@@ -1,6 +1,7 @@
 package com.socket9.pointube.manager
 
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.BrandUnitRepo
 import com.socket9.pointube.repository.brands.GetMemberBrand
 import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
@@ -137,6 +138,20 @@ object DataManager : AnkoLogger {
 
     fun getProviderById(id: Int = 0): Observable<BrandRepo> {
         return DiskProviderManager.getProviderById(id)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getProviderByName(name: String): Observable<BrandRepo> {
+        return DiskProviderManager.getProviderByName(name)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getBrandUnitByName(name: String): Observable<BrandUnitRepo> {
+        return DiskProviderManager.getBrandUnitByName(name)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

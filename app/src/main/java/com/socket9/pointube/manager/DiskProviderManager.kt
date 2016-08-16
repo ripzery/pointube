@@ -1,6 +1,7 @@
 package com.socket9.pointube.manager
 
 import com.socket9.pointube.repository.brands.BrandRepo
+import com.socket9.pointube.repository.brands.BrandUnitRepo
 import com.socket9.pointube.repository.brands.GetMemberBrand
 import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
@@ -53,6 +54,16 @@ object DiskProviderManager : AnkoLogger {
 
     fun getProviderById(id: Int = 0): Observable<BrandRepo> {
         val brand = RealmUtil.readAll(BrandRepo::class.java).find { it.Id == id }
+        return Observable.just(brand)
+    }
+
+    fun getProviderByName(name: String): Observable<BrandRepo> {
+        val brand = RealmUtil.readAll(BrandRepo::class.java).find { it.Name.equals(name) }
+        return Observable.just(brand)
+    }
+
+    fun getBrandUnitByName(name: String): Observable<BrandUnitRepo> {
+        val brand = RealmUtil.readAll(BrandUnitRepo::class.java).find { it.Name.equals(name) }
         return Observable.just(brand)
     }
 

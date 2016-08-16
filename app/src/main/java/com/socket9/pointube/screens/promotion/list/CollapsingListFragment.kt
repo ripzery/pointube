@@ -98,13 +98,13 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
         collapsing_toolbar.title = mBrandTitle
 
         /* Load brand cover url */
-        mCollapsingListPresenter.loadCover(mBrandId)
+        mCollapsingListPresenter.loadCover(mBrandTitle)
 
         /* Setup toolbar*/
         mActivity = activity as AppCompatActivity
         mActivity.setSupportActionBar(toolbar)
         mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        mCollapsingListPresenter.selectPromotionList(mBrandId)
+        mCollapsingListPresenter.selectPromotionList(mBrandTitle)
     }
 }
