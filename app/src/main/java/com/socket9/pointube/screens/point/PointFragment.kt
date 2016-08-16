@@ -55,7 +55,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater!!.inflate(R.menu.menu_recommend_me, menu)
+        inflater!!.inflate(R.menu.menu_recommend_me_point, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
