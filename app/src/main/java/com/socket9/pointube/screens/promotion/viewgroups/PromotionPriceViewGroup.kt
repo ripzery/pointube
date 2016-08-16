@@ -81,8 +81,8 @@ class PromotionPriceViewGroup : FrameLayout, AnkoLogger {
             price = a.getString(R.styleable.PromotionPriceViewGroup_price) ?: ""
             maxLines = a.getInt(R.styleable.PromotionPriceViewGroup_maxLines, 1)
             currency = a.getString(R.styleable.PromotionPriceViewGroup_currency) ?: ""
-            mUnitTextSize = a.getDimensionPixelSize(R.styleable.PromotionPriceViewGroup_unitTextSize, 14.toPx().toInt()).toInt()
-            mValueTextSize = a.getDimensionPixelSize(R.styleable.PromotionPriceViewGroup_valueTextSize, 14.toPx().toInt()).toInt()
+            mUnitTextSize = a.getDimensionPixelSize(R.styleable.PromotionPriceViewGroup_unitTextSize, 12.toPx().toInt()).toInt()
+            mValueTextSize = a.getDimensionPixelSize(R.styleable.PromotionPriceViewGroup_valueTextSize, 12.toPx().toInt()).toInt()
 
             setCurrency(currency)
             setPrice(price)

@@ -35,7 +35,8 @@ open class BrandUnitRepo(
         @PrimaryKey open var Id: Int = 0,
         open var ProviderId: Int = 0,
         open var Name: String ="",
-        open var LogoPath: String=""
+        open var LogoPath: String="",
+        open var CoverPath: String=""
 ) : RealmObject() {
 
 }

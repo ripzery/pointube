@@ -1,5 +1,6 @@
 package com.socket9.pointube.manager
 
+import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.brands.GetMemberBrand
 import com.socket9.pointube.repository.brands.GetMemberSelectBrand
 import com.socket9.pointube.screens.brand.BrandModel
@@ -23,6 +24,7 @@ import rx.schedulers.Schedulers
 object NetworkProviderManager : AnkoLogger {
     fun getAllProvider(): Observable<HomeModel.AllBrands> {
         return RetrofitUtils.getInstance().getAllProvider()
+                .doOnNext { setChildCoverPath(it.Results) }
                 .doOnNext { saveToDisk(it.Results) }
                 .flatMap { DataManager.getAllPublishedProgramList() }
                 .doOnNext { DataExtendingUtil.countProviderProgram() }
@@ -102,6 +104,13 @@ object NetworkProviderManager : AnkoLogger {
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    private fun setChildCoverPath(brandList: MutableList<BrandRepo>) {
+        brandList.forEach {
+            val cover = it.CoverPath
+            it.Units.forEach { it.CoverPath = cover }
+        }
     }
 
     private fun <T : RealmModel> saveToDisk(networkData: MutableList<T>?) {
