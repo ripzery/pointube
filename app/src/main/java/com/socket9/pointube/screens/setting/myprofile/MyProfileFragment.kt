@@ -21,7 +21,6 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_setting_my_profile.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +35,8 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     lateinit var param1: String
     lateinit var mMyProfilePresenter: MyProfileContract.Presenter
     private val mLoginResult: LoginModel.Response.LoginResult by lazy { SharedPrefUtil.loadLoginResult()!! }
+    private var mChangePwBuilder: MaterialDialog? = null
+
 
     /** Static method zone **/
     companion object {
@@ -62,24 +63,25 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
 
     override fun showChangePassword() {
         val wrapInScrollView = true;
-        val changePwBuilder = MaterialDialog.Builder(context)
+        mChangePwBuilder = MaterialDialog.Builder(context)
                 .title("Change password")
                 .customView(R.layout.layout_dialog_change_password, wrapInScrollView)
                 .positiveText("OK")
                 .negativeText("Cancel")
+                .autoDismiss(false)
                 .onPositive { materialDialog, dialogAction ->
-                    with(materialDialog.customView) {
-                        val oldPw = find<MaterialEditText>(R.id.metOldPassword).text.toString()
-                        val newPw = find<MaterialEditText>(R.id.metNewPassword).text.toString()
-                        val confirmPw = find<MaterialEditText>(R.id.metRepeatPassword).text.toString()
+                    with(materialDialog.customView!!) {
+                        val oldPw = (this.findViewById(R.id.metOldPassword) as MaterialEditText).text.toString()
+                        val newPw = (this.findViewById(R.id.metNewPassword) as MaterialEditText).text.toString()
+                        val confirmPw = (this.findViewById(R.id.metRepeatPassword) as MaterialEditText).text.toString()
                         mMyProfilePresenter.changePassword(oldPw, newPw, confirmPw)
                     }
                 }
                 .build()
 
-        changePwBuilder.show()
+        mChangePwBuilder?.show()
 
-        changePasswordFontFace(changePwBuilder.customView!!)
+        changePasswordFontFace(mChangePwBuilder!!.customView!!)
     }
 
     override fun showChangePasswordError(msg: String) {
@@ -89,6 +91,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
 
     override fun showChangePasswordSuccess() {
         hideLoadingDialog()
+        mChangePwBuilder?.dismiss()
         toast("Change password success")
     }
 
@@ -106,7 +109,6 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
         repeatPassword.typeface = Typeface.DEFAULT
         repeatPassword.transformationMethod = PasswordTransformationMethod()
     }
-
 
     override fun showUpdateError(msg: String) {
         toast(msg)
