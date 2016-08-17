@@ -129,7 +129,6 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
 
     override fun initLoginData(loginData: LoginModel.Response.LoginResult) {
         with(loginData) {
-            metEmail.setText(email)
             metFirstName.setText(firstNameEN)
             metFirstNameTH.setText(firstName)
             metLastName.setText(lastNameEN)
@@ -207,7 +206,6 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
 
         /* Validate */
         mMyProfilePresenter.validateAll(
-                RxTextView.textChanges(metEmail),
                 RxTextView.textChanges(metFirstName),
                 RxTextView.textChanges(metLastName),
                 RxTextView.textChanges(metFirstNameTH),
@@ -231,7 +229,6 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     }
 
     private fun initValidator() {
-        metEmail.addValidator(ValidatorUtil.provideEmailValidator())
         metFirstName.addValidator(ValidatorUtil.provideFirstNameEnValidator())
         metLastName.addValidator(ValidatorUtil.provideLastNameEnValidator())
         metFirstNameTH.addValidator(ValidatorUtil.provideFirstNameThValidator())

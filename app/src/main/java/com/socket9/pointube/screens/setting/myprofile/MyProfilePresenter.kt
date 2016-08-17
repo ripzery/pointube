@@ -28,9 +28,9 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
         view?.initLoginData(mLoginResult!!)
     }
 
-    override fun validateAll(emailObs: Observable<CharSequence>, fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>, fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>) {
+    override fun validateAll(fnEnObs: Observable<CharSequence>, lnEnObs: Observable<CharSequence>, fnThObs: Observable<CharSequence>, lnThObs: Observable<CharSequence>, citiObs: Observable<CharSequence>, ppObs: Observable<CharSequence>, dobObs: Observable<CharSequence>) {
         /* Check all combination */
-        val listObservable: MutableList<Observable<CharSequence>> = mutableListOf(emailObs, fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs)
+        val listObservable: MutableList<Observable<CharSequence>> = mutableListOf(fnEnObs, lnEnObs, fnThObs, lnThObs, citiObs, ppObs, dobObs)
 
         mValidateAllSubscription = Observable.combineLatest(listObservable, {
             val list: MutableList<CharSequence> = mutableListOf()
@@ -54,7 +54,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
                     isNationalityRequiredValid
 
             if (isValid) {
-                buildProfileModel(list[0], list[1], list[2], list[3], list[4], list[5], list[6], list[7])
+                buildProfileModel(list[0], list[1], list[2], list[3], list[4], list[5], list[6])
             }
 
             isValid
@@ -63,7 +63,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
         }
     }
 
-    private fun buildProfileModel(email: CharSequence, firstNameEn: CharSequence, lastNameEn: CharSequence, firstNameTh: CharSequence, lastNameTh: CharSequence, citizen: CharSequence, passport: CharSequence, dob: CharSequence) {
+    private fun buildProfileModel(firstNameEn: CharSequence, lastNameEn: CharSequence, firstNameTh: CharSequence, lastNameTh: CharSequence, citizen: CharSequence, passport: CharSequence, dob: CharSequence) {
         val date = Calendar.getInstance()
         val split = dob.split("/")
         date.set(split[2].toInt(), split[1].toInt(), split[0].toInt())
@@ -71,7 +71,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
         info { dateOfBirth }
         mUpdateProfileRequest = SettingModel.Request.UpdateProfile(
                 mLoginResult.id,
-                email.toString(),
+                SharedPrefUtil.loadLoginResult()!!.email!!,
                 firstNameTh.toString(),
                 lastNameTh.toString(),
                 firstNameEn.toString(),

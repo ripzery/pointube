@@ -34,8 +34,7 @@ interface MyProfileContract {
     interface Presenter : BasePresenter {
         fun loadCurrentUser()
 
-        fun validateAll(emailObs: Observable<CharSequence>,
-                        fnEnObs: Observable<CharSequence>,
+        fun validateAll(fnEnObs: Observable<CharSequence>,
                         lnEnObs: Observable<CharSequence>,
                         fnThObs: Observable<CharSequence>,
                         lnThObs: Observable<CharSequence>,
