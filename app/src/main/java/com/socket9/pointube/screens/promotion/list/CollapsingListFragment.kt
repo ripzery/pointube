@@ -1,5 +1,6 @@
 package com.socket9.pointube.screens.promotion.list
 
+import ThaiAirlineAwardFragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -21,6 +22,7 @@ import org.jetbrains.anko.AnkoLogger
 class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.View {
     /** Variable zone **/
     private var mBrandId: Int = 0
+    private var mUnitId: Int = 0
     private var mBrandTitle: String = ""
     lateinit private var mCollapsingListPresenter: CollapsingListContract.Presenter
     lateinit var param1: String
@@ -30,25 +32,19 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
     companion object {
         val ARG_1 = "ARG_1"
         val ARG_2 = "ARG_2"
+        val ARG_3 = "ARG_3"
 
-        fun newInstance(brandId: Int, brandTitle: String): CollapsingListFragment {
+        fun newInstance(brandId: Int, brandTitle: String, unitId: Int = 0): CollapsingListFragment {
             val bundle: Bundle = Bundle()
             bundle.putInt(ARG_1, brandId)
             bundle.putString(ARG_2, brandTitle)
+            bundle.putInt(ARG_3, unitId)
+
             val collapsingListFragment: CollapsingListFragment = CollapsingListFragment()
             collapsingListFragment.arguments = bundle
             return collapsingListFragment
         }
 
-    }
-
-    /* Implement View Interface zone */
-    override fun showDefaultPromotionList() {
-        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId))
-    }
-
-    override fun showThaiAirwayPromotionList() {
-        replaceFragment(fragment = ThaiAirlineAwardFragment.newInstance(mBrandId))
     }
 
     /** Activity method zone  **/
@@ -59,6 +55,7 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
             /* if newly created */
             mBrandId = arguments.getInt(ARG_1)
             mBrandTitle = arguments.getString(ARG_2)
+            mUnitId = arguments.getInt(ARG_3)
         }
     }
 
@@ -98,13 +95,23 @@ class CollapsingListFragment : Fragment(), AnkoLogger, CollapsingListContract.Vi
         collapsing_toolbar.title = mBrandTitle
 
         /* Load brand cover url */
-        mCollapsingListPresenter.loadCover(mBrandTitle)
+        mCollapsingListPresenter.loadCover(mBrandId, mUnitId)
 
         /* Setup toolbar*/
         mActivity = activity as AppCompatActivity
         mActivity.setSupportActionBar(toolbar)
         mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        mCollapsingListPresenter.selectPromotionList(mBrandTitle)
+        mCollapsingListPresenter.selectPromotionList(mBrandId, mUnitId)
     }
+
+    /* Implement View Interface zone */
+    override fun showDefaultPromotionList() {
+        replaceFragment(fragment = ProgramListFragment.newInstance(mBrandId, mUnitId))
+    }
+
+    override fun showThaiAirwayPromotionList() {
+        replaceFragment(fragment = ThaiAirlineAwardFragment.newInstance(mBrandId))
+    }
+
 }

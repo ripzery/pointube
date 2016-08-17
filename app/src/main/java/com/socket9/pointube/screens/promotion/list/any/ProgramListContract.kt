@@ -18,7 +18,7 @@ interface ProgramListContract {
     }
 
     interface Presenter : BasePresenter {
-        fun loadProgramList(brandId: Int)
+        fun loadProgramList(brandId: Int, unitId: Int = 0)
 
         fun clickProgram(programId: Int)
     }

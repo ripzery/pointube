@@ -62,6 +62,11 @@ object DiskProviderManager : AnkoLogger {
         return Observable.just(brand)
     }
 
+    fun getBrandUnitById(unitId: Int = 0): Observable<BrandUnitRepo> {
+        val brand = RealmUtil.readAll(BrandUnitRepo::class.java).find { it.Id.equals(unitId) }
+        return Observable.just(brand)
+    }
+
     fun getBrandUnitByName(name: String): Observable<BrandUnitRepo> {
         val brand = RealmUtil.readAll(BrandUnitRepo::class.java).find { it.Name.equals(name) }
         return Observable.just(brand)
@@ -70,6 +75,11 @@ object DiskProviderManager : AnkoLogger {
     fun getPublishedProgramByProviderId(providerId: Int): Observable<MutableList<PublishedProgramItemRepo>> {
         val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
         return Observable.just(allPublishedProgramList.filter { it.ProviderId == providerId }.toMutableList())
+    }
+
+    fun getPublishedProgramByUnitId(unitId: Int): Observable<MutableList<PublishedProgramItemRepo>> {
+        val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
+        return Observable.just(allPublishedProgramList.filter { it.UnitId == unitId }.toMutableList())
     }
 
     fun getAirlineAwardChartList(): Observable<MutableList<AwardChartModel>> {

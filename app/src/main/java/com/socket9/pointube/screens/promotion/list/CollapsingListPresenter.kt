@@ -4,20 +4,14 @@ import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.repository.brands.BrandUnitRepo
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.warn
-import rx.Observable
 
 /**
  * Created by ripzery on 8/9/16.
  */
 class CollapsingListPresenter(var view: CollapsingListContract.View?) : CollapsingListContract.Presenter, AnkoLogger {
-    override fun selectPromotionList(brandName: String) {
-        DataManager.getProviderByName(brandName)
-                .flatMap {
-                    if (it == null) DataManager.getBrandUnitByName(brandName)
-                    else Observable.just(it)
-                }
+    override fun selectPromotionList(brandId: Int, unitId: Int) {
+        DataManager.getProviderBrandUnitByNotNull(brandId, unitId)
                 .subscribe({
                     val name: String
                     try {
@@ -36,12 +30,8 @@ class CollapsingListPresenter(var view: CollapsingListContract.View?) : Collapsi
                 })
     }
 
-    override fun loadCover(name: String) {
-        DataManager.getProviderByName(name)
-                .flatMap {
-                    if (it == null) DataManager.getBrandUnitByName(name)
-                    else Observable.just(it)
-                }
+    override fun loadCover(brandId: Int, unitId: Int) {
+        DataManager.getProviderBrandUnitByNotNull(brandId, unitId)
                 .subscribe({
                     val path: String
                     try {

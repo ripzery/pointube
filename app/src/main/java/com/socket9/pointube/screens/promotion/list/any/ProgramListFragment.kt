@@ -9,17 +9,13 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
-import com.socket9.pointube.screens.promotion.list.any.PromotionListViewGroup
 import kotlinx.android.synthetic.main.fragment_brand_member.*
-import kotlinx.android.synthetic.main.fragment_promotion_detail.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -29,6 +25,7 @@ import org.jetbrains.anko.support.v4.startActivity
 class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     /** Variable zone **/
     private var mBrandId: Int = 0
+    private var mUnitId: Int = 0
     lateinit private var mProgramListPresenter: ProgramListContract.Presenter
     lateinit private var mProgramListAdapter: ProgramListAdapter
     lateinit private var mActivity: AppCompatActivity
@@ -36,10 +33,12 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     /** Static method zone **/
     companion object {
         val ARG_1 = "ARG_1"
+        val ARG_2 = "ARG_2"
 
-        fun newInstance(brandId: Int): ProgramListFragment {
+        fun newInstance(brandId: Int, unitId: Int): ProgramListFragment {
             val bundle: Bundle = Bundle()
             bundle.putInt(ARG_1, brandId)
+            bundle.putInt(ARG_2, unitId)
             val programListFragment: ProgramListFragment = ProgramListFragment()
             programListFragment.arguments = bundle
             return programListFragment
@@ -54,6 +53,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
         if (savedInstanceState == null) {
             /* if newly created */
             mBrandId = arguments.getInt(ARG_1)
+            mUnitId = arguments.getInt(ARG_2)
         }
     }
 
@@ -113,7 +113,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
         recyclerView.adapter = mProgramListAdapter
 
         /* Load program list by brand */
-        mProgramListPresenter.loadProgramList(mBrandId)
+        mProgramListPresenter.loadProgramList(mBrandId, mUnitId)
 
         /* Load brand cover url */
 //        mProgramListPresenter.loadCover(mBrandId)

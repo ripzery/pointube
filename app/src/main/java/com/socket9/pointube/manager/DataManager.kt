@@ -12,6 +12,7 @@ import com.socket9.pointube.screens.promotion.list.thai_airline.chart.AwardChart
 import com.socket9.pointube.screens.register.RegisterModel
 import com.socket9.pointube.screens.setting.SettingModel
 import com.socket9.pointube.utils.SharedPrefUtil
+import io.realm.RealmObject
 import org.jetbrains.anko.AnkoLogger
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -136,6 +137,21 @@ object DataManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun getPublishedProgramByUnitId(unitId: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
+        return DiskProviderManager.getPublishedProgramByUnitId(unitId)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getPublishedProgramByNotNull(providerId: Int = 0, unitId: Int = 0): Observable<MutableList<PublishedProgramItemRepo>> {
+        return Observable.concat(DiskProviderManager.getPublishedProgramByUnitId(unitId), DiskProviderManager.getPublishedProgramByProviderId(providerId))
+                .first { it != null && it.size > 0 }
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun getProviderById(id: Int = 0): Observable<BrandRepo> {
         return DiskProviderManager.getProviderById(id)
                 .subscribeOn(Schedulers.io())
@@ -150,8 +166,23 @@ object DataManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun getBrandUnitById(unitId: Int): Observable<BrandUnitRepo> {
+        return DiskProviderManager.getBrandUnitById(unitId)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun getBrandUnitByName(name: String): Observable<BrandUnitRepo> {
         return DiskProviderManager.getBrandUnitByName(name)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getProviderBrandUnitByNotNull(brandId: Int, unitId: Int): Observable<RealmObject> {
+        return Observable.concat(getBrandUnitById(unitId), getProviderById(brandId))
+                .first { it != null }
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
