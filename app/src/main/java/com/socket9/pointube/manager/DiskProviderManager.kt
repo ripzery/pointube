@@ -78,8 +78,10 @@ object DiskProviderManager : AnkoLogger {
     }
 
     fun getPublishedProgramByUnitId(unitId: Int): Observable<MutableList<PublishedProgramItemRepo>> {
+        var id: Int = -1
+        if (unitId > 0) id = unitId
         val allPublishedProgramList = RealmUtil.readAll(PublishedProgramItemRepo::class.java)
-        return Observable.just(allPublishedProgramList.filter { it.UnitId == unitId }.toMutableList())
+        return Observable.just(allPublishedProgramList.filter { it.UnitId == id }.toMutableList())
     }
 
     fun getAirlineAwardChartList(): Observable<MutableList<AwardChartModel>> {
