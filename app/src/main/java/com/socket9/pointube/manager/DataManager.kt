@@ -90,6 +90,14 @@ object DataManager : AnkoLogger {
         return NetworkProviderManager.verifyPhoneNumber(id, otp)
     }
 
+
+    fun changePassword(model: LoginModel.Request.ChangePassword): Observable<LoginModel.Response.ChangePassword> {
+        return NetworkProviderManager.changePassword(model)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     /* Get member */
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return Observable.concat(DiskProviderManager.getAllBrandMember(), NetworkProviderManager.getAllBrandMember(memberBrand))

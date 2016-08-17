@@ -18,6 +18,10 @@ interface MyProfileContract {
 
         fun showUpdateError(msg: String)
 
+        fun showChangePasswordError(msg: String)
+
+        fun showChangePasswordSuccess()
+
         fun showUpdateSuccess()
 
         fun showLoading()
@@ -48,6 +52,8 @@ interface MyProfileContract {
 
         fun save()
 
-        fun changePassword()
+        fun clickChangePassword()
+
+        fun changePassword(oldPassword:String, newPassword: String, ConfirmPassword: String)
     }
 }

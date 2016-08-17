@@ -19,9 +19,9 @@ import com.socket9.pointube.utils.SharedPrefUtil
 import com.socket9.pointube.utils.ValidatorUtil
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_setting_my_profile.*
-import kotlinx.android.synthetic.main.layout_dialog_change_password.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -68,13 +68,28 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
                 .positiveText("OK")
                 .negativeText("Cancel")
                 .onPositive { materialDialog, dialogAction ->
-                    mMyProfilePresenter.changePassword()
+                    with(materialDialog.customView) {
+                        val oldPw = find<MaterialEditText>(R.id.metOldPassword).text.toString()
+                        val newPw = find<MaterialEditText>(R.id.metNewPassword).text.toString()
+                        val confirmPw = find<MaterialEditText>(R.id.metRepeatPassword).text.toString()
+                        mMyProfilePresenter.changePassword(oldPw, newPw, confirmPw)
+                    }
                 }
                 .build()
 
         changePwBuilder.show()
 
         changePasswordFontFace(changePwBuilder.customView!!)
+    }
+
+    override fun showChangePasswordError(msg: String) {
+        hideLoadingDialog()
+        toast(msg)
+    }
+
+    override fun showChangePasswordSuccess() {
+        hideLoadingDialog()
+        toast("Change password success")
     }
 
     /* Must use when show change password only */
@@ -204,7 +219,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
             mMyProfilePresenter.save()
         }
 
-        btnChangePw.setOnClickListener { mMyProfilePresenter.changePassword() }
+        btnChangePw.setOnClickListener { mMyProfilePresenter.clickChangePassword() }
 
         toggleGender.setOnToggleListener(object : ToggleViewGroup.OnToggleListener {
             override fun onToggleLeft(isLeft: Boolean) {

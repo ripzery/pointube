@@ -12,6 +12,8 @@ object LoginModel {
 
     object Request {
         data class Login(val Email: String, val Password: String)
+
+        data class ChangePassword(val MemberId: String, val Token: String, val OldPassword: String, val NewPassword: String, val ConfirmPassword: String)
     }
 
     object Response {
@@ -41,6 +43,8 @@ object LoginModel {
                 return Gson().toJson(this)
             }
         }
+
+        data class ChangePassword(val IsSuccess: Boolean, val Message: String?)
     }
 
 }

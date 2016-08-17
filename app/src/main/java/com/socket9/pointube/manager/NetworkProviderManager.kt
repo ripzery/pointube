@@ -59,6 +59,13 @@ object NetworkProviderManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun changePassword(model: LoginModel.Request.ChangePassword): Observable<LoginModel.Response.ChangePassword> {
+        return RetrofitUtils.getInstance().changePassword(model)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun updateProfile(model: SettingModel.Request.UpdateProfile): Observable<SettingModel.Response.UpdateProfile> {
         return RetrofitUtils.getInstance().updateProfile(model)
                 .subscribeOn(Schedulers.io())

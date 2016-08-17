@@ -7,6 +7,7 @@ import com.socket9.pointube.utils.SharedPrefUtil
 import com.socket9.pointube.utils.ValidatorUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.warn
 import rx.Observable
 import rx.Subscription
 import java.text.SimpleDateFormat
@@ -75,8 +76,8 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
                 lastNameTh.toString(),
                 firstNameEn.toString(),
                 lastNameEn.toString(),
-                if(mIsThai) citizen.toString() else null,
-                if(mIsThai) null else passport.toString(),
+                if (mIsThai) citizen.toString() else null,
+                if (mIsThai) null else passport.toString(),
                 dateOfBirth.toString(),
                 mLoginResult.code.toString(),
                 if (mIsMale) "1" else "2"
@@ -99,7 +100,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
     override fun save() {
         view?.showLoading()
         /* update gender */
-        mUpdateProfileRequest!!.Gender = if(mIsMale) "1" else "2"
+        mUpdateProfileRequest!!.Gender = if (mIsMale) "1" else "2"
         DataManager.updateProfile(mUpdateProfileRequest!!)
                 .subscribe({
                     view?.hideLoading()
@@ -141,9 +142,31 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
         return model
     }
 
-    override fun changePassword() {
-        info { "Change password" }
+
+    override fun clickChangePassword() {
         view?.showChangePassword()
+
+    }
+
+    override fun changePassword(oldPassword: String, newPassword: String, ConfirmPassword: String) {
+        val id = SharedPrefUtil.loadLoginResult()!!.id
+        val token = SharedPrefUtil.loadLoginResult()!!.token
+        val changePwModel: LoginModel.Request.ChangePassword = LoginModel.Request.ChangePassword("$id", token!!, oldPassword, newPassword, ConfirmPassword)
+
+        view?.showLoading()
+        DataManager.changePassword(changePwModel)
+                .subscribe({
+                    if (it.IsSuccess) {
+                        view?.showChangePasswordSuccess()
+
+                    } else {
+                        view?.showChangePasswordError(it.Message!!)
+
+                    }
+                }, {
+                    warn { it }
+                    view?.showChangePasswordError(it.message!!)
+                })
     }
 
     override fun onCreate() {
