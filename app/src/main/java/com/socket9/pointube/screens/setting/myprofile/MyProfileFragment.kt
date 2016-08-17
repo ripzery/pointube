@@ -77,6 +77,9 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
                         mMyProfilePresenter.changePassword(oldPw, newPw, confirmPw)
                     }
                 }
+                .onNegative { materialDialog, dialogAction ->
+                    materialDialog.dismiss()
+                }
                 .build()
 
         mChangePwBuilder?.show()
