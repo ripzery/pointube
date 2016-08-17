@@ -1,8 +1,10 @@
 package com.socket9.pointube.extensions
 
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
+import com.socket9.pointube.utils.ContextUtil
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 /**
@@ -17,10 +19,15 @@ fun AppCompatActivity.replaceFragment(container: Int = R.id.contentContainer, fr
     this.supportFragmentManager.beginTransaction().replace(container, fragment).commit()
 }
 
-fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: Boolean = false, isShowBackButton: Boolean = true) {
+fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: Boolean = false, isShowBackButton: Boolean = true, isShowIcon: Boolean = false) {
     setSupportActionBar(toolbar)
     tvToolbarTitle.text = title
     supportActionBar?.title = ""
+
+    if (isShowIcon) {
+        ivLogo.setImageDrawable(ContextCompat.getDrawable(ContextUtil.context, R.drawable.icon))
+    }
+
     if (showHamburger) {
 
     } else if (isShowBackButton) {

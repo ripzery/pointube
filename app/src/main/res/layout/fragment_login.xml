@@ -7,9 +7,12 @@
 
     <ImageView
         android:id="@+id/ivPointube"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/world_ball"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:paddingTop="32dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_login"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/metUsername"

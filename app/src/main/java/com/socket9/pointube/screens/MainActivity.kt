@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         drawerToggle = setupDrawerToggle()
         drawerLayout.addDrawerListener(drawerToggle)
 
-        setupToolbar(showHamburger = true)
+        setupToolbar(showHamburger = true, isShowIcon = true)
         setupDrawerContent()
         mFilteredBrandPresenter = FilteredBrandPresenter(this)
         mFilteredBrandPresenter?.onCreate()
