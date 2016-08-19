@@ -30,7 +30,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                 .subscribe({
                     view?.hideProgressDialog()
                     if (it.IsSuccess) {
-                        mMemberId = it.result!!.id
+                        mMemberId = it.Member!!.id
                         view?.showNewPasswordDialog()
                     } else {
                         view?.showValidateOtpError(it.Message ?: "Internet connection problem. Please try again.")
@@ -45,6 +45,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
         view?.showProgressDialog("Resetting password...")
         DataManager.forgotPasswordNewPassword(LoginModel.Request.ResetPassword(mMemberId, newPassword, confirmPassword))
                 .subscribe({
+                    view?.hideProgressDialog()
                     if (it.IsSuccess) {
                         view?.showResetPasswordComplete()
                     } else {
@@ -52,6 +53,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                     }
                 }, {
                     warn { it }
+                    view?.hideProgressDialog()
                     view?.showResetPasswordError(it.message ?: "Internet connection problem. Please try again.")
                 })
     }

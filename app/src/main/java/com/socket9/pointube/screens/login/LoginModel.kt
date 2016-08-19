@@ -52,7 +52,7 @@ object LoginModel {
 
         data class ForgotPassword(val IsSuccess: Boolean, val Message: String?)
 
-        data class CheckUserWithPin(val IsSuccess: Boolean, val Message: String?, val result: LoginResult?)
+        data class CheckUserWithPin(val IsSuccess: Boolean, val Message: String?, val Member: LoginResult?)
 
         data class ResetPassword(val IsSuccess: Boolean, val Message: String?)
     }
