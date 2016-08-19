@@ -4,9 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.DialogAction
+import com.afollestad.materialdialogs.MaterialDialog
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
@@ -14,6 +18,7 @@ import com.socket9.pointube.screens.MainActivity
 import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.utils.DialogUtil
 import kotlinx.android.synthetic.main.fragment_login.*
+import me.philio.pinentry.PinEntryView
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.toast
@@ -26,6 +31,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     /** Variable zone **/
     lateinit var param1: String
     private val mLoginPresenter: LoginContract.Presenter by lazy { LoginPresenter(this) }
+    private var mForgotDialogOtp: MaterialDialog? = null
 
     /** Static method zone **/
     companion object {
@@ -74,7 +80,30 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showPinValidate() {
-        
+        DialogUtil.getForgotPasswordOtpDialog(context, "Validate Pin", "Validate", "Cancel") {
+            val otp = it.findViewById(R.id.otpInput) as PinEntryView
+            otp.addTextChangedListener(object : TextWatcher{
+                override fun afterTextChanged(p0: Editable?) {
+                    mLoginPresenter.onTypeOtp(p0!!.toString())
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+            })
+        }
+    }
+
+    override fun disableValidateOtp() {
+        mForgotDialogOtp?.getActionButton(DialogAction.POSITIVE)?.isEnabled = false
+    }
+
+    override fun enableValidateOtp() {
+        mForgotDialogOtp?.getActionButton(DialogAction.POSITIVE)?.isEnabled = true
     }
 
     override fun showForgotError(msg: String) {

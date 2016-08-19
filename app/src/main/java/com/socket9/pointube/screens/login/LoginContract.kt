@@ -22,6 +22,10 @@ interface LoginContract {
         fun showSignUp()
 
         fun showForgetPasswordDialog()
+
+        fun enableValidateOtp()
+
+        fun disableValidateOtp()
     }
 
     interface Presenter : BasePresenter {
@@ -30,6 +34,8 @@ interface LoginContract {
         fun doSignUp()
 
         fun doForgetPassword(email: String)
+
+        fun onTypeOtp(otp: String)
 
         fun clickForgetPassword()
 

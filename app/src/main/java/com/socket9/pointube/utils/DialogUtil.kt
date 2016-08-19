@@ -37,13 +37,14 @@ object DialogUtil {
                 .build()
     }
 
-    fun getForgotPasswordOtpDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: () -> Unit): MaterialDialog {
+    fun getForgotPasswordOtpDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: (View) -> Unit): MaterialDialog {
         return MaterialDialog.Builder(context)
                 .title(title)
                 .positiveText(positive)
                 .negativeText(negative)
+                .customView(R.layout.dialog_forgot_password_otp, true)
                 .onPositive { materialDialog, dialogAction ->
-
+                    action(materialDialog.view!!)
                 }
                 .build()
     }
