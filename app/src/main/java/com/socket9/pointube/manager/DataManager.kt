@@ -98,6 +98,10 @@ object DataManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun forgotPassword(email: String): Observable<LoginModel.Response.ForgotPassword> {
+        return NetworkProviderManager.forgotPassword(email)
+    }
+
     /* Get member */
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return Observable.concat(DiskProviderManager.getAllBrandMember(), NetworkProviderManager.getAllBrandMember(memberBrand))
