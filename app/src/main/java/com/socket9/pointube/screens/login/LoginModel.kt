@@ -16,6 +16,8 @@ object LoginModel {
         data class ChangePassword(val MemberId: String, val Token: String, val OldPassword: String, val NewPassword: String, val ConfirmPassword: String)
 
         data class CheckUserWithPin(val Email: String, val Pin: String)
+
+        data class ResetPassword(val MemberId: Int, val NewPassword: String, val ConfirmPassword: String)
     }
 
     object Response {
@@ -51,6 +53,8 @@ object LoginModel {
         data class ForgotPassword(val IsSuccess: Boolean, val Message: String?)
 
         data class CheckUserWithPin(val IsSuccess: Boolean, val Message: String?, val result: LoginResult?)
+
+        data class ResetPassword(val IsSuccess: Boolean, val Message: String?)
     }
 
 }
