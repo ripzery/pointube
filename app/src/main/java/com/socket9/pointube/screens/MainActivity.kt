@@ -106,19 +106,24 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         when (menuItem.itemId) {
             R.id.nav_home_fragment -> {
                 fragment = HomeFragment.newInstance("Home")
+                setupToolbar(showHamburger = true, isShowIcon = true)
             }
             R.id.nav_point_fragment -> {
                 fragment = PointFragment.newInstance("Point")
+                setupToolbar(title = "Point",showHamburger = true, isShowIcon = false)
 
             }
             R.id.nav_promotion_fragment -> {
                 fragment = PromotionFragment.newInstance("Promotion")
+                setupToolbar(title = "Promotion",showHamburger = true, isShowIcon = false)
             }
             R.id.nav_setting_fragment -> {
                 fragment = SettingFragment.newInstance("Setting")
+                setupToolbar(title = "Setting",showHamburger = true, isShowIcon = false)
             }
             R.id.nav_about_fragment -> {
                 fragment = AboutFragment.newInstance("Home")
+                setupToolbar(title = "About Pointube",showHamburger = true, isShowIcon = false)
             }
         }
 
