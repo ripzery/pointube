@@ -26,22 +26,22 @@ object LoginModel {
                          @SerializedName("result", alternate = kotlin.arrayOf("Result")) val result: LoginResult?)
 
         data class LoginResult(
-                @SerializedName("isSuccess") val isSuccess: Boolean = false,
-                @SerializedName("message") val message: String? = "",
-                @SerializedName("id") val id: Int = 0,
-                @SerializedName("code") val code: String?,
-                @SerializedName("firstName") val firstName: String?,
-                @SerializedName("lastName") val lastName: String?,
-                @SerializedName("firstNameEN") val firstNameEN: String?,
-                @SerializedName("lastNameEN") val lastNameEN: String?,
-                @SerializedName("citizenID") val citizenID: String?,
-                @SerializedName("passport") val passport: String?,
-                @SerializedName("mobile") val mobile: String?,
-                @SerializedName("email") val email: String?,
-                @SerializedName("gender") val gender: String?,
-                @SerializedName("address") val address: String?,
-                @SerializedName("birthday") val birthday: Date?,
-                @SerializedName("token") val token: String?
+                @SerializedName("isSuccess", alternate = kotlin.arrayOf("IsSuccess")) val isSuccess: Boolean = false,
+                @SerializedName("message", alternate = kotlin.arrayOf("Message")) val message: String? = "",
+                @SerializedName("id", alternate = kotlin.arrayOf("Id")) val id: Int = 0,
+                @SerializedName("code", alternate = kotlin.arrayOf("Code")) val code: String?,
+                @SerializedName("firstName", alternate = kotlin.arrayOf("FirstName")) val firstName: String?,
+                @SerializedName("lastName", alternate = kotlin.arrayOf("LastName")) val lastName: String?,
+                @SerializedName("firstNameEN", alternate = kotlin.arrayOf("FirstNameEN")) val firstNameEN: String?,
+                @SerializedName("lastNameEN", alternate = kotlin.arrayOf("LastNameEN")) val lastNameEN: String?,
+                @SerializedName("citizenID", alternate = kotlin.arrayOf("CitizenID")) val citizenID: String?,
+                @SerializedName("passport", alternate = kotlin.arrayOf("Passport")) val passport: String?,
+                @SerializedName("mobile", alternate = kotlin.arrayOf("Mobile")) val mobile: String?,
+                @SerializedName("email", alternate = kotlin.arrayOf("Email")) val email: String?,
+                @SerializedName("gender", alternate = kotlin.arrayOf("Gender")) val gender: String?,
+                @SerializedName("address", alternate = kotlin.arrayOf("Address")) val address: String?,
+                @SerializedName("birthday", alternate = kotlin.arrayOf("Birthday")) val birthday: Date?,
+                @SerializedName("token", alternate = kotlin.arrayOf("Token")) val token: String?
         ) {
             fun toJson(): String {
                 return Gson().toJson(this)
