@@ -91,7 +91,7 @@ interface PointubeAPI {
     fun forgotPassword(@Query("email") email: String): Observable<LoginModel.Response.ForgotPassword>
 
     @POST("api/Member/CheckUserWithPin")
-    fun forgotPasswordCheckPin()
+    fun forgotPasswordCheckPin(@Body checkPinModel: LoginModel.Request.CheckUserWithPin) : Observable<LoginModel.Response.CheckUserWithPin>
 
     @POST("api/Member/GetMemberBrand")
     fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand>
