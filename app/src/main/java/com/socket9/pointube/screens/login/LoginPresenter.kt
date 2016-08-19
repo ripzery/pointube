@@ -2,6 +2,7 @@ package com.socket9.pointube.screens.login
 
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.warn
@@ -22,11 +23,21 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun validateForgotPasswordOtp() {
-
+        val email = SharedPrefUtil.loadLoginResult()!!.email!!
+        DataManager.forgotPasswordCheckPin(LoginModel.Request.CheckUserWithPin(email, otp!!))
+                .subscribe({
+                    if (it.IsSuccess) {
+                        view?.showNewPasswordDialog()
+                    } else {
+                        view?.showValidateOtpError(it.Message!!)
+                    }
+                }, {
+                    view?.showValidateOtpError(it.message!!)
+                })
     }
 
     override fun resetPassword(newPassword: String, confirmPassword: String) {
-
+        
     }
 
     override fun doLogin(email: String, password: String) {

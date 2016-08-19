@@ -114,8 +114,8 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
         toast(msg)
     }
 
-    override fun showValidateOtpError() {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showValidateOtpError(msg: String) {
+        toast(msg)
     }
 
     override fun showNewPasswordDialog() {

@@ -19,7 +19,7 @@ interface LoginContract {
 
         fun showForgotError(msg: String)
 
-        fun showValidateOtpError()
+        fun showValidateOtpError(msg: String)
 
         fun showNewPasswordDialog()
 
