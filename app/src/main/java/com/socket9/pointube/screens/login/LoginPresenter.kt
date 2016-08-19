@@ -40,7 +40,19 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun resetPassword(newPassword: String, confirmPassword: String) {
-
+        view?.showProgressDialog("Resetting password...")
+        val memberId: Int = SharedPrefUtil.loadLoginResult()!!.id
+        DataManager.forgotPasswordNewPassword(LoginModel.Request.ResetPassword(memberId, newPassword, confirmPassword))
+                .subscribe({
+                    if (it.IsSuccess) {
+                        view?.showResetPasswordComplete()
+                    } else {
+                        view?.showResetPasswordError(it.Message!!)
+                    }
+                }, {
+                    warn { it }
+                    view?.showResetPasswordError(it.message!!)
+                })
     }
 
     override fun doLogin(email: String, password: String) {
