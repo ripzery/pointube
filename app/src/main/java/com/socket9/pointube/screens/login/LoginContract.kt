@@ -19,6 +19,12 @@ interface LoginContract {
 
         fun showForgotError(msg: String)
 
+        fun showValidateOtpError()
+
+        fun showNewPasswordDialog()
+
+        fun showResetPasswordComplete()
+
         fun showSignUp()
 
         fun showForgetPasswordDialog()
@@ -39,5 +45,8 @@ interface LoginContract {
 
         fun clickForgetPassword()
 
+        fun validateForgotPasswordOtp()
+
+        fun resetPassword(newPassword: String, confirmPassword: String)
     }
 }

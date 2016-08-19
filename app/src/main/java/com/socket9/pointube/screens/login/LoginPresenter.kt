@@ -10,9 +10,12 @@ import org.jetbrains.anko.warn
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
  */
 class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.Presenter {
+    private var otp: String? = null
+
     override fun onTypeOtp(otp: String) {
+        this.otp = otp
         if (otp.length < 4) {
-            view?.disableValidateOtp()g
+            view?.disableValidateOtp()
         } else {
             view?.enableValidateOtp()
         }
