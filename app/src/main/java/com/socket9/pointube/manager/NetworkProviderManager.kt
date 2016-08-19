@@ -73,6 +73,13 @@ object NetworkProviderManager : AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun forgotPasswordCheckPin(checkUserWithPin: LoginModel.Request.CheckUserWithPin): Observable<LoginModel.Response.CheckUserWithPin> {
+        return RetrofitUtils.getInstance().forgotPasswordCheckPin(checkUserWithPin)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun updateProfile(model: SettingModel.Request.UpdateProfile): Observable<SettingModel.Response.UpdateProfile> {
         return RetrofitUtils.getInstance().updateProfile(model)
                 .subscribeOn(Schedulers.io())

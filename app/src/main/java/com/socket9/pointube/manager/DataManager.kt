@@ -102,6 +102,10 @@ object DataManager : AnkoLogger {
         return NetworkProviderManager.forgotPassword(email)
     }
 
+    fun forgotPasswordCheckPin(checkUserWithPin: LoginModel.Request.CheckUserWithPin): Observable<LoginModel.Response.CheckUserWithPin> {
+        return NetworkProviderManager.forgotPasswordCheckPin(checkUserWithPin)
+    }
+
     /* Get member */
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {
         return Observable.concat(DiskProviderManager.getAllBrandMember(), NetworkProviderManager.getAllBrandMember(memberBrand))
