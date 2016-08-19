@@ -3,6 +3,7 @@ package com.socket9.pointube.extensions
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.socket9.pointube.R
 import com.socket9.pointube.utils.ContextUtil
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -26,6 +27,9 @@ fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: B
 
     if (isShowIcon) {
         ivLogo.setImageDrawable(ContextCompat.getDrawable(ContextUtil.context, R.drawable.icon))
+        ivLogo.visibility = View.VISIBLE
+    } else {
+        ivLogo.visibility = View.GONE
     }
 
     if (showHamburger) {

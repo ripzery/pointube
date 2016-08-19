@@ -15,6 +15,7 @@ import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.ToggleViewGroup
 import com.socket9.pointube.screens.setting.myprofile.MyProfileContract
 import com.socket9.pointube.screens.setting.myprofile.MyProfilePresenter
+import com.socket9.pointube.utils.DialogUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import com.socket9.pointube.utils.ValidatorUtil
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
@@ -62,25 +63,14 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     }
 
     override fun showChangePassword() {
-        val wrapInScrollView = true;
-        mChangePwBuilder = MaterialDialog.Builder(context)
-                .title("Change password")
-                .customView(R.layout.layout_dialog_change_password, wrapInScrollView)
-                .positiveText("OK")
-                .negativeText("Cancel")
-                .autoDismiss(false)
-                .onPositive { materialDialog, dialogAction ->
-                    with(materialDialog.customView!!) {
-                        val oldPw = (this.findViewById(R.id.metOldPassword) as MaterialEditText).text.toString()
-                        val newPw = (this.findViewById(R.id.metNewPassword) as MaterialEditText).text.toString()
-                        val confirmPw = (this.findViewById(R.id.metRepeatPassword) as MaterialEditText).text.toString()
-                        mMyProfilePresenter.changePassword(oldPw, newPw, confirmPw)
-                    }
-                }
-                .onNegative { materialDialog, dialogAction ->
-                    materialDialog.dismiss()
-                }
-                .build()
+        mChangePwBuilder = DialogUtil.getChangePasswordDialog(context, "Change Password", "OK", "Cancel") {
+            with(it) {
+                val oldPw = (this.findViewById(com.socket9.pointube.R.id.metOldPassword) as MaterialEditText).text.toString()
+                val newPw = (this.findViewById(com.socket9.pointube.R.id.metNewPassword) as MaterialEditText).text.toString()
+                val confirmPw = (this.findViewById(com.socket9.pointube.R.id.metRepeatPassword) as MaterialEditText).text.toString()
+                mMyProfilePresenter.changePassword(oldPw, newPw, confirmPw)
+            }
+        }
 
         mChangePwBuilder?.show()
 

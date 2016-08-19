@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitUtils {
     private var retrofit: Retrofit? = null
 //        private val BASE_URL = "http://192.168.100.252:8099"
-    private val BASE_URL = "http://test.pointube.com/"
+    private val BASE_URL = "http://service.pointube.com/"
     private val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
     fun getInstance(): PointubeAPI {

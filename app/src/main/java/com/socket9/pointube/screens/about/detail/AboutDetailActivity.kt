@@ -12,7 +12,7 @@ class AboutDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
-        setupToolbar("About Detail", isShowBackButton = true)
+        setupToolbar("About Detail", isShowBackButton = true, isShowIcon = true, showHamburger = false)
         initInstance()
     }
 

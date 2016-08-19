@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        setupToolbar("Login", false)
+        setupToolbar("Login", false, true, false)
         initInstance()
 
     }

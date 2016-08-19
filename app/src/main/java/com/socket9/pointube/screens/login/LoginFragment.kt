@@ -12,6 +12,7 @@ import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.screens.MainActivity
 import com.socket9.pointube.screens.register.RegisterActivity
+import com.socket9.pointube.utils.DialogUtil
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -58,9 +59,9 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
         RxActivityResult.on(this).startIntent(intent).subscribe { result ->
             val data = result.data()
             val resultCode = result.resultCode()
-            if(resultCode == Activity.RESULT_OK){
+            if (resultCode == Activity.RESULT_OK) {
                 info("Register complete")
-            }else{
+            } else {
                 info("Cancel Register")
             }
         }
@@ -68,6 +69,11 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
 
     override fun showForgetPasswordDialog() {
         toast("ShowForgetDialog")
+        val forgetDialog = DialogUtil.getForgotPasswordDialog(context, "Forgot Password") {
+            info { it }
+        }
+
+        forgetDialog?.show()
     }
 
     override fun showProgressDialog() {
