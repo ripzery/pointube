@@ -87,6 +87,9 @@ interface PointubeAPI {
     @POST("api/Member/VerifyPhoneNumber")
     fun verifyPhoneNumber(@Body phoneModel: RegisterModel.Request.VerifyPhoneNumber): Observable<RegisterModel.Response.VerifyPhoneNumber>
 
+    @GET("api/Member/ForgotPasswordWithPin")
+    fun forgotPassword(@Query("email") email: String) : LoginModel.Response.ForgotPassword
+
     @POST("api/Member/GetMemberBrand")
     fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand>
 

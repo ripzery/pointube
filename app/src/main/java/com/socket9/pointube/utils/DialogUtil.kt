@@ -28,6 +28,7 @@ object DialogUtil {
                 .title(title)
                 .positiveText(positive)
                 .negativeText(negative)
+                .alwaysCallInputCallback()
                 .input("Your email", /* user email */ "", false) { dialog, input ->
                     action(input.toString())
                 }

@@ -35,6 +35,11 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun doForgetPassword(email: String) {
+        /* TODO: Call forget password */
+
+    }
+
+    override fun clickForgetPassword() {
         view?.showForgetPasswordDialog()
     }
 

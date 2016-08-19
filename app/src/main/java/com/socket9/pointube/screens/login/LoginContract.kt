@@ -15,6 +15,10 @@ interface LoginContract {
 
         fun showLoginError(msg: String)
 
+        fun showPinValidate()
+
+        fun showForgotError(msg: String)
+
         fun showSignUp()
 
         fun showForgetPasswordDialog()
@@ -26,6 +30,8 @@ interface LoginContract {
         fun doSignUp()
 
         fun doForgetPassword(email: String)
+
+        fun clickForgetPassword()
 
     }
 }

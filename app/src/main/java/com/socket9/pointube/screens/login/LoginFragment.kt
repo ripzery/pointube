@@ -23,8 +23,6 @@ import rx_activity_result.RxActivityResult
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
 class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
-
-
     /** Variable zone **/
     lateinit var param1: String
     private val mLoginPresenter: LoginContract.Presenter by lazy { LoginPresenter(this) }
@@ -68,12 +66,19 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showForgetPasswordDialog() {
-        toast("ShowForgetDialog")
         val forgetDialog = DialogUtil.getForgotPasswordDialog(context, "Forgot Password") {
             info { it }
         }
 
         forgetDialog?.show()
+    }
+
+    override fun showPinValidate() {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showForgotError(msg: String) {
+        toast(msg)
     }
 
     override fun showProgressDialog() {
@@ -119,7 +124,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
         }
 
         tvForgetPassword.setOnClickListener {
-            mLoginPresenter.doForgetPassword("something")
+            mLoginPresenter.clickForgetPassword()
         }
 
         tvSignUp.setOnClickListener {

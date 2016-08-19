@@ -45,6 +45,8 @@ object LoginModel {
         }
 
         data class ChangePassword(val IsSuccess: Boolean, val Message: String?)
+
+        data class ForgotPassword(val IsSuccess: Boolean, val Message: String?)
     }
 
 }
