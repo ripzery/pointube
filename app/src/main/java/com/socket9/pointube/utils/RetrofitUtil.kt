@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitUtils {
     private var retrofit: Retrofit? = null
-//        private val BASE_URL = "http://192.168.100.252:8099"
+    //        private val BASE_URL = "http://192.168.100.252:8099"
     private val BASE_URL = "http://service.pointube.com/"
     private val gson: Gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
@@ -70,10 +70,10 @@ interface PointubeAPI {
     fun login(@Body loginModel: LoginModel.Request.Login): Observable<LoginModel.Response.Login>
 
     @GET("api/Member/SignOut")
-    fun logout(@Query("MemberId") memberId: Int) : Observable<LoginModel.Response.Login>
+    fun logout(@Query("MemberId") memberId: Int): Observable<LoginModel.Response.Login>
 
     @POST("api/Member/ChangePassword")
-    fun changePassword(@Body model: LoginModel.Request.ChangePassword) : Observable<LoginModel.Response.ChangePassword>
+    fun changePassword(@Body model: LoginModel.Request.ChangePassword): Observable<LoginModel.Response.ChangePassword>
 
     @POST("api/Member/Create")
     fun register(@Body registerModel: RegisterModel.Request.Register): Observable<RegisterModel.Response.Register>
@@ -88,7 +88,7 @@ interface PointubeAPI {
     fun verifyPhoneNumber(@Body phoneModel: RegisterModel.Request.VerifyPhoneNumber): Observable<RegisterModel.Response.VerifyPhoneNumber>
 
     @GET("api/Member/ForgotPasswordWithPin")
-    fun forgotPassword(@Query("email") email: String) : LoginModel.Response.ForgotPassword
+    fun forgotPassword(@Query("email") email: String): Observable<LoginModel.Response.ForgotPassword>
 
     @POST("api/Member/GetMemberBrand")
     fun getMemberBrand(@Body memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand>
