@@ -33,11 +33,11 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                         mMemberId = it.result!!.id
                         view?.showNewPasswordDialog()
                     } else {
-                        view?.showValidateOtpError(it.Message!!)
+                        view?.showValidateOtpError(it.Message ?: "Internet connection problem. Please try again.")
                     }
                 }, {
                     view?.hideProgressDialog()
-                    view?.showValidateOtpError(it.message!!)
+                    view?.showValidateOtpError(it.message ?: "Internet connection problem. Please try again")
                 })
     }
 
@@ -52,7 +52,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                     }
                 }, {
                     warn { it }
-                    view?.showResetPasswordError(it.message!!)
+                    view?.showResetPasswordError(it.message ?: "Internet connection problem. Please try again.")
                 })
     }
 
@@ -70,7 +70,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                 }, {
                     view?.hideProgressDialog()
                     warn { it }
-                    view?.showLoginError(it.message!!)
+                    view?.showLoginError(it.message ?: "Internet connection problem. Please try again.")
                 })
     }
 
@@ -91,7 +91,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                     }
                 }, {
                     view?.hideProgressDialog()
-                    view?.showForgotError("Internet connection problem")
+                    view?.showForgotError(it.message ?: "Internet connection problem")
                 })
     }
 
