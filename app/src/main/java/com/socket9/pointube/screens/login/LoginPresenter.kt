@@ -11,10 +11,12 @@ import org.jetbrains.anko.warn
  * Created by Euro (ripzery@gmail.com) on 7/16/2016 AD.
  */
 class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.Presenter {
-    private var otp: String? = null
+    private var mOtp: String? = null
+    private var mEmail: String? = null
+    private var mMemberId: Int = 0
 
     override fun onTypeOtp(otp: String) {
-        this.otp = otp
+        this.mOtp = otp
         if (otp.length < 4) {
             view?.disableValidateOtp()
         } else {
@@ -23,12 +25,12 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun validateForgotPasswordOtp() {
-        val email = SharedPrefUtil.loadLoginResult()!!.email!!
         view?.showProgressDialog("Validate forgot password...")
-        DataManager.forgotPasswordCheckPin(LoginModel.Request.CheckUserWithPin(email, otp!!))
+        DataManager.forgotPasswordCheckPin(LoginModel.Request.CheckUserWithPin(mEmail!!, mOtp!!))
                 .subscribe({
                     view?.hideProgressDialog()
                     if (it.IsSuccess) {
+                        mMemberId = it.result!!.id
                         view?.showNewPasswordDialog()
                     } else {
                         view?.showValidateOtpError(it.Message!!)
@@ -41,8 +43,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
 
     override fun resetPassword(newPassword: String, confirmPassword: String) {
         view?.showProgressDialog("Resetting password...")
-        val memberId: Int = SharedPrefUtil.loadLoginResult()!!.id
-        DataManager.forgotPasswordNewPassword(LoginModel.Request.ResetPassword(memberId, newPassword, confirmPassword))
+        DataManager.forgotPasswordNewPassword(LoginModel.Request.ResetPassword(mMemberId, newPassword, confirmPassword))
                 .subscribe({
                     if (it.IsSuccess) {
                         view?.showResetPasswordComplete()
@@ -78,7 +79,8 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun doForgetPassword(email: String) {
-        view?.showProgressDialog("Request otp...")
+        mEmail = email
+        view?.showProgressDialog("Request Otp...")
         DataManager.forgotPassword(email)
                 .subscribe({
                     view?.hideProgressDialog()

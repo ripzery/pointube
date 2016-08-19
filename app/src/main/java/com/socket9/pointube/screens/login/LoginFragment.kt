@@ -75,7 +75,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
 
     override fun showForgetPasswordDialog() {
         val forgetDialog = DialogUtil.getForgotPasswordDialog(context, "Forgot Password") {
-            info { it }
+            mLoginPresenter.doForgetPassword(it)
         }
 
         forgetDialog?.show()
@@ -89,6 +89,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
         mForgotDialogOtp?.show()
 
         val otp = mForgotDialogOtp!!.customView!!.findViewById(R.id.otpInput) as PinEntryView
+        mLoginPresenter.onTypeOtp("")
         otp.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 mLoginPresenter.onTypeOtp(p0!!.toString())
@@ -135,9 +136,8 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showResetPasswordComplete() {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        toast("Reset password complete.")
     }
-
 
     override fun showProgressDialog(title: String) {
         showLoadingDialog("Please wait", title)
