@@ -158,6 +158,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         val loginResult = SharedPrefUtil.loadLoginResult()
         if (loginResult != null)
             headerLayout.tvAccountUsername.text = "${loginResult.firstNameEN} ${loginResult.lastNameEN}"
+        else
+            headerLayout.tvAccountUsername.text = "Pointube"
     }
 
     private fun selectMenu(page: Int) {
@@ -183,6 +185,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     override fun onLogout() {
         selectMenu(FRAGMENT_HOME)
         setupNavMenu()
+        setupNavHeader()
     }
 
     /* For filtered brand in promotion menu */
