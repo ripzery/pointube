@@ -12,7 +12,7 @@ object DialogUtil {
     fun getChangePasswordDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: (View) -> Unit): MaterialDialog? {
         return MaterialDialog.Builder(context)
                 .title(title)
-                .customView(R.layout.layout_dialog_change_password, true)
+                .customView(R.layout.dialog_change_password, true)
                 .positiveText(positive)
                 .negativeText(negative)
                 .autoDismiss(false)
@@ -28,12 +28,22 @@ object DialogUtil {
                 .title(title)
                 .positiveText(positive)
                 .negativeText(negative)
-                .alwaysCallInputCallback()
                 .input("Your email", /* user email */ "", false) { dialog, input ->
                     action(input.toString())
                 }
                 .onNegative { materialDialog, dialogAction ->
                     materialDialog.dismiss()
+                }
+                .build()
+    }
+
+    fun getForgotPasswordOtpDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: () -> Unit): MaterialDialog {
+        return MaterialDialog.Builder(context)
+                .title(title)
+                .positiveText(positive)
+                .negativeText(negative)
+                .onPositive { materialDialog, dialogAction ->
+
                 }
                 .build()
     }

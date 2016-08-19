@@ -74,7 +74,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showPinValidate() {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        
     }
 
     override fun showForgotError(msg: String) {

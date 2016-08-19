@@ -151,5 +151,8 @@
     <string name="fragment_about_terms_of_use">Terms of Use</string>
 
     <!-- fragment about detail test html -->
+
+    <!-- dialog forgot password otp  -->
+    <string name="dialog_forgot_password_otp_hint">Please input the 4 digit in the field below</string>
 </resources>
 
