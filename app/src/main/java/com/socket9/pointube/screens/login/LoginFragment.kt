@@ -34,6 +34,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     private val mLoginPresenter: LoginContract.Presenter by lazy { LoginPresenter(this) }
     private var mForgotDialogOtp: MaterialDialog? = null
     private var mForgotDialogReset: MaterialDialog? = null
+    private var mForgetDialog: MaterialDialog? = null
 
     /** Static method zone **/
     companion object {
@@ -74,16 +75,25 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showForgetPasswordDialog() {
-        val forgetDialog = DialogUtil.getForgotPasswordDialog(context, "Forgot Password") {
+        mForgetDialog = DialogUtil.getForgotPasswordDialog(context, "Forgot Password") {
             mLoginPresenter.doForgetPassword(it)
         }
 
-        forgetDialog?.show()
+        mForgetDialog?.builder?.onNegative { materialDialog, dialogAction ->
+            materialDialog.dismiss()
+        }
+
+        mForgetDialog?.show()
     }
 
     override fun showPinValidate() {
+        mForgetDialog?.dismiss()
         mForgotDialogOtp = DialogUtil.getForgotPasswordOtpDialog(context, "Validate Pin", "Validate", "Cancel") {
             mLoginPresenter.validateForgotPasswordOtp()
+        }
+
+        mForgotDialogOtp?.builder!!.onNegative { materialDialog, dialogAction ->
+            materialDialog.dismiss()
         }
 
         mForgotDialogOtp?.show()
@@ -126,16 +136,22 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showNewPasswordDialog() {
+        mForgotDialogOtp?.dismiss()
         mForgotDialogReset = DialogUtil.getForgotPasswordResetDialog(context, "Reset Password", "Reset", "Cancel") {
             val newPassword = it.findViewById(R.id.metNewPassword) as MaterialEditText
             val confirmPassword = it.findViewById(R.id.metRepeatPassword) as MaterialEditText
             mLoginPresenter.resetPassword(newPassword.text.toString(), confirmPassword.text.toString())
         }
 
+        mForgotDialogReset?.builder?.onNegative { materialDialog, dialogAction ->
+            materialDialog.dismiss()
+        }
+
         mForgotDialogReset?.show()
     }
 
     override fun showResetPasswordComplete() {
+        mForgotDialogReset?.dismiss()
         toast("Reset password complete.")
     }
 

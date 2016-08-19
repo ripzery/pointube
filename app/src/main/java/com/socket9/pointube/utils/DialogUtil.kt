@@ -28,6 +28,7 @@ object DialogUtil {
                 .title(title)
                 .positiveText(positive)
                 .negativeText(negative)
+                .autoDismiss(false)
                 .input("Your email", /* user email */ "", false) { dialog, input ->
                     action(input.toString())
                 }
@@ -42,6 +43,7 @@ object DialogUtil {
                 .title(title)
                 .positiveText(positive)
                 .negativeText(negative)
+                .autoDismiss(false)
                 .customView(R.layout.dialog_forgot_password_otp, true)
                 .onPositive { materialDialog, dialogAction ->
                     action(materialDialog.view!!)
@@ -54,6 +56,7 @@ object DialogUtil {
                 .title(title)
                 .positiveText(positive)
                 .negativeText(negative)
+                .autoDismiss(false)
                 .customView(R.layout.dialog_forgot_password_change_password, true)
                 .onPositive { materialDialog, dialogAction ->
                     action(materialDialog.view!!)
