@@ -23,6 +23,8 @@ interface LoginContract {
 
         fun showNewPasswordDialog()
 
+        fun showResetPasswordError(msg: String)
+
         fun showResetPasswordComplete()
 
         fun showSignUp()
@@ -35,7 +37,7 @@ interface LoginContract {
     }
 
     interface Presenter : BasePresenter {
-        fun doLogin(email:String, password: String)
+        fun doLogin(email: String, password: String)
 
         fun doSignUp()
 

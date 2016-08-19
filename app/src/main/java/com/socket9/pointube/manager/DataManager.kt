@@ -11,6 +11,7 @@ import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.promotion.list.thai_airline.chart.AwardChartModel
 import com.socket9.pointube.screens.register.RegisterModel
 import com.socket9.pointube.screens.setting.SettingModel
+import com.socket9.pointube.utils.RetrofitUtils
 import com.socket9.pointube.utils.SharedPrefUtil
 import io.realm.RealmObject
 import org.jetbrains.anko.AnkoLogger
@@ -105,6 +106,11 @@ object DataManager : AnkoLogger {
     fun forgotPasswordCheckPin(checkUserWithPin: LoginModel.Request.CheckUserWithPin): Observable<LoginModel.Response.CheckUserWithPin> {
         return NetworkProviderManager.forgotPasswordCheckPin(checkUserWithPin)
     }
+
+    fun forgotPasswordNewPassword(newPassword: LoginModel.Request.ResetPassword) : Observable<LoginModel.Response.ResetPassword> {
+        return NetworkProviderManager.forgotPasswordNewPassword(newPassword)
+    }
+
 
     /* Get member */
     fun getAllBrandMember(memberBrand: BrandModel.Request.GetMemberBrand): Observable<GetMemberBrand> {

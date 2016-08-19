@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
+import com.rengwuxian.materialedittext.MaterialEditText
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
@@ -32,6 +33,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     lateinit var param1: String
     private val mLoginPresenter: LoginContract.Presenter by lazy { LoginPresenter(this) }
     private var mForgotDialogOtp: MaterialDialog? = null
+    private var mForgotDialogReset: MaterialDialog? = null
 
     /** Static method zone **/
     companion object {
@@ -110,6 +112,10 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
         mForgotDialogOtp?.getActionButton(DialogAction.POSITIVE)?.isEnabled = true
     }
 
+    override fun showResetPasswordError(msg: String) {
+        toast(msg)
+    }
+
     override fun showForgotError(msg: String) {
         toast(msg)
     }
@@ -119,7 +125,13 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showNewPasswordDialog() {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mForgotDialogReset = DialogUtil.getForgotPasswordResetDialog(context, "Reset Password", "Reset", "Cancel") {
+            val newPassword = it.findViewById(R.id.metNewPassword) as MaterialEditText
+            val confirmPassword = it.findViewById(R.id.metRepeatPassword) as MaterialEditText
+            mLoginPresenter.resetPassword(newPassword.text.toString(), confirmPassword.text.toString())
+        }
+
+        mForgotDialogReset?.show()
     }
 
     override fun showResetPasswordComplete() {
