@@ -81,8 +81,8 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
         toast(msg)
     }
 
-    override fun showProgressDialog() {
-        showLoadingDialog("Please wait", "Logging In...")
+    override fun showProgressDialog(title: String) {
+        showLoadingDialog("Please wait", title)
     }
 
     override fun hideProgressDialog() {

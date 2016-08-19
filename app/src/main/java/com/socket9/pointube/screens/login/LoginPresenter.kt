@@ -2,8 +2,6 @@ package com.socket9.pointube.screens.login
 
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.home.LoginModel
-import com.socket9.pointube.utils.LoginStateUtil
-import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.warn
@@ -13,7 +11,7 @@ import org.jetbrains.anko.warn
  */
 class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.Presenter {
     override fun doLogin(email: String, password: String) {
-        view?.showProgressDialog()
+        view?.showProgressDialog("Logging in...")
         DataManager.login(LoginModel.Request.Login(email, password))
                 .subscribe({
                     info { it }
@@ -35,8 +33,19 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun doForgetPassword(email: String) {
-        /* TODO: Call forget password */
-
+        view?.showProgressDialog("Request otp...")
+        DataManager.forgotPassword(email)
+                .subscribe({
+                    view?.hideProgressDialog()
+                    if (it.IsSuccess) {
+                        view?.showPinValidate()
+                    } else {
+                        view?.showForgotError(it.Message!!)
+                    }
+                }, {
+                    view?.hideProgressDialog()
+                    view?.showForgotError("Internet connection problem")
+                })
     }
 
     override fun clickForgetPassword() {

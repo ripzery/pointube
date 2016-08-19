@@ -7,7 +7,7 @@ import com.socket9.pointube.base.BasePresenter
  */
 interface LoginContract {
     interface View {
-        fun showProgressDialog()
+        fun showProgressDialog(title: String)
 
         fun hideProgressDialog()
 
