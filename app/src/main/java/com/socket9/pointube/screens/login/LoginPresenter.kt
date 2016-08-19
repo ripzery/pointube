@@ -21,6 +21,14 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
         }
     }
 
+    override fun validateForgotPasswordOtp() {
+
+    }
+
+    override fun resetPassword(newPassword: String, confirmPassword: String) {
+
+    }
+
     override fun doLogin(email: String, password: String) {
         view?.showProgressDialog("Logging in...")
         DataManager.login(LoginModel.Request.Login(email, password))

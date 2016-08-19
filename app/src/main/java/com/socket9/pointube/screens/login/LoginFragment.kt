@@ -80,22 +80,26 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showPinValidate() {
-        DialogUtil.getForgotPasswordOtpDialog(context, "Validate Pin", "Validate", "Cancel") {
-            val otp = it.findViewById(R.id.otpInput) as PinEntryView
-            otp.addTextChangedListener(object : TextWatcher{
-                override fun afterTextChanged(p0: Editable?) {
-                    mLoginPresenter.onTypeOtp(p0!!.toString())
-                }
-
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                }
-            })
+        mForgotDialogOtp = DialogUtil.getForgotPasswordOtpDialog(context, "Validate Pin", "Validate", "Cancel") {
+            mLoginPresenter.validateForgotPasswordOtp()
         }
+
+        mForgotDialogOtp?.show()
+
+        val otp = mForgotDialogOtp!!.customView!!.findViewById(R.id.otpInput) as PinEntryView
+        otp.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                mLoginPresenter.onTypeOtp(p0!!.toString())
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+        })
     }
 
     override fun disableValidateOtp() {
@@ -109,6 +113,19 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     override fun showForgotError(msg: String) {
         toast(msg)
     }
+
+    override fun showValidateOtpError() {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showNewPasswordDialog() {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showResetPasswordComplete() {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
     override fun showProgressDialog(title: String) {
         showLoadingDialog("Please wait", title)
