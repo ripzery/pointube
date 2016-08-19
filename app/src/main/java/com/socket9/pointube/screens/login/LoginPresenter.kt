@@ -24,20 +24,23 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
 
     override fun validateForgotPasswordOtp() {
         val email = SharedPrefUtil.loadLoginResult()!!.email!!
+        view?.showProgressDialog("Validate forgot password...")
         DataManager.forgotPasswordCheckPin(LoginModel.Request.CheckUserWithPin(email, otp!!))
                 .subscribe({
+                    view?.hideProgressDialog()
                     if (it.IsSuccess) {
                         view?.showNewPasswordDialog()
                     } else {
                         view?.showValidateOtpError(it.Message!!)
                     }
                 }, {
+                    view?.hideProgressDialog()
                     view?.showValidateOtpError(it.message!!)
                 })
     }
 
     override fun resetPassword(newPassword: String, confirmPassword: String) {
-        
+
     }
 
     override fun doLogin(email: String, password: String) {
