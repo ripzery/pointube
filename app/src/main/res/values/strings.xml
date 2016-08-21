@@ -191,8 +191,8 @@
     <string name="brand_non_member_button_start">Let\'s start</string>
 
     <!-- Point -->
+    <string name="point_text_title">My Points</string>
     <string name="point_dialog_progress_selected_brand_content">Loading selected brand..</string>
-
     <string name="point_title">Outstanding Points</string>
     <string name="point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
 
@@ -204,6 +204,7 @@
     <string name="about_contact_us">Contact Us</string>
     <string name="about_privacy">Privacy Policy</string>
     <string name="about_terms_of_use">Terms of Use</string>
+    <string name="about_text_title">About Pointube</string>
 
     <!-- Login -->
     <string name="login_dialog_login_title">Reset Password</string>
@@ -237,6 +238,7 @@
     <string name="setting_text_my_profile">My Profile</string>
     <string name="setting_text_my_brand">My Brands</string>
     <string name="setting_text_logout">Log out</string>
+    <string name="setting_text_title">Setting</string>
 
     <!-- My Brand -->
     <string name="my_brand_text_title">My Brands</string>
@@ -273,6 +275,7 @@
     <string name="home_btn_login">Login</string>
     <string name="home_text_new_user">New User?</string>
     <string name="home_text_sign_up">Sign Up</string>
+    <string name="home_text_title">Home</string>
 
 
     <!-- Promotion Detail -->
@@ -290,6 +293,7 @@
     <!-- Promotion List -->
     <string name="promotion_list_loading_program">Loading program list…</string>
     <string name="promotion_list_empty_loading_program">Promotion is coming…</string>
+    <string name="promotion_list_text_title">Promotion</string>
 
     <!-- Chart Detail -->
     <string name="chart_detail_text_round_trip">Round Trip</string>

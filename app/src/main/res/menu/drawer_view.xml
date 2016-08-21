@@ -4,18 +4,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home_fragment"
-            android:title="Home" />
+            android:title="@string/home_text_title" />
         <item
-            android:id="@+id/nav_point_fragment"
-            android:title="My Point" />
+            android:id="@+id/nav_prompoint_fragment"
+            android:title="@string/point_text_title" />
         <item
             android:id="@+id/nav_promotion_fragment"
-            android:title="Promotion" />
+            android:title="@string/promotion_list_text_title" />
         <item
             android:id="@+id/nav_setting_fragment"
-            android:title="Setting" />
+            android:title="@string/setting_text_title" />
         <item
             android:id="@+id/nav_about_fragment"
-            android:title="About Pointube" />
+            android:title="@string/about_text_title" />
     </group>
 </menu>

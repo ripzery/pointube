@@ -20,7 +20,7 @@ fun AppCompatActivity.replaceFragment(container: Int = R.id.contentContainer, fr
     this.supportFragmentManager.beginTransaction().replace(container, fragment).commit()
 }
 
-fun AppCompatActivity.setupToolbar(title: String? = "Pointube", showHamburger: Boolean = false, isShowBackButton: Boolean = true, isShowIcon: Boolean = false) {
+fun AppCompatActivity.setupToolbar(title: String? = getString(R.string.app_name), showHamburger: Boolean = false, isShowBackButton: Boolean = true, isShowIcon: Boolean = false) {
     setSupportActionBar(toolbar)
     tvToolbarTitle.text = title
     supportActionBar?.title = ""
