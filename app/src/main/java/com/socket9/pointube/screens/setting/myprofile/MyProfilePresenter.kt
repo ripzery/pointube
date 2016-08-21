@@ -1,8 +1,10 @@
 package com.socket9.pointube.screens.setting.myprofile
 
+import com.socket9.pointube.R
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.setting.SettingModel
+import com.socket9.pointube.utils.ContextUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import com.socket9.pointube.utils.ValidatorUtil
 import org.jetbrains.anko.AnkoLogger
@@ -112,7 +114,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
                     }
                 }, {
                     view?.hideLoading()
-                    view?.showUpdateError("Internet connection problem")
+                    view?.showUpdateError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
 
     }
@@ -165,7 +167,7 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
                     }
                 }, {
                     warn { it }
-                    view?.showChangePasswordError(it.message!!)
+                    view?.showChangePasswordError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
     }
 

@@ -9,7 +9,10 @@ import com.socket9.pointube.R
  * Created by ripzery on 8/19/16.
  */
 object DialogUtil {
-    fun getChangePasswordDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: (View) -> Unit): MaterialDialog? {
+    fun getChangePasswordDialog(context: Context, title: String,
+                                positive: String = ContextUtil.context!!.getString(R.string.dialog_default_ok),
+                                negative: String = ContextUtil.context!!.getString(R.string.dialog_default_cancel),
+                                action: (View) -> Unit): MaterialDialog? {
         return MaterialDialog.Builder(context)
                 .title(title)
                 .customView(R.layout.dialog_change_password, true)
@@ -22,7 +25,11 @@ object DialogUtil {
                 .build()
     }
 
-    fun getForgotPasswordDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: (String) -> Unit): MaterialDialog? {
+    fun getForgotPasswordDialog(context: Context,
+                                title: String,
+                                positive: String = ContextUtil.context!!.getString(R.string.dialog_default_ok),
+                                negative: String = ContextUtil.context!!.getString(R.string.dialog_default_cancel),
+                                action: (String) -> Unit): MaterialDialog? {
 //        val userEmail = SharedPrefUtil.loadLoginResult()!!.email!!
         return MaterialDialog.Builder(context)
                 .title(title)
@@ -38,7 +45,11 @@ object DialogUtil {
                 .build()
     }
 
-    fun getForgotPasswordOtpDialog(context: Context, title: String, positive: String = "OK", negative: String = "Cancel", action: (View) -> Unit): MaterialDialog {
+    fun getForgotPasswordOtpDialog(context: Context,
+                                   title: String,
+                                   positive: String = ContextUtil.context!!.getString(R.string.dialog_default_ok),
+                                   negative: String = ContextUtil.context!!.getString(R.string.dialog_default_cancel),
+                                   action: (View) -> Unit): MaterialDialog {
         return MaterialDialog.Builder(context)
                 .title(title)
                 .positiveText(positive)
@@ -51,7 +62,10 @@ object DialogUtil {
                 .build()
     }
 
-    fun getForgotPasswordResetDialog(context: Context, title: String, positive: String = "Change", negative: String = "Cancel", action: (View) -> Unit): MaterialDialog {
+    fun getForgotPasswordResetDialog(context: Context, title: String,
+                                     positive: String = ContextUtil.context!!.getString(R.string.login_dialog_forget_password_positive),
+                                     negative: String = ContextUtil.context!!.getString(R.string.dialog_default_cancel),
+                                     action: (View) -> Unit): MaterialDialog {
         return MaterialDialog.Builder(context)
                 .title(title)
                 .positiveText(positive)

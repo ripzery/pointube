@@ -1,11 +1,13 @@
 package com.socket9.pointube.screens.brand.member
 
+import com.socket9.pointube.R
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.repository.brands.GetMemberBrand
 import com.socket9.pointube.repository.brands.GetMemberBrandResult
 import com.socket9.pointube.repository.brands.getIdBySelected
 import com.socket9.pointube.screens.brand.BrandModel
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.utils.ContextUtil
 import com.socket9.pointube.utils.RealmUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
@@ -118,7 +120,7 @@ class BrandMemberPresenter(var view: BrandMemberContract.View?) : BrandMemberCon
                     }
                 }, {
                     view?.hideLoading()
-                    view?.showSaveFailed("Internet connection problem")
+                    view?.showSaveFailed(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
     }
 

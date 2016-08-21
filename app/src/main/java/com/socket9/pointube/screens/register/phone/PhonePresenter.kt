@@ -1,6 +1,8 @@
 package com.socket9.pointube.screens.register.phone
 
+import com.socket9.pointube.R
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.utils.ContextUtil
 import org.jetbrains.anko.AnkoLogger
 
 /**
@@ -35,7 +37,7 @@ class PhonePresenter(var view: PhoneContract.View?) : PhoneContract.Presenter, A
                 try{
                     view?.hideLoading()
                     it.printStackTrace()
-                    view?.showSavePhoneNumberError("An error occured, please try again")
+                    view?.showSavePhoneNumberError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 }catch (e: Exception){
                     e.printStackTrace()
                 }

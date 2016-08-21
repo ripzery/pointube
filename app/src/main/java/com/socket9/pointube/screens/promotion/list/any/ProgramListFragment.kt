@@ -89,7 +89,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     }
 
     override fun showLoading() {
-        showLoadingDialog("Please wait", "Loading program list...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.promotion_list_loading_program))
     }
 
     override fun hideLoading() {

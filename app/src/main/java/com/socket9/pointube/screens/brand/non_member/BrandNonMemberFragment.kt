@@ -103,7 +103,7 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
 
     override fun showLoading() {
         /* TODO: Show loading */
-        showLoadingDialog("Please wait", "Saving brand..", true)
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.brand_non_member_dialog_progress_save_brand), true)
     }
 
     override fun hideLoading() {
@@ -111,19 +111,19 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
     }
 
     override fun showSaveSuccess() {
-        toast("Save brand successful")
+        toast(getString(R.string.brand_non_member_toast_save_successful))
     }
 
     override fun showSaveFailed() {
-        toast("Save brand failed")
+        toast(getString(R.string.brand_non_member_toast_save_failed))
     }
 
     override fun showEmptyBrands() {
-        toast("Empty brands")
+        toast(getString(R.string.brand_non_member_toast_empty_brand))
     }
 
     override fun showLoadingError() {
-        toast("Error on loading")
+        toast(getString(R.string.brand_non_member_toast_loading_error))
     }
 
     override fun goNext() {
@@ -142,7 +142,7 @@ class BrandNonMemberFragment : Fragment(), AnkoLogger, BrandNonMemberContract.Vi
 
         btnSelectAll.setOnClickListener {
             it.isSelected = !it.isSelected
-            btnSelectAll.text = if (it.isSelected) "Unselect all" else "Select all"
+            btnSelectAll.text = if (it.isSelected) getString(R.string.brand_non_member_btn_un_select_all) else getString(R.string.brand_non_member_btn_select_all)
             mBrandNonMemberPresenter.selectAllBrand(it.isSelected)
         }
 

@@ -1,8 +1,10 @@
 package com.socket9.pointube.screens.register.form
 
+import com.socket9.pointube.R
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.home.LoginModel
 import com.socket9.pointube.screens.register.RegisterModel
+import com.socket9.pointube.utils.ContextUtil
 import com.socket9.pointube.utils.ValidatorUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -87,7 +89,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
                     try {
                         view?.hideLoading()
                         info { it }
-                        view?.showRegisterError("An error occurred, please try again")
+                        view?.showRegisterError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }

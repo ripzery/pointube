@@ -63,7 +63,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     }
 
     override fun showChangePassword() {
-        mChangePwBuilder = DialogUtil.getChangePasswordDialog(context, "Change Password", "OK", "Cancel") {
+        mChangePwBuilder = DialogUtil.getChangePasswordDialog(context, getString(R.string.my_profile_dialog_change_password_title)) {
             with(it) {
                 val oldPw = (this.findViewById(com.socket9.pointube.R.id.metOldPassword) as MaterialEditText).text.toString()
                 val newPw = (this.findViewById(com.socket9.pointube.R.id.metNewPassword) as MaterialEditText).text.toString()
@@ -85,7 +85,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     override fun showChangePasswordSuccess() {
         hideLoadingDialog()
         mChangePwBuilder?.dismiss()
-        toast("Change password success")
+        toast(getString(R.string.my_profile_toast_change_password_success))
     }
 
     /* Must use when show change password only */
@@ -108,12 +108,12 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
     }
 
     override fun showUpdateSuccess() {
-        toast("Update successful")
+        toast(getString(R.string.my_profile_toast_update_profile_success))
         activity.finish()
     }
 
     override fun showLoading() {
-        showLoadingDialog("Please wait", "Updating profile...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.my_profile_dialog_progress_update_profile_content))
     }
 
     override fun hideLoading() {

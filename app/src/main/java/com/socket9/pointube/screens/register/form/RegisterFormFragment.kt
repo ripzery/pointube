@@ -115,7 +115,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     }
 
     override fun showLoading() {
-        showLoadingDialog("Registering", " We're testing your patience...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.register_form_dialog_progress_register_content))
     }
 
     override fun hideLoading() {

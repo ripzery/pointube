@@ -1,6 +1,8 @@
 package com.socket9.pointube.screens.register.otp
 
+import com.socket9.pointube.R
 import com.socket9.pointube.manager.DataManager
+import com.socket9.pointube.utils.ContextUtil
 import org.jetbrains.anko.AnkoLogger
 
 /**
@@ -33,7 +35,7 @@ class OtpPresenter(var view: OtpContract.View?) : AnkoLogger, OtpContract.Presen
                 }, {
                     try {
                         view?.hideLoading()
-                        view?.showOtpError(it.message!!)
+                        view?.showOtpError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                         it.printStackTrace()
                     } catch (e: Exception) {
                         e.printStackTrace()

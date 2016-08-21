@@ -76,7 +76,7 @@ class SettingFragment : Fragment(), SettingContract.View {
     }
 
     override fun showLoading() {
-        showLoadingDialog("Please wait", "Logging out...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.setting_text_dialog_progress_logging_out))
     }
 
     override fun hideLoading() {

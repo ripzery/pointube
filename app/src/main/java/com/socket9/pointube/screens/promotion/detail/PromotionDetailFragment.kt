@@ -135,9 +135,9 @@ class PromotionDetailFragment : Fragment(), AnkoLogger, PromotionDetailContract.
 
     private fun setDayLeft(dayLeft: Long) {
         when {
-            dayLeft == 1L -> tvDayLeft.text = "1 day left"
-            dayLeft > 1L -> tvDayLeft.text = "$dayLeft days left"
-            dayLeft == 0L -> tvDayLeft.text = "In 24 hours"
+            dayLeft == 1L -> tvDayLeft.text = getString(R.string.promotion_detail_text_1_day)
+            dayLeft > 1L -> tvDayLeft.text = "$dayLeft ${getString(R.string.promotion_detail_text_more_than_1_day)}"
+            dayLeft == 0L -> tvDayLeft.text = getString(R.string.promotion_detail_text_less_than_1_day)
         }
     }
 }

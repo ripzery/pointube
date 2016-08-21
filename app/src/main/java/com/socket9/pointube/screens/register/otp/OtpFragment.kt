@@ -93,11 +93,11 @@ class OtpFragment : Fragment(), AnkoLogger, OtpContract.View {
     }
 
     override fun showOtpSuccess() {
-        toast("Verify OTP successfully. Bazinga!!")
+        toast(getString(R.string.otp_toast_verify_successful))
     }
 
     override fun showLoading() {
-        showLoadingDialog("Verify OTP", "Shovelling coal into the server...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.otp_dialog_progress_verifying))
     }
 
     override fun hideLoading() {

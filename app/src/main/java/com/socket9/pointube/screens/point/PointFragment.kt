@@ -90,7 +90,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     }
 
     override fun showLoading() {
-        showLoadingDialog("Please wait", "Loading selected brand..")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.point_dialog_progress_selected_brand_content))
     }
 
     override fun hideLoading() {

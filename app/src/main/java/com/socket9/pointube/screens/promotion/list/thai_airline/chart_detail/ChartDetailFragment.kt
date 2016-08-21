@@ -65,7 +65,7 @@ class ChartDetailFragment : Fragment() {
 
     inner class ChartDetailFragmentPagerAdapter(val chartPosition: Int, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         val TOTAL_PAGE = 2
-        val PAGE_TITLES = listOf("Round Trip", "One way Trip")
+        val PAGE_TITLES = listOf(getString(R.string.chart_detail_text_round_trip), getString(R.string.chart_detail_text_one_way_trip))
 
         override fun getItem(position: Int): Fragment {
             return ChartDetailPagerItemFragment.newInstance(chartPosition, position == 0)

@@ -93,7 +93,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     }
 
     override fun showEmptyPublishedProgramList() {
-        toast("Empty Published Program List")
+        toast(getString(R.string.home_toast_empty_program_list))
     }
 
     override fun showProgressBar() {

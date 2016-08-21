@@ -2,36 +2,51 @@
     <string name="app_name">pointube</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="fragment_register_citizen_id_description">You must enter the citizen identification number exactly as it appears on the identification card.  Please re-check prior to submission.  You will not be able to correct the number once registered.  This is a part of the security measures to protect your personal information.</string>
+    <string name="register_citizen_id_description">You must enter the citizen identification number exactly as it appears on the identification card.  Please re-check prior to submission.  You will not be able to correct the number once registered.  This is a part of the security measures to protect your personal information.</string>
+
+    <!-- 3 rules :
+    1. This string resource file is grouped by screen page.
+    For example, if string is founded in the login screen, then it must be placed under the comment "login"
+    without concern if it is whether dialog, or toast (etc).
+
+    2. When the string is used various places such as internet error message,
+     it will be placed under comment "Utilities".
+
+    3. If the string is used various places, but it's likely to change in the future based on screen,
+     then it should be placed under its screen comment.  -->
+
+    <!-- register form -->
+    <string name="register_form_toast_register_successful">Register successful</string>
+    <string name="register_form_dialog_progress_register_content">Registering</string>
 
     <!-- terms and condition -->
-    <string name="fragment_register_terms_text_1">Last updated: May 18, 2016</string>
-    <string name="fragment_register_terms_text_2">These Terms and Conditions of Service ("Terms of Service") govern your account on the Pointube mobile site
+    <string name="terms_text_1">Last updated: May 18, 2016</string>
+    <string name="terms_text_2">These Terms and Conditions of Service ("Terms of Service") govern your account on the Pointube mobile site
           (the "Pointube Sites" or the "Sites") and your use of the Sites and all products and services provided
           through the Pointube Sites. Pointube mobile site is operated by New Dimension CO., Ltd. ("Pointube", "we",
           or "our") and provides the content posted on the Sites subject to the following Terms of Service.</string>
-    <string name="fragment_register_terms_text_3">These Terms of Service incorporate the entirety of the Pointube Privacy Policy posted on the Sites. Please
+    <string name="terms_text_3">These Terms of Service incorporate the entirety of the Pointube Privacy Policy posted on the Sites. Please
           read these Terms of Service carefully. By accessing and using the Sites, you agree to be bound by these
           Terms of Service. If you do not agree with these Terms of Service, please do not use the Pointube Sites.</string>
-    <string name="fragment_register_terms_text_4">Pointube reserves the right to add to, delete, or change the Terms of Service at any time at its sole
+    <string name="terms_text_4">Pointube reserves the right to add to, delete, or change the Terms of Service at any time at its sole
           discretion, without notice. As such, you should check these Terms of Service from time to time for such
           changes.</string>
-    <string name="fragment_register_terms_text_5">USER ACCOUNTS</string>
-    <string name="fragment_register_terms_text_6">Account. If you create a user account for the Sites, you agree to complete the registration process by
+    <string name="terms_text_5">USER ACCOUNTS</string>
+    <string name="terms_text_6">Account. If you create a user account for the Sites, you agree to complete the registration process by
           providing current, complete, and accurate information as required by Pointube. You are responsible for all
           activities that occur under your account. You agree to notify Pointube immediately of any unauthorized use
           of your account or any other breach of security. Pointube will not be liable for any loss that you may incur
           as a result of someone else using your account, either with or without your knowledge. In addition, you may
           be held liable for any losses incurred by Pointube or another party due to someone else using your account.
           You may not use anyone else\'s account at any time.</string>
-    <string name="fragment_register_terms_text_7">PRIVACY NOTICE</string>
-    <string name="fragment_register_terms_text_8">A copy of Pointube Privacy Policy that applies to the collection, use, disclosure and other processing of
+    <string name="terms_text_7">PRIVACY NOTICE</string>
+    <string name="terms_text_8">A copy of Pointube Privacy Policy that applies to the collection, use, disclosure and other processing of
           personal information by Pointube is posted on the Sites. These Terms of Service incorporate the entirety of
           the Pointube Privacy Policy. You consent to any personal information we may obtain about you (either via the
           Pointube Sites, by email, telephone, or any other means) being collected, stored and otherwise processed in
           accordance with the terms of the Privacy Policy.</string>
-    <string name="fragment_register_terms_text_9">SITE CONTENT</string>
-    <string name="fragment_register_terms_text_10">The Sites, including without limitation the text, graphics, photographs, software, video and audio content,
+    <string name="terms_text_9">SITE CONTENT</string>
+    <string name="terms_text_10">The Sites, including without limitation the text, graphics, photographs, software, video and audio content,
           and the like that appear on the website or mobile site (the "Site Content"), is owned by or licensed to
           Pointube, and is subject to copyright and other intellectual property rights under Thai Laws. Users may not
           re-post, republish, reproduce or copy the Site Content to other web sites, mobile applications, or
@@ -43,8 +58,8 @@
           copy, sell, distribute, prepare derivative works of or otherwise exploit Site Content. All of the Pointube
           trademarks, service marks and logos are owned by or licensed to Pointube and may not be used for any purpose
           without the prior written consent of Pointube.</string>
-    <string name="fragment_register_terms_text_11">PERMITTED USES</string>
-    <string name="fragment_register_terms_text_12">You agree not to use the Sites in any manner that could damage, disable, overburden, or impair any server,
+    <string name="terms_text_11">PERMITTED USES</string>
+    <string name="terms_text_12">You agree not to use the Sites in any manner that could damage, disable, overburden, or impair any server,
           or the network(s) connected to any Pointube\' server, or interfere with any other party\'s use and enjoyment
           of the Sites. You may not attempt to gain unauthorized access to any portion of the Sites, other accounts,
           computer systems, or networks connected to any Pointube\' server, through hacking, password or data mining,
@@ -54,28 +69,28 @@
           Pointube reserves the right in its sole discretion to disable or otherwise terminate your use of the Sites,
           or any links you make to the Sites, or request you to do the same. Pointube reserves all of its rights in
           the Pointube Sites not expressly granted to you by these Terms of Service.</string>
-    <string name="fragment_register_terms_text_13">REDEMPTIONS POLICY</string>
-    <string name="fragment_register_terms_text_14">Pointube promotes the point and mile offers to you but does not guarantee the redemptions provided by the
+    <string name="terms_text_13">REDEMPTIONS POLICY</string>
+    <string name="terms_text_14">Pointube promotes the point and mile offers to you but does not guarantee the redemptions provided by the
           partner loyalty program operators. Pointube is not responsible for the service, eligibility, or termination
           of the offers.</string>
-    <string name="fragment_register_terms_text_15">CLAIM OF COPYRIGHT INFRINGEMENT</string>
-    <string name="fragment_register_terms_text_16">Pointube respects the intellectual property of others. If you believe in good faith that any Site Content,
+    <string name="terms_text_15">CLAIM OF COPYRIGHT INFRINGEMENT</string>
+    <string name="terms_text_16">Pointube respects the intellectual property of others. If you believe in good faith that any Site Content,
           or other matter posted on the Sites infringes the copyright in a work you own, please contact, with
           correspondence containing the following:</string>
-    <string name="fragment_register_terms_text_17">A physical signature of the owner, or a person authorized to act on behalf of the owner, of the copyright
+    <string name="terms_text_17">A physical signature of the owner, or a person authorized to act on behalf of the owner, of the copyright
           that is allegedly infringed; Identification of the copyrighted work allegedly infringed;</string>
-    <string name="fragment_register_terms_text_18">Identifying information reasonably sufficient to allow determination by Pointube of the location of the
+    <string name="terms_text_18">Identifying information reasonably sufficient to allow determination by Pointube of the location of the
           material that is allegedly infringing; Information reasonably sufficient to permit Pointube to contact
           you;</string>
-    <string name="fragment_register_terms_text_19">A statement that you have a good faith belief that use of the material in the manner complained of is not
+    <string name="terms_text_19">A statement that you have a good faith belief that use of the material in the manner complained of is not
           authorized by the copyright owner, its agent, or the law; and</string>
-    <string name="fragment_register_terms_text_20">A statement that the information in the notification is accurate, and under penalty of perjury, that you
+    <string name="terms_text_20">A statement that the information in the notification is accurate, and under penalty of perjury, that you
           are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.</string>
-    <string name="fragment_register_terms_text_21">You acknowledge that if you fail to comply with all of the requirements of this Section, your DMCA notice
+    <string name="terms_text_21">You acknowledge that if you fail to comply with all of the requirements of this Section, your DMCA notice
           may not be valid. For any questions regarding this procedure, or to submit a complaint, please contact
           Pointube via service@pointube.com.</string>
-    <string name="fragment_register_terms_text_22">LINKS TO OTHER WEBSITES/ MOBILE SITES</string>
-    <string name="fragment_register_terms_text_23">The Sites may contain advertisements and/or links to other sites ("Third Party Sites"). These links are
+    <string name="terms_text_22">LINKS TO OTHER WEBSITES/ MOBILE SITES</string>
+    <string name="terms_text_23">The Sites may contain advertisements and/or links to other sites ("Third Party Sites"). These links are
           provided solely for the convenience of the users. Pointube does not endorse, sanction or verify the accuracy
           or ownership of the information contained in the advertisements or the content of any Third Party Sites or
           any products or services advertised on Third Party Sites. If you decide to leave the Sites and navigate to
@@ -88,8 +103,8 @@
           Third Party Site should be directed to the Third Party Site itself. Pointube bears no responsibility for any
           action associated with any Third Party Site. Moreover, Pointube does not imply an affiliation with any Third
           Party Site.</string>
-    <string name="fragment_register_terms_text_24">LIMITATION OF LIABILITY</string>
-    <string name="fragment_register_terms_text_25">You agree Pointube will not be held liable for any loss or damage incurred as a result of use of the Sites
+    <string name="terms_text_24">LIMITATION OF LIABILITY</string>
+    <string name="terms_text_25">You agree Pointube will not be held liable for any loss or damage incurred as a result of use of the Sites
           or services. You understand Pointube is not the seller of the goods or services advertised on the Sites.
           Pointube is a service provider and data handler for partner loyalty program operators. Pointube is not the
           agent of any partner loyalty program operators and takes no responsibility for the services or products for
@@ -99,13 +114,13 @@
           thereof) on any particular device or communications service. Pointube has no obligation to provide you with
           notice of any such changes, and Pointube is under no obligation to provide you with any support, error
           corrections, updates, upgrades, bug fixes, and/or enhancements of the Sites.</string>
-    <string name="fragment_register_terms_text_26">INDEMNIFICATION</string>
-    <string name="fragment_register_terms_text_27">You agree to defend, indemnify, and hold harmless Pointube from all liabilities, claims, damages, losses,
+    <string name="terms_text_26">INDEMNIFICATION</string>
+    <string name="terms_text_27">You agree to defend, indemnify, and hold harmless Pointube from all liabilities, claims, damages, losses,
           and expenses, including attorneys\' fees that arise from your use of the Sites. Pointube reserves the right,
           at its own expense, to assume the exclusive defense and control of any matter otherwise subject to
           indemnification by you, in which event you will cooperate with Pointube in asserting any available defenses.</string>
-    <string name="fragment_register_terms_text_28">ARBITRATION AND JURISDICTION</string>
-    <string name="fragment_register_terms_text_29">All disputes arising out of, relating to or connected with these Terms of Service, Privacy Policy, or your
+    <string name="terms_text_28">ARBITRATION AND JURISDICTION</string>
+    <string name="terms_text_29">All disputes arising out of, relating to or connected with these Terms of Service, Privacy Policy, or your
           use of any part of the Pointube Sites, shall be referred to and finally resolved by arbitration under the
           Thai law. All disputes in arbitration will be handled solely between the named parties, and not on any
           representative of class basis. Notwithstanding any other provision of these Terms of Service, to the extent
@@ -113,46 +128,130 @@
           Pointube reserves the right to seek injunctive or other appropriate relief in any court in Thailand, and you
           consent to exclusive jurisdiction and venue in such courts.</string>
 
-    <string name="fragment_register_terms_accept_term">Accept Terms &amp; Conditions</string>
+    <string name="terms_accept_term">Accept Terms &amp; Conditions</string>
 
-    <!-- fragment register phone -->
-    <string name="fragment_register_phone_info"> Pleases input your mobile phone number In field below
+    <!-- register phone -->
+    <string name="register_text_phone_info"> Pleases input your mobile phone number In field below
             Verification code will be sent  via SMS to your mobile phone.</string>
 
-    <!-- fragment mOtp -->
-    <string name="fragment_otp_info_1">Verification code has been sent to your mobile phone</string>
-    <string name="fragment_otp_info_2">Please input the 6 digit in the field below</string>
+    <string name="register_phone_toast_save_success">Save phone number successfully</string>
+    <string name="register_phone_dialog_progress_saving_phone">Saving phone number…</string>
+    <!-- register otp -->
+    <string name="otp_text_info_1">Verification code has been sent to your mobile phone</string>
+    <string name="otp_text_info_2">Please input the 6 digit in the field below</string>
 
-    <!-- fragment brand member -->
-    <string name="fragment_brand_member_info_1">Please select the Brand(s) you want to view into the POINTUBE wallet</string>
-    <string name="fragment_brand_member_select_all_title">Qualified Brands</string>
-    <string name="fragment_brand_member_select_all_info">Brand that you have registered</string>
-    <string name="fragment_brand_member_select_all_button">Select all</string>
-    <string name="fragment_brand_member_select_hint">*For any question on above member data, please contact your reward program provider\'s callcenter for details.</string>
+    <string name="otp_toast_verify_successful">Verify OTP successfully</string>
+    <string name="otp_dialog_progress_verifying">Verify OTP...</string>
 
-    <string name="fragment_brand_member_button_start">Next</string>
 
-    <!-- fragment brand non member -->
-    <string name="fragment_brand_non_member_info_1">Do you wish to become a member of these brand? \n If \'yes\', please select the brands from the list</string>
-    <string name="fragment_brand_non_member_select_all_title">Register</string>
-    <string name="fragment_brand_non_member_button_start">Let\'s start</string>
+    <!-- brand member -->
+    <string name="brand_member_info_1">Please select the Brand(s) you want to view into the POINTUBE wallet</string>
+    <string name="brand_member_select_all_title">Qualified Brands</string>
+    <string name="brand_member_select_all_info">Brand that you have registered</string>
+    <string name="brand_member_select_all_button">Select all</string>
+    <string name="brand_member_select_hint">*For any question on above member data, please contact your reward program provider\'s callcenter for details.</string>
 
-    <!-- fragment point -->
-    <string name="fragment_point_title">Outstanding Points</string>
-    <string name="fragment_point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
+    <string name="brand_member_button_start">Next</string>
 
-    <!-- fragment about -->
-    <string name="fragment_about_what_is_pointube">What is Pointube?</string>
-    <string name="fragment_about_who_should_use">Who should use Pointube?</string>
-    <string name="fragment_about_how_to_use">How to use Pointube?</string>
-    <string name="fragment_about_faq">FAQ</string>
-    <string name="fragment_about_contact_us">Contact Us</string>
-    <string name="fragment_about_privacy">Privacy Policy</string>
-    <string name="fragment_about_terms_of_use">Terms of Use</string>
+    <!-- brand non member -->
+    <string name="brand_non_member_info_1">Do you wish to become a member of these brand? \n If \'yes\', please select the brands from the list</string>
+    <string name="brand_non_member_select_all_title">Register</string>
+    <string name="brand_non_member_button_start">Let\'s start</string>
 
-    <!-- fragment about detail test html -->
+    <!-- point -->
+    <string name="point_dialog_progress_selected_brand_content">Loading selected brand..</string>
 
-    <!-- dialog forgot password mOtp  -->
-    <string name="dialog_forgot_password_otp_hint">Please input the 4 digit in the field below</string>
+    <string name="point_title">Outstanding Points</string>
+    <string name="point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
+
+    <!-- about -->
+    <string name="about_what_is_pointube">What is Pointube?</string>
+    <string name="about_who_should_use">Who should use Pointube?</string>
+    <string name="about_how_to_use">How to use Pointube?</string>
+    <string name="about_faq">FAQ</string>
+    <string name="about_contact_us">Contact Us</string>
+    <string name="about_privacy">Privacy Policy</string>
+    <string name="about_terms_of_use">Terms of Use</string>
+
+    <!-- login -->
+    <string name="login_dialog_login_title">Reset Password</string>
+    <string name="login_dialog_login_positive">Reset</string>
+
+    <string name="login_dialog_validate_pin_title">Validate Pin</string>
+    <string name="login_dialog_validate_pin_positive">Validate</string>
+
+    <string name="login_dialog_forgot_password_title">Forgot Password</string>
+
+    <string name="login_dialog_progress_validate_forgot_password">Validate forgot password…</string>
+    <string name="login_dialog_progress_resetting_password">Resetting password…</string>
+    <string name="login_dialog_progress_login">Logging in…</string>
+    <string name="login_dialog_progress_request_otp">Request Otp…</string>
+    <string name="login_dialog_forgot_password_otp_hint">Please input the 4 digit in the field below</string>
+
+    <string name="login_toast_login_success">Login success</string>
+    <string name="login_toast_forgot_success">Reset password success</string>
+
+    <string name="login_dialog_forget_password_positive">Change</string>
+
+    <!-- setting -->
+    <string name="setting_text_dialog_progress_logging_out">Logging out…</string>
+
+    <!-- my profile -->
+    <string name="my_profile_dialog_change_password_hint_old_password">Old Password</string>
+    <string name="my_profile_dialog_change_password_hint_new_password">New Password</string>
+    <string name="my_profile_dialog_change_password_hint_repeat_new_password">Repeat New Password</string>
+
+    <string name="my_profile_dialog_change_password_title">Change Password</string>
+    <string name="my_profile_toast_change_password_success">Change password success</string>
+
+    <string name="my_profile_dialog_progress_update_profile_content">Updating profile…</string>
+    <string name="my_profile_toast_update_profile_success">Update profile successful</string>
+
+    <!-- brand non member -->
+    <string name="brand_non_member_toast_save_successful">Save brand successful</string>
+    <string name="brand_non_member_toast_save_failed">Save brand failed</string>
+    <string name="brand_non_member_toast_empty_brand">Empty brand</string>
+    <string name="brand_non_member_toast_loading_error">Loading brand error</string>
+
+    <string name="brand_non_member_dialog_progress_save_brand">Saving brand…</string>
+
+    <string name="brand_non_member_btn_select_all">Select all</string>
+    <string name="brand_non_member_btn_un_select_all">Unselect all</string>
+
+    <!-- home -->
+    <string name="home_toast_empty_program_list">Empty promotion</string>
+
+    <!-- promotion detail -->
+    <string name="promotion_detail_text_1_day">1 day left</string>
+    <string name="promotion_detail_text_more_than_1_day">days left</string>
+    <string name="promotion_detail_text_less_than_1_day">In 24 hours</string>
+
+    <!-- promotion list -->
+    <string name="promotion_list_loading_program">Loading program list...</string>
+
+    <!-- chart detail -->
+    <string name="chart_detail_text_round_trip">Round Trip</string>
+    <string name="chart_detail_text_one_way_trip">One Way Trip</string>
+
+    <!-- Zone 2-->
+    <!-- Utility -->
+
+    <!-- Error message -->
+    <string name="error_msg_internet_connection">Problem with internet connection or server, please try again</string>
+
+    <!-- Register form validation -->
+    <string name="validate_email">Invalid email</string>
+    <string name="validate_password">Password must be at least 4 characters</string>
+    <string name="validate_repeat_password">Repeat password is not match with password</string>
+    <string name="validate_first_name">First name must not be empty</string>
+    <string name="validate_last_name">Last name must not be empty</string>
+    <string name="validate_validate_citizen_id">CitizenID must be 13 characters</string>
+    <string name="validate_passport">Passport must be at least 10 characters</string>
+
+    <!-- Dialog default value -->
+    <string name="dialog_default_ok">OK</string>
+    <string name="dialog_default_cancel">Cancel</string>
+    <string name="dialog_default_progress_loading_title">Please wait</string>
+
 </resources>
 

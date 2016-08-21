@@ -75,7 +75,7 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
     }
 
     override fun showForgetPasswordDialog() {
-        mForgetDialog = DialogUtil.getForgotPasswordDialog(context, "Forgot Password") {
+        mForgetDialog = DialogUtil.getForgotPasswordDialog(context, getString(R.string.login_dialog_forgot_password_title)) {
             mLoginPresenter.doForgetPassword(it)
         }
 
@@ -88,7 +88,10 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
 
     override fun showPinValidate() {
         mForgetDialog?.dismiss()
-        mForgotDialogOtp = DialogUtil.getForgotPasswordOtpDialog(context, "Validate Pin", "Validate", "Cancel") {
+        mForgotDialogOtp = DialogUtil.getForgotPasswordOtpDialog(context,
+                getString(R.string.login_dialog_validate_pin_title),
+                getString(R.string.login_dialog_validate_pin_positive),
+                getString(R.string.dialog_default_cancel)) {
             mLoginPresenter.validateForgotPasswordOtp()
         }
 
@@ -137,7 +140,10 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
 
     override fun showNewPasswordDialog() {
         mForgotDialogOtp?.dismiss()
-        mForgotDialogReset = DialogUtil.getForgotPasswordResetDialog(context, "Reset Password", "Reset", "Cancel") {
+        mForgotDialogReset = DialogUtil.getForgotPasswordResetDialog(context,
+                getString(R.string.login_dialog_login_title),
+                getString(R.string.login_dialog_login_positive),
+                getString(R.string.dialog_default_cancel)) {
             val newPassword = it.findViewById(R.id.metNewPassword) as MaterialEditText
             val confirmPassword = it.findViewById(R.id.metRepeatPassword) as MaterialEditText
             mLoginPresenter.resetPassword(newPassword.text.toString(), confirmPassword.text.toString())
@@ -152,11 +158,11 @@ class LoginFragment : Fragment(), AnkoLogger, LoginContract.View {
 
     override fun showResetPasswordComplete() {
         mForgotDialogReset?.dismiss()
-        toast("Reset password complete.")
+        toast(getString(R.string.login_toast_forgot_success))
     }
 
     override fun showProgressDialog(title: String) {
-        showLoadingDialog("Please wait", title)
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), title)
     }
 
     override fun hideProgressDialog() {

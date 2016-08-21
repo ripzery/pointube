@@ -80,7 +80,7 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
     }
 
     override fun showSavePhoneNumberSuccess() {
-        toast("Save phone number sucessful")
+        toast(getString(R.string.register_phone_toast_save_success))
     }
 
     override fun showSavePhoneNumberError(msg: String) {
@@ -88,7 +88,7 @@ class PhoneFragment : Fragment(), AnkoLogger, PhoneContract.View {
     }
 
     override fun showLoading() {
-        showLoadingDialog("Save phone number", "Please wait, it's still faster than you could draw it")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.register_phone_dialog_progress_saving_phone))
     }
 
     override fun hideLoading() {

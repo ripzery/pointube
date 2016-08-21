@@ -1,7 +1,9 @@
 package com.socket9.pointube.screens.login
 
+import com.socket9.pointube.R
 import com.socket9.pointube.manager.DataManager
 import com.socket9.pointube.screens.home.LoginModel
+import com.socket9.pointube.utils.ContextUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -25,7 +27,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
     }
 
     override fun validateForgotPasswordOtp() {
-        view?.showProgressDialog("Validate forgot password...")
+        view?.showProgressDialog(ContextUtil.context!!.getString(R.string.login_dialog_progress_validate_forgot_password))
         DataManager.forgotPasswordCheckPin(LoginModel.Request.CheckUserWithPin(mEmail!!, mOtp!!))
                 .subscribe({
                     view?.hideProgressDialog()
@@ -33,16 +35,16 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                         mMemberId = it.Member!!.id
                         view?.showNewPasswordDialog()
                     } else {
-                        view?.showValidateOtpError(it.Message ?: "Internet connection problem. Please try again.")
+                        view?.showValidateOtpError(it.Message ?: ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                     }
                 }, {
                     view?.hideProgressDialog()
-                    view?.showValidateOtpError(it.message ?: "Internet connection problem. Please try again")
+                    view?.showValidateOtpError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
     }
 
     override fun resetPassword(newPassword: String, confirmPassword: String) {
-        view?.showProgressDialog("Resetting password...")
+        view?.showProgressDialog(ContextUtil.context!!.getString(R.string.login_dialog_progress_resetting_password))
         DataManager.forgotPasswordNewPassword(LoginModel.Request.ResetPassword(mMemberId, newPassword, confirmPassword))
                 .subscribe({
                     view?.hideProgressDialog()
@@ -54,25 +56,25 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                 }, {
                     warn { it }
                     view?.hideProgressDialog()
-                    view?.showResetPasswordError(it.message ?: "Internet connection problem. Please try again.")
+                    view?.showResetPasswordError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
     }
 
     override fun doLogin(email: String, password: String) {
-        view?.showProgressDialog("Logging in...")
+        view?.showProgressDialog(ContextUtil.context!!.getString(R.string.login_dialog_progress_login))
         DataManager.login(LoginModel.Request.Login(email, password))
                 .subscribe({
                     info { it }
                     view?.hideProgressDialog()
                     if (it.result != null && it.result.id != 0) {
-                        view?.showLoginSuccess("Login success")
+                        view?.showLoginSuccess(ContextUtil.context!!.getString(R.string.login_toast_login_success))
                     } else {
                         view?.showLoginError(it.message!!)
                     }
                 }, {
                     view?.hideProgressDialog()
                     warn { it }
-                    view?.showLoginError(it.message ?: "Internet connection problem. Please try again.")
+                    view?.showLoginError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
     }
 
@@ -82,7 +84,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
 
     override fun doForgetPassword(email: String) {
         mEmail = email
-        view?.showProgressDialog("Request Otp...")
+        view?.showProgressDialog(ContextUtil.context!!.getString(R.string.login_dialog_progress_request_otp))
         DataManager.forgotPassword(email)
                 .subscribe({
                     view?.hideProgressDialog()
@@ -93,7 +95,7 @@ class LoginPresenter(var view: LoginContract.View?) : AnkoLogger, LoginContract.
                     }
                 }, {
                     view?.hideProgressDialog()
-                    view?.showForgotError(it.message ?: "Internet connection problem")
+                    view?.showForgotError(ContextUtil.context!!.getString(R.string.error_msg_internet_connection))
                 })
     }
 

@@ -2,6 +2,7 @@ package com.socket9.pointube.utils
 
 import com.rengwuxian.materialedittext.validation.METValidator
 import android.util.Patterns
+import com.socket9.pointube.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -9,62 +10,62 @@ import org.jetbrains.anko.info
  * Created by ripzery on 7/21/16.
  */
 object ValidatorUtil : AnkoLogger{
-    fun provideEmailValidator(): METValidator = object : METValidator("Invalid email"){
+    fun provideEmailValidator(): METValidator = object : METValidator(ContextUtil.context!!.getString(R.string.validate_email)){
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty || !Patterns.EMAIL_ADDRESS.matcher(text).matches()
             return !notValid
         }
     }
 
-    fun providePasswordValidator() = object : METValidator("Password must be at least 4 characters") {
+    fun providePasswordValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_password)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty || text.length < 4
             return !notValid
         }
     }
 
-    fun provideRepeatPasswordValidator(password: CharSequence) = object : METValidator("Repeat password is not match with password") {
+    fun provideRepeatPasswordValidator(password: CharSequence) = object : METValidator(ContextUtil.context!!.getString(R.string.validate_repeat_password)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty || !password.toString().equals(text.toString())
             return !notValid
         }
     }
 
-    fun provideFirstNameEnValidator() = object : METValidator("First name must not be empty") {
+    fun provideFirstNameEnValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_first_name)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty
             return !notValid
         }
     }
 
-    fun provideLastNameEnValidator() = object : METValidator("Last name must not be empty") {
+    fun provideLastNameEnValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_last_name)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty
             return !notValid
         }
     }
 
-    fun provideFirstNameThValidator() = object : METValidator("First name must not be empty") {
+    fun provideFirstNameThValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_first_name)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty
             return !notValid
         }
     }
 
-    fun provideLastNameThValidator() = object : METValidator("Last name must not be empty") {
+    fun provideLastNameThValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_last_name)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             val notValid = isEmpty
             return !notValid
         }
     }
 
-    fun provideCitizenIdValidator() = object : METValidator("CitizenID must be 13 characters") {
+    fun provideCitizenIdValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_validate_citizen_id)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             return text.length == 13
         }
     }
 
-    fun providePassportValidator() = object : METValidator("Passport must be at least 10 characters") {
+    fun providePassportValidator() = object : METValidator(ContextUtil.context!!.getString(R.string.validate_passport)) {
         override fun isValid(text: CharSequence, isEmpty: Boolean): Boolean {
             return text.length >= 10
         }

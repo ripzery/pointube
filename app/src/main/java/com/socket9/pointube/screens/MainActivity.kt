@@ -110,8 +110,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             }
             R.id.nav_point_fragment -> {
                 fragment = PointFragment.newInstance("Point")
-                setupToolbar(title = "Point",showHamburger = true, isShowIcon = false)
-
+                setupToolbar(title = "My Point",showHamburger = true, isShowIcon = false)
             }
             R.id.nav_promotion_fragment -> {
                 fragment = PromotionFragment.newInstance("Promotion")
