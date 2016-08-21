@@ -13,13 +13,13 @@ class AboutPresenter(var view: AboutContract.View?) : AboutContract.Presenter {
     /* Define about menu */
     private val mAboutItemList: MutableList<AboutItem> by lazy {
         mutableListOf(
-                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.fragment_about_what_is_pointube)),
-                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.fragment_about_who_should_use)),
-                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.fragment_about_how_to_use)),
-                AboutItem(R.drawable.ic_help_outline_black_24dp, mContext.getString(R.string.fragment_about_faq)),
-                AboutItem(R.drawable.ic_call_black_24dp, mContext.getString(R.string.fragment_about_contact_us)),
-                AboutItem(R.drawable.ic_lock_black_24dp, mContext.getString(R.string.fragment_about_privacy)),
-                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.fragment_about_terms_of_use))
+                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.about_what_is_pointube)),
+                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.about_who_should_use)),
+                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.about_how_to_use)),
+                AboutItem(R.drawable.ic_help_outline_black_24dp, mContext.getString(R.string.about_faq)),
+                AboutItem(R.drawable.ic_call_black_24dp, mContext.getString(R.string.about_contact_us)),
+                AboutItem(R.drawable.ic_lock_black_24dp, mContext.getString(R.string.about_privacy)),
+                AboutItem(R.drawable.ic_library_books_black_24dp, mContext.getString(R.string.about_terms_of_use))
         )
     }
 

@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.socket9.pointube.R
 import com.socket9.pointube.utils.ContextUtil
+import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import java.util.*
 
 /**
  * Created by Euro (ripzery@gmail.com) on 7/11/2016 AD.
@@ -41,4 +43,14 @@ fun AppCompatActivity.setupToolbar(title: String? = getString(R.string.app_name)
         supportActionBar?.setDisplayShowHomeEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
+}
+
+fun AppCompatActivity.setLocale(lang: String) {
+    val myLocale = Locale(lang)
+    val res = resources
+    val dm = res.displayMetrics
+    val conf = res.configuration
+    conf.locale = myLocale
+    res.updateConfiguration(conf, dm)
+    SharedPrefUtil.saveLanguage(lang)
 }

@@ -6,7 +6,7 @@
             android:id="@+id/nav_home_fragment"
             android:title="@string/home_text_title" />
         <item
-            android:id="@+id/nav_prompoint_fragment"
+            android:id="@+id/nav_point_fragment"
             android:title="@string/point_text_title" />
         <item
             android:id="@+id/nav_promotion_fragment"

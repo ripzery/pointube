@@ -14,6 +14,7 @@ object SharedPrefUtil : AnkoLogger {
     val NAME = "pointube.sp"
     var sharePref: SharedPreferences? = null
     val KEY_LOGIN_RESULT = "login_result"
+    val KEY_LANGUAGE = "language"
 
     fun saveLoginResult(loginResult: LoginModel.Response.LoginResult) {
         if (loginResult.id > 0) {
@@ -30,7 +31,15 @@ object SharedPrefUtil : AnkoLogger {
         return Gson().fromJson(sharePref?.getString(KEY_LOGIN_RESULT, null), LoginModel.Response.LoginResult::class.java)
     }
 
-    fun clearLogin(){
+    fun clearLogin() {
         sharePref?.edit()?.remove(KEY_LOGIN_RESULT)?.apply()
+    }
+
+    fun saveLanguage(lang: String) {
+        sharePref!!.edit().putString(KEY_LANGUAGE, lang)
+    }
+
+    fun isEnglish(): Boolean {
+        return sharePref!!.getString(KEY_LANGUAGE, "en").equals("en")
     }
 }
