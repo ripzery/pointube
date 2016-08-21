@@ -65,10 +65,20 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
 
         private val TOTAL_PROMOTION = 12
 
-        val TAB_ITEM_TITLES = listOf("Hot deal", "Dining", "Shopping", "Travel", "Entertainment",
-                "Health", "Beauty", "Education", "Reading", "Home and Living", "IT Gadget", "Other")
+        val TAB_ITEM_TITLES = listOf(ContextUtil.context!!.getString(R.string.promotion_list_text_hot_deal),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_dining),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_shopping),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_travel),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_entertainment),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_health),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_beauty),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_education),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_reading),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_home_and_living),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_it_gadget),
+                ContextUtil.context!!.getString(R.string.promotion_list_text_other))
 
-         val TAB_ITEM_COLORS = mutableListOf(
+        val TAB_ITEM_COLORS = mutableListOf(
                 R.color.colorHotDeal,
                 R.color.colorDining,
                 R.color.colorShopping,
@@ -82,7 +92,7 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
                 R.color.colorItGadget,
                 R.color.colorOther)
 
-         val TAB_ITEM_DRAWABLES = mutableListOf(
+        val TAB_ITEM_DRAWABLES = mutableListOf(
                 R.drawable.world_ball,
                 R.drawable.world_ball,
                 R.drawable.world_ball,
@@ -107,7 +117,7 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
         return TOTAL_PROMOTION
     }
 
-    fun getTabView(parent:ViewGroup, position: Int): View {
+    fun getTabView(parent: ViewGroup, position: Int): View {
         val context = ContextUtil.context
         val view: View = LayoutInflater.from(context).inflate(R.layout.layout_custom_tab_layout, parent, false)
         val ivIcon = view.find<ImageView>(R.id.ivIcon)

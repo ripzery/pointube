@@ -295,6 +295,22 @@
     <string name="promotion_list_empty_loading_program">Promotion is coming…</string>
     <string name="promotion_list_text_title">Promotion</string>
 
+    <string name="promotion_list_text_hot_deal">Hot deal</string>
+    <string name="promotion_list_text_dining">Dining</string>
+    <string name="promotion_list_text_shopping">Shopping</string>
+    <string name="promotion_list_text_travel">Travel</string>
+    <string name="promotion_list_text_entertainment">Entertainment</string>
+    <string name="promotion_list_text_health">Health</string>
+    <string name="promotion_list_text_beauty">Beauty</string>
+    <string name="promotion_list_text_education">Education</string>
+    <string name="promotion_list_text_reading">Reading</string>
+    <string name="promotion_list_text_home_and_living">Home and Living</string>
+    <string name="promotion_list_text_it_gadget">IT Gadget</string>
+    <string name="promotion_list_text_other">Other</string>
+
+    <!-- Recommend Me -->
+    <string name="recommend_me_title">Search by brands</string>
+
     <!-- Chart Detail -->
     <string name="chart_detail_text_round_trip">Round Trip</string>
     <string name="chart_detail_text_one_way_trip">One way Trip</string>
