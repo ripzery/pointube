@@ -99,7 +99,7 @@ class HomePartnerViewGroup : FrameLayout, AnkoLogger {
 
     fun setPoint(point: String) {
         if (!point.isEmpty()) {
-            mTvPoint.text = "${point.thousandSeparator()} Points"
+            mTvPoint.text = "${point.thousandSeparator()} ${context.getString(R.string.viewgroup_promotion_list_points)}"
         }
     }
 
