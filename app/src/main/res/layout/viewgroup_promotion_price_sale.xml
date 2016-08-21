@@ -29,7 +29,7 @@
             app:isCircleGrey="false"
             app:valueTextSize="10sp"
             app:price="200"
-            app:currency="point"/>
+            app:currency="@string/viewgroup_promotion_list_points"/>
 
     </FrameLayout>
 

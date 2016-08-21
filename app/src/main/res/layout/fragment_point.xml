@@ -37,7 +37,7 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/colorTextWhite"
             android:textSize="18sp"
-            android:text="@string/fragment_point_title" />
+            android:text="@string/point_title" />
 
         <TextView
             android:id="@+id/tvDate"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="12sp"
-        android:text="@string/fragment_point_info_helper" />
+        android:text="@string/point_info_helper" />
 
 
 </LinearLayout>

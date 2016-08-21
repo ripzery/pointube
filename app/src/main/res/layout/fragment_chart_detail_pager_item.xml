@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Economy class" />
+            android:text="@string/chart_detail_text_economy_class" />
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Economy class" />
+            android:text="@string/chart_detail_text_premium_economy_class" />
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -89,7 +89,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Royal Silk Class" />
+            android:text="@string/chart_detail_text_royal_silk_class" />
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -114,7 +114,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Royal First Class" />
+            android:text="@string/chart_detail_text_royal_first_class" />
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="Partner reward programs" />
+            android:text="@string/home_text_reward_program" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -46,7 +46,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="Login"
+            android:text="@string/home_btn_login"
             android:theme="@style/BaseButton.Teal" />
 
         <LinearLayout
@@ -59,14 +59,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New user?" />
+                android:text="@string/home_text_new_user" />
 
             <TextView
                 android:id="@+id/tvSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="Sign Up"
+                android:text="@string/home_text_sign_up"
                 android:textColor="@color/colorAccent" />
 
         </LinearLayout>

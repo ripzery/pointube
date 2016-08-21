@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="Telephone Number" />
+        android:text="@string/register_phone_telephone_number" />
 
     <TextView
         style="@style/BaseTextTerm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="@string/fragment_register_phone_info" />
+        android:text="@string/register_text_phone_info" />
 
     <me.philio.pinentry.PinEntryView
         android:id="@+id/telInput"
@@ -49,7 +49,7 @@
         android:layout_marginTop="16dp"
         android:enabled="false"
         android:soundEffectsEnabled="true"
-        android:text="Send OTP"
+        android:text="@string/register_phone_send_otp"
         android:theme="@style/BaseButton.Teal" />
 
 </LinearLayout>

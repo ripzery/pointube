@@ -91,7 +91,7 @@
                     android:layout_alignLeft="@id/tvTitle"
                     android:layout_below="@id/tvTitle"
                     android:layout_marginTop="8dp"
-                    android:text="เริ่มต้นที่" />
+                    android:text="@string/promotion_detail_text_start" />
 
                 <com.socket9.pointube.screens.promotion.viewgroups.PromotionPriceSaleViewGroup
                     android:id="@+id/promotionPriceSale"
@@ -126,7 +126,7 @@
                 style="@style/BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Point" />
+                android:text="@string/promotion_detail_text_point" />
 
 
             <TextView
@@ -141,7 +141,7 @@
                 style="@style/BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Promotion Period" />
+                android:text="@string/promotion_detail_text_promotion_period" />
 
 
             <TextView
@@ -156,7 +156,7 @@
                 style="@style/BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Channels" />
+                android:text="@string/promotion_detail_text_channel" />
 
 
             <TextView
@@ -171,7 +171,7 @@
                 style="@style/BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="How To Redeem" />
+                android:text="@string/promotion_detail_text_how_to_redeem" />
 
 
             <TextView
@@ -186,7 +186,7 @@
                 style="@style/BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Terms and Conditions" />
+                android:text="@string/promotion_detail_text_term_and_condition" />
 
 
             <TextView

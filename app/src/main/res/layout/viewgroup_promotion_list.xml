@@ -33,7 +33,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
-                app:currency="Points"
+                app:currency="@string/viewgroup_promotion_list_points"
                 app:price="1000"
                 app:unitTextSize="8sp"
                 app:valueTextSize="10sp" />
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="8dp"
-                android:text="Read more..." />
+                android:text="@string/viewgroup_promotion_list_read_more" />
 
         </LinearLayout>
 

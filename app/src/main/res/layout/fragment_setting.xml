@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:text="My Profile"/>
+            android:text="@string/setting_text_my_profile"/>
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:text="My Brands"/>
+            android:text="@string/setting_text_my_brand"/>
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -67,7 +67,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
 
     </LinearLayout>
 
@@ -77,6 +77,6 @@
         android:layout_height="64dp"
         android:layout_margin="16dp"
         android:theme="@style/BaseButton.Danger"
-        android:text="LOG OUT"/>
+        android:text="@string/setting_text_logout"/>
 
 </LinearLayout>

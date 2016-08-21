@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">pointube</string>
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="register_citizen_id_description">You must enter the citizen identification number exactly as it appears on the identification card.  Please re-check prior to submission.  You will not be able to correct the number once registered.  This is a part of the security measures to protect your personal information.</string>
+    <string name="app_name" translatable="false">pointube</string>
+    <string name="drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="drawer_close" translatable="false">Close navigation drawer</string>
 
     <!-- 3 rules :
     1. This string resource file is grouped by screen page.
@@ -15,11 +14,36 @@
     3. If the string is used various places, but it's likely to change in the future based on screen,
      then it should be placed under its screen comment.  -->
 
-    <!-- register form -->
+    <!-- Zone 1 -->
+    <!-- Screen -->
+
+    <!-- Register Form -->
+    <string name="register_form_text_account">ACCOUNT</string>
+    <string name="register_form_text_your_profile">YOUR PROFILE</string>
+    <string name="register_form_text_email">Email</string>
+    <string name="register_form_text_password">Password</string>
+    <string name="register_form_text_username">Username</string>
+    <string name="register_form_text_first_name_en">First Name (En)</string>
+    <string name="register_form_text_first_name_th">First Name (Th)</string>
+    <string name="register_form_text_last_name_en">Last Name (En)</string>
+    <string name="register_form_text_last_name_th">Last Name (Th)</string>
+    <string name="register_form_text_dob">Date of Birth</string>
+    <string name="register_form_text_hint_dob">Select date of birth</string>
+    <string name="register_form_text_passport">Passport ID</string>
+    <string name="register_form_text_citizen_id">Citizen ID</string>
+    <string name="register_form_text_gender">Gender</string>
+    <string name="register_form_text_gender_male">Male</string>
+    <string name="register_form_text_gender_female">Female</string>
+    <string name="register_form_text_change_password">Change Password</string>
+    <string name="register_form_text_thai">Thai</string>
+    <string name="register_form_text_expat">Expat</string>
+    <string name="register_form_btn_register">Expat</string>
+
     <string name="register_form_toast_register_successful">Register successful</string>
     <string name="register_form_dialog_progress_register_content">Registering</string>
+    <string name="register_form_citizen_id_description">You must enter the citizen identification number exactly as it appears on the identification card.  Please re-check prior to submission.  You will not be able to correct the number once registered.  This is a part of the security measures to protect your personal information.</string>
 
-    <!-- terms and condition -->
+    <!-- Terms and Condition -->
     <string name="terms_text_1">Last updated: May 18, 2016</string>
     <string name="terms_text_2">These Terms and Conditions of Service ("Terms of Service") govern your account on the Pointube mobile site
           (the "Pointube Sites" or the "Sites") and your use of the Sites and all products and services provided
@@ -129,22 +153,30 @@
           consent to exclusive jurisdiction and venue in such courts.</string>
 
     <string name="terms_accept_term">Accept Terms &amp; Conditions</string>
+    <string name="terms_btn_next">Next</string>
 
-    <!-- register phone -->
+    <!-- Register Phone -->
     <string name="register_text_phone_info"> Pleases input your mobile phone number In field below
             Verification code will be sent  via SMS to your mobile phone.</string>
 
     <string name="register_phone_toast_save_success">Save phone number successfully</string>
     <string name="register_phone_dialog_progress_saving_phone">Saving phone number…</string>
-    <!-- register otp -->
+
+    <string name="register_phone_telephone_number">Telephone Number</string>
+    <string name="register_phone_send_otp">Send OTP</string>
+
+    <!-- Register OTP -->
     <string name="otp_text_info_1">Verification code has been sent to your mobile phone</string>
     <string name="otp_text_info_2">Please input the 6 digit in the field below</string>
 
     <string name="otp_toast_verify_successful">Verify OTP successfully</string>
     <string name="otp_dialog_progress_verifying">Verify OTP...</string>
 
+    <string name="otp_text_verify_otp">Verify OTP</string>
+    <string name="otp_text_verify">Verify</string>
 
-    <!-- brand member -->
+
+    <!-- Brand Member -->
     <string name="brand_member_info_1">Please select the Brand(s) you want to view into the POINTUBE wallet</string>
     <string name="brand_member_select_all_title">Qualified Brands</string>
     <string name="brand_member_select_all_info">Brand that you have registered</string>
@@ -153,18 +185,18 @@
 
     <string name="brand_member_button_start">Next</string>
 
-    <!-- brand non member -->
+    <!-- Brand Non Member -->
     <string name="brand_non_member_info_1">Do you wish to become a member of these brand? \n If \'yes\', please select the brands from the list</string>
     <string name="brand_non_member_select_all_title">Register</string>
     <string name="brand_non_member_button_start">Let\'s start</string>
 
-    <!-- point -->
+    <!-- Point -->
     <string name="point_dialog_progress_selected_brand_content">Loading selected brand..</string>
 
     <string name="point_title">Outstanding Points</string>
     <string name="point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
 
-    <!-- about -->
+    <!-- About -->
     <string name="about_what_is_pointube">What is Pointube?</string>
     <string name="about_who_should_use">Who should use Pointube?</string>
     <string name="about_how_to_use">How to use Pointube?</string>
@@ -173,7 +205,7 @@
     <string name="about_privacy">Privacy Policy</string>
     <string name="about_terms_of_use">Terms of Use</string>
 
-    <!-- login -->
+    <!-- Login -->
     <string name="login_dialog_login_title">Reset Password</string>
     <string name="login_dialog_login_positive">Reset</string>
 
@@ -187,16 +219,31 @@
     <string name="login_dialog_progress_login">Logging in…</string>
     <string name="login_dialog_progress_request_otp">Request Otp…</string>
     <string name="login_dialog_forgot_password_otp_hint">Please input the 4 digit in the field below</string>
+    <string name="login_dialog_forget_password_positive">Change</string>
 
     <string name="login_toast_login_success">Login success</string>
     <string name="login_toast_forgot_success">Reset password success</string>
 
-    <string name="login_dialog_forget_password_positive">Change</string>
+    <string name="login_text_email">Email</string>
+    <string name="login_text_password">Password</string>
+    <string name="login_text_remember_me">Remember Me</string>
+    <string name="login_text_sign_up">Sign Up</string>
+    <string name="login_text_login">Log in</string>
+    <string name="login_text_new_user">New User?</string>
+    <string name="login_text_forget_password">Forget Password</string>
 
-    <!-- setting -->
+    <!-- Setting -->
     <string name="setting_text_dialog_progress_logging_out">Logging out…</string>
+    <string name="setting_text_my_profile">My Profile</string>
+    <string name="setting_text_my_brand">My Brands</string>
+    <string name="setting_text_logout">Log out</string>
 
-    <!-- my profile -->
+    <!-- My Brand -->
+    <string name="my_brand_text_title">My Brands</string>
+
+    <!-- My Profile -->
+    <string name="my_profile_text_title">My Profile</string>
+
     <string name="my_profile_dialog_change_password_hint_old_password">Old Password</string>
     <string name="my_profile_dialog_change_password_hint_new_password">New Password</string>
     <string name="my_profile_dialog_change_password_hint_repeat_new_password">Repeat New Password</string>
@@ -207,7 +254,9 @@
     <string name="my_profile_dialog_progress_update_profile_content">Updating profile…</string>
     <string name="my_profile_toast_update_profile_success">Update profile successful</string>
 
-    <!-- brand non member -->
+    <string name="my_profile_btn_save">Save</string>
+
+    <!-- Brand Non Member -->
     <string name="brand_non_member_toast_save_successful">Save brand successful</string>
     <string name="brand_non_member_toast_save_failed">Save brand failed</string>
     <string name="brand_non_member_toast_empty_brand">Empty brand</string>
@@ -218,20 +267,41 @@
     <string name="brand_non_member_btn_select_all">Select all</string>
     <string name="brand_non_member_btn_un_select_all">Unselect all</string>
 
-    <!-- home -->
-    <string name="home_toast_empty_program_list">Empty promotion</string>
+    <!-- Home -->
+    <string name="home_toast_empty_program_list">Empty Programs</string>
+    <string name="home_text_reward_program">Reward Programs</string>
+    <string name="home_btn_login">Login</string>
+    <string name="home_text_new_user">New User?</string>
+    <string name="home_text_sign_up">Sign Up</string>
 
-    <!-- promotion detail -->
+
+    <!-- Promotion Detail -->
+    <string name="promotion_detail_text_start">Start</string>
+    <string name="promotion_detail_text_point">Point</string>
+    <string name="promotion_detail_text_promotion_period">Promotion Period</string>
+    <string name="promotion_detail_text_channel">Channels</string>
+    <string name="promotion_detail_text_how_to_redeem">How To Redeem</string>
+    <string name="promotion_detail_text_term_and_condition">Terms and Conditions</string>
+
     <string name="promotion_detail_text_1_day">1 day left</string>
     <string name="promotion_detail_text_more_than_1_day">days left</string>
     <string name="promotion_detail_text_less_than_1_day">In 24 hours</string>
 
-    <!-- promotion list -->
-    <string name="promotion_list_loading_program">Loading program list...</string>
+    <!-- Promotion List -->
+    <string name="promotion_list_loading_program">Loading program list…</string>
+    <string name="promotion_list_empty_loading_program">Promotion is coming…</string>
 
-    <!-- chart detail -->
+    <!-- Chart Detail -->
     <string name="chart_detail_text_round_trip">Round Trip</string>
-    <string name="chart_detail_text_one_way_trip">One Way Trip</string>
+    <string name="chart_detail_text_one_way_trip">One way Trip</string>
+
+    <string name="chart_detail_text_economy_class">Economy Class</string>
+    <string name="chart_detail_text_premium_economy_class">Premium Economy Class</string>
+    <string name="chart_detail_text_royal_silk_class">Royal Silk Class</string>
+    <string name="chart_detail_text_royal_first_class">Royal First Class</string>
+
+    <!-- Thai Airline -->
+    <string name="thai_airline_title">Air award chart</string>
 
     <!-- Zone 2-->
     <!-- Utility -->
@@ -239,7 +309,7 @@
     <!-- Error message -->
     <string name="error_msg_internet_connection">Problem with internet connection or server, please try again</string>
 
-    <!-- Register form validation -->
+    <!-- Register Form Validation -->
     <string name="validate_email">Invalid email</string>
     <string name="validate_password">Password must be at least 4 characters</string>
     <string name="validate_repeat_password">Repeat password is not match with password</string>
@@ -248,10 +318,14 @@
     <string name="validate_validate_citizen_id">CitizenID must be 13 characters</string>
     <string name="validate_passport">Passport must be at least 10 characters</string>
 
-    <!-- Dialog default value -->
+    <!-- Dialog Default Value -->
     <string name="dialog_default_ok">OK</string>
     <string name="dialog_default_cancel">Cancel</string>
     <string name="dialog_default_progress_loading_title">Please wait</string>
+
+    <!-- Promotion list view group -->
+    <string name="viewgroup_promotion_list_points">Points</string>
+    <string name="viewgroup_promotion_list_read_more">Read more…</string>
 
 </resources>
 

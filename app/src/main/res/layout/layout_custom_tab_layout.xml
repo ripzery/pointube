@@ -13,7 +13,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_shopping_basket_black_24dp"
+        app:srcCompat="@drawable/ic_shopping_basket_black_24dp"
         app:tint="@color/selector_custom_tab_icon"/>
 
 </FrameLayout>

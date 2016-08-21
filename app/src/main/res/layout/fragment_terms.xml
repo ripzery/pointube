@@ -14,182 +14,182 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_1" />
+            android:text="@string/terms_text_1" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_2" />
+            android:text="@string/terms_text_2" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_3" />
+            android:text="@string/terms_text_3" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_4" />
+            android:text="@string/terms_text_4" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_5" />
+            android:text="@string/terms_text_5" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_6" />
+            android:text="@string/terms_text_6" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_7" />
+            android:text="@string/terms_text_7" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_8" />
+            android:text="@string/terms_text_8" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_9" />
+            android:text="@string/terms_text_9" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_10" />
+            android:text="@string/terms_text_10" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_11" />
+            android:text="@string/terms_text_11" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_12" />
+            android:text="@string/terms_text_12" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_13" />
+            android:text="@string/terms_text_13" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_14" />
+            android:text="@string/terms_text_14" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_15" />
+            android:text="@string/terms_text_15" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_16" />
+            android:text="@string/terms_text_16" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_17" />
+            android:text="@string/terms_text_17" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_18" />
+            android:text="@string/terms_text_18" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_19" />
+            android:text="@string/terms_text_19" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_20" />
+            android:text="@string/terms_text_20" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_21" />
+            android:text="@string/terms_text_21" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_22" />
+            android:text="@string/terms_text_22" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_23" />
+            android:text="@string/terms_text_23" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_24" />
+            android:text="@string/terms_text_24" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_25" />
+            android:text="@string/terms_text_25" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_26" />
+            android:text="@string/terms_text_26" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_27" />
+            android:text="@string/terms_text_27" />
 
         <TextView
             style="@style/BaseTextTerm.TextTermsTitle"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_28" />
+            android:text="@string/terms_text_28" />
 
         <TextView
             style="@style/BaseTextTerm"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_text_29" />
+            android:text="@string/terms_text_29" />
 
         <CheckBox
             android:id="@+id/cbAccept"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
-            android:text="@string/fragment_register_terms_accept_term" />
+            android:text="@string/terms_accept_term" />
 
         <Button
             android:enabled="false"
@@ -198,7 +198,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:soundEffectsEnabled="true"
-            android:text="Next"
+            android:text="@string/terms_btn_next"
             android:theme="@style/BaseButton.Teal" />
 
     </LinearLayout>

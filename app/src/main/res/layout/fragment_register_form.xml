@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ACCOUNT" />
+            android:text="@string/register_form_text_account" />
 
         <LinearLayout
             android:id="@+id/layoutAccount"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Email"
+                android:hint="@string/register_form_text_email"
                 android:inputType="textEmailAddress" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Password"
+                android:hint="@string/register_form_text_password"
                 android:inputType="textPassword" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Repeat password"
+                android:hint="@string/validate_repeat_password"
                 android:inputType="textPassword" />
 
         </LinearLayout>
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="YOUR PROFILE" />
+            android:text="@string/register_form_text_your_profile" />
 
         <LinearLayout
             android:id="@+id/layoutProfile"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="First name (en)"
+                android:hint="@string/register_form_text_first_name_en"
                 android:inputType="textPersonName" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Last name (en)"
+                android:hint="@string/register_form_text_last_name_en"
                 android:inputType="textPersonName" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="First name (th)"
+                android:hint="@string/register_form_text_first_name_th"
                 android:inputType="textPersonName" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -98,14 +98,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Last name (th)"
+                android:hint="@string/register_form_text_last_name_th"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Date of Birth" />
+                android:text="@string/register_form_text_dob" />
 
             <TextView
                 android:id="@+id/tvDob"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:freezesText="true"
-                android:hint="Select date of birth" />
+                android:hint="@string/register_form_text_hint_dob" />
 
             <LinearLayout
                 android:id="@+id/layoutVerifyCitizen"
@@ -126,8 +126,8 @@
                     android:id="@+id/toggleNationality"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    app:leftText="Thai"
-                    app:rightText="Expat" />
+                    app:leftText="@string/register_form_text_thai"
+                    app:rightText="@string/register_form_text_expat" />
 
                 <LinearLayout
                     android:id="@+id/layoutCitizenID"
@@ -142,7 +142,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:hint="Citizen ID"
+                        android:hint="@string/register_form_text_citizen_id"
                         android:inputType="number"
                         android:maxLength="13"
                         app:met_iconLeft="@null"
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lineSpacingExtra="4dp"
-                        android:text="@string/fragment_register_citizen_id_description" />
+                        android:text="@string/register_form_citizen_id_description" />
 
                 </LinearLayout>
 
@@ -171,7 +171,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:hint="Passport"
+                        android:hint="@string/register_form_text_passport"
                         android:inputType="text"
                         app:met_minCharacters="10" />
 
@@ -183,15 +183,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Gender" />
+                android:text="@string/register_form_text_gender" />
 
             <com.socket9.pointube.screens.register.ToggleViewGroup
                 android:id="@+id/toggleGender"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:leftText="Male"
-                app:rightText="Female" />
+                app:leftText="@string/register_form_text_gender_male"
+                app:rightText="@string/register_form_text_gender_female" />
 
         </LinearLayout>
 
@@ -202,7 +202,7 @@
             android:layout_marginTop="16dp"
             android:enabled="false"
             android:soundEffectsEnabled="true"
-            android:text="Register"
+            android:text="@string/register_form_btn_register"
             android:theme="@style/BaseButton.Teal" />
 
     </LinearLayout>
