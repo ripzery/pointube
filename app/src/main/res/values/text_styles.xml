@@ -5,7 +5,7 @@
         <item name="met_floatingLabel">highlight</item>
         <item name="met_floatingLabelAlwaysShown">true</item>
         <item name="android:maxLines">1</item>
-        <item name="met_helperText">Required</item>
+        <item name="met_helperText">@string/required</item>
         <item name="met_autoValidate">true</item>
     </style>
 

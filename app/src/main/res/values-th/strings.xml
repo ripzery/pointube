@@ -22,6 +22,7 @@
     <string name="register_form_text_your_profile">ข้อมูลส่วนตัว</string>
     <string name="register_form_text_email">อีเมล์</string>
     <string name="register_form_text_password">รหัสผ่าน</string>
+    <string name="register_form_text_repeat_password">ยืนยันรหัสผ่าน</string>
     <string name="register_form_text_username">ชื่อผู้ใช้</string>
     <string name="register_form_text_first_name_en">ชื่อ (อังกฤษ)</string>
     <string name="register_form_text_first_name_th">ชื่อ (ไทย)</string>
@@ -161,19 +162,21 @@
     <string name="register_phone_toast_save_success">บันทึกหมายเลขโทรศัพท์สำเร็จ</string>
     <string name="register_phone_dialog_progress_saving_phone">กำลังบันทึกหมายเลขโทรศัพท์…</string>
 
-    <string name="register_phone_telephone_number">เบอร์โทรศัพท์</string>
+    <string name="register_phone_telephone_number">หมายเลขโทรศัพท์</string>
     <string name="register_phone_send_otp">ส่ง OTP</string>
+    <string name="register_phone_title">ตรวจสอบหมายเลขโทรศัพท์</string>
 
     <!-- Register OTP -->
     <string name="otp_text_info_1">รหัสผ่านได้ถูกจัดส่งไปที่โทรศัพท์มือถือของท่านแล้ว</string>
     <string name="otp_text_info_2">กรุณาใส่หมายเลข6หลักที่ได้รับ ลงในช่องที่กำหนด</string>
 
     <string name="otp_toast_verify_successful">ยืนยัน OTP สำเร็จ</string>
-    <string name="otp_dialog_progress_verifying">Verify OTP...</string>
+    <string name="otp_dialog_progress_verifying">ตรวจสอบ OTP...</string>
 
     <string name="otp_text_verify_otp">ยืนยัน OTP</string>
     <string name="otp_text_verify">ยืนยัน</string>
 
+    <string name="otp_text_title">กรอก OTP</string>
 
     <!-- Brand Member -->
     <string name="brand_member_info_1">เลือกแบรนด์ที่ต้องการรับชมคะแนน ลงใน Pointube wallet</string>
@@ -322,7 +325,7 @@
     <string name="program_list_text_login_to_see_more">กรุณาเข้าสู่ระบบเพื่อดูโปรโมชั่นอื่น</string>
 
     <!-- Recommend Me -->
-   <string name="recommend_me_title">เลือกจากแบรนด์</string>
+    <string name="recommend_me_title">เลือกจากแบรนด์</string>
 
     <!-- Chart Detail -->
     <string name="chart_detail_text_round_trip">ไป-กลับ</string>
@@ -365,4 +368,7 @@
     <string name="dialog_language_title">เปลี่ยนภาษา</string>
     <string name="dialog_language_list_thai">ไทย</string>
     <string name="dialog_language_list_english">อังกฤษ</string>
+
+    <!-- Validate -->
+    <string name="required">จำเป็น</string>
 </resources>

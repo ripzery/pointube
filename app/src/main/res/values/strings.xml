@@ -165,6 +165,8 @@
 
     <string name="register_phone_telephone_number">Telephone Number</string>
     <string name="register_phone_send_otp">Send OTP</string>
+    <string name="register_phone_title">Verify phone number</string>
+
 
     <!-- Register OTP -->
     <string name="otp_text_info_1">Verification code has been sent to your mobile phone</string>
@@ -175,6 +177,8 @@
 
     <string name="otp_text_verify_otp">Verify OTP</string>
     <string name="otp_text_verify">Verify</string>
+    <string name="otp_text_title">Enter OTP</string>
+
 
 
     <!-- Brand Member -->
@@ -367,5 +371,8 @@
     <string name="dialog_language_title">Change Language</string>
     <string name="dialog_language_list_thai">Thai</string>
     <string name="dialog_language_list_english">English</string>
+
+    <!-- Validation -->
+    <string name="required">Require</string>
 </resources>
 

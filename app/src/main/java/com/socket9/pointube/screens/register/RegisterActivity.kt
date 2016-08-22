@@ -1,10 +1,10 @@
 package com.socket9.pointube.screens.register
 
+import TermsFragment
 import android.app.Activity
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
+import android.support.v7.app.AppCompatActivity
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragmentWithAnimation
 import com.socket9.pointube.extensions.setupToolbar
@@ -20,7 +20,7 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
     companion object {
         val FRAGMENT_REGISTER_FORM = 1
         val FRAGMENT_TERMS = 2
-        val FRAGMENT_TEL_NUMBER= 3
+        val FRAGMENT_TEL_NUMBER = 3
         val FRAGMENT_OTP = 4
     }
 
@@ -36,12 +36,12 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
     }
 
     private fun initInstance() {
-        setupToolbar("Register")
-        replaceFragmentWithAnimation(fragment =  RegisterFormFragment.newInstance())
+        setupToolbar(getString(R.string.register_form_btn_register))
+        replaceFragmentWithAnimation(fragment = RegisterFormFragment.newInstance())
     }
 
     override fun onBackPressed() {
-        when(mCurrentFragment){
+        when (mCurrentFragment) {
             FRAGMENT_REGISTER_FORM -> goBackFromRegisterForm()
             FRAGMENT_TERMS -> goBackFromTerms()
             FRAGMENT_TEL_NUMBER -> goBackFromOtp()
@@ -50,13 +50,13 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
     }
 
     override fun goNextFromRegisterForm(memberId: Int) {
-        setupToolbar("Terms and condition", isShowBackButton = false)
-        replaceFragmentWithAnimation(fragment =  TermsFragment.newInstance(memberId))
+        setupToolbar(getString(R.string.promotion_detail_text_term_and_condition), isShowBackButton = false)
+        replaceFragmentWithAnimation(fragment = TermsFragment.newInstance(memberId))
         mCurrentFragment = FRAGMENT_TERMS
     }
 
     override fun goNextFromTerms(memberId: Int) {
-        setupToolbar("Verify phone number", isShowBackButton = false)
+        setupToolbar(getString(R.string.register_phone_title), isShowBackButton = false)
         replaceFragmentWithAnimation(fragment = PhoneFragment.newInstance(memberId))
 //        supportFragmentManager.beginTransaction()
 //                .setCustomAnimations(R.anim.slide_enter_from_bottom, R.anim.slide_exit_to_bottom)
@@ -67,7 +67,7 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
 
     override fun goNextFromPhone(memberId: Int) {
         /*TODO : Go to OTP*/
-        setupToolbar("Enter OTP")
+        setupToolbar(getString(R.string.otp_text_title))
         supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.translate_enter_from_right, R.anim.translate_exit_to_left, R.anim.translate_enter_from_left, R.anim.translate_exit_to_right)
                 .replace(R.id.contentContainer, OtpFragment.newInstance(memberId), "phone").addToBackStack("phone").commit()
@@ -85,17 +85,17 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
     }
 
     override fun goBackFromTerms() {
-        setResult(Activity.RESULT_OK)
+        setResult(Activity.RESULT_CANCELED)
         finish()
     }
 
     override fun goBackFromPhone() {
-        setResult(Activity.RESULT_OK)
+        setResult(Activity.RESULT_CANCELED)
         finish()
     }
 
     override fun goBackFromOtp() {
-        setupToolbar("Verify phone number", isShowBackButton = false)
+        setupToolbar(getString(R.string.register_phone_title), isShowBackButton = false)
         supportFragmentManager.popBackStack()
         mCurrentFragment = FRAGMENT_TEL_NUMBER
     }
