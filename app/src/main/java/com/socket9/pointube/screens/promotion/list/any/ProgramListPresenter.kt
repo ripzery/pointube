@@ -15,11 +15,7 @@ class ProgramListPresenter(var view: ProgramListContract.View?) : AnkoLogger, Pr
         DataManager.getPublishedProgramByNotNull(brandId, unitId)
                 .subscribe({
                     view?.hideLoading()
-                    if (it.size > 0) {
-                        view?.showProgramList(it)
-                    } else {
-                        view?.showEmptyProgram()
-                    }
+                    view?.showProgramList(it)
                 }, {
                     view?.hideLoading()
                     warn { it }

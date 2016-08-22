@@ -94,6 +94,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     /* Override View Interface zone */
     override fun showProgramList(newList: MutableList<PublishedProgramItemRepo>) {
         mProgramListAdapter.updateProgramList(newList)
+        tvComingSoon.visibility = View.GONE
     }
 
     override fun showLoading() {

@@ -30,7 +30,6 @@
         android:textSize="18sp"
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
-        android:visibility="gone"
         android:text="@string/promotion_list_empty_loading_program"/>
 
 </LinearLayout>
