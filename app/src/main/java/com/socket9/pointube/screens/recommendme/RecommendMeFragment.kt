@@ -90,7 +90,7 @@ class RecommendMeFragment : Fragment(), AnkoLogger, RecommendMeContract.View {
     }
 
     override fun showLoading() {
-        showLoadingDialog("Please wait", "Loading recommend promotion...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.recommend_me_text_progress_content))
     }
 
     override fun hideLoading() {
@@ -98,7 +98,7 @@ class RecommendMeFragment : Fragment(), AnkoLogger, RecommendMeContract.View {
     }
 
     override fun showEmptyView() {
-        toast("Show empty View")
+//        toast("Show empty View")
     }
 
     override fun showProgramDetail(programId: Int) {

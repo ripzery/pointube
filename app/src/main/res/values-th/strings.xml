@@ -326,6 +326,7 @@
 
     <!-- Recommend Me -->
     <string name="recommend_me_title">เลือกจากแบรนด์</string>
+    <string name="recommend_me_text_progress_content">กำลังโหลดโปรโมชั่นที่แนะนำ…</string>
 
     <!-- Chart Detail -->
     <string name="chart_detail_text_round_trip">ไป-กลับ</string>
@@ -336,6 +337,7 @@
     <string name="chart_detail_text_royal_silk_class">ชั้นธุรกิจ รอยัลซิลค์</string>
     <string name="chart_detail_text_royal_first_class">ชั้นหนึ่ง</string>
 
+    <string name="chart_detail_text_title">รายละเอียดตาราง</string>
     <!-- Thai Airline -->
     <string name="thai_airline_title">ตารางรางวัลบัตรโดยสาร</string>
     <string name="thai_airline_btn_title">โปรโมชั่นรางวัลบัตรโดยสาร โปรโมชั่นแลกไมล์</string>

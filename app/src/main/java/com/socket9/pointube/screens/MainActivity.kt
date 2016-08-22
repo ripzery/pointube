@@ -248,6 +248,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             } else {
                 info("Cancel Register")
                 setupNavMenu()
+                setupNavHeader()
             }
         }
     }

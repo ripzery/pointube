@@ -56,8 +56,8 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
             R.id.menu_recommend -> {
                 if (SharedPrefUtil.loadLoginResult() != null)
                     mPromotionPresenter.clickRecommendMe()
-                else{
-                    toast("Please login to see recommend promotion")
+                else {
+                    toast(getString(R.string.program_list_text_login_to_see_more))
                 }
             }
             R.id.menu_filtered_brand -> mListener.onShowFilteredBrand()
@@ -114,7 +114,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     }
 
     override fun setupViewPager() {
-        mPromotionPagerAdapter = PromotionPagerAdapter(fragmentManager)
+        mPromotionPagerAdapter = PromotionPagerAdapter(context, fragmentManager)
         viewpager.adapter = mPromotionPagerAdapter
     }
 

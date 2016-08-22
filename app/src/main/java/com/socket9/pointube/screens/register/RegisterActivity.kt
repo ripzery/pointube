@@ -37,7 +37,13 @@ class RegisterActivity : AppCompatActivity(), RegisterFormFragment.RegisterFormL
 
     private fun initInstance() {
         setupToolbar(getString(R.string.register_form_btn_register))
-        replaceFragmentWithAnimation(fragment = RegisterFormFragment.newInstance())
+
+        if (intent.getBooleanExtra("isRegister", true)) {
+            replaceFragmentWithAnimation(fragment = RegisterFormFragment.newInstance())
+        } else {
+            mCurrentFragment = FRAGMENT_TERMS
+            replaceFragmentWithAnimation(fragment = TermsFragment.newInstance(intent.getIntExtra("memberId", 0)))
+        }
     }
 
     override fun onBackPressed() {

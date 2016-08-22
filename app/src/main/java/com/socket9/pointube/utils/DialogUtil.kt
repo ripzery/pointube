@@ -24,6 +24,9 @@ object DialogUtil : AnkoLogger{
                 .onPositive { materialDialog, dialogAction ->
                     action(materialDialog.customView!!)
                 }
+                .onNegative { materialDialog, dialogAction ->
+                    materialDialog.dismiss()
+                }
                 .build()
     }
 

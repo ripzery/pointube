@@ -307,7 +307,7 @@
     <!-- Promotion List -->
     <string name="promotion_list_loading_program">Loading program list…</string>
     <string name="promotion_list_empty_loading_program">Promotion is coming…</string>
-    <string name="promotion_list_text_title">Promotion</string>
+    <string name="promotion_list_text_title">Promotions</string>
 
     <string name="promotion_list_text_recommend_me_error">Please select at least 1 brand from the list to view recommend promotion.</string>
 
@@ -329,6 +329,7 @@
 
     <!-- Recommend Me -->
     <string name="recommend_me_title">Search by brands</string>
+    <string name="recommend_me_text_progress_content">Loading recommend promotion…</string>
 
     <!-- Chart Detail -->
     <string name="chart_detail_text_round_trip">Round Trip</string>
@@ -339,8 +340,10 @@
     <string name="chart_detail_text_royal_silk_class">Royal Silk Class</string>
     <string name="chart_detail_text_royal_first_class">Royal First Class</string>
 
+    <string name="chart_detail_text_title">Chart Detail</string>
+
     <!-- Thai Airline -->
-    <string name="thai_airline_title">Air award chart</string>
+    <string name="thai_airline_title">Air Award Chart</string>
     <string name="thai_airline_btn_title">Airline award chart Promotion</string>
 
     <!-- Zone 2-->

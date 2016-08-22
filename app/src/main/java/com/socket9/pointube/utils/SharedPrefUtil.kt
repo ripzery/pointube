@@ -15,6 +15,7 @@ object SharedPrefUtil : AnkoLogger {
     var sharePref: SharedPreferences? = null
     val KEY_LOGIN_RESULT = "login_result"
     val KEY_LANGUAGE = "language"
+    val KEY_MEMBER_ID = "member_id"
 
     fun saveLoginResult(loginResult: LoginModel.Response.LoginResult) {
         if (loginResult.id > 0) {
@@ -41,6 +42,14 @@ object SharedPrefUtil : AnkoLogger {
 
     fun isEnglish(): Boolean {
         return sharePref!!.getString(KEY_LANGUAGE, "en").equals("en")
+    }
+
+    fun saveMemberId(memberId: Int){
+        sharePref!!.edit().putInt(KEY_MEMBER_ID, memberId).apply()
+    }
+
+    fun getMemberId(): Int {
+        return sharePref!!.getInt(KEY_MEMBER_ID, 0)
     }
 
 

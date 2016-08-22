@@ -25,7 +25,7 @@ class ChartDetailActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-        setupToolbar("Chart detail")
+        setupToolbar(getString(R.string.chart_detail_text_title))
         replaceFragment(fragment = ChartDetailFragment.newInstance(intent.getIntExtra("id", 1)))
     }
 }

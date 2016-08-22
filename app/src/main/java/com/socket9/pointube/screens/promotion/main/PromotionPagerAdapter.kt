@@ -1,6 +1,7 @@
 package com.socket9.pointube.screens.promotion.main
 
 import PromotionProgramTypeFragment
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
@@ -17,7 +18,8 @@ import org.jetbrains.anko.find
 /**
  * Created by ripzery on 7/26/16.
  */
-class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+class PromotionPagerAdapter(val context: Context, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+
     companion object {
         /* index in promotion */
         val INDEX_HOTDEAL = 0
@@ -65,7 +67,7 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
 
         private val TOTAL_PROMOTION = 12
 
-        val TAB_ITEM_TITLES = listOf(ContextUtil.context!!.getString(R.string.promotion_list_text_hot_deal),
+        var TAB_ITEM_TITLES = listOf(ContextUtil.context!!.getString(R.string.promotion_list_text_hot_deal),
                 ContextUtil.context!!.getString(R.string.promotion_list_text_dining),
                 ContextUtil.context!!.getString(R.string.promotion_list_text_shopping),
                 ContextUtil.context!!.getString(R.string.promotion_list_text_travel),
@@ -109,12 +111,28 @@ class PromotionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm)
 
     }
 
+    init {
+        TAB_ITEM_TITLES = listOf(context.getString(R.string.promotion_list_text_hot_deal),
+                context.getString(R.string.promotion_list_text_dining),
+                context.getString(R.string.promotion_list_text_shopping),
+                context.getString(R.string.promotion_list_text_travel),
+                context.getString(R.string.promotion_list_text_entertainment),
+                context.getString(R.string.promotion_list_text_health),
+                context.getString(R.string.promotion_list_text_beauty),
+                context.getString(R.string.promotion_list_text_education),
+                context.getString(R.string.promotion_list_text_reading),
+                context.getString(R.string.promotion_list_text_home_and_living),
+                context.getString(R.string.promotion_list_text_it_gadget),
+                context.getString(R.string.promotion_list_text_other))
+    }
+
     override fun getItem(position: Int): Fragment {
         return PromotionProgramTypeFragment.newInstance(PAIR_POSITION_TO_TYPE.find { it.first == position }!!.second, TAB_ITEM_TITLES[position])
     }
 
     override fun getCount(): Int {
         return TOTAL_PROMOTION
+
     }
 
     fun getTabView(parent: ViewGroup, position: Int): View {

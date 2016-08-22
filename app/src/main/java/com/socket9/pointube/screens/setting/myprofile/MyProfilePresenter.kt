@@ -43,16 +43,15 @@ class MyProfilePresenter(var view: MyProfileContract.View?) : MyProfileContract.
             mIsThai = mLoginResult!!.citizenID != null && mLoginResult!!.citizenID!!.length > 0
 
             /* build register model on-the-fly */
-            val mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(list[5], list[5].isEmpty())
-            val mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(list[6], list[6].isEmpty())
+            val mIsCitizenIdValid = ValidatorUtil.provideCitizenIdValidator().isValid(list[4], list[4].isEmpty())
+            val mIsPassportValid = ValidatorUtil.providePassportValidator().isValid(list[5], list[5].isEmpty())
             val isNationalityRequiredValid = if (mIsThai) mIsCitizenIdValid else mIsPassportValid
 
-            val isValid = ValidatorUtil.provideEmailValidator().isValid(list[0], list[0].isEmpty()) &&
-                    ValidatorUtil.provideFirstNameEnValidator().isValid(list[1], list[1].isEmpty()) &&
-                    ValidatorUtil.provideLastNameEnValidator().isValid(list[2], list[2].isEmpty()) &&
-                    ValidatorUtil.provideFirstNameThValidator().isValid(list[3], list[3].isEmpty()) &&
-                    ValidatorUtil.provideLastNameThValidator().isValid(list[4], list[4].isEmpty()) &&
-                    !list[7].isEmpty() &&
+            val isValid = ValidatorUtil.provideFirstNameEnValidator().isValid(list[0], list[0].isEmpty()) &&
+                    ValidatorUtil.provideLastNameEnValidator().isValid(list[1], list[1].isEmpty()) &&
+                    ValidatorUtil.provideFirstNameThValidator().isValid(list[2], list[2].isEmpty()) &&
+                    ValidatorUtil.provideLastNameThValidator().isValid(list[3], list[3].isEmpty()) &&
+                    !list[6].isEmpty() &&
                     isNationalityRequiredValid
 
             if (isValid) {
