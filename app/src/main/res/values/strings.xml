@@ -281,6 +281,10 @@
     <!-- Promotion Detail -->
     <string name="promotion_detail_text_start">Start</string>
     <string name="promotion_detail_text_point">Point</string>
+    <string name="promotion_detail_text_special_point">Special Point</string>
+    <string name="promotion_detail_text_time">Time</string>
+    <string name="promotion_detail_text_place">Place</string>
+    <string name="promotion_detail_text_url">Url</string>
     <string name="promotion_detail_text_promotion_period">Promotion Period</string>
     <string name="promotion_detail_text_channel">Channels</string>
     <string name="promotion_detail_text_how_to_redeem">How To Redeem</string>

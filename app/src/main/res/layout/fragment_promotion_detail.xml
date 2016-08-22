@@ -141,6 +141,21 @@
                 style="@style/BaseTextTerm.TextTermsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/promotion_detail_text_special_point" />
+
+
+            <TextView
+                android:id="@+id/tvSpecialPoint"
+                style="@style/BaseTextTerm.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="400 Points" />
+
+
+            <TextView
+                style="@style/BaseTextTerm.TextTermsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/promotion_detail_text_promotion_period" />
 
 
@@ -151,6 +166,20 @@
                 android:layout_height="wrap_content"
                 tools:text="13/Jun/2016 - 31/Jul/2016" />
 
+
+            <TextView
+                style="@style/BaseTextTerm.TextTermsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/promotion_detail_text_time" />
+
+
+            <TextView
+                android:id="@+id/tvTime"
+                style="@style/BaseTextTerm.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Time" />
 
             <TextView
                 style="@style/BaseTextTerm.TextTermsTitle"
@@ -180,6 +209,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="ระบบ USSD *770" />
+
+
+
+            <TextView
+                style="@style/BaseTextTerm.TextTermsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/promotion_detail_text_place" />
+
+
+            <TextView
+                android:id="@+id/tvPlace"
+                style="@style/BaseTextTerm.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Socket9 Ltd." />
+
+
+
+            <TextView
+                style="@style/BaseTextTerm.TextTermsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/promotion_detail_text_url" />
+
+
+            <TextView
+                android:id="@+id/tvUrl"
+                style="@style/BaseTextTerm.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="htttp://ripzery.com" />
 
 
             <TextView
