@@ -19,7 +19,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId){
+        when (item!!.itemId) {
             android.R.id.home -> finish()
         }
 
@@ -31,7 +31,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-        setupToolbar("Edit Profile", false, true)
+        setupToolbar(getString(R.string.my_profile_text_title), false, true)
 
         replaceFragment(fragment = MyProfileFragment.newInstance(""))
     }
