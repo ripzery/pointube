@@ -21,6 +21,7 @@ import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
 import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
+import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_program_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.support.v4.startActivity
@@ -132,22 +133,27 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     }
 
     private fun initLoginSpannable(){
-        val spannableString = SpannableString(getString(R.string.program_list_text_login_to_see_more))
-        val clickableSpan: ClickableSpan = object : ClickableSpan(){
-            override fun onClick(view: View?) {
-                mProgramListPresenter.clickLogin()
+        if(SharedPrefUtil.loadLoginResult() == null){
+            val spannableString = SpannableString(getString(R.string.program_list_text_login_to_see_more))
+            val clickableSpan: ClickableSpan = object : ClickableSpan(){
+                override fun onClick(view: View?) {
+                    mProgramListPresenter.clickLogin()
+                }
+
+                override fun updateDrawState(ds: TextPaint?) {
+                    super.updateDrawState(ds)
+                    ds!!.isUnderlineText = true
+                }
             }
 
-            override fun updateDrawState(ds: TextPaint?) {
-                super.updateDrawState(ds)
-                ds!!.isUnderlineText = true
-            }
+            spannableString.setSpan(clickableSpan, 7, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            tvSeeMore.text = spannableString
+            tvSeeMore.movementMethod = LinkMovementMethod.getInstance()
+            tvSeeMore.highlightColor = ContextCompat.getColor(context, R.color.colorGreen)
+            tvSeeMore.visibility = View.VISIBLE
+        }else{
+            tvSeeMore.visibility = View.GONE
         }
-
-        spannableString.setSpan(clickableSpan, 7, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        tvSeeMore.text = spannableString
-        tvSeeMore.movementMethod = LinkMovementMethod.getInstance()
-        tvSeeMore.highlightColor = ContextCompat.getColor(context, R.color.colorGreen)
     }
 
     inner class ProgramListAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: ProgramListListener) : RecyclerView.Adapter<ProgramListAdapter.ProgramListViewHolder>() {
