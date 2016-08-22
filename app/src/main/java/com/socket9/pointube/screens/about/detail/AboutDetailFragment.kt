@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.socket9.pointube.R
+import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_about_detail.*
 import org.jetbrains.anko.AnkoLogger
 
@@ -79,6 +80,8 @@ class AboutDetailFragment : Fragment(), AnkoLogger {
             TERMS_OF_USE -> "about-terms.html"
             else -> ""
         }
-        webView.loadUrl("file:///android_asset/en/$htmlFile")
+
+        val isEnglish = if (SharedPrefUtil.isEnglish()) "en" else "th"
+        webView.loadUrl("file:///android_asset/$isEnglish/$htmlFile")
     }
 }
