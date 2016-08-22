@@ -2,13 +2,13 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#EC0080</color>
     <color name="colorTextWhite">#FFFFFF</color>
     <color name="colorWhite200">#EEEEEE</color>
 
     <!-- material color 500's shade -->
     <color name="colorGreen">#4CAF50</color>
-    <color name="colorTeal">#009688</color>
+    <color name="colorTeal">#37B34A</color>
     <color name="colorRed">#F44336</color>
     <color name="colorGrey">#9E9E9E</color>
     <color name="colorIndigo">#3F51B5</color>

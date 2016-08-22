@@ -31,7 +31,7 @@ class App : Application(), AnkoLogger {
         SharedPrefUtil.sharePref = getSharedPreferences(SharedPrefUtil.NAME, Context.MODE_PRIVATE)
         RxActivityResult.register(this)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-        CalligraphyConfig.initDefault(CalligraphyConfig.Builder().setDefaultFontPath("fonts/QuarkLight.ttf").setFontAttrId(R.attr.fontPath).build())
+//        CalligraphyConfig.initDefault(CalligraphyConfig.Builder().setDefaultFontPath("fonts/QuarkLight.ttf").setFontAttrId(R.attr.fontPath).build())
 
         val locale = Locale(if (SharedPrefUtil.isEnglish()) "en" else "th")
         Locale.setDefault(locale)

@@ -21,6 +21,7 @@
 
     <style name="BaseTextTerm.Body">
         <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="fontPath">fonts/QuarkLight.ttf</item>
         <item name="android:textStyle">normal</item>
     </style>
 

@@ -89,6 +89,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     }
 
     override fun showPublishedProgramList(allPublishedProgram: MutableList<PublishedProgramItemRepo>) {
+        val video = PublishedProgramItemRepo(MasterPath = "http://service.pointube.com/the1card.mp4")
+        allPublishedProgram.add(0, video)
         mImageVideoPagerAdapter.updateList(allPublishedProgram)
     }
 
@@ -192,7 +194,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     inner class ImageVideoPagerAdapter(fm: FragmentManager, var list: MutableList<PublishedProgramItemRepo>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return HomeImageVideoFragment.newInstance(list[position].MasterPath, false)
+            return HomeImageVideoFragment.newInstance(list[position].MasterPath, position == 0)
         }
 
         override fun getCount(): Int {

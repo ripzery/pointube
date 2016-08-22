@@ -3,6 +3,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.screens.home.slider.HomeImageVideoContract
@@ -49,7 +50,7 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
             mIsVideo = arguments.getBoolean(ARG_2)
 
             info { mImagePath }
-        }else{
+        } else {
             mImagePath = savedInstanceState?.getString("imagePath")
             mIsVideo = savedInstanceState?.getBoolean("isVideo")
         }
@@ -81,16 +82,24 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
     /* Override view interface zone */
     override fun showImage(path: String) {
         Glide.with(this).load(path.replace("192.168.100.252:8099", "service.pointube.com")).into(ivImage)
+        ivImage.visibility = View.VISIBLE
+        video.visibility = View.GONE
     }
 
     override fun showVideo(path: String) {
-        info { "load video $path"}
+        video.setVideoPath(path)
+        val mediaController = MediaController(context)
+        mediaController.setAnchorView(video)
+        video.setMediaController(mediaController)
+        video.requestFocus()
+        video.setOnPreparedListener { video.start() }
+        ivImage.visibility = View.GONE
+        video.visibility = View.VISIBLE
     }
 
     override fun showTouch(msg: String) {
         toast(msg)
     }
-
 
     /** Method zone **/
 
