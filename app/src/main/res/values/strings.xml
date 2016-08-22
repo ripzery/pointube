@@ -22,6 +22,7 @@
     <string name="register_form_text_your_profile">YOUR PROFILE</string>
     <string name="register_form_text_email">Email</string>
     <string name="register_form_text_password">Password</string>
+    <string name="register_form_text_repeat_password">Confirm password</string>
     <string name="register_form_text_username">Username</string>
     <string name="register_form_text_first_name_en">First Name (En)</string>
     <string name="register_form_text_first_name_th">First Name (Th)</string>

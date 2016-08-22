@@ -17,6 +17,8 @@ interface ProgramListContract {
         fun showProgramDetail(programId: Int)
 
         fun showLogin()
+
+        fun showEmptyProgram()
     }
 
     interface Presenter : BasePresenter {

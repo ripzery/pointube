@@ -111,6 +111,10 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     override fun showLogin() {
         startActivity<LoginActivity>()
     }
+
+    override fun showEmptyProgram() {
+        tvComingSoon.visibility = View.VISIBLE
+    }
     /** Method zone **/
 
     private fun initInstance() {

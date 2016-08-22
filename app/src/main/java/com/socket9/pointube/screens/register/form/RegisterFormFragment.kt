@@ -128,7 +128,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
         mRegisterFormPresenter = RegisterFormPresenter(this)
         mRegisterFormPresenter.onCreate()
 
-        initEditText()
+//        initEditText()
         /* Set Listener */
         tvDob.setOnClickListener {
             val now = Calendar.getInstance()
