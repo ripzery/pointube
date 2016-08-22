@@ -152,7 +152,12 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
                 }
             }
 
-            spannableString.setSpan(clickableSpan, 7, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            if(SharedPrefUtil.isEnglish()) {
+                spannableString.setSpan(clickableSpan, 7, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }else{
+                spannableString.setSpan(clickableSpan, 5, 16, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+
             tvSeeMore.text = spannableString
             tvSeeMore.movementMethod = LinkMovementMethod.getInstance()
             tvSeeMore.highlightColor = ContextCompat.getColor(context, R.color.colorGreen)
