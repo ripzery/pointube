@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -89,6 +90,8 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
     }
 
     override fun showPublishedProgramList(allPublishedProgram: MutableList<PublishedProgramItemRepo>) {
+        val video = PublishedProgramItemRepo(MasterPath = "http://service.pointube.com/the1card.mp4")
+        allPublishedProgram.add(0, video)
         mImageVideoPagerAdapter.updateList(allPublishedProgram)
     }
 
@@ -131,6 +134,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
         recyclerView.layoutManager = mLinearLayoutManager
 
         viewpager.adapter = mImageVideoPagerAdapter
+
         indicator.setViewPager(viewpager)
         mImageVideoPagerAdapter.registerDataSetObserver(indicator.dataSetObserver)
 
@@ -192,7 +196,7 @@ class HomeFragment : Fragment(), HomeContract.View, AnkoLogger {
 
     inner class ImageVideoPagerAdapter(fm: FragmentManager, var list: MutableList<PublishedProgramItemRepo>) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return HomeImageVideoFragment.newInstance(list[position].MasterPath, false)
+            return HomeImageVideoFragment.newInstance(list[position].MasterPath, position == 0)
         }
 
         override fun getCount(): Int {

@@ -3,6 +3,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import com.bumptech.glide.Glide
 import com.socket9.pointube.R
 import com.socket9.pointube.screens.home.slider.HomeImageVideoContract
@@ -20,6 +21,7 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
     /** Variable zone **/
     private lateinit var mImagePath: String
     private var mIsVideo: Boolean = false
+    private var mMediaController: MediaController? = null
     private val mHomeImageVideoPresenter: HomeImageVideoContract.Presenter by lazy { HomeImageVideoPresenter(this) }
 
 
@@ -49,7 +51,7 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
             mIsVideo = arguments.getBoolean(ARG_2)
 
             info { mImagePath }
-        }else{
+        } else {
             mImagePath = savedInstanceState?.getString("imagePath")
             mIsVideo = savedInstanceState?.getBoolean("isVideo")
         }
@@ -72,6 +74,14 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
         mHomeImageVideoPresenter.onDestroy()
     }
 
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (layoutVideo != null && !isVisibleToUser && layoutVideo.visibility == View.VISIBLE) {
+            video.pause()
+            mMediaController?.hide()
+        }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("imagePath", mImagePath)
@@ -81,16 +91,37 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
     /* Override view interface zone */
     override fun showImage(path: String) {
         Glide.with(this).load(path.replace("192.168.100.252:8099", "service.pointube.com")).into(ivImage)
+        ivImage.visibility = View.VISIBLE
+        layoutVideo.visibility = View.GONE
     }
 
+
     override fun showVideo(path: String) {
-        info { "load video $path"}
+        Glide.with(this).load("http://service.pointube.com/preview-vdo-the1card.jpg").into(image)
+        video.setVideoPath(path)
+        mMediaController = MediaController(context)
+        mMediaController!!.setAnchorView(video)
+        video.setMediaController(null)
+        video.requestFocus()
+        video.setOnPreparedListener {
+//            video.start
+        }
+
+
+        ivImage.visibility = View.GONE
+        layoutVideo.visibility = View.VISIBLE
+
+        imagePlay.setOnClickListener {
+            video.start()
+            image.visibility = View.GONE
+            imagePlay.visibility = View.GONE
+            video.setMediaController(mMediaController)
+        }
     }
 
     override fun showTouch(msg: String) {
         toast(msg)
     }
-
 
     /** Method zone **/
 
