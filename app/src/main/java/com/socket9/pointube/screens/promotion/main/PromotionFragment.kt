@@ -55,7 +55,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
         when (item!!.itemId) {
             R.id.menu_recommend -> {
                 if (SharedPrefUtil.loadLoginResult() != null)
-                    showRecommendMe()
+                    mPromotionPresenter.clickRecommendMe()
                 else{
                     toast("Please login to see recommend promotion")
                 }
