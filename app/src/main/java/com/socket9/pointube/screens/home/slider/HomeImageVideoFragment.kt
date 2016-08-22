@@ -21,6 +21,7 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
     /** Variable zone **/
     private lateinit var mImagePath: String
     private var mIsVideo: Boolean = false
+    private var mMediaController: MediaController? = null
     private val mHomeImageVideoPresenter: HomeImageVideoContract.Presenter by lazy { HomeImageVideoPresenter(this) }
 
 
@@ -73,6 +74,14 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
         mHomeImageVideoPresenter.onDestroy()
     }
 
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (layoutVideo != null && !isVisibleToUser && layoutVideo.visibility == View.VISIBLE) {
+            video.pause()
+            mMediaController?.hide()
+        }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("imagePath", mImagePath)
@@ -83,18 +92,31 @@ class HomeImageVideoFragment : Fragment(), HomeImageVideoContract.View, AnkoLogg
     override fun showImage(path: String) {
         Glide.with(this).load(path.replace("192.168.100.252:8099", "service.pointube.com")).into(ivImage)
         ivImage.visibility = View.VISIBLE
-        video.visibility = View.GONE
+        layoutVideo.visibility = View.GONE
     }
 
+
     override fun showVideo(path: String) {
+        Glide.with(this).load("http://service.pointube.com/preview-vdo-the1card.jpg").into(image)
         video.setVideoPath(path)
-        val mediaController = MediaController(context)
-        mediaController.setAnchorView(video)
-        video.setMediaController(mediaController)
+        mMediaController = MediaController(context)
+        mMediaController!!.setAnchorView(video)
+        video.setMediaController(null)
         video.requestFocus()
-        video.setOnPreparedListener { video.start() }
+        video.setOnPreparedListener {
+//            video.start
+        }
+
+
         ivImage.visibility = View.GONE
-        video.visibility = View.VISIBLE
+        layoutVideo.visibility = View.VISIBLE
+
+        imagePlay.setOnClickListener {
+            video.start()
+            image.visibility = View.GONE
+            imagePlay.visibility = View.GONE
+            video.setMediaController(mMediaController)
+        }
     }
 
     override fun showTouch(msg: String) {

@@ -42,6 +42,8 @@
                 android:id="@+id/btnChangeLanguage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:drawableLeft="@drawable/ic_language_black_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:text="English"
                 android:textAllCaps="true" />
