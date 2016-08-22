@@ -18,30 +18,30 @@
     <!-- Screen -->
 
     <!-- Register Form -->
-    <string name="register_form_text_account">ACCOUNT</string>
-    <string name="register_form_text_your_profile">YOUR PROFILE</string>
-    <string name="register_form_text_email">Email</string>
-    <string name="register_form_text_password">Password</string>
-    <string name="register_form_text_username">Username</string>
-    <string name="register_form_text_first_name_en">First Name (En)</string>
-    <string name="register_form_text_first_name_th">First Name (Th)</string>
-    <string name="register_form_text_last_name_en">Last Name (En)</string>
-    <string name="register_form_text_last_name_th">Last Name (Th)</string>
-    <string name="register_form_text_dob">Date of Birth</string>
-    <string name="register_form_text_hint_dob">Select date of birth</string>
-    <string name="register_form_text_passport">Passport ID</string>
-    <string name="register_form_text_citizen_id">Citizen ID</string>
-    <string name="register_form_text_gender">Gender</string>
-    <string name="register_form_text_gender_male">Male</string>
-    <string name="register_form_text_gender_female">Female</string>
-    <string name="register_form_text_change_password">Change Password</string>
-    <string name="register_form_text_thai">Thai</string>
-    <string name="register_form_text_expat">Expat</string>
-    <string name="register_form_btn_register">Register</string>
+    <string name="register_form_text_account">บัญชี</string>
+    <string name="register_form_text_your_profile">ข้อมูลส่วนตัว</string>
+    <string name="register_form_text_email">อีเมล์</string>
+    <string name="register_form_text_password">รหัสผ่าน</string>
+    <string name="register_form_text_username">ชื่อผู้ใช้</string>
+    <string name="register_form_text_first_name_en">ชื่อ (อังกฤษ)</string>
+    <string name="register_form_text_first_name_th">ชื่อ (ไทย)</string>
+    <string name="register_form_text_last_name_en">นามสกุล (อังกฤษ)</string>
+    <string name="register_form_text_last_name_th">นามสกุล (ไทย)</string>
+    <string name="register_form_text_dob">วันเกิด</string>
+    <string name="register_form_text_hint_dob">เลือกวันเกิด</string>
+    <string name="register_form_text_passport">หมายเลขพาสปอร์ต</string>
+    <string name="register_form_text_citizen_id">เลขที่บัตรประชาชน</string>
+    <string name="register_form_text_gender">เพศ</string>
+    <string name="register_form_text_gender_male">ชาย</string>
+    <string name="register_form_text_gender_female">หญิง</string>
+    <string name="register_form_text_change_password">เปลี่ยนรหัสผ่าน</string>
+    <string name="register_form_text_thai">ไทย</string>
+    <string name="register_form_text_expat">ต่างชาติ</string>
+    <string name="register_form_btn_register">ลงทะเบียน</string>
 
-    <string name="register_form_toast_register_successful">Register successful</string>
-    <string name="register_form_dialog_progress_register_content">Registering</string>
-    <string name="register_form_citizen_id_description">You must enter the citizen identification number exactly as it appears on the identification card.  Please re-check prior to submission.  You will not be able to correct the number once registered.  This is a part of the security measures to protect your personal information.</string>
+    <string name="register_form_toast_register_successful">ลงทะเบียนสำเร็จ</string>
+    <string name="register_form_dialog_progress_register_content">กำลังลงทะเบียน</string>
+    <string name="register_form_citizen_id_description">กรุณาใส่เลขที่บัตรประชาชนและตรวจสอบความถูกต้องอีกครั้งก่อนสมัคร เพื่อเป็นการรักษาความปลอดภัยในข้อมูลส่วนบุคคล หลังจากที่ท่านสมัครแล้วจะไม่สามารถเปลี่ยนหรือแก้ไขได้ หากต้องการข้อมูลเพิ่มเติม ติดต่อ support@pointube.com</string>
 
     <!-- Terms and Condition -->
     <string name="terms_text_1">Last updated: May 18, 2016</string>
@@ -152,200 +152,212 @@
           Pointube reserves the right to seek injunctive or other appropriate relief in any court in Thailand, and you
           consent to exclusive jurisdiction and venue in such courts.</string>
 
-    <string name="terms_accept_term">Accept Terms &amp; Conditions</string>
-    <string name="terms_btn_next">Next</string>
+    <string name="terms_accept_term">ยอมรับข้อกำหนดและเงื่อนไข</string>
+    <string name="terms_btn_next">ถัดไป</string>
 
     <!-- Register Phone -->
-    <string name="register_text_phone_info"> Pleases input your mobile phone number In field below
-            Verification code will be sent  via SMS to your mobile phone.</string>
+    <string name="register_text_phone_info">ใส่หมายเลขโทรศัพท์มือถือของท่านในช่องที่กำหนด ระบบจะจัดส่งรหัสผ่านไปยังSMSที่เครื่องของท่าน</string>
 
-    <string name="register_phone_toast_save_success">Save phone number successfully</string>
-    <string name="register_phone_dialog_progress_saving_phone">Saving phone number…</string>
+    <string name="register_phone_toast_save_success">บันทึกหมายเลขโทรศัพท์สำเร็จ</string>
+    <string name="register_phone_dialog_progress_saving_phone">กำลังบันทึกหมายเลขโทรศัพท์…</string>
 
-    <string name="register_phone_telephone_number">Telephone Number</string>
-    <string name="register_phone_send_otp">Send OTP</string>
+    <string name="register_phone_telephone_number">เบอร์โทรศัพท์</string>
+    <string name="register_phone_send_otp">ส่ง OTP</string>
 
     <!-- Register OTP -->
-    <string name="otp_text_info_1">Verification code has been sent to your mobile phone</string>
-    <string name="otp_text_info_2">Please input the 6 digit in the field below</string>
+    <string name="otp_text_info_1">รหัสผ่านได้ถูกจัดส่งไปที่โทรศัพท์มือถือของท่านแล้ว</string>
+    <string name="otp_text_info_2">กรุณาใส่หมายเลข6หลักที่ได้รับ ลงในช่องที่กำหนด</string>
 
-    <string name="otp_toast_verify_successful">Verify OTP successfully</string>
+    <string name="otp_toast_verify_successful">ยืนยัน OTP สำเร็จ</string>
     <string name="otp_dialog_progress_verifying">Verify OTP...</string>
 
-    <string name="otp_text_verify_otp">Verify OTP</string>
-    <string name="otp_text_verify">Verify</string>
+    <string name="otp_text_verify_otp">ยืนยัน OTP</string>
+    <string name="otp_text_verify">ยืนยัน</string>
 
 
     <!-- Brand Member -->
-    <string name="brand_member_info_1">Please select the Brand(s) you want to view into the POINTUBE wallet</string>
-    <string name="brand_member_select_all_title">Qualified Brands</string>
-    <string name="brand_member_select_all_info">Brand that you have registered</string>
-    <string name="brand_member_select_all_button">Select all</string>
-    <string name="brand_member_select_hint">*For any question on above member data, please contact your reward program provider\'s callcenter for details.</string>
+    <string name="brand_member_info_1">เลือกแบรนด์ที่ต้องการรับชมคะแนน ลงใน Pointube wallet</string>
+    <string name="brand_member_select_all_title">แบรนด์ที่เป็นสมาชิกอยู่</string>
+    <string name="brand_member_select_all_info">แบรนด์ที่ลงทะเบียนไว้</string>
+    <string name="brand_member_select_all_button">เลือกทั้งหมด</string>
+    <string name="brand_member_select_hint">*หากมีข้อสงสัยหรือคำถาม กรุณาติดต่อศูนย์บริการของ Reward Program ที่ท่านเป็นสมาชิกอยู่เพื่อขอรับรายละเอียด</string>
 
-    <string name="brand_member_button_start">Next</string>
+    <string name="brand_member_button_start">ถัดไป</string>
 
     <!-- Brand Non Member -->
-    <string name="brand_non_member_info_1">Do you wish to become a member of these brand? \n If \'yes\', please select the brands from the list</string>
-    <string name="brand_non_member_select_all_title">Register</string>
-    <string name="brand_non_member_button_start">Let\'s start</string>
+    <string name="brand_non_member_info_1">ถ้าสนใจสมัครสมาชิกแบรนด์อื่นๆ ให้เลือกจากรายการนี้</string>
+    <string name="brand_non_member_select_all_title">ลงทะเบียน</string>
+    <string name="brand_non_member_button_start">เริ่มต้น</string>
 
     <!-- Point -->
-    <string name="point_text_title">My Points</string>
-    <string name="point_dialog_progress_selected_brand_content">Loading selected brand..</string>
-    <string name="point_title">Outstanding Points</string>
-    <string name="point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
+    <string name="point_text_title">เช็คคะแนน</string>
+    <string name="point_dialog_progress_selected_brand_content">กำลังโหลดแบรนด์ที่เลือก..</string>
+    <string name="point_title">คะแนนในปัจจุบัน</string>
+    <string name="point_info_helper">*หากมีข้อสงสัยหรือคำถาม กรุณาติดต่อศูนย์บริการของ Reward Program ที่ท่านเป็นสมาชิกอยู่เพื่อขอรับรายละเอียด</string>
 
     <!-- About -->
-    <string name="about_what_is_pointube">What is Pointube?</string>
-    <string name="about_who_should_use">Who should use Pointube?</string>
-    <string name="about_how_to_use">How to use Pointube?</string>
-    <string name="about_faq">FAQ</string>
-    <string name="about_contact_us">Contact Us</string>
-    <string name="about_privacy">Privacy Policy</string>
-    <string name="about_terms_of_use">Terms of Use</string>
-    <string name="about_text_title">About Pointube</string>
+    <string name="about_what_is_pointube">Pointube คืออะไร?</string>
+    <string name="about_who_should_use">ใครควรใช้ Pointube บ้าง</string>
+    <string name="about_how_to_use">Pointube ใช้งานอย่างไร</string>
+    <string name="about_faq">คำถามที่พบบ่อย</string>
+    <string name="about_contact_us">ติดต่อเรา</string>
+    <string name="about_privacy">นโยบายความเป็นส่วนตัว</string>
+    <string name="about_terms_of_use">ข้อกำหนดในการใช้งาน</string>
+    <string name="about_text_title">เกี่ยวกับ Pointube</string>
 
     <!-- Login -->
-    <string name="login_dialog_login_title">Reset Password</string>
-    <string name="login_dialog_login_positive">Reset</string>
+    <string name="login_dialog_login_title">ตั้งรหัสผ่านใหม่</string>
+    <string name="login_dialog_login_positive">ตั้งใหม่</string>
 
-    <string name="login_dialog_validate_pin_title">Validate Pin</string>
-    <string name="login_dialog_validate_pin_positive">Validate</string>
+    <string name="login_dialog_validate_pin_title">ตรวจสอบรหัส</string>
+    <string name="login_dialog_validate_pin_positive">ตรวจสอบ</string>
 
-    <string name="login_dialog_forgot_password_title">Forgot Password</string>
+    <string name="login_dialog_forgot_password_title">ลืมรหัสผ่าน</string>
 
-    <string name="login_dialog_progress_validate_forgot_password">Validate forgot password…</string>
-    <string name="login_dialog_progress_resetting_password">Resetting password…</string>
-    <string name="login_dialog_progress_login">Logging in…</string>
-    <string name="login_dialog_progress_request_otp">Request Otp…</string>
-    <string name="login_dialog_forgot_password_otp_hint">Please input the 4 digit in the field below</string>
+    <string name="login_dialog_progress_validate_forgot_password">ตรวจสอบอีเมล์…</string>
+    <string name="login_dialog_progress_resetting_password">กำลังตั้งรหัสผ่านใหม่…</string>
+    <string name="login_dialog_progress_login">กำลังเข้าสู่ระบบ…</string>
+    <string name="login_dialog_progress_request_otp">คำขอ OTP…</string>
+    <string name="login_dialog_forgot_password_otp_hint">กรุณาใส่ตัวเลข 4 หลักในช่องด้านล่าง</string>
     <string name="login_dialog_forget_password_positive">Change</string>
 
-    <string name="login_toast_login_success">Login success</string>
-    <string name="login_toast_forgot_success">Reset password success</string>
+    <string name="login_toast_login_success">เข้าสู่ระบบสำเร็จ</string>
+    <string name="login_toast_forgot_success">ตั้งรหัสผ่านใหม่สำเร็จ</string>
 
-    <string name="login_text_email">Email</string>
-    <string name="login_text_password">Password</string>
-    <string name="login_text_remember_me">Remember Me</string>
-    <string name="login_text_sign_up">Sign Up</string>
-    <string name="login_text_login">Log in</string>
-    <string name="login_text_new_user">New User?</string>
-    <string name="login_text_forget_password">Forget Password</string>
+    <string name="login_text_email">อีเมล์</string>
+    <string name="login_text_password">รหัสผ่าน</string>
+    <string name="login_text_remember_me">จำค่าการเข้าสู่ระบบ</string>
+    <string name="login_text_sign_up">ลงทะเบียน</string>
+    <string name="login_text_login">เข้าสู่ระบบ</string>
+    <string name="login_text_new_user">ผู้ใช้ใหม่?</string>
+    <string name="login_text_forget_password">ลืมรหัสผ่าน</string>
 
     <!-- Setting -->
-    <string name="setting_text_dialog_progress_logging_out">Logging out…</string>
-    <string name="setting_text_my_profile">My Profile</string>
-    <string name="setting_text_my_brand">My Brands</string>
-    <string name="setting_text_logout">Log out</string>
-    <string name="setting_text_title">Setting</string>
+    <string name="setting_text_dialog_progress_logging_out">กำลังออกจากระบบ…</string>
+    <string name="setting_text_my_profile">ข้อมูลส่วนตัว</string>
+    <string name="setting_text_my_brand">แบรนด์ของฉัน</string>
+    <string name="setting_text_logout">ออกจากระบบ</string>
+    <string name="setting_text_title">ตั้งค่า</string>
 
     <!-- My Brand -->
-    <string name="my_brand_text_title">My Brands</string>
+    <string name="my_brand_text_title">แบรนด์ของฉัน</string>
 
     <!-- My Profile -->
-    <string name="my_profile_text_title">My Profile</string>
+    <string name="my_profile_text_title">ข้อมูลส่วนตัว</string>
 
-    <string name="my_profile_dialog_change_password_hint_old_password">Old Password</string>
-    <string name="my_profile_dialog_change_password_hint_new_password">New Password</string>
-    <string name="my_profile_dialog_change_password_hint_repeat_new_password">Repeat New Password</string>
+    <string name="my_profile_dialog_change_password_hint_old_password">รหัสผ่านเดิม</string>
+    <string name="my_profile_dialog_change_password_hint_new_password">รหัสผ่านใหม่</string>
+    <string name="my_profile_dialog_change_password_hint_repeat_new_password">ยืนยันรหัสผ่านใหม่</string>
 
-    <string name="my_profile_dialog_change_password_title">Change Password</string>
-    <string name="my_profile_toast_change_password_success">Change password success</string>
+    <string name="my_profile_dialog_change_password_title">เปลี่ยนรหัสผ่าน</string>
+    <string name="my_profile_toast_change_password_success">เปลี่ยนรหัสผ่านสำเร็จ</string>
 
-    <string name="my_profile_dialog_progress_update_profile_content">Updating profile…</string>
-    <string name="my_profile_toast_update_profile_success">Update profile successful</string>
+    <string name="my_profile_dialog_progress_update_profile_content">กำลังอัพเดทข้อมูลส่วนตัว…</string>
+    <string name="my_profile_toast_update_profile_success">อัพเดทข้อมูลส่วนตัวสำเร็จ</string>
 
-    <string name="my_profile_btn_save">Save</string>
+    <string name="my_profile_btn_save">บันทึก</string>
 
     <!-- Brand Non Member -->
-    <string name="brand_non_member_toast_save_successful">Save brand successful</string>
-    <string name="brand_non_member_toast_save_failed">Save brand failed</string>
-    <string name="brand_non_member_toast_empty_brand">Empty brand</string>
-    <string name="brand_non_member_toast_loading_error">Loading brand error</string>
+    <string name="brand_non_member_toast_save_successful">บันทึกแบรนด์สำเร็จ</string>
+    <string name="brand_non_member_toast_save_failed">บันทึกแบรนด์ล้มเหลว</string>
+    <string name="brand_non_member_toast_empty_brand">ไม่มีแบรนด์ในขณะนี้</string>
+    <string name="brand_non_member_toast_loading_error">ไม่สามารถโหลดแบรนด์</string>
 
-    <string name="brand_non_member_dialog_progress_save_brand">Saving brand…</string>
+    <string name="brand_non_member_dialog_progress_save_brand">กำลังบันทึกแบรนด์…</string>
 
-    <string name="brand_non_member_btn_select_all">Select all</string>
-    <string name="brand_non_member_btn_un_select_all">Unselect all</string>
+    <string name="brand_non_member_btn_select_all">เลือกทั้งหมด</string>
+    <string name="brand_non_member_btn_un_select_all">ไม่เลือกทั้งหมด</string>
 
     <!-- Home -->
-    <string name="home_toast_empty_program_list">Empty Programs</string>
+    <string name="home_toast_empty_program_list">ไม่มีโปรโมชั่นในขณะนี้</string>
     <string name="home_text_reward_program">Reward Programs</string>
-    <string name="home_btn_login">Login</string>
-    <string name="home_text_new_user">New User?</string>
-    <string name="home_text_sign_up">Sign Up</string>
-    <string name="home_text_title">Home</string>
+    <string name="home_btn_login">เข้าสู่ระบบ</string>
+    <string name="home_text_new_user">ผู้ใช้ใหม่?</string>
+    <string name="home_text_sign_up">ลงทะเบียน</string>
+    <string name="home_text_title">หน้าแรก</string>
 
 
     <!-- Promotion Detail -->
-    <string name="promotion_detail_text_start">Start</string>
-    <string name="promotion_detail_text_point">Point</string>
-    <string name="promotion_detail_text_promotion_period">Promotion Period</string>
-    <string name="promotion_detail_text_channel">Channels</string>
-    <string name="promotion_detail_text_how_to_redeem">How To Redeem</string>
-    <string name="promotion_detail_text_term_and_condition">Terms and Conditions</string>
+    <string name="promotion_detail_text_start">เริ่มต้นที่</string>
+    <string name="promotion_detail_text_point">คะแนน</string>
+    <string name="promotion_detail_text_special_point">คะแนนพิเศษ</string>
+    <string name="promotion_detail_text_time">ระยะเวลา</string>
+    <string name="promotion_detail_text_place">สถานที่/ สาขา</string>
+    <string name="promotion_detail_text_url">Url</string>
+    <string name="promotion_detail_text_promotion_period">ช่วงเวลาของโปรโมชั่น</string>
+    <string name="promotion_detail_text_channel">ช่องทางการแลกคะแนน</string>
+    <string name="promotion_detail_text_how_to_redeem">วิธีการแลกคะแนน</string>
+    <string name="promotion_detail_text_term_and_condition">ข้อกำหนดและเงื่อนไข</string>
 
     <string name="promotion_detail_text_1_day">1 day left</string>
     <string name="promotion_detail_text_more_than_1_day">days left</string>
-    <string name="promotion_detail_text_less_than_1_day">In 24 hours</string>
+    <string name="promotion_detail_text_less_than_1_day">ภายใน 24 ชั่วโมง</string>
 
     <!-- Promotion List -->
-    <string name="promotion_list_loading_program">Loading program list…</string>
-    <string name="promotion_list_empty_loading_program">Promotion is coming…</string>
-    <string name="promotion_list_text_title">Promotion</string>
+    <string name="promotion_list_loading_program">กำลังโหลดโปรโมชั่น…</string>
+    <string name="promotion_list_empty_loading_program">ไม่มีโปรโมชั่นในขณะนี้…</string>
+    <string name="promotion_list_text_title">ดูโปรโมชั่น</string>
 
-    <string name="promotion_list_text_hot_deal">Hot deal</string>
-    <string name="promotion_list_text_dining">Dining</string>
-    <string name="promotion_list_text_shopping">Shopping</string>
-    <string name="promotion_list_text_travel">Travel</string>
-    <string name="promotion_list_text_entertainment">Entertainment</string>
-    <string name="promotion_list_text_health">Health</string>
-    <string name="promotion_list_text_beauty">Beauty</string>
-    <string name="promotion_list_text_education">Education</string>
-    <string name="promotion_list_text_reading">Reading</string>
-    <string name="promotion_list_text_home_and_living">Home and Living</string>
-    <string name="promotion_list_text_it_gadget">IT Gadget</string>
-    <string name="promotion_list_text_other">Other</string>
+    <string name="promotion_list_text_recommend_me_error">เพื่อสร้าง Pointube Wallet, ให้เลือกอย่างน้อย 1 แบรนด์จากรายการ</string>
+
+    <string name="promotion_list_text_hot_deal">โปรโมชั่นพิเศษ</string>
+    <string name="promotion_list_text_dining">อาหาร &amp; เครื่องดื่ม</string>
+    <string name="promotion_list_text_shopping">แฟชั่น</string>
+    <string name="promotion_list_text_travel">ที่พัก &amp; การท่องเที่ยว</string>
+    <string name="promotion_list_text_entertainment">บันเทิง &amp; ไลฟ์สไตล์</string>
+    <string name="promotion_list_text_health">สุขภาพ</string>
+    <string name="promotion_list_text_beauty">ความงาม</string>
+    <string name="promotion_list_text_education">ความรู้ &amp; การศึกษา</string>
+    <string name="promotion_list_text_reading">หนังสือ &amp; นิตยสาร</string>
+    <string name="promotion_list_text_home_and_living">ตกแต่งบ้าน &amp; ที่อยู่อาศัย</string>
+    <string name="promotion_list_text_it_gadget">อุปกรณ์ไอที &amp; มือถือ</string>
+    <string name="promotion_list_text_other">อื่นๆ</string>
+
+    <!-- Program List -->
+    <string name="program_list_text_login_to_see_more">กรุณาเข้าสู่ระบบเพื่อดูโปรโมชั่นอื่น</string>
 
     <!-- Recommend Me -->
-    <string name="recommend_me_title">Search by brands</string>
+   <string name="recommend_me_title">เลือกจากแบรนด์</string>
 
     <!-- Chart Detail -->
-    <string name="chart_detail_text_round_trip">Round Trip</string>
-    <string name="chart_detail_text_one_way_trip">One way Trip</string>
+    <string name="chart_detail_text_round_trip">ไป-กลับ</string>
+    <string name="chart_detail_text_one_way_trip">เที่ยวเดียว</string>
 
-    <string name="chart_detail_text_economy_class">Economy Class</string>
-    <string name="chart_detail_text_premium_economy_class">Premium Economy Class</string>
-    <string name="chart_detail_text_royal_silk_class">Royal Silk Class</string>
-    <string name="chart_detail_text_royal_first_class">Royal First Class</string>
+    <string name="chart_detail_text_economy_class">ชั้นประหยัด</string>
+    <string name="chart_detail_text_premium_economy_class">ชั้นประหยัด พรีเมียม</string>
+    <string name="chart_detail_text_royal_silk_class">ชั้นธุรกิจ รอยัลซิลค์</string>
+    <string name="chart_detail_text_royal_first_class">ชั้นหนึ่ง</string>
 
     <!-- Thai Airline -->
-    <string name="thai_airline_title">Air award chart</string>
+    <string name="thai_airline_title">ตารางรางวัลบัตรโดยสาร</string>
+    <string name="thai_airline_btn_title">โปรโมชั่นรางวัลบัตรโดยสาร โปรโมชั่นแลกไมล์</string>
 
     <!-- Zone 2-->
     <!-- Utility -->
 
     <!-- Error message -->
-    <string name="error_msg_internet_connection">Problem with internet connection or server, please try again</string>
+    <string name="error_msg_internet_connection">ไม่สามารถเชื่อมต่อกับอินเทอร์เน็ตได้ในขณะนี้, โปรดลองอีกครั้ง</string>
 
     <!-- Register Form Validation -->
-    <string name="validate_email">Invalid email</string>
-    <string name="validate_password">Password must be at least 4 characters</string>
-    <string name="validate_repeat_password">Repeat password is not match with password</string>
-    <string name="validate_first_name">First name must not be empty</string>
-    <string name="validate_last_name">Last name must not be empty</string>
-    <string name="validate_validate_citizen_id">CitizenID must be 13 characters</string>
-    <string name="validate_passport">Passport must be at least 10 characters</string>
+    <string name="validate_email">อีเมล์ไม่ถูกต้อง</string>
+    <string name="validate_password">รหัสผ่านต้องมีอย่างน้อย 4 ตัวอักษร</string>
+    <string name="validate_repeat_password">รหัสผ่านไม่ตรงกัน</string>
+    <string name="validate_first_name">กรุณาใส่ชื่อ</string>
+    <string name="validate_last_name">กรุณาใส่นามสกุล</string>
+    <string name="validate_validate_citizen_id">หมายเลขบัตรประชาชนต้องมีอย่างน้อย 13 หลัก</string>
+    <string name="validate_passport">หมายเลขพาสปอร์ตต้องมีอย่างน้อย 10 หลัก</string>
 
     <!-- Dialog Default Value -->
-    <string name="dialog_default_ok">OK</string>
-    <string name="dialog_default_cancel">Cancel</string>
-    <string name="dialog_default_progress_loading_title">Please wait</string>
+    <string name="dialog_default_ok">ตกลง</string>
+    <string name="dialog_default_cancel">ยกเลิก</string>
+    <string name="dialog_default_progress_loading_title">โปรดรอสักครู่</string>
 
     <!-- Promotion list view group -->
-    <string name="viewgroup_promotion_list_points">Points</string>
-    <string name="viewgroup_promotion_list_read_more">Read more…</string>
+    <string name="viewgroup_promotion_list_points">คะแนน</string>
+    <string name="viewgroup_promotion_list_read_more">อ่านต่อ…</string>
 
+    <!-- Dialog Language -->
+    <string name="dialog_language_title">เปลี่ยนภาษา</string>
+    <string name="dialog_language_list_thai">ไทย</string>
+    <string name="dialog_language_list_english">อังกฤษ</string>
 </resources>
-

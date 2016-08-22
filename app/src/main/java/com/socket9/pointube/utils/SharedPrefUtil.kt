@@ -36,10 +36,12 @@ object SharedPrefUtil : AnkoLogger {
     }
 
     fun saveLanguage(lang: String) {
-        sharePref!!.edit().putString(KEY_LANGUAGE, lang)
+        sharePref!!.edit().putString(KEY_LANGUAGE, lang).apply()
     }
 
     fun isEnglish(): Boolean {
         return sharePref!!.getString(KEY_LANGUAGE, "en").equals("en")
     }
+
+
 }

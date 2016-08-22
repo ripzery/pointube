@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.socket9.pointube.R
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * Created by ripzery on 8/19/16.
  */
-object DialogUtil {
+object DialogUtil : AnkoLogger{
     fun getChangePasswordDialog(context: Context, title: String,
                                 positive: String = ContextUtil.context!!.getString(R.string.dialog_default_ok),
                                 negative: String = ContextUtil.context!!.getString(R.string.dialog_default_cancel),
@@ -21,6 +23,25 @@ object DialogUtil {
                 .autoDismiss(false)
                 .onPositive { materialDialog, dialogAction ->
                     action(materialDialog.customView!!)
+                }
+                .build()
+    }
+
+    fun getChangeLanguageDialog(context: Context, title: String,
+                                positive: String = ContextUtil.context!!.getString(R.string.dialog_default_ok),
+                                negative: String = ContextUtil.context!!.getString(R.string.dialog_default_cancel),
+                                action: (Int) -> Unit): MaterialDialog? {
+        val defaultLanguage = if(SharedPrefUtil.isEnglish()) 0 else 1
+
+        info { defaultLanguage }
+
+        return MaterialDialog.Builder(context)
+                .title(title)
+                .items(ContextUtil.context!!.getString(R.string.dialog_language_list_english), ContextUtil.context!!.getString(R.string.dialog_language_list_thai))
+                .positiveText(positive)
+                .itemsCallbackSingleChoice(defaultLanguage) { dialog, itemView, which, text ->
+                    action(which)
+                    return@itemsCallbackSingleChoice true
                 }
                 .build()
     }

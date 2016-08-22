@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.socket9.pointube.R
 import com.socket9.pointube.extensions.replaceFragment
+import com.socket9.pointube.extensions.setLocale
 import com.socket9.pointube.extensions.setupToolbar
 import com.socket9.pointube.repository.brands.BrandRepo
 import com.socket9.pointube.screens.about.AboutFragment
@@ -24,6 +25,7 @@ import com.socket9.pointube.screens.promotion.main.ExpandableListAdapter
 import com.socket9.pointube.screens.promotion.main.PromotionFragment
 import com.socket9.pointube.screens.register.RegisterActivity
 import com.socket9.pointube.screens.setting.SettingFragment
+import com.socket9.pointube.utils.DialogUtil
 import com.socket9.pointube.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_nav_header.view.*
@@ -31,7 +33,6 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.startActivity
 import rx_activity_result.RxActivityResult
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     lateinit private var drawerToggle: ActionBarDrawerToggle
     private var mExpandListAdapter: ExpandableListAdapter? = null
     private var mFilteredBrandPresenter: FilteredBrandContract.Presenter? = null
+    private var mCurrentPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,22 +109,27 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             R.id.nav_home_fragment -> {
                 fragment = HomeFragment.newInstance("Home")
                 setupToolbar(showHamburger = true, isShowIcon = true)
+                mCurrentPosition = FRAGMENT_HOME
             }
             R.id.nav_point_fragment -> {
                 fragment = PointFragment.newInstance("Point")
-                setupToolbar(title = getString(R.string.point_text_title),showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.point_text_title), showHamburger = true, isShowIcon = false)
+                mCurrentPosition = FRAGMENT_POINT
             }
             R.id.nav_promotion_fragment -> {
                 fragment = PromotionFragment.newInstance("Promotion")
-                setupToolbar(title = getString(R.string.promotion_list_text_title),showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.promotion_list_text_title), showHamburger = true, isShowIcon = false)
+                mCurrentPosition = FRAGMENT_PROMOTION
             }
             R.id.nav_setting_fragment -> {
                 fragment = SettingFragment.newInstance("Setting")
-                setupToolbar(title = getString(R.string.setting_text_title),showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.setting_text_title), showHamburger = true, isShowIcon = false)
+                mCurrentPosition = FRAGMENT_SETTING
             }
             R.id.nav_about_fragment -> {
                 fragment = AboutFragment.newInstance("Home")
-                setupToolbar(title = getString(R.string.about_text_title),showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.about_text_title), showHamburger = true, isShowIcon = false)
+                mCurrentPosition = FRAGMENT_ABOUT
             }
         }
 
@@ -135,7 +142,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
     }
 
     private fun initInstance() {
-        selectMenu(FRAGMENT_HOME)
+        selectMenu(intent.getIntExtra("currentFragment", FRAGMENT_HOME))
 
         /* Initial left drawer header and set enable/disable item menu based on auth permission */
         setupNavHeader()
@@ -146,6 +153,21 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         mFilteredBrandPresenter?.loadAllBrands()
 //        brandListView.adapter = mExpandListAdapter
 //        brandListView.layoutManager = LinearLayoutManager(this)
+
+        btnChangeLanguage.text = if (SharedPrefUtil.isEnglish()) getString(R.string.dialog_language_list_english) else getString(R.string.dialog_language_list_thai)
+
+        btnChangeLanguage.setOnClickListener {
+            val builder = DialogUtil.getChangeLanguageDialog(this, getString(R.string.dialog_language_title)) {
+                if (it == 0) {
+                    setLocale("en")
+                } else {
+                    setLocale("th")
+                }
+                startActivity<MainActivity>("currentFragment" to mCurrentPosition)
+            }
+
+            builder!!.show()
+        }
     }
 
     private fun setupNavMenu() {

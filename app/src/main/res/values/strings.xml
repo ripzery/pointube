@@ -360,5 +360,9 @@
     <string name="viewgroup_promotion_list_points">Points</string>
     <string name="viewgroup_promotion_list_read_more">Read more…</string>
 
+    <!-- Dialog Language -->
+    <string name="dialog_language_title">Change Language</string>
+    <string name="dialog_language_list_thai">Thai</string>
+    <string name="dialog_language_list_english">English</string>
 </resources>
 
