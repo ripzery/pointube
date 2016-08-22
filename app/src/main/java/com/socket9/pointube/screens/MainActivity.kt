@@ -247,6 +247,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
                 startSelectBrandActivity()
             } else {
                 info("Cancel Register")
+                setupNavMenu()
             }
         }
     }
