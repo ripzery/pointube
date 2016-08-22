@@ -15,11 +15,15 @@ interface ProgramListContract {
         fun hideLoading()
 
         fun showProgramDetail(programId: Int)
+
+        fun showLogin()
     }
 
     interface Presenter : BasePresenter {
         fun loadProgramList(brandId: Int, unitId: Int = 0)
 
         fun clickProgram(programId: Int)
+
+        fun clickLogin()
     }
 }

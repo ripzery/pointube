@@ -82,18 +82,20 @@ class PromotionPresenter(var view: PromotionContract.View?) : PromotionContract.
     }
 
     override fun clickRecommendMe() {
-        if(mIsSubscribed) view?.showRecommendMe() else view?.showErrorMsgRecommendMe(context.getString(R.string.promotion_list_text_recommend_me_error))
+        if (mIsSubscribed) view?.showRecommendMe() else view?.showErrorMsgRecommendMe(context.getString(R.string.promotion_list_text_recommend_me_error))
     }
 
     override fun onCreate() {
         context = ContextUtil.context!!
 
-        DataManager.getAllBrandSelectedMember(BrandModel.Request.GetMemberSelectBrand(mLoginResult!!.id.toString(), mLoginResult!!.token.toString(), true))
-                .subscribe({
-                    if (it.Brands.size > 0) {
-                        mIsSubscribed = true
-                    }
-                })
+        if (mLoginResult != null) {
+            DataManager.getAllBrandSelectedMember(BrandModel.Request.GetMemberSelectBrand(mLoginResult!!.id.toString(), mLoginResult!!.token.toString(), true))
+                    .subscribe({
+                        if (it.Brands.size > 0) {
+                            mIsSubscribed = true
+                        }
+                    })
+        }
     }
 
     override fun onDestroy() {

@@ -22,6 +22,10 @@ class ProgramListPresenter(var view: ProgramListContract.View?) : AnkoLogger, Pr
                 })
     }
 
+    override fun clickLogin() {
+        view?.showLogin()
+    }
+
     override fun clickProgram(programId: Int) {
         view?.showProgramDetail(programId)
     }

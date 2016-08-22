@@ -2,9 +2,15 @@ package com.socket9.pointube.screens.promotion.list.any
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,8 +19,9 @@ import com.socket9.pointube.R
 import com.socket9.pointube.extensions.hideLoadingDialog
 import com.socket9.pointube.extensions.showLoadingDialog
 import com.socket9.pointube.repository.programs.PublishedProgramItemRepo
+import com.socket9.pointube.screens.login.LoginActivity
 import com.socket9.pointube.screens.promotion.detail.PromotionDetailActivity
-import kotlinx.android.synthetic.main.fragment_brand_member.*
+import kotlinx.android.synthetic.main.fragment_program_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -100,6 +107,9 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
         startActivity<PromotionDetailActivity>("id" to programId)
     }
 
+    override fun showLogin() {
+        startActivity<LoginActivity>()
+    }
     /** Method zone **/
 
     private fun initInstance() {
@@ -117,6 +127,27 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
 
         /* Load brand cover url */
 //        mProgramListPresenter.loadCover(mBrandId)
+        initLoginSpannable()
+
+    }
+
+    private fun initLoginSpannable(){
+        val spannableString = SpannableString(getString(R.string.program_list_text_login_to_see_more))
+        val clickableSpan: ClickableSpan = object : ClickableSpan(){
+            override fun onClick(view: View?) {
+                mProgramListPresenter.clickLogin()
+            }
+
+            override fun updateDrawState(ds: TextPaint?) {
+                super.updateDrawState(ds)
+                ds!!.isUnderlineText = true
+            }
+        }
+
+        spannableString.setSpan(clickableSpan, 7, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvSeeMore.text = spannableString
+        tvSeeMore.movementMethod = LinkMovementMethod.getInstance()
+        tvSeeMore.highlightColor = ContextCompat.getColor(context, R.color.colorGreen)
     }
 
     inner class ProgramListAdapter(var list: MutableList<PublishedProgramItemRepo>, val listener: ProgramListListener) : RecyclerView.Adapter<ProgramListAdapter.ProgramListViewHolder>() {

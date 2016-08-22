@@ -316,6 +316,9 @@
     <string name="promotion_list_text_it_gadget">IT Gadget</string>
     <string name="promotion_list_text_other">Other</string>
 
+    <!-- Program List -->
+    <string name="program_list_text_login_to_see_more">Please login to see more promotion</string>
+
     <!-- Recommend Me -->
     <string name="recommend_me_title">Search by brands</string>
 
