@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
         drawerLayout.addDrawerListener(drawerToggle)
 
         setupToolbar(showHamburger = true, isShowIcon = true)
+        drawerToggle?.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         setupDrawerContent()
         mFilteredBrandPresenter = FilteredBrandPresenter(this)
         mFilteredBrandPresenter?.onCreate()

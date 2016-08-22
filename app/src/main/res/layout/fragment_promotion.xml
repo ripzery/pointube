@@ -21,7 +21,7 @@
             <com.ogaclejapan.smarttablayout.SmartTabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:stl_dividerColor="@android:color/transparent"
                 app:stl_dividerThickness="0dp"

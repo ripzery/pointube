@@ -24,26 +24,39 @@
     <color name="colorTealLighter">#4DB6AC</color>
 
     <!-- Promotion level-list color -->
-    <color name="colorHotDeal">#E91E63</color>
-    <color name="colorDining">#FFC107</color>
-    <color name="colorShopping">#8BC34A</color>
-    <color name="colorTravel">#03A9F4</color>
-    <color name="colorEntertain">#FF9800</color>
-    <color name="colorHealth">#CDDC39</color>
-    <color name="colorBeauty">#9C27B0</color>
-    <color name="colorEducation">#3F51B5</color>
-    <color name="colorReading">#F44336</color>
-    <color name="colorHomeLiving">#4CAF50</color>
-    <color name="colorItGadget">#607D8B</color>
-    <color name="colorOther">#BDBDBD</color>
+    <!--<color name="colorHotDeal">#E91E63</color>-->
+    <!--<color name="colorDining">#FFC107</color>-->
+    <!--<color name="colorShopping">#8BC34A</color>-->
+    <!--<color name="colorTravel">#03A9F4</color>-->
+    <!--<color name="colorEntertain">#FF9800</color>-->
+    <!--<color name="colorHealth">#CDDC39</color>-->
+    <!--<color name="colorBeauty">#9C27B0</color>-->
+    <!--<color name="colorEducation">#3F51B5</color>-->
+    <!--<color name="colorReading">#F44336</color>-->
+    <!--<color name="colorHomeLiving">#4CAF50</color>-->
+    <!--<color name="colorItGadget">#607D8B</color>-->
+    <!--<color name="colorOther">#BDBDBD</color>-->
+
+    <color name="colorHotDeal">#EC0080</color>
+    <color name="colorDining">#FCB813</color>
+    <color name="colorShopping">#72BE44</color>
+    <color name="colorTravel">#008DCF</color>
+    <color name="colorEntertain">#FF6C28</color>
+    <color name="colorHealth">#8DC63F</color>
+    <color name="colorBeauty">#8854A1</color>
+    <color name="colorEducation">#1D5EEB</color>
+    <color name="colorReading">#FB0023</color>
+    <color name="colorHomeLiving">#00AF7E</color>
+    <color name="colorItGadget">#4F4D4B</color>
+    <color name="colorOther">#BAB8C2</color>
 
     <!-- Design color -->
-    <color name="colorDesignGreyTop">#E5E5E5</color>
+    <color name="colorDesignGreyTop">#fffeff</color>
     <color name="colorDesignPink">#EC0080</color>
     <color name="colorDesignYellow">#fcb813</color>
     <color name="colorDesignGreen">#37b34a</color>
     <color name="colorDesignBlue">#0071bb</color>
-    <color name="colorDesignGreyBg">#e8e8e8</color>
+    <color name="colorDesignGreyBg">#eeeeee</color>
     <color name="colorDesignBlack">#231d14</color>
     <color name="colorDesignGreyMenu">#333333</color>
     <color name="colorDesignBlackMyPoint">#050505</color>
