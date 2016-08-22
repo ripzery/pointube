@@ -106,7 +106,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     }
 
     override fun showRegisterSuccess() {
-        toast("Register successful")
+        toast(getString(R.string.register_form_toast_register_successful))
         mRegisterFormPresenter.next()
     }
 
