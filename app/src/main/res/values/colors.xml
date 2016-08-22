@@ -37,6 +37,19 @@
     <color name="colorItGadget">#607D8B</color>
     <color name="colorOther">#BDBDBD</color>
 
+    <!-- Design color -->
+    <color name="colorDesignGreyTop">#E5E5E5</color>
+    <color name="colorDesignPink">#EC0080</color>
+    <color name="colorDesignYellow">#fcb813</color>
+    <color name="colorDesignGreen">#37b34a</color>
+    <color name="colorDesignBlue">#0071bb</color>
+    <color name="colorDesignGreyBg">#e8e8e8</color>
+    <color name="colorDesignBlack">#231d14</color>
+    <color name="colorDesignGreyMenu">#333333</color>
+    <color name="colorDesignBlackMyPoint">#050505</color>
+    <color name="colorDesignBlackSelectSideBar">#212121</color>
+    <color name="colorDesignLineMenu">#929497</color>
+
     <!-- Promotion icon color -->
     <color name="colorIconActive">#FFFFFF</color>
     <color name="colorIconInactive">#80FFFFFF</color>

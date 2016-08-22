@@ -23,7 +23,7 @@ class ThaiAirlineAwardChartActivity : AppCompatActivity() {
     }
 
     private fun initInstance() {
-        setupToolbar("Airline Award Chart")
+        setupToolbar(getString(R.string.thai_airline_title))
         replaceFragment(fragment = AwardChartFragment.newInstance(""))
     }
 }

@@ -60,7 +60,7 @@ object DialogUtil : AnkoLogger{
                 .positiveText(positive)
                 .negativeText(negative)
                 .autoDismiss(false)
-                .input("Your email", /* user email */ "", false) { dialog, input ->
+                .input(context.getString(R.string.dialog_forget_password_hint_email), /* user email */ "", false) { dialog, input ->
                     action(input.toString())
                 }
                 .onNegative { materialDialog, dialogAction ->

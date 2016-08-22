@@ -375,6 +375,9 @@
     <string name="dialog_language_list_thai">Thai</string>
     <string name="dialog_language_list_english">English</string>
 
+    <!-- Dialog Forget Password -->
+    <string name="dialog_forget_password_hint_email">Your Email</string>
+    
     <!-- Validation -->
     <string name="required">Require</string>
 </resources>
