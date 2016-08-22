@@ -63,9 +63,18 @@ class PromotionDetailFragment : Fragment(), AnkoLogger, PromotionDetailContract.
                 setDayLeft(dayBetween)
             }
 
+            layoutSpecialPoint.visibility = if(SpecialPoint > 0) View.VISIBLE else View.GONE
+            layoutTime.visibility = if(!Time.isNullOrEmpty()) View.VISIBLE else View.GONE
+            layoutPlace.visibility = if(!Place.isNullOrEmpty()) View.VISIBLE else View.GONE
+            layoutUrl.visibility = if(!Url.isNullOrEmpty()) View.VISIBLE else View.GONE
+
             tvDescription.text = Description.plainText()
             tvPoint.text = "$Point $UnitOfPoint"
+            tvSpecialPoint.text = "$SpecialPoint $UnitOfPoint"
             tvPeriod.text = PeriodStr
+            tvTime.text = Time
+            tvPlace.text = Place
+            tvUrl.text = Url
 
             var channels = ""
             Channels.forEachWithIndex { i, publishedChannel ->

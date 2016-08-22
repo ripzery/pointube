@@ -27,6 +27,7 @@ open class PublishedProgramItemRepo(
         open var ProgramType: Int = 9,
         open var Place: String = "",
         open var Time: String = "",
+        open var Url: String= "",
         open var HowTo: String = "",
         open var UnitId: Int = 0,
         open var LogoPath: String = "",
