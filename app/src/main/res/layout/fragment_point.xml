@@ -18,49 +18,65 @@
         tools:visibility="visible"
         tools:text="Euro 2016" />
 
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/layoutSubscribedBrand"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#3f3f3f"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:gravity="center"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#3f3f3f"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                style="@style/BaseTextTerm.TextTermsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="18sp"
+                android:text="@string/point_title" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorTextWhite"
+                tools:text="3/8/2016" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
-            style="@style/BaseTextTerm.TextTermsTitle"
+            style="@style/BaseTextTerm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorTextWhite"
-            android:textSize="18sp"
-            android:text="@string/point_title" />
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/colorTextWhite"
-            tools:text="3/8/2016" />
+            android:textSize="12sp"
+            android:text="@string/point_info_helper" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <TextView
-        style="@style/BaseTextTerm"
+        android:id="@+id/tvPointEmptyState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="12sp"
-        android:text="@string/point_info_helper" />
-
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:text="@string/point_empty_state"/>
 
 </LinearLayout>

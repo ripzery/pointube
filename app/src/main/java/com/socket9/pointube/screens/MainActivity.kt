@@ -110,19 +110,19 @@ class MainActivity : AppCompatActivity(), AnkoLogger, HomeFragment.OnLoginListen
             }
             R.id.nav_point_fragment -> {
                 fragment = PointFragment.newInstance("Point")
-                setupToolbar(title = "My Point",showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.point_text_title),showHamburger = true, isShowIcon = false)
             }
             R.id.nav_promotion_fragment -> {
                 fragment = PromotionFragment.newInstance("Promotion")
-                setupToolbar(title = "Promotion",showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.promotion_list_text_title),showHamburger = true, isShowIcon = false)
             }
             R.id.nav_setting_fragment -> {
                 fragment = SettingFragment.newInstance("Setting")
-                setupToolbar(title = "Setting",showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.setting_text_title),showHamburger = true, isShowIcon = false)
             }
             R.id.nav_about_fragment -> {
                 fragment = AboutFragment.newInstance("Home")
-                setupToolbar(title = "About Pointube",showHamburger = true, isShowIcon = false)
+                setupToolbar(title = getString(R.string.about_text_title),showHamburger = true, isShowIcon = false)
             }
         }
 

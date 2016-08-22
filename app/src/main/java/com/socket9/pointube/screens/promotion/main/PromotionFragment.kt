@@ -55,7 +55,7 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
         when (item!!.itemId) {
             R.id.menu_recommend -> {
                 if (SharedPrefUtil.loadLoginResult() != null)
-                    startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+                    showRecommendMe()
                 else{
                     toast("Please login to see recommend promotion")
                 }
@@ -116,6 +116,14 @@ class PromotionFragment : Fragment(), AnkoLogger, PromotionContract.View {
     override fun setupViewPager() {
         mPromotionPagerAdapter = PromotionPagerAdapter(fragmentManager)
         viewpager.adapter = mPromotionPagerAdapter
+    }
+
+    override fun showRecommendMe() {
+        startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+    }
+
+    override fun showErrorMsgRecommendMe(msg: String) {
+        toast(msg)
     }
 
     /** Method zone **/

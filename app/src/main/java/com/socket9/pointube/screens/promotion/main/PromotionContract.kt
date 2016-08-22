@@ -16,11 +16,17 @@ interface PromotionContract {
         fun hideLoading()
 
         fun setupViewPager()
+
+        fun showRecommendMe()
+
+        fun showErrorMsgRecommendMe(msg: String)
     }
 
     interface Presenter : BasePresenter {
         fun prepareViewPager()
 
         fun prepareTabBar()
+
+        fun clickRecommendMe()
     }
 }

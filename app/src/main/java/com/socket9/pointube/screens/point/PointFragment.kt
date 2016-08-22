@@ -16,14 +16,13 @@ import com.socket9.pointube.screens.recommendme.RecommendMeActivity
 import kotlinx.android.synthetic.main.fragment_point.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 import java.text.SimpleDateFormat
 
 /**
  * Created by Euro (ripzery@gmail.com) on 3/10/16 AD.
  */
 class PointFragment : Fragment(), AnkoLogger, PointContract.View {
-
-
     /** Variable zone **/
     private val THE_ONE_CARD_ID = 1
     lateinit var param1: String
@@ -61,7 +60,7 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.menu_recommend -> startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+            R.id.menu_recommend -> mPointPresenter.clickRecommendMe()
         }
         return true
     }
@@ -89,6 +88,11 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
         mPointAdapter.updateList(allBrands)
     }
 
+    override fun showEmptyBrand() {
+        tvPointEmptyState.visibility = View.VISIBLE
+        layoutSubscribedBrand.visibility = View.GONE
+    }
+
     override fun showLoading() {
         showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.point_dialog_progress_selected_brand_content))
     }
@@ -100,6 +104,14 @@ class PointFragment : Fragment(), AnkoLogger, PointContract.View {
     override fun initUser(model: LoginModel.Response.LoginResult) {
         tvUsername.text = "${model.firstNameEN} ${model.lastNameEN}"
         tvDate.text = SimpleDateFormat("dd/MM/yyyy").format(model.birthday)
+    }
+
+    override fun showRecommendMe() {
+        startActivity<RecommendMeActivity>("id" to THE_ONE_CARD_ID)
+    }
+
+    override fun showErrorMsgRecommendMe(msg: String) {
+        toast(msg)
     }
 
     /** Method zone **/

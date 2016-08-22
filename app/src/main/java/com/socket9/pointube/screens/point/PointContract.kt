@@ -16,12 +16,20 @@ interface PointContract {
 
         fun hideLoading()
 
+        fun showEmptyBrand()
+
         fun initUser(model: LoginModel.Response.LoginResult)
+
+        fun showRecommendMe()
+
+        fun showErrorMsgRecommendMe(msg: String)
     }
 
     interface Presenter: BasePresenter {
         fun loadBrands()
 
         fun loadUser()
+
+        fun clickRecommendMe()
     }
 }

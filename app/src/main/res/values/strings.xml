@@ -191,9 +191,11 @@
     <string name="brand_non_member_button_start">Let\'s start</string>
 
     <!-- Point -->
-    <string name="point_text_title">My Points</string>
+    <string name="point_text_title">POINTUBE Wallet</string>
     <string name="point_dialog_progress_selected_brand_content">Loading selected brand..</string>
     <string name="point_title">Outstanding Points</string>
+    <string name="point_empty_state">To create your point wallet,\n please select at least 1 brand from the list</string>
+    <string name="point_recommend_me_error">Please select at least 1 brand from the list to view recommend promotion.</string>
     <string name="point_info_helper">*For any questions on above points/miles data, please contact your reward program provider\'s call center for details.</string>
 
     <!-- About -->
@@ -215,7 +217,7 @@
 
     <string name="login_dialog_forgot_password_title">Forgot Password</string>
 
-    <string name="login_dialog_progress_validate_forgot_password">Validate forgot password…</string>
+    <string name="login_dialog_progress_validate_forgot_password">Validate your email…</string>
     <string name="login_dialog_progress_resetting_password">Resetting password…</string>
     <string name="login_dialog_progress_login">Logging in…</string>
     <string name="login_dialog_progress_request_otp">Request Otp…</string>
@@ -298,6 +300,8 @@
     <string name="promotion_list_loading_program">Loading program list…</string>
     <string name="promotion_list_empty_loading_program">Promotion is coming…</string>
     <string name="promotion_list_text_title">Promotion</string>
+
+    <string name="promotion_list_text_recommend_me_error">Please select at least 1 brand from the list to view recommend promotion.</string>
 
     <string name="promotion_list_text_hot_deal">Hot deal</string>
     <string name="promotion_list_text_dining">Dining</string>
