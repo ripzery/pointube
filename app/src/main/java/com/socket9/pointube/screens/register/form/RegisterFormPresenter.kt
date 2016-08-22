@@ -99,7 +99,7 @@ class RegisterFormPresenter(var view: RegisterFormContract.View?) : AnkoLogger, 
     private fun buildRegisterModel(t1: CharSequence, t2: CharSequence, t4: CharSequence, t5: CharSequence, t6: CharSequence, t7: CharSequence, t8: CharSequence, t9: CharSequence, t10: CharSequence) {
         val date = Calendar.getInstance()
         val split = t10.split("/")
-        date.set(split[2].toInt(), split[1].toInt(), split[0].toInt())
+        date.set(split[2].toInt(), split[1].toInt()-1, split[0].toInt())
         val dob = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(date.time)
         info { dob }
         mRegisterRequest = RegisterModel.Request.Register(

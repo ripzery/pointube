@@ -55,7 +55,6 @@ class PromotionDetailFragment : Fragment(), AnkoLogger, PromotionDetailContract.
 //            mActivity.supportActionBar!!.title = Title
             collapsing_toolbar.title = Title
 
-
             /* Calculate day left */
             if (PublishPeriod != null) {
                 val dayBetween = Date().farFrom(PublishPeriod!!.EndDate)

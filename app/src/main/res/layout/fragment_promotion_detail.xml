@@ -99,8 +99,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tvBegin"
                     android:layout_below="@id/tvBegin"
-                    app:saleCurrencyPromotion="baht"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="16dp"
+                    app:saleCurrencyPromotion="baht" />
 
                 <TextView
                     android:id="@+id/tvDayLeft"
@@ -137,20 +137,27 @@
                 tools:text="400 Points" />
 
 
-            <TextView
-                style="@style/BaseTextTerm.TextTermsTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layoutSpecialPoint"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/promotion_detail_text_special_point" />
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BaseTextTerm.TextTermsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/promotion_detail_text_special_point" />
 
 
-            <TextView
-                android:id="@+id/tvSpecialPoint"
-                style="@style/BaseTextTerm.Body"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="400 Points" />
+                <TextView
+                    android:id="@+id/tvSpecialPoint"
+                    style="@style/BaseTextTerm.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="400 Points" />
 
+            </LinearLayout>
 
             <TextView
                 style="@style/BaseTextTerm.TextTermsTitle"
@@ -166,20 +173,26 @@
                 android:layout_height="wrap_content"
                 tools:text="13/Jun/2016 - 31/Jul/2016" />
 
-
-            <TextView
-                style="@style/BaseTextTerm.TextTermsTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layoutTime"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/promotion_detail_text_time" />
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BaseTextTerm.TextTermsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/promotion_detail_text_time" />
 
 
-            <TextView
-                android:id="@+id/tvTime"
-                style="@style/BaseTextTerm.Body"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Time" />
+                <TextView
+                    android:id="@+id/tvTime"
+                    style="@style/BaseTextTerm.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Time" />
+            </LinearLayout>
 
             <TextView
                 style="@style/BaseTextTerm.TextTermsTitle"
@@ -210,38 +223,48 @@
                 android:layout_height="wrap_content"
                 tools:text="ระบบ USSD *770" />
 
-
-
-            <TextView
-                style="@style/BaseTextTerm.TextTermsTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layoutPlace"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/promotion_detail_text_place" />
+                android:orientation="vertical">
 
+                <TextView
+                    style="@style/BaseTextTerm.TextTermsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/promotion_detail_text_place" />
 
-            <TextView
-                android:id="@+id/tvPlace"
-                style="@style/BaseTextTerm.Body"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvPlace"
+                    style="@style/BaseTextTerm.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Socket9 Ltd." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutUrl"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Socket9 Ltd." />
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BaseTextTerm.TextTermsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/promotion_detail_text_url" />
 
 
+                <TextView
+                    android:id="@+id/tvUrl"
+                    style="@style/BaseTextTerm.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="http://ripzery.com" />
 
-            <TextView
-                style="@style/BaseTextTerm.TextTermsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/promotion_detail_text_url" />
-
-
-            <TextView
-                android:id="@+id/tvUrl"
-                style="@style/BaseTextTerm.Body"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="htttp://ripzery.com" />
-
+            </LinearLayout>
 
             <TextView
                 style="@style/BaseTextTerm.TextTermsTitle"

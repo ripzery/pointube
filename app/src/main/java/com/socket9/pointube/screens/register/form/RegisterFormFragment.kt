@@ -192,7 +192,7 @@ class RegisterFormFragment : Fragment(), AnkoLogger, DatePickerDialog.OnDateSetL
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        tvDob.text = "$dayOfMonth/$monthOfYear/$year"
+        tvDob.text = "$dayOfMonth/${monthOfYear + 1}/$year"
         mRegisterFormPresenter.setDob(tvDob.text.toString())
     }
 
