@@ -183,6 +183,9 @@
     <string name="brand_member_select_hint">*หากมีข้อสงสัยหรือคำถาม กรุณาติดต่อศูนย์บริการของ Reward Program ที่ท่านเป็นสมาชิกอยู่เพื่อขอรับรายละเอียด</string>
 
     <string name="brand_member_button_start">ถัดไป</string>
+    <string name="brand_member_text_loading_error">ไม่สามารถโหลดข้อมูลได้…</string>
+    <string name="brand_member_progress_text_qualified_brand">กำลังโหลดแบรนด์ที่เป็นสมาชิกอยู่</string>
+    <string name="brand_member_text_save_successful">บันทึกสำเร็จ</string>
 
     <!-- Brand Non Member -->
     <string name="brand_non_member_info_1">ถ้าสนใจสมัครสมาชิกแบรนด์อื่นๆ ให้เลือกจากรายการนี้</string>
@@ -192,6 +195,8 @@
     <!-- Point -->
     <string name="point_text_title">เช็คคะแนน</string>
     <string name="point_dialog_progress_selected_brand_content">กำลังโหลดแบรนด์ที่เลือก..</string>
+    <string name="point_empty_state">เพื่อสร้าง Pointube Wallet,\n ให้เลือกอย่างน้อย 1 แบรนด์จากรายการ</string>
+    <string name="point_recommend_me_error">ให้เลือกอย่างน้อย 1 แบรนด์จากรายการเพื่อดูว่าใช้คะแนนแลกอะไรดี</string>
     <string name="point_title">คะแนนในปัจจุบัน</string>
     <string name="point_info_helper">*หากมีข้อสงสัยหรือคำถาม กรุณาติดต่อศูนย์บริการของ Reward Program ที่ท่านเป็นสมาชิกอยู่เพื่อขอรับรายละเอียด</string>
 

@@ -24,7 +24,7 @@ class MyBrandActivity : AppCompatActivity(), BrandMemberFragment.BrandMemberList
     }
 
     private fun initInstance() {
-        setupToolbar("My Brands", isShowBackButton = true)
+        setupToolbar(getString(R.string.my_brand_text_title), isShowBackButton = true)
         replaceFragment(fragment = BrandMemberFragment.newInstance(true))
     }
 

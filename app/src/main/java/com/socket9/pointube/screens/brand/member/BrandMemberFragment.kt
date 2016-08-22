@@ -103,7 +103,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     }
 
     override fun showLoading() {
-        showLoadingDialog("Please wait", "Loading qualified brand...")
+        showLoadingDialog(getString(R.string.dialog_default_progress_loading_title), getString(R.string.brand_member_progress_text_qualified_brand))
     }
 
     override fun hideLoading() {
@@ -115,7 +115,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     }
 
     override fun showLoadingError() {
-        toast("Loading error")
+        toast(getString(R.string.brand_member_text_loading_error))
     }
 
     override fun showSaveFailed(msg: String) {
@@ -123,7 +123,7 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
     }
 
     override fun showSaveSuccess() {
-        toast("Save successful")
+        toast(getString(R.string.brand_member_text_save_successful))
         mActivityListener.goNextFromBrandMember(mutableListOf(), mutableListOf())
     }
 
@@ -147,17 +147,17 @@ class BrandMemberFragment : Fragment(), BrandMemberContract.View, AnkoLogger {
 
         /* Initial btn select all */
         btnSelectAll.isSelected = mIsSelectAllSelected
-        btnSelectAll.text = if (mIsSelectAllSelected) "Unselect all" else "Select all"
+        btnSelectAll.text = if (mIsSelectAllSelected) getString(R.string.brand_non_member_btn_un_select_all) else getString(R.string.brand_member_select_all_button)
         btnSelectAll.setOnClickListener {
             it.isSelected = !it.isSelected
             mIsSelectAllSelected = it.isSelected
-            btnSelectAll.text = if (it.isSelected) "Unselect all" else "Select all"
+            btnSelectAll.text = if (it.isSelected) getString(R.string.brand_non_member_btn_un_select_all) else getString(R.string.brand_member_select_all_button)
             mBrandMemberPresenter.selectAllBrand(it.isSelected)
         }
 
         tvUsername.text = "${mLoginModel.firstNameEN} ${mLoginModel.lastNameEN}"
 
-        btnNext.text = if (mIsEdit) "Save" else "Next"
+        btnNext.text = if (mIsEdit) getString(R.string.my_profile_btn_save) else getString(R.string.brand_member_button_start)
 
         mBrandMemberPresenter.loadAllBrands(mLoginModel.id.toString(), mLoginModel.token!!, mIsEdit)
     }

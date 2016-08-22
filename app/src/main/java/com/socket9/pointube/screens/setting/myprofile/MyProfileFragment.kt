@@ -136,7 +136,7 @@ class MyProfileFragment : Fragment(), AnkoLogger, MyProfileContract.View, DatePi
             val month = tvDob.text.split("/")[1]
             val year = tvDob.text.split("/")[2]
 
-            tvDob.text = "$day/${month+1}/$year"
+            tvDob.text = "$day/${month.toInt()+1}/$year"
             tvDob.setOnClickListener {
                 val dpd = DatePickerDialog.newInstance(
                         this@MyProfileFragment,

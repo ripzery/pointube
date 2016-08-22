@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">pointube</string>
+    <string name="app_name" translatable="false">Pointube</string>
     <string name="drawer_open" translatable="false">Open navigation drawer</string>
     <string name="drawer_close" translatable="false">Close navigation drawer</string>
 
@@ -185,6 +185,9 @@
     <string name="brand_member_select_hint">*For any question on above member data, please contact your reward program provider\'s callcenter for details.</string>
 
     <string name="brand_member_button_start">Next</string>
+    <string name="brand_member_progress_text_qualified_brand">Loading qualified brand…</string>
+    <string name="brand_member_text_loading_error">Loading error…</string>
+    <string name="brand_member_text_save_successful">Save successful</string>
 
     <!-- Brand Non Member -->
     <string name="brand_non_member_info_1">Do you wish to become a member of these brand? \n If \'yes\', please select the brands from the list</string>

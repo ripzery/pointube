@@ -8,14 +8,15 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
             android:name=".screens.MainActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,19 +25,22 @@
         </activity>
         <activity
             android:name=".screens.register.RegisterActivity"
+            android:configChanges="locale"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".screens.brand.SelectBrandActivity" />
-        <activity android:name=".screens.login.LoginActivity" />
-        <activity android:name=".screens.promotion.detail.PromotionDetailActivity" />
-        <activity android:name=".screens.setting.mybrand.MyBrandActivity" />
+        <activity android:name=".screens.brand.SelectBrandActivity" android:configChanges="locale" />
+        <activity android:name=".screens.login.LoginActivity" android:configChanges="locale" />
+        <activity android:name=".screens.promotion.detail.PromotionDetailActivity" android:configChanges="locale" />
+        <activity android:name=".screens.setting.mybrand.MyBrandActivity" android:configChanges="locale" />
         <activity
             android:name=".screens.setting.myprofile.MyProfileActivity"
+            android:configChanges="locale"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".screens.promotion.list.any.ProgramListActivity" />
-        <activity android:name=".screens.recommendme.RecommendMeActivity" />
-        <activity android:name=".screens.about.detail.AboutDetailActivity" />
-        <activity android:name=".screens.promotion.list.thai_airline.chart.ThaiAirlineAwardChartActivity" />
-        <activity android:name=".screens.promotion.list.thai_airline.chart_detail.ChartDetailActivity"></activity>
+        <activity android:name=".screens.promotion.list.any.ProgramListActivity" android:configChanges="locale" />
+        <activity android:name=".screens.recommendme.RecommendMeActivity" android:configChanges="locale" />
+        <activity android:name=".screens.about.detail.AboutDetailActivity" android:configChanges="locale" />
+        <activity android:name=".screens.promotion.list.thai_airline.chart.ThaiAirlineAwardChartActivity" android:configChanges="locale"/>
+        <activity android:name=".screens.promotion.list.thai_airline.chart_detail.ChartDetailActivity" android:configChanges="locale" />
+        <activity android:name=".screens.EntryActivity"></activity>
     </application>
 
 </manifest>
