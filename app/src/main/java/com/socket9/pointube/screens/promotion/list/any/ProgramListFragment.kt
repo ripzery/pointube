@@ -116,6 +116,7 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
     override fun showEmptyProgram() {
         tvComingSoon.visibility = View.VISIBLE
     }
+
     /** Method zone **/
 
     private fun initInstance() {
@@ -137,10 +138,10 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
 
     }
 
-    private fun initLoginSpannable(){
-        if(SharedPrefUtil.loadLoginResult() == null){
+    private fun initLoginSpannable() {
+        if (SharedPrefUtil.loadLoginResult() == null) {
             val spannableString = SpannableString(getString(R.string.program_list_text_login_to_see_more))
-            val clickableSpan: ClickableSpan = object : ClickableSpan(){
+            val clickableSpan: ClickableSpan = object : ClickableSpan() {
                 override fun onClick(view: View?) {
                     mProgramListPresenter.clickLogin()
                 }
@@ -156,7 +157,8 @@ class ProgramListFragment : Fragment(), ProgramListContract.View, AnkoLogger {
             tvSeeMore.movementMethod = LinkMovementMethod.getInstance()
             tvSeeMore.highlightColor = ContextCompat.getColor(context, R.color.colorGreen)
             tvSeeMore.visibility = View.VISIBLE
-        }else{
+            tvComingSoon.visibility = View.GONE
+        } else {
             tvSeeMore.visibility = View.GONE
         }
     }
